@@ -1,0 +1,61 @@
+<div class="row">
+<div class="col-sm-12">
+<div class="panel panel-default">
+
+<div class="panel-heading">
+
+	<h3 class="panel-title"><label>You are assigning Surveys to   
+	Microsite: <%= @microsite.title %> </label> </h3>
+</div>
+
+<div class="panel-body">
+
+	<div class="error-block">
+	 	<% @errors.each do |e|    %>
+	 		<p style="color:red"><%= raw(e) %></p>
+	 	<% end %>
+	</div>
+<%#= @Surveys.inspect %>
+	<div class="success-block">
+	 	<% @success.each do |s|    %>
+	 		<p style="color:green"><%= raw(s) %></p>
+	 	<% end %>
+	</div>
+
+	<div class="form-wrapper">
+		<%= form_for(@microsite, 
+		:url=>"/microsites/#{@microsite.id}/addexistingsurveys") do |f| %>	
+			<%= hidden_field_tag(:task, "assign-survey-to-microsite" ) %>
+
+			<div class="search-survey">
+			  <label><%= t("SEARCH_SURVEY_FOR_MICROSITE") %></label>
+			  <%= autocomplete_field_tag "Surveys[]", "", autocomplete_survey_name_surveys_path,
+			  'data-delimiter' => ',', :multiple => true %>
+			</div>
+			<div class="submitbtn">
+			    <%= button_tag("Save", 
+			      data: { 
+			      disable_with: "Please Wait...",
+			      confirm: "Are Sure?" }, class:"msiteuser") %>
+			</div>
+
+	    <% end %>	
+	</div>    	
+
+	<div class="list-survey">
+		<div class="title"><%= t("SURVEY_LIST_TO_ASSIGN") %></div>
+		<ul>
+			<% Survey.all.where("id NOT IN (?) AND status = TRUE",@microsite.surveys.map{|s| s.id}).each do |survey| %>
+			<li><%= survey.name %></li>
+			<% end %>
+		</ul>
+	</div>
+
+
+
+</div>
+
+</div>
+</div>
+</div>
+

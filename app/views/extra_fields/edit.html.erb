@@ -1,0 +1,29 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title">Editing Extra Field
+            	<span class="pull-right"> 
+            	<% if @backurl != nil %>
+            	<%= link_to "Back", @backurl %>
+            	<% else %>
+            	<%= link_to "Back", :back %>
+            	<% end %>
+                
+                </span>
+                <span class="pull-right"> 
+                  <%= link_to 'Show', @extra_field %> 
+                </span>
+            </h3>
+         </div>
+         <div class="panel-body">
+ 
+
+<%= render 'form' %>
+ 
+</div>
+</div>
+</div>
+</div>
+
+ 

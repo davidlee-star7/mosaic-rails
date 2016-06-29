@@ -1,0 +1,156 @@
+<div class="row">
+<div class="col-sm-12">
+<div class="panel panel-default">
+   <div class="panel-heading">
+      <h3 class="panel-title">
+      Add User
+         <span class="pull-right"> <%= link_to 'back to users', '/admin/users', :class =>'addUser' %>
+         </span>
+      </h3>
+   </div>
+
+   <div class="add-user-page panel-body">
+
+      <% if @user.errors.any? %>
+   <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+         <% @user.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+         <% end %>
+      </ul>
+   </div>
+   <% end %>
+
+            <p id="notice"><%= notice %></p>
+
+    <%= form_for @user, :url => "/admin/addUser/" do |f| %>  
+    <%= hidden_field_tag :action_type, "addUser"  %>
+
+    <div class="form-group">
+      <%= f.label :first_name, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+         <%= f.text_field :first_name, class: "form-control" %>
+      </div>
+   </div>
+
+   <div class="form-group">
+      <%= f.label :last_name, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+         <%= f.text_field :last_name, class: "form-control" %>
+      </div>
+   </div>
+
+   <div class="form-group">
+      <%= f.label :display_name, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+         <%= f.text_field :display_name, class: "form-control" %>
+      </div>
+   </div>
+
+   <div class="form-group">
+      <%= f.label :username, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+         <%= f.text_field :username, class: "form-control" %>
+      </div>
+   </div>
+
+   <div class="form-group">
+      <%= f.label :email, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+         <%= f.text_field :email, class: "form-control" %>
+      </div>
+   </div>
+
+   <div class="form-group">
+      <%= f.label :password, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+         <%= f.password_field :password, class: "form-control" %>
+      </div>
+   </div>
+
+   <div class="form-group">
+      <%= f.label :status, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+      <%#if @user.status =='status' %>
+
+         <%= f.select :status, options_for_select([['Active',1],['Inactive',0]]), class: "form-control" %>
+      </div>
+   </div>
+
+   <div class="form-group">
+      <%= f.label :admin, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+      <%#if @user.status =='status' %>
+
+         <%= f.check_box :admin %>
+      </div>
+   </div>
+
+
+
+<% if current_user.can? :editrole, :admin %>
+   <div class="form-group">
+      <%= f.label :roles, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+      <%#if @user.status =='status' %>
+
+      <%#= @role.inspect %>
+
+         <% @roles.each_with_index do |urole,index| %>
+            <div class="role-box">
+               <% if ((@role!= nil) && (@role.has_value? urole[0])) %>
+               <%=  check_box_tag("role["+index.to_s+"]",urole[0],1)  %>
+               <% else %>
+               <%=  check_box_tag("role["+index.to_s+"]",urole[0])  %>
+                <% end %>
+               <%=  label_tag("role["+index.to_s+"]", urole[0])  %>
+            </div>
+         <% end %>
+      </div>
+   </div>
+<% end %>
+
+<% if current_user.can? :editrole, :admin %>
+   <div class="form-group">
+      <%= f.label :groups, class: "col-md-2 control-label" %>
+      <div class="col-md-10">
+         
+         <table width="100%" class="">
+             
+               <% Group.all.each do |g| %>
+                  <tr>
+                     <td>
+                     <% if ((@groups != nil) && (@groups.has_value?(g.name) )) %>
+                        <%=  check_box_tag("group[#{g.id}]",g.name,1) %>
+                        <% else %>
+                        <%=  check_box_tag("group[#{g.id}]",g.name) %>
+                      <% end %>
+                        <%= label_tag("group[#{g.id}]", g.name) %>
+                     </td>
+                  </tr>
+               <% end %>
+             
+            </table>
+
+          
+      </div>
+   </div>
+<% end %>
+
+   <div class="form-group m-b-0">
+      <div class="col-sm-offset-2 col-sm-10">
+         <%= f.submit 'save' , :class=> "btn btn-info waves-effect waves-light", :data => { :disable_with => "Saving" }  %> 
+      </div>
+   </div>
+
+   <br />
+   <br />
+   <br />
+
+    <% end %>      
+   </div>               
+</div>
+</div>
+</div>
+            

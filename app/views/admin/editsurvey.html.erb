@@ -1,0 +1,77 @@
+<div class="add_new_survey">
+
+ 
+ <div class="create-new-servey" 
+ id="addsurvey-pop-1">
+
+ <% if @survey!=nil %>
+    <div id="error_explanation">
+      <h2>
+      	<% if @survey.errors.count >0 %> 
+      	<%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+      	<% end %>
+      <ul>
+      <% @survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <%= form_tag("/surveys/"+@survey.id.to_s+"/update/", method: "post") do %>
+
+   <%= hidden_field_tag(:action_type,'addSurvey')  %>
+
+	 <div class="title">
+	 	<%= label_tag(:name, 'Let`s Create Your New') %>
+	 	<span>Standard Survey</span>
+	 </div>
+
+	 <%#=  @tparmas %>
+
+	 <div class="form-row required new-survey-title">
+			<div class="control-la bel">
+				<label for="projecttitle" id="title-label">What would you like to name this Survey (Pick a good one!)</label>
+			</div>
+			<div class="control-input">
+		<%=  text_field_tag(:name, @survey.name, :placeholder => 'Example:  Survey') %>					 
+			</div>
+	 </div>
+ 
+	 <div class="thank-page-block">
+
+	 	<div class="page-title-block">
+
+		 	<%= label_tag(:thank_page_title, 'Thank Page Title') %>
+
+		 	<%=  text_field_tag(:thank_page_title, @survey.thank_page_title, :placeholder => 'Example: My Test Page') %>
+	 	</div>
+
+	 	<div class="page-message-block">
+
+	 		<%= label_tag(:thank_page_description, 'Thank Page Description') %>
+
+		 	<%=  text_area_tag(:thank_page_description, @survey.thank_page_description, :placeholder => 'Example: Lorm ipsum content') %>
+	 	</div>
+		<div class="clear"></div>
+
+
+	 </div>
+
+
+
+	 
+
+	 
+
+	 <div class="button-block">
+		<a class="never-mind" rel="modal:close" href="#close-modal">
+			Never Mind
+		</a>
+
+		<%= submit_tag("Start Building")  %>
+	 </div>
+<% end %>
+	</div>
+
+</div>

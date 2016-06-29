@@ -1,0 +1,28 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @file_manger.name %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @file_manger.size %>
+</p>
+
+<p>
+  <strong>Attachment:</strong>
+  <%#= @file_manger.attachment %>
+  <%= image_tag Icon.for_filename(@file_manger.name) %>
+ <a t
+
+<!-- /posts/:post_id/comments/:id/edit -->
+<%= link_to 'Edit', edit_folder_file_manger_path(@file_manger.folder, @file_manger) %> |
+<!-- /posts/:post_id/comments/ -->
+<%= link_to 'Back', folder_file_mangers_path(@file_manger.folder) %>
+
+
+
+

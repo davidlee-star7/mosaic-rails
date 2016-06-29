@@ -1,0 +1,59 @@
+
+
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title trans-none"><%= t(:MANAGE_GROUPS) %>
+                   
+                 <span class="pull-right"> 
+                        <%= link_to "Back", :back %>
+                 </span>
+                  
+                 <% if current_user.can? :create, :group  %> 
+                 <span class="pull-right"> 
+                         <%= link_to 'create a new group', new_group_path %>
+                </span>
+                <% end %>
+            </h3>
+         </div>
+         <div class="panel-body">
+            <div class="row">
+               <p id="notice"><%= notice %></p>
+               <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="table-responsive">
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th>Name</th>
+                              <th>Description</th>
+                              <th colspan="3"></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <% @groups.each do |group| %>
+                           <tr>
+                              <td><%= group.name %></td>
+                              <td><%= group.description %></td>
+                              <% if current_user.can? :show, :group  %> 
+                              <td><%= link_to 'Show', group %></td>
+                              <% end %>
+                              <% if current_user.can? :edit, :group  %> 
+                              <td><%= link_to 'Edit', edit_group_path(group) %></td>
+                              <% end %>
+                              <% if current_user.can? :destroy, :group  %> 
+                              <td><%= link_to 'Delete Group', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                              <% end %>
+                           </tr>
+                           <% end %>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End row -->
+

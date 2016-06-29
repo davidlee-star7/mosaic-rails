@@ -1,0 +1,133 @@
+<div class="f2-block fields-option" >
+
+	<div class="options-adv">
+		<div class="row">
+				<div class="col-md-6">
+					<h4>Multiple Choice Options</h4>
+				</div>
+		</div>
+	</div>
+
+	<%#= section %>
+	<%#= @question  %>	 
+
+	<div class="questions-add-option">
+		<ul> 
+		<% if @question != nil %>
+
+			<%  if @question.qfields != nil %>
+
+				<%  @question.qfields.each_with_index do |field,k|  %>
+					<li data-id="1">
+
+						<%= text_area_tag('qoption[1]',field.fval, :placeholder => 'Option 1')  %>
+					</li>
+
+				<%  end %>
+
+			<%  end %>
+
+		<% else %>
+
+			<li data-id="1">
+
+				<%= text_area_tag('qoption[1]','', :placeholder => 'Option 1')  %>
+			</li>
+
+			<li data-id="2">
+				<%= text_area_tag('qoption[2]','', :placeholder => 'Option 2',
+				'data-id'=>1)  %>
+			</li>	
+			
+		<% end %>	
+
+				
+
+		</ul>
+
+
+	</div>
+
+	<div class="answer-grid-footer">
+
+		<span class="add-option-textbox">
+				<a class="add-option-button" 
+				 data-options-add-btn=""
+				 onclick="add_more_questions()"
+				 href="javascript:void(0);">
+				 <i class="icon-plus text-muted"></i> 
+				 Click to Add Option</a>
+		</span>
+
+	</div>	
+
+	<!-- *************** geting started guide ************** -->
+
+	<div class="col-md-4 hidden-xs advisor-column pull-right">	
+		<div class="alert alert-info advisor">
+			<div class="advisor-header">
+				<strong>Getting Started Guide</strong> 
+			</div>
+
+			<div class="advisor-text">
+				<p>Radio Button Grids allow a single selection per row and are useful for gathering similar information about different topics. They are also a great way to set up multiple Rating (Likert Scale) questions.<br><br>In Radio Button Grids the same response (column) can be selected more than once. If you want to only allow one selection per column.</p>	
+			</div>
+		</div>
+			<div class="clearfix"></div>
+	</div>
+
+	<div class="row-header-block">
+		<div class="title-block">Row Headers</div>
+
+		<div class="qhfields-block add-field">
+			<ul>
+	<% if @question != nil %>	
+
+		<%  if @question.qhfields != nil %>		
+		  <%   @question.qhfields.each do |qh|  %>
+				<li>
+				<%= text_field_tag('qhoption['+qh.id.to_s+']',qh.fval, 
+				:placeholder => 'Row 1', 
+				:class=>"qhoption")  %>
+				</li>
+			<% end %>	
+		 <% end %>	
+
+	<% end %>
+ 
+	 <% if @question != nil %>		
+	 <%  if @question.qhfields.size == 0 %>		 
+			<li data-id="1">
+				<%= text_field_tag('qhoption[1]','', 
+				:placeholder => 'Row 1', 
+				:class=>"qhoption")  %>
+			</li>
+
+			<li data-id="2">
+				<%= text_field_tag('qhoption[2]','', 
+					:placeholder => 'Row 2', 
+					:class=>"qhoption")  %>
+			</li>	 
+	 <%  end %>
+   <%  end %>	
+			</ul>
+
+		</div>
+
+	</div>
+
+	<div class="form-row form-row-grid answer-grid-footer">
+		<div class="form-row-inline">
+			<span class="add-option-qhfields">
+				<a class="add-option-qhfields" 
+				onclick= "addMoreHeaderFields(this)"
+				data-options-add-btn="" 
+				href="javascript:void(0);">
+				<i class="icon-plus text-muted"></i> 
+				Click to Add Option</a>
+			</span>
+		</div>
+	</div>
+
+	<!-- **************** getting started guide end here *** -->
+</div>

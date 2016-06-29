@@ -1,0 +1,56 @@
+<div class="col-sm-10">	
+	<div class="logo">
+	 <%= link_to image_tag("site/logo.png", :alt => "mosaic logo"), request.base_url, :class =>'home-url', :title => 'mosaic' %>
+	</div>	
+</div>
+
+<div class="col-sm-2">
+	<div class="user-controlles">
+		<ul>
+			<!-- <li>
+			<% if I18n.locale == I18n.default_locale %>
+		      	<%= link_to "中国", :locale=>'zh-CN'%>
+			    <% else %>
+			    <%= link_to "English", :locale=>'en'%>
+		    <%end%>
+	    	</li> -->
+				<% if user_signed_in? %>
+					<li>
+						<%= link_to t(:edit_profile), 
+						edit_user_registration_path, 
+						:class => 'navbar-link' %> 
+					</li>
+					<li>
+						<%= link_to t(:logout), destroy_user_session_path, 
+						method: :delete, :class => 'navbar-link'  %>
+					</li>
+				<% end %>		
+
+		</ul>
+	</div>
+	<% if user_signed_in? %>
+		<!-- <div class="logged_in_ser_section">
+		<label><%= t(:welcome) %> </label>
+		
+			<span>
+				<%#= current_user.display_name  %>
+			</span>
+		
+		</div>	  -->
+	<div class="clear"></div>
+	<!-- <div class="currnt-user-role">
+		<% if current_user.roles.size > 0 %>
+			<label> <%= t(:you_have_the_roles) %>:</label>
+			<ul>
+			<% current_user.roles.each do |cur| %>
+				<li>
+				<%= t(cur.name.downcase)  %>
+				</li>
+			<% end %>
+		</ul>
+		<% end  %>
+	</div> -->
+
+	<% end %>
+
+</div>

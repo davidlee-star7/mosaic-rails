@@ -1,0 +1,14 @@
+<h3>Import Users</h3>
+<p>Please Note: there need only three fields in CSV. [<strong>first_name,email,group_name</strong>]</p>
+	<p><strong>group_name</strong> is not compulsory</p>
+<%#= link_to "Sample CSV", "/data/02_blastout/#{@bl_file}" %> 
+<p>If your group name in not created already, then group will be created</p>
+<p>After user import they will send an invitation email</p>
+<br>
+<%= form_tag url_for(:controller => 'admin', :action => 'importusers'), multipart: true do   %>
+
+<%= file_field_tag :file, accept: 'text/csv' %>
+
+<%= submit_tag "Import CSV" %>
+
+<% end %>

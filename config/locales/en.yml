@@ -1,0 +1,156 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+en:
+  hello: "Hello world"
+  played_surveys: 'Surveys'
+  list_roles: 'Roles'
+  listroles: 'Roles'
+  manage: 'Manage'
+  add_new: 'Add New'
+  survey: 'Survey'
+  list_user: 'Users'
+  setpermition: 'Set Permission'
+  listrolecapability: 'view Role Capabilities'
+  updaterole: 'Update Role'
+  editrole: 'Edit Role'
+  managesurvey: 'Manage Survey'
+  buildsurvey: 'Build Survey'
+  addsurvey: 'Add Survey'
+  deluser: 'Delete User'
+  editsurvey: 'Edit Survey'
+  edituser: 'Edit Users'
+  listusers: 'List Users'
+  adduser: 'Add User'
+  check_permition: 'Check Permission'
+  noofusersplayedthissurvey: 'Count Surveys'
+  index: 'Index'
+  edit: 'Edit'
+  update: 'Update'
+  new: 'New'
+  create: 'Create'
+  delete: 'Delete'
+  destroy: 'Destroy'
+  show: 'Show'
+  manage_permission_for: 'Manage Permission For:'
+  Import_CSV: 'Import users CSV'
+  Export_CSV: 'Export users CSV'
+  qfields: 'Fields'
+  all_user: 'Al Users'
+  templates: 'Templates'
+  #role names
+  data_analyst: 'Data Analyst'
+  project_manager: 'Project Manager'
+  client_admin: 'Client Admin'
+  super_admin: 'Super Admin'
+  sales_manager: 'Sales Manager'
+  no_of_users_played_to_this_survey: 'No. of users'
+  survey_name: 'Survey Name'
+  permission_saved_successfully: 'Permission Saved Successfully'
+   
+  ## add survey
+  prohibited_this_survey_from_being_saved: 'prohibited this What_would_you_like_to_name_this_survey_pick_a_good_one: What would you like to name this Survey (Pick a good one!)'
+  thank_page_title: 'Thank Page Title'
+  page_example_title: 'Example: My Test Page'
+  thanks_page_description: 'Thank Page Description'
+  example_content: 'Example: Lorm ipsum content'
+  never_mind: 'Never Mind'
+  start_building: 'Start Building'
+  welcome: 'Welcome'
+  edit_profile: 'Edit Profile'
+  logout: 'Logout'
+  you_have_the_roles: 'You have the Roles'
+  take_survey_link_title: 'Click on the link to Take the Survey'
+  select_group: 'Select Group'
+  create_cms_page: 'New Page'
+  create_cmspage: 'New Page'
+  listcmspages: 'Al Pages'
+  editpage: 'Edit Pageview'
+  update_cmspage: 'Update Pageview'
+  Groups: 'Groups'
+  Clients: 'Clients'
+  Send_survey_group: 'Send survey group'
+  Microsites: 'Microsites'
+  Folders: 'Folders'
+  Files: 'Files'
+  CLIENT_INFO: 'Client Info'
+  ALL_GROUP_OF_THIS_CLIENT: 'Al Group of this Client'
+  NAME: 'Name'
+  DESCRIPTION: 'Description'
+  SHOW: 'Show'
+  EDIT: 'Edit'
+  DESTROY: 'Destroy'
+  ARE_YOU_SURE: 'Are you sure?'
+  ADD_NEW_GROUP: 'Add New Group'
+  ALL_SURVEY_OF_THIS_CLIENT: 'Al Survey of this Client'
+  STATUS: 'Status'
+  ASSIGN_TO_MICROSITE: 'Assign to Microsite'
+  USER: 'User'
+  MANAGE: 'Manage'
+  ALL_MICROSITE_OF_THIS_CLIENT: 'All Microsites of this Client'
+  ADD_EXISTING_MICROSITES: 'Add Existing microsites'
+  UNPUBLISH: 'Unpublished'
+  PUBLISHED: Published
+  COPY_RIGHT_MSG: '© 2016 Mosaic Sustainability. All rights reserved'
+  SURVEY_OF_THIS_CLIENT: 'Surveys Of This Client'
+  CMS_PAGES_OF_THIS_MICROSITE: 'CMS Pages Of this microsite'
+  SELECT_THE_GROUPS_FOR_THIS_MICROSITE: 'Select the Groups For this microsite'
+  ASSIGN_CMS_PAGE_MSG: 'Following CMS PAges are avaliable assign to microsite'
+  SEARCH_CMS_PAGE_FOR_MICROSITE: 'Search the Pages Assign to Microsite'
+  UNLINK: 'Remove'
+  SURVEYS_OF_THIS_MICROSITE: 'Surveys Of this microsite'
+  SEARCH_SURVEY_FOR_MICROSITE: 'Search Survey for this microsite'
+  SURVEY_LIST_TO_ASSIGN: 'Survey List assign to microsite'
+  MICROSITES_OF_THIS_GROUP: 'Microsites this Group has access to'
+  ADD_EXISTING_MICROSITES_IN_THIS_GROUP: 'Add Existing Microsites in this group'
+  SEARCH_MICROSITE_ASSIGN_TO_GROUP: 'Search Microsites assign to group'
+  ASSIGN_GROUP_TO_MICROSITE_MSG: 'Following Microsites are avaliable to assign this group'
+  AL_USERS_OF_THIS_GROUP: 'Users in this Group'
+  FIRST_NAME: 'First Name'
+  LAST_NAME: 'Last Name'
+  SURVEYS_OF_THIS_GROUP: 'Surveys this Group has access to'
+  ADD_EXISTING_SURVEYS_IN_THIS_GROUP: 'Add Existing Surveys In this Group'
+  ASSIGN_GROUP_TO_SURVEY_MSG: 'Following Surveys are avaliable to assign this group'
+  SEARCH_SURVEY_ASSIGN_TO_GROUP: 'Search Surveys Assign to Group'
+  CMSPAGES: 'Pages'
+  ADD_EXISTING_USERS: 'Add Existing Users in this Group'
+  IMPORT_MORE_USERS_IN_GROUP: 'Import More Users in this Group'
+  ASSIGN_GROUP_TO_USERS_MSG: 'Following Users are avaliable, assign to Group'
+  CREATE_NEW_OBJECT_LABEL: 'Give the suitable name to extra field, Ex.: Left Column.'
+  CREATE_NEW_MICROSITE: 'Create New Microsite'
+  SURVEYS: Surveys
+  WELCOME_MSG: Welcome to your dashboard
+  MANAGE_TABLEAU_MSG: Manage Tableau Dashboards
+  MANAGE_CLIENTS: Manage Clients
+  MANAGE_TEMPLATES: Manage templates
+  MANAGE_PAGES: Manage pages
+  MANAGE_USERS: Manage users
+  MANAGE_GROUPS: Manage groups
+  MANAGE_FILES: Manage files
+  MANAGE_FOLDERS: Manage folders
+  MANAGE_MICROSITES: Manage Microsites
+  TABLEAU_DASHBOARD: Tableau Dashboards
+  NEW_TABLEAU_DASHBOARD: New Tableau Dashboard
+  EDIT_TABLEAU_DASHBOARD: Editing Tableau Dashboard
+  
+
+  
+
+

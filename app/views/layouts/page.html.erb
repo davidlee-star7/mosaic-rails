@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title>Mosaic</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "autocomplete-rails.js" %>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "style.css" %>
+   <%= stylesheet_link_tag "devise/style.css" %>
+   <%= stylesheet_link_tag "admin/style.css" %>
+   <style type="text/css">
+      .wrapper {
+        width: 1200px;
+      }
+      .tableu-menu li{ float: left;  }
+      .tableu-menu li a{ display: block; padding: 5px;  }
+      .logo{ padding: 0 10px; }
+   </style>
+   <script type='text/javascript' src='https://mosaic-tableau.com/javascripts/api/viz_v1.js'></script>
+</head>
+<body class="body <%= params[:controller]+'_'+params[:action] %>  template-<%= params[:controller] %>">
+<div class="wrapper">
+	<div class="login-section">
+		<div class="row">
+			<%= render "common/admin/header" %>	
+				<div class="clear"></div>
+		</div>
+	</div>	
+
+<div class="content-right">
+    <%=  yield %>   
+</div>
+
+<div class="clr"></div>
+<div class="copy-right"><%= t("COPY_RIGHT_MSG") %></div>
+<div class="clr"></div>
+</body>
+</html>

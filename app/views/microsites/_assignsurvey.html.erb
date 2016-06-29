@@ -1,0 +1,112 @@
+
+<%#= form_for(@microsite) do |f| %>
+<div id="assignsurtomicro-<%= micro.id %>">
+  <h3>Listing Surveys of <b><%= micro.title %></b></h3>
+  <div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% micro.surveys.each do |survey| %>
+      <tr>
+        <td><%= survey.name %></td>
+        <td><%= survey.description %></td>
+        <td><%= survey.status %></td>
+         <td><a href="#" class="unassign" data-survey-id="<%=  survey.id  %>">Unassign</a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+
+  <h3>Assign survey to <b><%= micro.title %></b></h3>
+
+<% if current_user.can? :editrole, :admin %>
+        <div class="rolebox">
+        <div class="col-md-5">
+        <select class="surveytoassign form-control">
+        <option value="" selected>Select survey from list</option>
+         <% @surveys.each_with_index do |s| %>
+        <option value="<%=  s.id  %>"><%=  s.name  %></option>
+        <% end %>
+        </select>
+        </div>   
+
+        <button class="getallcheksforsur btn btn-info waves-effect waves-light">Assign</button>
+        </div>
+<% end %>   
+</div>
+
+<script type="text/javascript">
+$(function(){
+
+
+$('#assignsurtomicro-<%= micro.id %> .getallcheksforsur').click(function(){
+var conceptName = $('#assignsurtomicro-<%= micro.id %> .surveytoassign').find(":selected").val();
+// var checkedValues = $('.list-user input:checkbox:checked').map(function() {
+//     return this.value;
+// }).get();
+var micrositeid = <%= micro.id %>
+if(conceptName.length){
+$.ajax({
+                    type:'post',
+                    url: '/admin/assign_survey_to_microsite',
+                    data:{  
+                        surveyid:conceptName,
+                        microid:micrositeid,
+                        task:"assign_survey_to_microsite"
+                    },
+                    success: function(resp){
+                    alert(resp["message"]);
+                     location.reload(); 
+
+                    }
+
+                })
+
+}
+else{
+alert("Please select survey..");   
+}
+// return false;
+
+   });
+
+
+$('#assignsurtomicro-<%= micro.id %> .unassign').click(function(e){
+
+e.preventDefault();
+var surveyid = $(this).data('survey-id')
+var micrositeid = <%= micro.id %>
+
+$.ajax({
+      type:'post',
+      url: '/admin/assign_survey_to_microsite',
+      data:{  
+          surveyid:surveyid,
+          microid:micrositeid,
+          task:"unassignsurvey"
+      },
+      success: function(resp){
+      alert(resp["message"]);
+       location.reload(); 
+
+      }
+
+  })
+
+});
+
+
+
+  });
+
+</script>

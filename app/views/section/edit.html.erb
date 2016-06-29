@@ -1,0 +1,23 @@
+<div class="edit-section">
+		<%= form_tag("/section/update/"+@section.survey_id.to_s, 
+		method: "post") do %>
+		<%= hidden_field_tag(:section_id,@section.id)  %>
+			<div class="title-block">
+				<%= label_tag('Page 1:') %>
+
+				<span><%= text_field_tag(:title,@section.title ) %></span>
+
+				<div class="clear"></div>
+			</div>
+
+			<div class="descrip-block">
+				<%= label_tag('Page Description:') %>
+				<span>
+					<%= text_area_tag(:description,@section.description)   %></span>
+				<div class="clear"></div>
+			</div>
+
+			<%= submit_tag("Save")  %>
+
+			<% end %>
+</div>	

@@ -1,0 +1,85 @@
+   <div class="row">
+   	 <div class="col-sm-12">
+                                <div class="panel panel-default">
+
+                         <div class="panel-heading"><h3 class="panel-title">Add New Survey
+                          <span class="pull-right"> 
+                             <%= link_to "Back", :back %>
+                          </span>
+                         </h3></div>
+
+   	<div class="add_new_survey panel-body">
+
+ 
+ <div class="create-new-servey" id="addsurvey-pop-1">
+
+ <% if @survey!=nil %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@survey.errors.count, "error") %> 
+      	<%= t(:prohibited_this_survey_from_being_saved) %>:</h2>
+
+      <ul>
+      <% @survey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <%= form_tag("/admin/addSurvey/", method: "post") do %>
+
+   <%= hidden_field_tag(:action_type,'addSurvey')  %>
+   <%= hidden_field_tag(:user_id, params[:client_id].to_i > 0 ? params[:client_id] : current_user.id) %>
+
+	 <div class="title form-group">
+	 	<%= label_tag(:name, 'Let`s Create Your New',class: "col-md-12 control-label") %>
+	 	<span>Standard Survey</span>
+	 </div>
+
+	 <%=  @tparmas %>
+
+	 <div class="form-group required new-survey-title">
+			<div class="control-la bel">
+				<label for="projecttitle" id="title-label">
+					<%= t(:what_would_you_like_to_name_this_survey_pick_a_good_one) %>
+				</label>
+			</div>
+			<div class="control-input">
+		<%=  text_field_tag(:name, nil, :placeholder => 'Example:  Survey') %>					 
+			</div>
+	 </div>
+
+
+
+	 <div class="thank-page-block">
+
+	 	<div class="page-title-block">
+
+		 	<%= label_tag(:thank_page_title, t(:thank_page_title)) %>
+
+		 	<%=  text_field_tag(:thank_page_title, nil, :placeholder => t(:page_example_title)) %>
+	 	</div>
+
+	 	<div class="page-message-block">
+
+	 		<%= label_tag(:thank_page_description, t(:thanks_page_description)) %>
+
+		 	<%=  text_area_tag(:thank_page_description, nil, :placeholder => t(:example_content)) %>
+	 	</div>
+		<div class="clear"></div>
+	 </div>	 
+
+	 <div class="button-block">
+		<a class="never-mind" rel="modal:close" href="#close-modal">
+			<%= t(:never_mind) %>
+		</a>
+
+		<%#= submit_tag(t(:select_group))  %>
+
+			<%= submit_tag("create survey", :class=> "btn btn-info waves-effect waves-light")  %>
+	 </div>
+<% end %>
+	</div>
+
+</div>
+</div></div></div>

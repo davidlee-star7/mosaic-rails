@@ -1,0 +1,205 @@
+<div class="row">
+<div class="col-sm-12">
+<div class="panel panel-default">
+
+<%= javascript_tag do %>
+  var exampleval = '<%= t("CREATE_NEW_OBJECT_LABEL") %>';
+<% end %>
+
+<div class="panel-heading">
+
+  <h3 class="panel-title trans-none">Edit Page 
+    <span class="pull-right"> 
+    <%= link_to 'View', "/#{@cmspage.slug.to_s}", :class =>'addUser', :target => "_BLANK" %>
+    </span>
+
+  </h3>
+</div>
+
+<%#= list_row_type.inspect %>
+
+<div class="cms-page panel-body">
+<p id="notice"><%= notice %></p>
+<div class="page-view">
+   <%= link_to('Preview','/'+@cmspage.slug.to_s+'/preview', rel: "modal:open") %>
+</div>
+<div class="clone-url">
+   <%= link_to 'Clone This Page', 
+   url_for(:controller => 'admin',
+      :action =>'clonepage',
+      :page_id =>@cmspage.id) %>
+</div>
+<%= form_for(@cmspage, :url => url_for(:controller => :admin, :action => :update_cmspage, :cms_page_id =>@cmspage.id)) do |f| %>
+<% if @cmspage.errors.any? %>
+<div id="error_explanation">
+   <h2><%= pluralize(@cmspage.errors.count, "error") %> prohibited this Page from being saved:</h2>
+   <ul>
+      <% @cmspage.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+   </ul>
+</div>
+<% end %>
+<%= f.hidden_field(:status,:value=>true) %>
+<div class="form-group">
+   <%= f.label :page_title, class: "col-md-12 control-label" %>
+   <div class="col-md-12">
+      <%= f.text_field :title, :class=>'create_slug' %>
+   </div>
+</div>
+<div class="form-group">
+   <%= f.label :page_slug, class: "col-md-12 control-label" %>
+   <div class="col-md-12">
+      <%= f.text_field :slug, :class => 'put_slug' %>
+   </div>
+</div>
+<div class="form-group">
+<div class="col-md-2">
+ <%= f.label "Save as Template", :for=> "cms_page_template_id", class: "control-label" %>
+</div>
+<div class="col-md-1">
+ <%= f.check_box :template_id%>
+</div>
+  
+    
+     
+    
+</div>
+
+<%#= params.inspect %>
+<%= f.hidden_field :microsite_id, :value => @microsite != nil ? @microsite.id : 0 %>
+<div class="form-group ">
+   <label>Content:</label>
+   <%#= f.label :page_content %>
+   <div class="col-md-12">
+      <%= f.cktext_area :content, :ckeditor => {:language => 'en'}  %>
+   </div>
+</div>
+ 
+    <div class="form-group">
+    <div class="col-sm-12">
+     <div class="already-added-fields">   
+      
+ 
+     <% if @groups != nil %>
+       <% @groups.each do |g| %>
+
+        <div class="col-sm-12 extrafield-val-<%= g.field_group %>"> 
+                <a href="javascript:void(0)" class="remove-edited-extra-fild" 
+                  data-rel="extra-field-col-<%= g.field_group %>"
+                  data-url="/extra_fields/remove_by_grop/<%= g.field_group %>"
+                  data-fid="<%= g.field_group %>"> 
+                  Remove This Row <i class="fa fa-times" style="font-size:40px"></i>
+                </a>
+        </div>
+        <div class="extra-fild extra-field-col-<%= g.field_group %> col-sm-12">
+        <% ExtraField.where(:field_group => g.field_group, :cms_page_id => @cmspage.id ).each do |efield|  %>
+            
+                  <label class="col-md-12 control-label">
+                    <% field_flap = efield.field_setting.split(":") %>
+                      Field Type <%= field_flap[1] %>
+                  </label>
+                  <div class="clear Clear"></div>
+                  <div class="clear Clear"></div>
+              <%=  cktext_area "extra_field", efield.id, 
+              :ckeditor => {:language => 'en' }, :value => efield.field_value  %>
+
+            
+        <% end %>
+        </div>
+       <% end %>
+     <% end %>
+
+         
+      </div>  
+         <%= label_tag("extra_field","Add another row", 
+         { :class => "col-md-2 control-label" }
+         ) %>
+         <!-- <a href="javascript:void(0)" class="add-coulumnto-row">
+          <i class="fa fa-plus-circle fa-6"></i>
+         </a> -->
+          <a href="/page_col/add_row/<%= @cmspage.id %>" class="add_row_to_column" rel="modal:open">
+            <i class="fa fa-plus-circle fa-6"></i>
+          </a>
+
+       <!--   <a href="javascript:void(0)" class="remove-coulumnto-row">
+         <i class="fa fa-minus-circle fa-6"></i></a> -->
+         <div class="extracoulmn-add"></div>
+      </div>
+    </div>
+   <div class="form-group">
+      <%= f.label :meta_title , class: "col-md-12 control-label" %>
+      <div class="col-md-12">
+         <%= f.text_field :meta_title %>
+      </div>
+   </div>
+   <div class="form-group">
+      <%= f.label :meta_keyword , class: "col-md-12 control-label" %>
+      <div class="col-md-12">
+         <%= f.text_area :meta_keyword %>
+      </div>
+   </div>
+   <div class="form-group">
+      <%= f.label :page_css , class: "col-md-12 control-label" %>
+      <div class="col-md-12">
+         <%= f.text_area :page_css %>
+      </div>
+   </div>
+   <div class="form-group">
+      <%= f.label :page_js , class: "col-md-12 control-label" %>
+      <div class="col-md-12">
+         <%= f.text_area :page_js %>
+      </div>
+   </div>
+   <div class="form-group">
+      <%= f.label :page_class , class: "col-md-12 control-label" %>
+      <div class="col-md-12">
+         <%= f.text_field :page_class %>
+      </div>
+   </div>
+
+<!--    <div class="form-group group-panel">
+        <label><%=  t("Groups:") %></label>
+        <ul class="updategrouppagel">
+          <div style="display:none">
+           <select name="pages[]" multiple="multiple">
+             <option value="<%= @cmspage.id %>" selected="selected">
+              <%= @cmspage.title %>
+              </option>
+           </select>
+          </div>
+         
+          <% Group.all.each do |g| %>
+            <li>
+              <% if @cmspage.groups.exists?(g) %>
+              <%=  check_box_tag("groups[#{g.id}]",1,1) %>
+              <% else %>
+              <%=  check_box_tag("groups[#{g.id}]",1) %>
+              <% end %>
+              <%= label_tag("groups[#{g.id}]", g.name) %>
+            </li>
+          <% end %>
+        </ul>
+   </div> -->
+   <div class="form-group">
+      <%= f.label :parent_id , class: "col-md-12 control-label" %>
+      <div class="col-md-12">
+         <%= f.select :parent_id, CmsPage.all.reject {|u| u.id == @cmspage.id}.collect{|u| [u.title, u.id]}, {:include_blank => 'Select parent page'},{:class => "form-control"}  %>
+      </div>
+      <div class="form-group m-t-10">
+         <div class="col-sm-12">
+            <%= f.submit 'save' , :class=> "btn btn-info waves-effect waves-light" %> 
+         </div>
+      </div>
+      <% end %>
+   </div>
+</div>
+
+
+</div>
+</div>
+</div>
+ 
+
+
+

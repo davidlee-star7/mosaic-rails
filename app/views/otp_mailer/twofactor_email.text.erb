@@ -1,0 +1,13 @@
+Hello  <%= @user.first_name %>,
+
+
+Please confirm your verification:
+ 
+
+Click on this link  <%= ENV["DOMAIN"] %>/confirm/<%= @user.id %>/<%= @user.otp_secret_key %>
+
+<%= ENV["DOMAIN"] %>/confirm/<%= @user.id %>/<%= @user.otp_secret_key %>
+
+
+Thanks
+Mosaic Team

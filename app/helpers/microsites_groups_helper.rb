@@ -1,0 +1,2 @@
+module MicrositesGroupsHelper
+end

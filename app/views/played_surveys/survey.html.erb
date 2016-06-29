@@ -1,0 +1,153 @@
+
+<div class="panel panel-default">
+<div class="row">
+	<div class="col-sm-12">
+<div class="panel-heading">
+	<div class="title">
+		<h3 class="panel-title"><%= @survey.name  %></h3>
+	</div>
+</div>
+	<!-- header end -->
+ <%= form_for(@survey, :url => '/take/savesurvey/'+@section.id.to_s ) do |f| %>
+
+<div class="panel-body">	
+	<div class="survey-body">
+	<% if @section != nil 
+		if @section.questions.size > 0 %>	
+			<% @section.questions.each do |question|  %>
+			<div class="row section">
+				<div class="question-title">
+					<%= question.title %>
+				</div>	
+				<div class="clear"></div>
+					<% case question.field_type  %>
+					<% when '1' %>
+<!-- 11111111111111111 -->					
+<div class="qfields ftype-1">
+
+<% if question.qfields.size > 0 %>
+
+	<% question.qfields.each do |field| %>
+		<div class="qfield">
+		<%= radio_button_tag 'option['+question.id.to_s+']',field.id, false, :id =>'option_'+question.id.to_s+'_'+field.id.to_s %>
+
+		<%= label_tag 'option_'+question.id.to_s+'_'+field.id.to_s, field.fval %>
+		</div>
+	<% end %>
+					
+ <% end %>
+</div>
+<!-- /////////11111111 -->					
+<!-- 222222222222 -->
+					<% when '2' %>
+						<div class="qfields ftype-2">
+
+	<div class="qfield">
+		<table>
+			<tr>
+				<th></th>	
+				<% question.qfields.each do |field| %>	
+				<th><%= field.fval %></th>
+				<% end %>	
+			</tr>
+		<% question.qhfields.each do |hfield| %>
+			<tr>
+				<td><%= label_tag 'option_'+question.id.to_s+'_'+hfield.id.to_s,hfield.fval  %></td>
+				<% question.qfields.each do |field| %>	
+
+				<td><%= radio_button_tag 'option['+question.id.to_s+'_'+hfield.id.to_s+']',hfield.id.to_s+'_'+field.id.to_s, false, :id =>'option_'+question.id.to_s+'_'+hfield.id.to_s %></td>	
+
+				<% end %>	
+			</tr>
+		<% end %>
+		</table>
+	</div>
+						</div>
+<!-- ////222222222 -->	
+<!-- 333333333 -->					
+					<% when '3'  %>
+<div class="qfields ftype-3">
+<% if question.qfields.size > 0 %>
+ 	<% options = [['Please Select',0]] %>  
+	<% question.qfields.each_with_index do |field,index| index = index + 1 %>
+ 	<% options[index] = [field.fval, field.id] %>	
+	<% end %>
+
+<%= select_tag 'option['+question.id.to_s+']', options_for_select(options) %>	
+					
+ <% end %>	
+</div>
+<!-- ////333333333 -->
+<!-- 444444444 -->
+					<% when '4'  %>
+<div class="qfields ftype-4">
+<% if question.qfields.size > 0 %>
+
+	<% question.qfields.each do |field| %>
+		<div class="qfield">
+		<%= check_box_tag 'option['+question.id.to_s+'_'+field.id.to_s+']',field.id, false, :id =>'option_'+question.id.to_s+'_'+field.id.to_s %>
+
+		<%= label_tag 'option_'+question.id.to_s+'_'+field.id.to_s, field.fval %>
+		</div>
+	<% end %>
+					
+ <% end %>		
+</div>
+<!-- //////4444 -->
+<!-- 55555555555 -->
+					<% when '5'  %>
+<div class="qfields ftype-5">
+	<%= text_field_tag 'option['+question.id.to_s+']' %>
+</div>	
+<!-- //////555555 -->
+<!-- 66666666666 -->
+					<% when '6'  %>
+<div class="qfields ftype-6">
+	<%= text_area_tag 'option['+question.id.to_s+']' %>
+</div>	
+<!-- /////66666 -->
+<!-- 7777777777 -->
+					<% when '7'  %>
+<div class="qfields ftype-7">
+	<%= email_field_tag 'option['+question.id.to_s+']', '' %>
+</div>	
+<!-- /////////77777 -->						
+<!-- 8888888888 -->
+					<% when '8'  %>
+<div class="qfields ftype-8">
+	<%= text_field_tag 'option['+question.id.to_s+']', '',
+	:class =>'datetimepicker',
+	:placeholder =>'YYYY/MM/DD' %>
+</div>	
+							
+					<% end %>
+<!-- /////8888 -->				
+			</div>
+			<% end %>
+		<% end %>	
+	<% end %>	
+	</div>
+	<%= f.submit %>
+</div>
+<!-- end form -->
+ <% end %>
+		<div class="">
+		<% if @survey.sections.size > 1 %>
+
+			<div  class="next-pre-controles">
+			<%= label_tag 'Go To Page ' %>
+				<ul>
+				<% @survey.sections.each_with_index do |s,i| i = i + 1 %>
+					<li class="<%=  @section.id == s.id ? 'active' : ''  %>">
+					<%=  link_to i, '/take/survey/'+@survey.id.to_s+'/'+s.id.to_s %>
+					</li>
+				<% end %>
+				</ul>
+			</div>
+			
+		<% end %>
+		</div>	
+
+	</div>
+	</div>
+	</div>

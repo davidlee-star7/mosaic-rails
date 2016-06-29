@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  default_language: MyString
+  active_microsite: false
+  description: MyText
+  publish: false
+  user_template: MyString
+  layout_name: MyString
+  client_logo: MyString
+  background_color: MyString
+  background_image: MyString
+  font: MyString
+  font_type: MyString
+  user_id: 
+
+two:
+  title: MyString
+  default_language: MyString
+  active_microsite: false
+  description: MyText
+  publish: false
+  user_template: MyString
+  layout_name: MyString
+  client_logo: MyString
+  background_color: MyString
+  background_image: MyString
+  font: MyString
+  font_type: MyString
+  user_id: 

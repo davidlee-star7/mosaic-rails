@@ -1,0 +1,69 @@
+  <% @cmspage.content = raw(@cmspage.content).gsub("&quot;",'"') ; %>
+  <% @cmspage.content = content_html @cmspage.content %>
+<div class="page-wrapper">
+<div class="cmspagelayout <%= params[:action].to_s+'_'+params[:controller].to_s.gsub('/','') %>">
+		<div class="row">
+  		<div class="col-md-12 etrafield-default col-block">
+        <div class="portlet bx-shadow">
+          <div class="">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <%= raw @cmspage.content  %>
+              </div>
+            </div> 
+          </div> 
+        </div>
+      </div>
+		</div>
+    <% if @groups != nil %>
+    <% @groups.each do |g| %>
+      <div class="row grouped-<%= g.field_group %>">
+          <% extra_fields = @cmspage.extra_fields.where(:field_group => g.field_group ) %>
+          <% if extra_fields !=nil %>
+              <% extra_fields.each do |field| %>
+                <% field_flap = field.field_setting.split(":") %>
+                <% case field_flap[1] %>
+                  <% when "1" %>
+                  <% classv = 12 %>
+                  <% when "1/2" %>
+                  <% classv = 6 %>
+                  <% when "1/3" %>
+                  <% classv = 4 %>
+                  <% when "1/4" %>
+                  <% classv = 3 %>
+                  <% when "2/3" %>
+                  <% classv = 8 %>
+                  <% when "1/4" %>
+                  <% classv = 3 %>
+                  <% else %>
+                  <% classv = 12 %>
+                <% end %>
+                <div class="col-md-<%= classv %> col-block">
+                  <div class="portlet bx-shadow">
+                    <div class="">  
+                      <div class="panel panel-default">
+                          <div class="panel-body">
+                            <div class="" style="max-width: 100%; overflow: hidden;">
+                            <% field.field_value = raw(field.field_value).gsub("&quot;",'"') ; %>
+                            <% field.field_value = content_html field.field_value %>
+                            <%= raw field.field_value  %>
+                            </div>
+                          </div>
+                      </div>    
+                    </div>
+                  </div>  
+                </div>
+              <% end %>
+          <% end %>
+      </div>
+    <% end %>  
+    <% end %>
+		
+<% if user_signed_in? %>
+<% if current_user.can? :editpage, :admin  %>
+<%= link_to "Edit", "/admin/editpage/#{@cmspage.id}", :target => "_BLANK"  %>
+<% end %> 
+<% end %>	 
+</div>
+</div>
+ 

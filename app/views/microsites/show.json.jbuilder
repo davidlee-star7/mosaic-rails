@@ -1,0 +1,1 @@
+json.extract! @microsite, :id, :title, :default_language, :active_microsite, :description, :publish, :user_template, :layout_name, :client_logo, :background_color, :background_image, :font, :font_type, :user_id, :created_at, :updated_at

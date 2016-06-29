@@ -1,0 +1,38 @@
+<div class="col-9">	
+	<div class="logo">
+	 <%= link_to image_tag("site/logo.png", :alt => "mosaic logo"), request.base_url, :class =>'home-url', :title => 'mosaic' %>
+	</div>	
+ 
+	<div class="clear"></div>
+ 
+</div>
+
+<div class="col-3 pull-right">
+	<% if user_signed_in? %>
+	<div class="logged_in_ser_section">
+		<label><%= t(:welcome) %> </label><span><%= current_user.display_name  %></span>
+	</div>
+
+	<div class="user-controlles">
+		<ul>
+				
+			<li>
+				<%= link_to t(:edit_profile), 
+				edit_user_registration_path, 
+				:class => 'navbar-link' %> 
+			</li>
+
+
+			<li>
+				<%= link_to t(:logout), 
+				destroy_user_session_path, 
+				method: :delete, :class => 'navbar-link'  %>
+			</li>
+					
+
+		</ul>
+	</div>
+<% end %>
+</div>
+
+<div class="clear"></div>

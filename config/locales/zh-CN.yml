@@ -1,0 +1,95 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es 
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+zh-CN:
+  hello: "你好世界"
+  played_surveys: '调查'
+  list_roles: '角色'
+  listroles: '角色'
+  manage: '经营'
+  add_new: '添新'
+  survey: '调查'
+  list_user: '用户'
+  setpermition: '设置权限'
+  listrolecapability: '查看角色能力'
+  updaterole: '更新角色'
+  editrole: '编辑角色'
+  managesurvey: '管理调查'
+  buildsurvey: '建设调查'
+  addsurvey: '加入调查'
+  deluser: '删除用户'
+  editsurvey: '编辑调查'
+  edituser: '编辑用户'
+  listusers: '用户列表'
+  adduser: '添加用户'
+  check_permition: '检查权限'
+  noofusersplayedthissurvey: '伯爵调查'
+  index: '指数'
+  edit: '编辑'
+  update: '更新'
+  new: '新'
+  create: '创'
+  delete: '删'
+  destroy: '摧'
+  show: '演出'
+  manage_permission_for: '管理权限：'
+  Import_CSV: '导入用户CSV'
+  Export_CSV: '导出用户的CSV'
+  qfields: '领域'
+  all_user: '全部用户'
+  templates: '模板'
+
+  #role names
+  data_analyst: '数据分析师'
+  project_manager: '项目经理'
+  client_admin: '客户管理'
+  super_admin: '超级管理员'
+  sales_manager: '销售经理'
+  no_of_users_played_to_this_survey: '用户数'
+  survey_name: '调查名称'
+  permission_saved_successfully: '权限保存成功'
+
+  ## add survey
+  prohibited_this_survey_from_being_saved: '你要什么来命名这种调查（挑好一个！ ）'
+  thank_page_title: '谢谢页面标题'
+  page_example_title: '实例：我的测试页'
+  thanks_page_description: '谢谢页面描述'
+  example_content: '例如： Lorem存有内容'
+  never_mind: '没关系'
+  start_building: '开建'
+  welcome: '欢迎'
+  edit_profile: '编辑个人资料'
+  logout: '登出'
+  you_have_the_roles: '你的角色'
+  take_survey_link_title: '点击参加调查的链接'
+  select_group: '选择组'
+
+  create_cms_page: '新页'
+  create_cmspage: '新页'
+  listcmspages: '所有页面'
+  editpage: '编辑页面视图'
+  update_cmspage: '更新页面视图'
+  Groups: '组'
+  Clients: '客户端'
+  Send_survey_group: '发送调查组'
+  Microsites: '微型网站'
+  Folders: '文件夹'
+  Files: '档'

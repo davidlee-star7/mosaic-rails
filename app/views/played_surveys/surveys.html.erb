@@ -1,0 +1,29 @@
+<%#= @data.inspect  %>
+
+<div class="panel panel-default">
+<div class="row">
+<div class="col-sm-12">
+	<div class="panel-heading">
+		<div class="title">
+			<h3><%= t(:take_survey_link_title) %></h3>
+		</div>
+	</div>
+	<div class="panel-body">
+	<div class="survey-list">
+		<ul>
+			<% @surveys.each do |survey|  %>
+				<% if survey.sections.size > 0 %>
+					<li>
+						<%= link_to(survey.name, 
+						url_for(:controller=>'played_surveys', 
+						:action => 'survey',
+						:survey_id => survey.id )) %>
+					</li>
+				<% end %>
+			<% end %>
+		</ul>
+	</div>
+	</div>
+</div>
+</div>
+</div>

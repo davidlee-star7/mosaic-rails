@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!--Info -->
+    <title><%= "Code #{@status} (#{details[:name]}) | #{@app_name.upcase}" %></title>
+    <%= stylesheet_link_tag "exception_handler/error" %>
+
+  </head>
+  
+  <!--Body -->
+  <body>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+    	<div class="connect">
+    		<%= social %>
+    	</div>
+    	<div class="app">
+    		<strong><%= link_to @app_name, main_app.root_url, title: "Go to index" %></strong>
+    		<span> - <%= @status %> Error</span>
+    	</div>
+    </footer>
+
+  </body>
+</html>

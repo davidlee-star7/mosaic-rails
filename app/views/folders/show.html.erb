@@ -1,0 +1,90 @@
+
+
+
+
+ <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><h3 class="panel-title"></h3></div>
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @folder.name %>
+</p>
+
+       </div> <!-- panel -->
+
+ <!-- /posts/:post_id/comments/ -->
+<%= link_to 'Files', folder_file_mangers_path(@folder) %> |
+<%= link_to 'Edit', edit_folder_path(@folder) %> |
+<%= link_to 'Back', folders_path %>
+
+                            </div> <!-- col -->
+                        </div> <!-- End row -->
+
+
+
+
+
+
+
+        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Listing Files Of '<%= @folder.name %>' Folder</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                          <p id="notice"><%= notice %></p>
+
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+ <tr>
+    <th>Name</th>
+      <th>Size</th>
+      <th>Attachment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+    <% @file_mangers.each do |file_manger| %>
+  <tr>
+   <td><%#= file_manger.name %>
+   <input title="use this link in editor" type="text" class="copytext" value="<%=  file_manger.attachment.url %>"  />
+ </td>
+        <td><%= number_to_human_size(file_manger.size)     %>  
+
+        </td>
+        <td> <%= image_tag Icon.for_filename(file_manger.name) %>
+<%#= image_tag Icon.for_ext '.jpg' %>
+
+       <a target ="_blank" href="<%=  file_manger.attachment %>">Download file</a>
+
+        </td>
+    <!-- /posts/:post_id/comments/:id -->
+    <td><%= link_to 'Show', [file_manger.folder, file_manger] %></td>
+    <!-- /posts/:post_id/comments/:id/edit -->
+    <td><%= link_to 'Edit', edit_folder_file_manger_path(file_manger.folder, file_manger)%></td>
+    <!-- /posts/:post_id/comments/:id -->
+    <td><%= link_to 'Destroy', [file_manger.folder, file_manger], :confirm => "Are you sure? All files in this folder will be deleted and once deleted can't be recoverd", :method => :delete %></td>
+  </tr>
+<% end %>
+                                                    </table>
+                                                </div>
+                                            </div>
+<%#= link_to('New File',file_mangers_new_file_path, rel: "modal:open") %>
+<%= link_to('New File', file_mangers_new_file_path ,  :class =>"fancyajax") %>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- End row -->
+
+
+

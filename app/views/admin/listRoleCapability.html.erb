@@ -1,0 +1,62 @@
+
+
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title">
+               List Role Capability
+            </h3>
+         </div>
+         <div class="panel-body">
+            <div class="listability">
+               <div id="formresponse"></div>
+               <%#= @role.permitions.inspect  %>
+               <div class="head row">
+                  <label>Role: </label>
+                  <span><%= @role.name.gsub('_',' ') %></span>
+                  <div class="mp"><%= t('manage_permission_for') %></div>
+               </div>
+               <ul class="master row">
+                  <% @listability.each_with_index do |member,i|  i=i+1 %>	
+                  <li class="body col-md-2">
+                     <div class="panel-heading">
+                        <h3 class="panel-title">
+                           <%= t(member[:father]) %>
+                        </h3>
+                     </div>
+                     <ul class="right sub-1">
+                        <% member[:child].each_with_index do |name,j| j=j+1  %>	
+                        <li> 
+                           <span>
+                           <% if current_user.can? :setPermition, :admin %>
+                           <%= form_tag("/admin/setPermition/"+current_user.id.to_s+"/"+@role.id.to_s, 
+                              method: "post", id:'form_cap_'+i.to_s+'_'+j.to_s) do %>
+                           <input type="checkbox" name="submit_button" 
+                              id="<%= i.to_s+'_'+j.to_s  %>" data-name="<%= name %>"
+                              <% @role.permitions.each_with_index do |permition,k| %>
+                              <%#= permition.action %>
+                              <% if permition.action == name.to_s && permition.action_class == member[:father].to_s %>
+                              checked="checked"   
+                              <% end %>
+                              <% end %>  />
+                           <label for="<%= i.to_s+'_'+j.to_s  %>"><%= t(name.to_s.gsub(' ','_').downcase) %></label>
+                           <%= hidden_field_tag(:paction,name) %>
+                           <%= hidden_field_tag(:action_class,member[:father]) %>
+                           <% end  %>	
+                           <% end  %>		
+                           </span>
+                        </li>
+                        <% end %>				
+                     </ul>
+                  </li>
+                  <% end %>	
+               </ul>
+            </div>
+         </div>
+      </div>
+      <!-- panel-body -->
+   </div>
+   <!-- panel -->
+</div>
+ 

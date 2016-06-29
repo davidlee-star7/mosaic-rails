@@ -1,0 +1,86 @@
+<%= label_tag(@survey.name) %>
+<% @sections.each_with_index do |sect, key| %>
+<% key = key+1  %>
+Page <%= key.to_s %>
+<%= sect.title  %>
+Page Description
+<%=  sect.description  %>
+<% if(sect.questions!=nil) %>
+<% sect.questions.each_with_index do |q,i| %>
+<%= q.title %>
+<% i=i+1 %>
+<% case q.field_type %>
+<% when '1' %>
+<% if q.qfields != nil %>
+<% q.qfields.each do |field,j| %>
+Radio option
+<%= field.fval %>
+<% end %>	
+<% end %>		
+<% when '2' %>
+<% if q.qfields != nil %>
+<% q.qfields.each do |field,j| %>
+<%= field.fval %>
+<% end %>
+<% end %>	
+<% if q.qhfields != nil %>
+<% q.qhfields.each do |hfield,j| %>
+<%= hfield.fval  %>
+<% if q.qfields != nil %>
+<% q.qfields.each do |field,j| %>
+Radio option
+<% end %>
+<% end %>	
+<% end %>
+<% end %>		
+<% when '3' %>
+Select option
+<% if q.qfields != nil %>
+<% q.qfields.each_with_index do |field,j| j = j + 1 %>
+<% dropopt[j] = [field.fval,field.id] %>
+<% end %>
+<% end %>	
+<%= select_tag('qoption',options_for_select(dropopt)) %>	
+
+
+<% when '4' %>
+<% if q.qfields != nil %>
+<% q.qfields.each_with_index do |field,j| j = j+1 %>
+<%= check_box_tag('qoption['+j.to_s+']',j) %>	
+<%= field.fval %>
+<% end %>	
+<% end %>		
+
+
+
+<% when '5' %>
+Text field
+<% when '6' %>
+Message
+<% when '7' %>
+Email field
+<% when '8' %>
+Date
+<% end %>	
+
+
+
+
+
+
+
+
+<% end %>
+<% end %>
+
+
+
+
+
+
+
+
+<% end %>
+
+
+

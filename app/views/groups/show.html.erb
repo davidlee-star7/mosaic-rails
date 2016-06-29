@@ -1,0 +1,180 @@
+
+
+<div class="row">
+   <div class="col-sm-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title">Group Info</h3>
+         </div>
+         <div class="panel-body">
+         <p id="notice"><%= notice %></p>
+         <p>
+            <strong><%= t("NAME") %>:</strong>
+            <%= @group.name %>
+         </p>
+         <p>
+            <strong><%= t("DESCRIPTION") %>:</strong>
+            <%= @group.description %>
+         </p>
+      </div>
+
+      <div class="panel-heading">
+         <h3 class="panel-title"><%= t("AL_USERS_OF_THIS_GROUP") %></h3>
+      </div>
+
+      <div class="panel-body">
+      <div class="ajax-msg"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="table-responsive">
+             <table class="table">
+                <thead>
+                   <tr>
+                      <th><%= t("FIRST_NAME") %></th>
+                      <th><%= t("LAST_NAME") %></th>
+                      <th><%= t("UNLINK") %></th>
+                   </tr>
+                </thead>
+                <tbody>
+                   <% @group.users.each do |user| %>
+                   <tr>
+                      <td><%= user.first_name %></td>
+                      <td><%= user.last_name %></td>
+                      <% if current_user.can? :unlink_user, :group  %> 
+                      <td><%= link_to t("UNLINK"), 
+                          "/groups/#{@group.id}/unlink_user/#{user.id}",
+                      :data => { :confirm => "Are you Sure?" } %></td>
+                      <% end %>
+                   </tr>
+                   <% end %>
+                </tbody>
+             </table>
+          </div>
+        </div>  
+      </div>  
+ 
+    
+     <div class="panel-heading">
+            <h3 class="panel-title"><%= t("IMPORT_MORE_USERS_IN_GROUP") %></h3>
+    </div>
+      <div class="panel-body">
+      <% if current_user.can? :upload_users, :group  %> 
+      <%= link_to "Import CSV", group_upload_users_path(@group.id), 
+      :class => "fancyajax"  %>
+      <% end %>
+      </div>
+   <div class="panel-heading">
+    <h3 class="panel-title">Add Existing Users in this Group</h3>
+  </div>
+    <div class="panel-body">
+    <% if current_user.can? :addExistingUsers, :group  %> 
+      <h3 class="panel-title"><%= link_to t("ADD_EXISTING_USERS"), group_addExistingUsers_path(@group.id) %></h3>
+      <% end %>
+      </div>
+    <div class="panel-heading">
+       <h3 class="panel-title"><%= t("MICROSITES_OF_THIS_GROUP")  %></h3>
+    </div>
+
+    <div class="panel-body">
+    
+      <div class="col-md-12 col-sm-12 col-xs-12">
+            <ul class="mgroups-body">
+              <% @group.microsites.each do |site|  %>
+                <li class="microsite-item">
+                  <i class="fa fa-pencil-square-o" style="font-size:100px"></i>
+                  <ul class="controls">
+                  <% if current_user.can? :unlinkmicrosite, :micrositegroup  %> 
+                    <li>
+                    <%= link_to t("UNLINK"),
+                    "/microsites_groups/unlinkmicrosite/#{site.id}/#{@group.id}",
+                    :data => { 
+                      :confirm => "Confirm Unlink?",
+                      "disable-with" => "Please Wait ..." }
+                    %>
+                    </li>
+                    <% end %>
+                    <!-- <li><%= link_to "CMS Pages", "/microsites_groups/listpagesbymicrositeandgroup/#{site.id}/#{@group.id}", :rel => "modal:open" %></li> -->
+                  </ul>
+                  <label><%= site.title %></label>
+                  <ul class="mgp-wrapper modal-control">
+                    <li><label>CMS Pages</label></li>
+                    <% if site.cms_pages.size > 0 %>
+                    <% site.cms_pages.each do |page|  %>
+
+                    <% if current_user.can? :managegroup, :cms_pages  %> 
+                      <li class="page-item control-item" data-url="/cms_pages/<%= page.id %>/managegroup/<%= @group.id %>">
+                      <i class="fa check 
+                      <%= @group.cms_pages.exists?(page.id) ? 'fa-check-circle' : 'fa-times' %>"></i>
+                        <%= page.title %>
+                      </li>
+                    <% end %>  
+
+                    <% end %>
+                    <% else %>
+                    <li class="age-item">No Page added yet!</li>
+                    <% end %>
+                  </ul>
+                </li>
+                <% end %>
+                <li class="microsite-item">
+                  <ul class="controls">
+                  <% if current_user.can? :addexistingmicrositestogroups, :microsites_groups  %> 
+                   <li>
+                     <%= link_to t("ADD_EXISTING_MICROSITES_IN_THIS_GROUP"),
+                     "/microsites_groups/addexistingmicrositestogroups/#{@group.id}",
+                     :target => "_BLANK"    %>
+                   </li>
+                   <% end %>
+                  </ul>
+                  <i class="fa fa-plus-circle fa-6" style="font-size:100px"></i>
+                </li>
+            </ul>
+      </div> 
+    </div>
+    <div class="panel-heading">
+       <h3 class="panel-title"><%= t("SURVEYS_OF_THIS_GROUP")  %></h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <ul class="mgroups-body sgroups">
+          <% @group.surveys.each do |survey| %>
+            <li class="microsite-item">
+              <ul class="controls">
+                <li>
+                <% if current_user.can? :unlinkgroup, :survey_groups  %>
+                <%= link_to t("UNLINK"),
+                "/survey_groups/unlinkgroup/#{survey.id}/#{@group.id}", 
+                :data => { 
+                  :confirm => "Confirm Unlink?",
+                  "disable-with" => "Please Wait ..." } %>
+                </li>
+                <% end %>
+              </ul>
+            <i class="fa fa-pencil-square-o" style="font-size:100px"></i>
+               <label><%= survey.name  %></label>
+            </li>
+          <% end %>
+          <li class="microsite-item">
+              <ul class="controls">
+              <% if current_user.can? :addexistingsurveystogroups, :survey_groups  %>
+               <li>
+                 <%= link_to t("ADD_EXISTING_SURVEYS_IN_THIS_GROUP"),
+                 "/survey_groups/addexistingsurveystogroups/#{@group.id}", 
+                 :rel => "modal:open"    %>
+               </li>
+               <% end %>
+              </ul>
+              <i class="fa fa-plus-circle fa-6" style="font-size:100px"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+   </div>
+<!-- panel -->
+<% if current_user.can? :edit, :group %>
+<%= link_to 'Edit', edit_group_path(@group) %>
+<% end %> |
+<% if current_user.can? :index, :group %>
+<%= link_to 'Back', groups_path %>
+<% end %>
+</div> <!-- col -->
+</div> <!-- End row -->

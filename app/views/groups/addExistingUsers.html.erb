@@ -1,0 +1,52 @@
+<div class="row">
+<div class="col-sm-12">
+<div class="panel panel-default">
+
+	<div class="panel-heading">
+		<h3 class="panel-title"><label>You are assigning Group <%= @group.name %> to   
+		Users</label> </h3>
+	</div>
+
+	<div class="panel-body">
+
+		 <div class="error-block">
+		 	<% @errors.each do |e|    %>
+		 		<p style="color:red"><%= raw(e) %></p>
+		 	<% end %>
+		 </div>
+		 <div class="success-block">
+		 	<% @success.each do |s|    %>
+		 		<p style="color:green"><%= raw(s) %></p>
+		 	<% end %>
+		 </div>
+		 <div class="form-wrapper">
+			<%= form_for(@group, 
+			:url=> group_addExistingUsers_path(@group.id) ) do |f| %>
+				 
+				<div class="search-pages">
+				  <label><%= t("SEARCH_MICROSITE_ASSIGN_TO_GROUP") %></label>
+				  <%= autocomplete_field_tag "users[]", "", autocomplete_user_username_groups_path,
+				  'data-delimiter' => ',', :multiple => true %>
+				  <%= hidden_field_tag "task", "add_users_to_grop" %>
+				</div>
+				<div class="submitbtn">
+				    <%= button_tag("Save", 
+				      data: { 
+				      disable_with: "Please Wait...",
+				      confirm: "Are Sure?" }, class:"msiteuser") %>
+				</div>
+			<% end %>
+		</div>
+	  	<div class="avaliavle-cms-pages">
+		  <div class="title">
+		  		<label><%= t("ASSIGN_GROUP_TO_USERS_MSG") %>:</label>
+		  </div>
+		  <% User.all.where("status = true AND id NOT IN(?)",@group.users.map{|u| u.id} ).each do |user| %>
+		  	<p><%= user.username  %></p>
+		  <% end %>
+	  	</div>
+	</div>
+</div>
+</div>
+ <%= link_to "back", "/groups/#{@group.id}" %>
+</div>	

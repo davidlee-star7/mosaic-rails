@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fval:</strong>
+  <%= @qfield.fval %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @qfield.type_id %>
+</p>
+
+<p>
+  <strong>Section:</strong>
+  <%= @qfield.section_id %>
+</p>
+
+<%= link_to 'Edit', edit_qfield_path(@qfield) %> |
+<%= link_to 'Back', qfields_path %>

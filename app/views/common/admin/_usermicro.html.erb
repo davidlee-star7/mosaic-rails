@@ -1,0 +1,172 @@
+<% if current_user.can? :addUser, :admin %>
+	<div class="create_new_user">
+		<%= link_to 'Add User', '/admin/addUser', :class =>'addUser'
+			 	%>
+	</div>
+<% end %>
+
+
+<div>
+<%= form_tag admin_users_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+</div>
+
+
+<div class="sepuser">All(<%= @users.count %>) | Administrator()</div>
+
+<% if current_user.can? :editrole, :admin %>
+		<div class="rolebox">
+		<select class="roletobechange">
+		<option value="" selected>Change role to..</option>
+		<% @roles.each_with_index do |urole,index| %>
+		<option value="<%=  urole[1]  %>"><%=  urole[0]  %></option>
+		<% end %>
+		</select>
+
+		<button class="getallcheks">Change</button>
+		</div>
+<% end %>	
+
+
+<%= form_for :product, :url => admin_edit_user_individual_path, :html => { :method => :put } do |form| %>
+
+
+<table class="list-user" border=1>
+	<tr><th></th>
+		<th>First Name </th>
+		<th>Last Name </th>
+		<th>Email </th>
+		<th>Role</th>
+		<th>Update </th>
+		<th>Group</th>
+
+		<!-- <th>Delete </th> -->
+	</tr>
+
+
+<% @users.each do |user| %>
+ 
+<tr>
+	<td><%= check_box_tag "user_ids[]", user.id %></td>
+		<td><%= user.first_name %></td>
+		<td><%= user.last_name %></td>
+		<td><%= user.email %></td>
+        <td>
+<% if user.roles.size > 0 %>
+<% user.roles.each do |cur| %>
+<p><%= t(cur.name.downcase)  %>	</p><br>
+<% end %>
+<% end %>
+
+        	</td>    
+
+		<td>
+		<% if current_user.can? :editUser, :admin %>		
+			<%= link_to 'Edit', '/admin/editUser/'+user.id.to_s, :class =>'editUser', :id=> user.id
+		 	%>
+		  <%  end %>			
+		</td>
+	
+		<td>
+<% if user.groups.size > 0 %>
+<% user.groups.each do |cur| %>
+<p><%= t(cur.name.downcase)  %>	</p><br>
+<% end %>
+<% end %>
+	<%# if current_user.can? :delUser, :admin %>
+
+		<%# if user.admin != true %>	
+			<%#= link_to 'Delete', '/admin/delUser/'+user.id.to_s, :class =>'delete-user', :id=> user.id
+		 	%>
+		 <%#  end %>	
+
+	<%#  end %>		
+
+		</td>
+</tr>
+
+<% end %>
+
+
+</table>
+	<% if current_user.can? :delUser, :admin %>
+
+<p id="deleteselected">Delete</p>
+
+	<%  end %>		
+<%= submit_tag "Edit Checked" %>
+<% end %>
+
+
+<script type="text/javascript">
+$(function(){
+
+
+$('.getallcheks').click(function(){
+
+var conceptName = $('.roletobechange').find(":selected").val();
+var checkedValues = $('.list-user input:checkbox:checked').map(function() {
+    return this.value;
+}).get();
+if(checkedValues.length){
+$.ajax({
+					type:'post',
+					url: '/admin/bulkupdaterole',
+					data:{	
+						role:conceptName,
+						userids:checkedValues,
+						task:"bulkupdaterole"
+					},
+					success: function(resp){
+					alert(resp["message"]);
+					}
+
+				})
+location.reload(); 
+
+}
+else{
+alert("Please select at least one user");	
+}
+// return false;
+
+   });
+
+
+$('#deleteselected').click(function(){
+
+var conceptName = $('.roletobechange').find(":selected").val();
+var checkedValues = $('.list-user input:checkbox:checked').map(function() {
+    return this.value;
+}).get();
+
+//alert(checkedValues);
+if(checkedValues.length){
+$.ajax({
+					type:'post',
+					url: '/admin/bulkupdaterole',
+					data:{	
+						// role:conceptName,
+						userids:checkedValues,
+						task:"bulkdisableuser"
+					},
+					success: function(resp){
+					alert(resp["message"]);
+					}
+
+				})
+
+   // location.reload(); 
+   }
+else{
+alert("Please select at least one user");	
+}
+});
+
+
+});
+  </script>

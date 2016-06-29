@@ -1,0 +1,61 @@
+
+
+ <ul class="addtional-fields-wrapper">
+
+ <% if @question == nil %>
+
+ 	<li>
+ 		<%= label_tag(:additional_instruction_text)  %>
+ 		<%= text_area_tag(:additional_instruction_text,'',
+ 		:placeholder =>'Lorm ipsum text') %>
+ 	</li>
+
+ 	<li>
+ 		<%= label_tag(:default_answer)  %>
+ 		<%= text_field_tag(:default_answer,'1',
+ 		:placeholder =>'1', :class => :number) %>
+ 	</li>
+
+  	<li>
+ 		<%= label_tag(:weight,'Assign Marks For this Question')  %>
+ 		<%= text_field_tag(:weight,'1',
+ 		:placeholder =>'1', :class => :number) %>
+ 	</li>
+
+  	<li>
+ 		<%= label_tag(:allow_comments)  %>
+ 		<%= check_box_tag(:allow_comments,'0') %>
+ 	</li>
+<!-- ****************edit part************************** -->
+ 	<% else %>
+
+  	<li>
+ 		<%= label_tag(:additional_instruction_text)  %>
+ 		<%= text_area_tag(:additional_instruction_text,
+ 			@question.additional_instruction_text,
+ 		:placeholder =>'Lorm ipsum text') %>
+ 	</li>
+
+ 	<li>
+ 		<%= label_tag(:default_answer)  %>
+ 		<%= text_field_tag(:default_answer,
+ 			@question.default_answer,
+ 		:placeholder =>'1', :class => :number) %>
+ 	</li>
+
+  	<li>
+ 		<%= label_tag(:weight,'Assign Marks For this Question')  %>
+ 		<%= text_field_tag(:weight,@question.weight,
+ 		:placeholder =>'1', :class => :number) %>
+ 	</li>
+
+  	<li>
+ 		<%= label_tag(:allow_comments)  %>
+ 		<%= check_box_tag(:allow_comments,true,@question.allow_comments) %>
+ 	</li>
+	
+
+ 	<% end %>	
+
+ </ul>
+

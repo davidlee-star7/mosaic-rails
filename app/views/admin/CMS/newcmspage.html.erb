@@ -1,0 +1,86 @@
+
+<%= javascript_tag do %>
+  var exampleval = '<%= t("CREATE_NEW_OBJECT_LABEL") %>';
+<% end %>
+
+<div class="row">
+<div class="col-sm-12">
+<div class="panel panel-default">
+
+<div class="panel-heading">
+<h3 class="panel-title"><%= t("CREATE_NEW_CMS_PAGE") %></h3>
+</div>
+<div class="panel-body">
+
+ 
+<div class="cms-page">
+   <%= form_for(@cmspage, :url => url_for(:controller => :admin, :action => :create_cmspage)) do |f| %>
+   <% if @cmspage.errors.any? %>
+   <div id="error_explanation">
+      <h2><%= pluralize(@cmspage.errors.count, "error") %> prohibited this Page from being saved:</h2>
+      <ul>
+         <% @cmspage.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+         <% end %>
+      </ul>
+   </div>
+   <% end %>
+   <%= f.hidden_field(:status,:value=>true) %>
+   <%= f.hidden_field :microsite_id, :value => @microsite != nil ? @microsite.id : 0 %>
+ 
+   <div class="field clear">
+      <%= f.label :page_title %><br>
+      <%= f.text_field :title, :class=>'create_slug' %>
+      <%#= f.text_field :title, :class => 'genslug' %>
+   </div>
+   <div class="field">
+      <%= f.label :page_slug %><br>
+      <%= f.text_field :slug, :class => 'put_slug' %>
+      <%#= f.text_field :slug, disabled: true, :class => 'getslug' %>
+   </div>
+   
+    <div class="field">
+     <%= f.label :content %><br>
+      <%#= f.label :page_content %><br>
+      <%= f.cktext_area :content, :ckeditor => {:language => 'en'} %>
+   </div>
+
+    
+   <div class="field">
+      <%= f.label :meta_title %><br>
+      <%= f.text_field :meta_title %>
+   </div>
+   <div class="field">
+      <%= f.label :meta_keyword %><br>
+      <%= f.text_area :meta_keyword %>
+   </div>
+   <div class="field">
+      <%= f.label :page_css %><br>
+      <%= f.text_area :page_css %>
+   </div>
+   <div class="field">
+      <%= f.label :page_js %><br>
+      <%= f.text_area :page_js %>
+   </div>
+   <div class="field">
+      <%= f.label :page_class %><br>
+      <%= f.text_field :page_class %>
+   </div>
+  
+
+   <div class="field">
+      <%= f.label :parent_id %><br>
+      <%= f.select :parent_id, CmsPage.where(:microsite_id=> params[:id], :user_id => current_user.id ).collect{|u| [u.title, u.id]}, {:include_blank => 'Select parent page'}  %>
+   </div>
+   <div class="actions">
+      <%= f.submit('Create CMS Page') %>
+   </div>
+   <% end %>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+

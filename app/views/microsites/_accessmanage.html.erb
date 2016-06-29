@@ -1,0 +1,329 @@
+
+
+<!-- Page-Title -->
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title"><%= t(:all_user) %>
+               <% if current_user.can? :addUser, :admin %>
+               <span class="pull-right"> <%= link_to 'Add User', '/admin/addUser', :class =>'addUser' %>
+               </span>
+               <% end %>
+            </h3>
+         </div>
+         <div class="panel-body">
+            <%= notice %>
+            <div class="row">
+               <div class="col-md-8">
+                  <%= form_tag admin_users_path, :method => 'get' do %>
+                  <div class="col-md-7">
+                     <%= text_field_tag :search, params[:search], class: "form-control col-md-3 col-sm-3 col-xs-3" %>
+                  </div>
+                  <div class="col-md-5">
+                     <%= submit_tag "Search", :name => nil , :class=> "btn btn-info waves-effect waves-light" %> 
+                  </div>
+                  <% end %>
+				  
+               </div>
+			    <div class="col-md-4 sepuser">All(<%= @users.count %>)&nbsp;&nbsp; |&nbsp;&nbsp; Administrator(1)</div>
+            </div>
+            
+            <div class="row ma10">
+               <div class="col-md-12">
+                  <% if ((current_user.can? :editrole, :admin) && @roles != nil)  %>
+                  <div class="rolebox">
+                     <div class="col-md-8">
+                        <label>Role:</label>
+                        <select class="roletobechange form-control">
+                           <option value="" selected>Change role to..</option>
+                           <% @roles.each_with_index do |urole,index| %>
+                           <option value="<%=  urole[1]  %>"><%=  urole[0]  %></option>
+                           <% end %>
+                        </select>
+                     </div>
+                     <div class="col-md-4">
+                        <button class="getallcheks btn btn-info waves-effect waves-light">Change</button>
+                     </div>
+                  </div>
+                  <% end %>   
+               </div>
+			   
+               <div class="col-md-12">
+                  <% if current_user.can? :editrole, :admin %>
+                  <!-- <div class="rolebox">
+                     <div class="col-md-8">
+                        <label>Group:</label>
+                        <select class="grouptobechange form-control">
+                           <option value="" selected>Change Group to..</option>
+                           <% @groups.each_with_index do |g| %>
+                           <option value="<%=  g.id  %>"><%=  g.name  %></option>
+                           <% end %>
+                        </select>
+                     </div>
+                     <div class="col-md-4">
+                        <button class="getallchekss btn btn-info waves-effect waves-light">Change</button>
+                     </div>
+                  </div> -->
+                  <% end %>   
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="table-responsive">
+                     <%= form_for :user, :url => admin_edit_user_individual_path, :html => { :method => :put } do |form| %>
+                     <table class="list-user table">
+                        <tr>
+                           <th></th>
+                           <th>First Name </th>
+                           <th>Last Name </th>
+                           <th>Email </th>
+                           <th>Status </th>
+                           <th>Role</th>
+                           <th>Update </th>
+                           <th>Group</th>
+                           <!-- <th>Delete </th> -->
+                        </tr>
+                        <% @users.each do |user| %>
+                        <tr>
+                           <td><%= check_box_tag "user_ids[]", user.id %></td>
+                           <td><%= user.first_name %></td>
+                           <td><%= user.last_name %></td>
+                           <td><%= user.email %></td>
+                           <td><%= user.status %></td>
+                           <td>
+                              <% if user.roles.size > 0 %>
+                              <% user.roles.each do |cur| %>
+                              <p><%= t(cur.name.downcase)  %> </p>
+                              <br>
+                              <% end %>
+                              <% end %>
+                           </td>
+                           <td>
+                              <% if current_user.can? :editUser, :admin %>        
+                              <%= link_to 'Edit', '/admin/editUser/'+user.id.to_s, :class =>'editUser', :id=> user.id
+                                 %>
+                              <%  end %>            
+                           </td>
+                           <td>
+                              <% if user.groups.size > 0 %>
+                              <% user.groups.each do |cur| %>
+                              <p><%= t(cur.name.downcase)  %> </p>
+                              <br>
+                              <% end %>
+                              <% end %>
+                              <%# if current_user.can? :delUser, :admin %>
+                              <%# if user.admin != true %>    
+                              <%#= link_to 'Delete', '/admin/delUser/'+user.id.to_s, :class =>'delete-user', :id=> user.id
+                                 %>
+                              <%#  end %>    
+                              <%#  end %>     
+                           </td>
+                        </tr>
+                        <% end %>
+                     </table>
+                     <% if current_user.can? :delUser, :admin %>
+                     <div class="col-sm-12">
+                        <div class="col-sm-2">
+                           <p id="deleteselected" class="btn-info btn waves-effect waves-light">Disable</p>
+                        </div>
+                        <div class="col-sm-2">
+                           <p id="deleteselectedpermanent" class="btn-info waves-effect waves-light btn">Delete Permanent</p>
+                        </div>
+                     </div>
+                     <%  end %>      
+                     <%#= submit_tag "Edit Checked" , :class=> "btn btn-info waves-effect"  %>
+                     <% end %>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End row -->
+<div class="row">
+   <div class="col-sm-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title">Invite New User(s)</h3>
+         </div>
+         <div class="panel-body">
+            <%= form_tag admin_sendinvitationuser_path, :method => 'post' do %>
+            <div class="form-group">
+               <label class="col-md-4 control-label" for="example-email">Email Addresses:</label>
+               <div class="col-md-8">
+                  <%= text_field_tag 'user_emails', '', class: 'form-control', placeholder: 'Enter comma separated emails' %>
+               </div>
+            </div>
+            <% if @roles != nil %>
+            <div class="form-group">
+               <label class="col-sm-4 control-label">Select Role</label>
+               <div class="col-sm-8">
+                  <select class="form-control" name="roleid">
+                     <% @roles.each_with_index do |urole,index| %>
+                     <option value="<%=  urole[1]  %>"><%=  urole[0]  %></option>
+                     <% end %>
+                  </select>
+               </div>
+            </div>
+            <% end  %>
+            <div class="form-group">
+               <label class="col-md-4 control-label">Message</label>
+               <div class="col-md-8">
+                  <%= text_area_tag 'custom_message', nil,rows: 5, class: 'form-control' %>
+               </div>
+            </div>
+            <div class="form-group">
+               <%= submit_tag "Send Invitation", :name => nil , :class=> "btn btn-info waves-effect waves-light" %> 
+            </div>
+            <% end %>                                    
+         </div>
+         <!-- panel-body -->
+      </div>
+      <!-- panel -->
+   </div>
+   <!-- col -->
+</div>
+<!-- End row -->
+<script type="text/javascript">
+   $(function(){
+   
+   
+   $('.getallcheks').click(function(){
+   
+   var conceptName = $('.roletobechange').find(":selected").val();
+   var checkedValues = $('.list-user input:checkbox:checked').map(function() {
+       return this.value;
+   }).get();
+   if(checkedValues.length){
+   $.ajax({
+                       type:'post',
+                       url: '/admin/bulkupdaterole',
+                       data:{  
+                           role:conceptName,
+                           userids:checkedValues,
+                           task:"bulkupdaterole"
+                       },
+                       success: function(resp){
+                       alert(resp["message"]);
+                       location.reload(); 
+   
+                       }
+   
+                   })
+   
+   }
+   else{
+   alert("Please select at least one user");   
+   }
+   // return false;
+   
+      });
+   
+   
+   
+   $('.getallchekss').click(function(){
+   
+   var conceptName = $('.grouptobechange').find(":selected").val();
+   var checkedValues = $('.list-user input:checkbox:checked').map(function() {
+       return this.value;
+   }).get();
+   if(checkedValues.length){
+   $.ajax({
+                       type:'post',
+                       url: '/admin/bulkupdaterole',
+                       data:{  
+                           group:conceptName,
+                           userids:checkedValues,
+                           task:"bulkupdategroup"
+                       },
+                       success: function(resp){
+                       alert(resp["message"]);
+                       location.reload(); 
+   
+                       }
+   
+                   })
+   
+   }
+   else{
+   alert("Please select at least one user");   
+   }
+   // return false;
+   
+      });
+   
+   
+   $('#deleteselected').click(function(){
+   
+   var conceptName = $('.roletobechange').find(":selected").val();
+   var checkedValues = $('.list-user input:checkbox:checked').map(function() {
+       return this.value;
+   }).get();
+   
+   //alert(checkedValues);
+   if(checkedValues.length){
+   $.ajax({
+                       type:'post',
+                       url: '/admin/bulkupdaterole',
+                       data:{  
+                           // role:conceptName,
+                           userids:checkedValues,
+                           task:"bulkdisableuser"
+                       },
+                       success: function(resp){
+                       alert(resp["message"]);
+       location.reload(); 
+   
+                       }
+   
+                   })
+   
+      }
+   else{
+   alert("Please select at least one user");   
+   }
+   });
+   
+   
+   
+   $('#deleteselectedpermanent').click(function(){
+   
+   var conceptName = $('.roletobechange').find(":selected").val();
+   var checkedValues = $('.list-user input:checkbox:checked').map(function() {
+       return this.value;
+   }).get();
+   
+   //alert(checkedValues);
+   if(checkedValues.length){
+   
+   
+   if (confirm("Are you sure? All of these user's folders, files will be deleted Permanent")) {
+          $.ajax({
+                       type:'post',
+                       url: '/admin/bulkupdaterole',
+                       data:{  
+                           // role:conceptName,
+                           userids:checkedValues,
+                           task:"bulkdeleteuser"
+                       },
+                       success: function(resp){
+                       alert(resp["message"]);
+                       location.reload(); 
+                       }
+   
+                   })
+       }
+   
+      
+      }
+   else{
+   alert("Please select at least one user");   
+   }
+   });
+   
+   });
+     
+</script>
+

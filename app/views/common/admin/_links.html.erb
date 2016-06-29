@@ -1,0 +1,100 @@
+<ul>
+<li><a href="/microsites"><%= t(:Clients) %></a><span class="has-sub">></span>
+<ul class="sub-1">
+	 <% allmicrosites.each do |microsite| %>
+	 <li><%= link_to microsite.title, microsite %></li>
+	 <% end %>
+	 <li><%= link_to 'New Microsite', new_microsite_path %></li>
+</ul>
+</li>
+<% if current_user.can? :listUsers, :admin  %>	
+<li>
+<%= link_to t(:list_user), url_for(:controller => :admin, :action => :listUsers), :class =>'list_user' %>
+</li>	
+<% end %>
+<li>
+<%= link_to t(:survey), 'javascript:void(0)', :class =>'Survey' %>
+<ul class="sub-1">
+
+<% if current_user.can? :addSurvey, :admin  %>	
+<li>
+<%= link_to t(:add_new), url_for(:controller => :admin, :action => :addSurvey ),
+:class =>'add_mew_survey' %>
+</li>
+<% end %>
+
+<% if current_user.can? :manageSurvey, :admin  %>		
+<li>
+<%= link_to t(:manage), url_for(:controller =>'admin', :action => 'manageSurvey'),
+:class =>'Manage_survey' %>
+</li>
+<% end %>			 
+</ul>
+</li>	
+
+<!--
+<%# if current_user.can? :newcmspage, :admin  %>	
+<li>
+<%#= link_to t(:create_cms_page),url_for(:controller => 'admin', :action =>'newcmspage') %>
+</li>	
+<%# end %>
+
+<%# if current_user.can? :listcmspages, :admin  %>	
+<li>
+<%#= link_to t(:listcmspages),url_for(:controller => 'admin', :action =>'listcmspages') %>
+</li>	
+<%# end %>
+
+-->
+
+<% if current_user.can? :listroles, :admin  %>	
+<li>
+<%= link_to t(:list_roles), url_for(:controller => 'admin', :action => 'listroles'),		 
+:class =>'Manage_roles' %>
+</li>
+<% end %>
+
+<% if current_user.can? :played_surveys, :admin  %>	
+<li>
+<%= link_to t(:played_surveys),url_for(:controller => 'admin', :action =>'played_surveys') %>
+</li>	
+<% end %>
+
+
+<% if current_user.can? :importuserscsv, :admin  %>	
+<li>
+<%= link_to t(:Import_CSV),url_for(:controller => 'admin', :action =>'importuserscsv') %>
+</li>	
+<% end %>
+
+<li>
+<%= link_to t(:Export_CSV), url_for(:controller =>'admin', :action => 'exportcsv', format: "csv") %>
+</li>
+
+</ul>
+
+
+
+
+<% if user_signed_in? %>
+<%#= debug params[:controller].split("/").first.inspect %>
+
+
+
+
+
+
+<% if current_user.has_role?('Project_Manager') %>
+<li><%= link_to t(:Groups) , groups_path %></li>
+<% end %>
+
+<li><%= link_to t(:Send_survey_group), admin_assign_survey_path %></li>
+
+<li><%= link_to t(:Microsites), microsites_path %></li>
+<li><%= link_to t(:Folders), folders_path %></li>
+<li><%= link_to t(:Files), file_mangers_all_files_path %></li> 
+
+
+</ul>
+
+<% end %>

@@ -1,0 +1,238 @@
+
+
+a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, body, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, small, span, source, strike, strong, sub, sup, table, tbody, tfoot, thead, th, tr, tdvideo, tt, u, ul, var { background: transparent; border: 0 none; margin: 0; padding: 0; border: 0; outline: 0; vertical-align: top; }
+
+
+
+ol, ul, li { list-style: none; text-decoration: none; }
+
+
+
+body { background: #ccc; margin: 0px; padding: 0px; font-family: 'robotoregular'; color: #000; font-size: 14px; }
+
+
+
+h1, h2, h3, h4, h5, h6 { font-family: 'robotobold'; font-weight: normal; }
+
+
+
+@font-face { font-family: 'robotobold'; src: url('fonts/roboto-bold-webfont.eot'); src: url('fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/roboto-bold-webfont.woff2') format('woff2'), url('fonts/roboto-bold-webfont.woff') format('woff'), url('fonts/roboto-bold-webfont.ttf') format('truetype'), url('fonts/roboto-bold-webfont.svg#robotobold') format('svg'); font-weight: normal; font-style: normal; }
+
+
+
+@font-face { font-family: 'robotolight'; src: url('fonts/roboto-light-webfont.eot'); src: url('fonts/roboto-light-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/roboto-light-webfont.woff2') format('woff2'), url('fonts/roboto-light-webfont.woff') format('woff'), url('fonts/roboto-light-webfont.ttf') format('truetype'), url('fonts/roboto-light-webfont.svg#robotolight') format('svg'); font-weight: normal; font-style: normal; }
+
+
+
+@font-face { font-family: 'robotoregular'; src: url('fonts/roboto-regular-webfont.eot'); src: url('fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/roboto-regular-webfont.woff2') format('woff2'), url('fonts/roboto-regular-webfont.woff') format('woff'), url('fonts/roboto-regular-webfont.ttf') format('truetype'), url('fonts/roboto-regular-webfont.svg#robotoregular') format('svg'); font-weight: normal; font-style: normal; }
+
+
+
+.wrapper { display: block; margin: 0 auto; width: 1000px; }
+
+
+
+.loadlayout { background-color: #fff; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; -webkit-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.75); -moz-box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.75); box-shadow: 1px 1px 10px 1px rgba(0,0,0,0.75); margin-bottom: 20px; min-height: 20px; }
+
+
+
+.content-section { }
+
+
+
+.row.loadlayout { width: 300px; margin: 70px auto; padding: 21px 18px; width: 300px; }
+
+
+
+.cont-box { display: block; margin: 0 0 20px auto; }
+
+
+
+.logo-block { text-align: center; }
+
+
+
+.form h2 { text-align: center; margin-bottom: 5px; }
+
+
+
+.form label { font-size: 17px; }
+
+
+
+.form input { width: 285px; border: 1px solid #ccc; font-size: 14px; padding: 5px; margin: 6px 0; }
+
+
+
+.form .actions { padding: 10px 0; display: block; clear: both; }
+
+.form label {font-family: 'robotobold';  font-weight:normal; }
+
+
+.form input[type="submit"], .form .actions input { padding: 8px 20px; width: auto; cursor: pointer; background: #fcb813; border: none; color: #fff; }
+
+.form input[type="submit"]:hover, .form .actions input:hover {background:#d89800; }
+
+.content-login.form .actions {text-align:center; }
+
+
+.form { font-size: 13px; }
+
+
+
+.form br { display: none; }
+
+
+
+#error_explanation, .message-block { }
+
+
+
+#user_remember_me { width: auto; }
+
+
+
+.user-controlles ul { padding: 0px; }
+
+
+
+.user-controlles ul li { padding: 0px; margin: 0px; display: inline-block; }
+
+
+
+.copy-right { display: block; clear: both; text-align: center; padding: 30px 0; }
+
+
+
+.clr { display: block; clear: both; width: 100%; }
+
+
+
+textarea, input[type="email"], input[type="url"], input[type="tel"], input[type="number"], input[type="text"], input[type="password"] { border: 1px solid #ccc; font-size: 14px; padding: 5px; color: #000; }
+
+
+
+.page-controlles { display: block; }
+
+
+
+.page-controlles ul { display: block; width: 200px; }
+
+
+
+.page-controlles ul li { display: block; float: left; padding: 6px; }
+
+
+
+/* css for drop down*/
+
+ 
+
+
+
+.question-type .dropdown-btn { display: block; }
+
+
+
+.question-type ul.dropdown { display: none; }
+
+
+
+.question-type button.dropdown-btn { display: block; }
+
+
+
+button.dropdown-btn span.bgimg { background: url('../../images/site/question_icon.png'); display: block; height: 44px; width: 31px; }
+
+
+
+button.dropdown-btn .field-1 span.bgimg { background-position: 0 0; }
+
+
+
+button.dropdown-btn label span { float: left; }
+
+
+
+button.dropdown-btn span.ftype { padding: 14px 5px; }
+
+
+
+.question-type ul.dropdown li { height: 44px; padding: 6px 11px; cursor: pointer; }
+
+
+
+.question-type ul.dropdown li span.spacimg { background: url('../../images/site/question_icon.png'); clear: both; display: block; float: left; height: 44px; padding: 0; width: 31px; }
+
+
+
+.question-type ul.dropdown li label { display: block; float: right; height: 19px; padding: 14px 0; width:280px; cursor: pointer; }
+
+
+
+.question-type ul.dropdown li.field-1 span.spacimg,  button.dropdown-btn .field-1 span.bgimg { background-position: 0 0; }
+
+
+
+.question-type ul.dropdown li.field-2 span.spacimg,  button.dropdown-btn .field-2 span.bgimg { background-position: -33px 0px; width: 62px; }
+
+
+
+.question-type ul.dropdown li.field-3 span.spacimg,  button.dropdown-btn .field-3 span.bgimg { background-position: -90px 0; margin: 0 7px; padding: 0; width: 47px; }
+
+
+
+.question-type ul.dropdown li.field-4 span.spacimg,  button.dropdown-btn .field-4 span.bgimg { background-position: -141px 0; }
+
+
+
+.question-type ul.dropdown li.field-5 span.spacimg,  button.dropdown-btn .field-5 span.bgimg { background-position: -178px 0; width: 53px; }
+
+
+
+.question-type ul.dropdown li.field-6 span.spacimg,  button.dropdown-btn .field-6 span.bgimg { background-position: -228px 0; width: 50px; }
+
+
+
+.question-type ul.dropdown li.field-7 span.spacimg,  button.dropdown-btn .field-7 span.bgimg { background-position: -281px 0; }
+
+
+
+.question-type ul.dropdown li.field-8 span.spacimg,  button.dropdown-btn .field-8 span.bgimg { background-position: -328px 0; }
+
+
+
+.quetion-block { display: block; width: 450px; clear: both; }
+
+
+
+.quetion-block .link-block, .quetion-block label { display: inline-block;   }
+
+
+
+.add-new-question { }
+
+
+
+#addNewQuestionModal { /*top: 210px!important; */}
+
+
+
+.question-type ul.dropdown { }
+
+
+
+.survey-body .section{ display: block; border-bottom: 1px dotted #ccc;  }
+
+
+
+.edit_usersregistrations {width:1000px !important; }
+
+
+
+.edit_usersregistrations label{display:inline-block; width:200px; }
+
+
+
+.edit_usersregistrations i{display:block; clear:both; }
+

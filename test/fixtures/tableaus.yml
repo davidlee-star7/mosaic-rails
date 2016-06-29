@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  width: MyString
+  height: MyString
+  site_root: MyString
+  tabs: MyString
+  toolbar: MyString
+  ticket: MyString
+  load_order: MyString
+
+two:
+  width: MyString
+  height: MyString
+  site_root: MyString
+  tabs: MyString
+  toolbar: MyString
+  ticket: MyString
+  load_order: MyString

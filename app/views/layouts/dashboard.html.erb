@@ -1,0 +1,78 @@
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Mosaic">
+      <meta name="author" content="PTIWebtech">
+      <title>Mosaic</title>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
+      <%#= stylesheet_link_tag "style.css" %>
+      <%#= stylesheet_link_tag "devise/style.css" %>
+      <%#= stylesheet_link_tag "admin/style.css" %>
+      <%= analytics_init :local => Rails.env.development? %>
+      <%#= analytics_init if Rails.env.production? %>
+   </head>
+   <body class="fixed-left template-<%= params[:controller] %> body <%= params[:controller]+'_'+params[:action] %>  template-<%= params[:controller] %>">
+      <!-- Begin page -->
+      <div id="wrapper">
+         <!--   ========== Left Sidebar Start ==========  -->
+         <%= render "common/admin/leftsidemenu" %> 
+         <!--  Left Sidebar End  --> 
+         <!-- ============================================================== -->
+         <!-- Start right Content here -->
+         <!-- ============================================================== -->                      
+         <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+               <div class="container">
+                  <div class="row">
+                     <!-- <div class="user-controlles col-lg-4">
+                        <ul>
+                           <li><% if I18n.locale == I18n.default_locale %>
+                              <%= link_to "中国", :locale=>'zh-CN'%>
+                              <% else %>
+                              <%= link_to "English", :locale=>'en'%>
+                              <%end%>
+                           </li>
+                        </ul>
+                     </div> -->                     
+                    <!--  <div class="currnt-user-role col-lg-4">
+                        <li class="dropdown">
+                           <% if current_user.roles.size > 0 %>
+                           <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"> <%= t(:you_have_the_roles) %><i class="fa fa-caret-down"></i>
+                           </a>
+                           <ul class="dropdown-menu">
+                              <% current_user.roles.each do |cur| %>
+                              <li>
+                                 <%= t(cur.name.downcase)  %>
+                              </li>
+                              <% end %>
+                           </ul>
+                           <% end  %>
+                        </li>
+                     </div>
+                      -->
+                  </div>
+                  <%= yield %>
+               </div>
+               <!-- container -->
+            </div>
+            <!-- content -->
+            <footer class="footer text-right">
+               <div class="copy-right"><%= t("COPY_RIGHT_MSG") %></div>
+            </footer>
+         </div>
+         <!-- ============================================================== -->
+         <!-- End Right content here -->
+         <!-- ============================================================== -->
+         <!-- END wrapper --> 
+         <div class="clear"></div>
+      </div>
+   </body>
+</html>
+

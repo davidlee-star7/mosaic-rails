@@ -1,0 +1,59 @@
+<div class="row">
+<div class="col-sm-12">
+<div class="panel panel-default">
+
+	<div class="panel-heading">
+		<h3 class="panel-title"><label>You are assigning Group <%= @group.name %> to   
+		Microsites</label> </h3>
+	</div>
+
+	<div class="panel-body">
+
+		 <div class="error-block">
+		 	<% @errors.each do |e|    %>
+		 		<p style="color:red"><%= raw(e) %></p>
+		 	<% end %>
+		 </div>
+		 <div class="success-block">
+		 	<% @success.each do |s|    %>
+		 		<p style="color:green"><%= raw(s) %></p>
+		 	<% end %>
+		 </div>
+
+
+		 <div class="form-wrapper">
+			<%= form_for(@group, 
+			:url=>"/microsites_groups/addexistingmicrositestogroups/#{@group.id}") do |f| %>	
+				<%= hidden_field_tag(:task, "assign-group-to-microsites" ) %>
+				<div class="search-pages">
+				  <label><%= t("SEARCH_MICROSITE_ASSIGN_TO_GROUP") %></label>
+				  <%= autocomplete_field_tag "microsites[]", "", autocomplete_microsite_title_microsites_path,
+				  'data-delimiter' => ',', :multiple => true %>
+				</div>
+				<div class="submitbtn">
+				    <%= button_tag("Save", 
+				      data: { 
+				      disable_with: "Please Wait...",
+				      confirm: "Are Sure?" }, class:"msiteuser") %>
+				</div>
+			<% end %>
+		</div>
+
+		  <div class="avaliavle-cms-pages">
+			  <div class="title">
+			  		<label><%= t("ASSIGN_GROUP_TO_MICROSITE_MSG") %>:</label>
+			  </div>
+
+			  <% @microsites.each do |site| %>
+			  <p><%= site.title  %></p>
+			  <% end %>
+		  </div>
+
+
+
+	</div>
+
+</div>
+</div>
+ <%= link_to "back", "/groups/#{@group.id}" %>
+</div>	

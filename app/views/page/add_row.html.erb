@@ -1,0 +1,23 @@
+<% if list_row_type != nil %>
+	<ul class="list-row-typw">
+	<% list_row_type.each do |row| %>
+		<li class="list-col-<%= row[:id]  %>">
+			 <span class="left">
+			 	<input type="radio" name="row_type" value="<%= row[:row_type]  %>" 
+				 id="row_type_select-<%= row[:id]  %>"
+				 onclick="puColumn('<%= row[:id]  %>','<%= row[:row_type]  %>','<%= row[:name]  %>','<%= params[:page_id] %>')">	
+			 </span>
+			 <span class="class="left"">
+			 	<label for="row_type_select-<%= row[:id]  %>">
+			 		<%= row[:row_type].gsub(",",", ")  %>
+			 	</label>
+			 </span>
+		</li>
+	<% end %>
+	</ul>
+<% end %>
+
+<div class="new_field_col_block">
+	<form method="post" action="/extra_fields/add_fields_by_group">
+	</form>
+</div>

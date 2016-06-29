@@ -1,0 +1,87 @@
+<div class="panel-body full-height">
+   <p id="notice"><%= notice %></p>
+   <% url = ["createclient","newclient"].include?(params[:action])  ? "create" : "update"  %>
+   <%= form_for @client, :url => "/admin/clients/#{url}",
+         html: { multipart: true}, method: :patch do |f| %>
+   <% if @client.errors.any? %>
+   <div id="error_explanation">
+         <h2>
+            <%= pluralize(@client.errors.count, "error") %> prohibited this Client from being saved:
+         </h2>
+      <ul>
+         <% @client.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+         <% end %>
+      </ul>
+   </div>
+   <% end %>
+   <div style="display: none;" class="hide">
+      <%= f.hidden_field :id  %>
+   </div>
+
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="form-group">
+            <%= f.label :name, class: "col-md-12 control-label" %>
+            <br />
+            <div class="col-sm-12">
+            <%= f.text_field :name, class: "form-control" %>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="form-group">
+            <%= f.label :slug, class: "col-md-12 control-label" %>
+            <br />
+            <div class="col-sm-12">
+            <%= f.text_field :slug, class: "form-control" %>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <div class="row">   
+      <div class="col-sm-12">
+        <div class="form-group">
+            <%= f.label :description, class: "col-md-12 control-label" %>
+            <div class="col-sm-12">
+            <%= f.text_area :description, class: "form-control" %>
+            </div>
+         </div>
+      </div> 
+   </div>  
+
+   <div class="row"> 
+      <div class="col-sm-12">
+         <div class="form-group">
+            <div class="col-sm-6">
+               <%= f.label :logo, class: "col-md-6 control-label" %>
+               <br/>
+               <%= f.file_field :logo %>
+            </div>   
+            <div class="col-sm-10">
+               <% if @client.logo.present? && @client.logo.url != nil %>
+               <%= image_tag @client.logo.url %> 
+               <% end %>
+            </div>   
+         </div>
+      </div>
+   </div>
+
+   <div class="row">   
+      <div class="col-sm-12">
+         <div class="form-group m-b-0">
+            <div class="col-sm-offset-0">
+               <%= f.submit url , 
+               :class=> "btn btn-info waves-effect waves-light col-md-12 trans-none",
+                data: { disable_with: "#{url.gsub('e','ing')}..."} %> 
+            </div>
+         </div>
+      </div> 
+   </div>    
+   <% end %>
+</div>
+<!-- panel-body -->

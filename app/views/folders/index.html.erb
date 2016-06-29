@@ -1,0 +1,52 @@
+        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title"><%= t(:MANAGE_FOLDERS) %> 
+                                            <span class="pull-right"> 
+                                             <%= link_to "Back", :back %>
+                                            </span>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                          <p id="notice"><%= notice %></p>
+
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                   <thead>
+                                                    <tr>
+                                                      <th>  Name</th>
+                                                      <th colspan="3"></th>
+                                                    </tr>
+                                                  </thead>
+
+                                                  <tbody>
+                                                    <% @folders.each do |folder| %>
+                                                      <tr>
+                                                        <td>
+
+                                                          <%#= folder.name %>
+                                                           <%= link_to folder, :class => 'button white' do %>
+                                                           <i class="fa fa-folder"></i>  <%= folder.name %> 
+                                                            <% end %>
+                                                            </td>
+                                                        <td></td>
+                                                        <td><%= link_to 'Edit', edit_folder_path(folder) %></td>
+                                                        <td><%= link_to 'Destroy', folder, method: :delete, data: { confirm: "Are you sure? All files in this folder will be deleted and once deleted can't be recoverd" } %></td>
+                                                      </tr>
+                                                    <% end %>
+                                                  </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <%#= link_to('New Folder', new_folder_path, rel: "modal:open") %>
+<%= link_to('New Folder', new_folder_path ,  :class =>"fancyajax") %>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- End row -->

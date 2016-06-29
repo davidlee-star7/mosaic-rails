@@ -1,0 +1,9 @@
+<h3>Please login to view your reports</h3>
+
+<%= form_tag login_reports_path do -%>
+  <p>
+    <%= label :login, :username %>
+    <%= text_field :login, :username %>
+  </p>
+  <p><%= submit_tag 'Login' %></p>
+<%- end -%>

@@ -1,0 +1,88 @@
+<div class="row">
+<div class="col-sm-12">
+<div class="panel panel-default">
+<div class="panel-body">
+
+<%= form_tag(group_upload_users_path(@group.id), multipart: true) do %>
+<%#= text_field_tag :name, nil, :placeholder => 'Enter Name of file' %>
+<%= file_field_tag :csv_file %>
+<%= hidden_field_tag("task","Upload_users_csv")  %>
+
+<% if @errors.size > 0 %>
+	<label>Following Records cant be added due to shown erros</label>
+	<table width="100%">
+	<tr>
+	<td>
+		<table width="100%">
+			<tr class="error-column">
+				<td>Email</td>
+				<td>User Name</td>
+				<td>First Name</td>
+				<td>Last Name</td>
+				<td>Display Name</td>
+			</tr>	
+		</table>
+	</td>
+	<td>Message</td></tr>
+		<% @errors.each do |error| %>
+		<tr>
+		<td>
+			<% if error[0] != nil  %>
+			<table width="100%">
+				<tr class="error-column">
+					<td><%= error[0].email  %></td>
+					<td><%= error[0].username  %></td>
+					<td><%= error[0].first_name  %></td>
+					<td><%= error[0].last_name  %></td>
+					<td><%= error[0].display_name  %></td>
+				</tr>	
+			</table>
+			<% end %>
+		</td>
+		<td>
+		<% if error[1] != nil  %>
+		<% error[1].each do |e| %>
+			<%= e %>,
+		<% end %>
+		<% end %>
+		</td>	
+		</tr> 	
+		<% end %>
+	</table>
+
+<% end %>
+
+<% if @success.size > 0 %>
+	<label>Following Records added successfully</label>
+	<table width="100%">
+	<tr>
+		<td>Email</td>
+		<td>User Name</td>
+		<td>First Name</td>
+		<td>Last Name</td>
+		<td>Display Name</td>
+	 </tr>
+		<% @success.each do |suc| %>
+	<tr>
+		<td><%= suc.email  %></td>
+		<td><%= suc.username  %></td>
+		<td><%= suc.first_name  %></td>
+		<td><%= suc.last_name  %></td>
+		<td><%= suc.display_name  %></td>
+	</tr> 	
+		<% end %>
+	</table>
+<% end %>
+
+<%= submit_tag "Upload", :class=> "btn btn-info waves-effect waves-light" %> 
+<% end %>
+
+<%= link_to "Back", @group  %>
+
+</div>
+</div>
+</div>
+</div>
+
+
+ 

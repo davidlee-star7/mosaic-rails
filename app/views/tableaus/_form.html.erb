@@ -1,0 +1,56 @@
+<%= form_for(@tableau) do |f| %>
+  <% if @tableau.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tableau.errors.count, "error") %> prohibited this tableau from being saved:</h2>
+
+      <ul>
+      <% @tableau.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="field">
+    <%= f.label :project_title %><br>
+    <%= f.text_field :project_title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :project_name %><br>
+    <%= f.text_field :project_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :width %><br>
+    <%= f.text_field :width %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br>
+    <%= f.text_field :height %>
+  </div>
+  <div class="field">
+    <%= f.label :site_root %><br>
+    <%= f.text_field :site_root %>
+  </div>
+  <div class="field">
+    <%= f.label :tabs %><br>
+    <%= f.text_field :tabs %>
+  </div>
+  <div class="field">
+    <%= f.label :toolbar %><br>
+    <%= f.select :toolbar, options_for_select([['Yes','y'],['No','n']]) %>
+  </div>
+ <!--  <div class="field">
+    <%#= f.label :ticket %><br>
+    <%#= f.text_field :ticket %>
+  </div> -->
+  <div class="field">
+    <%= f.label :load_order %><br>
+    <%= f.text_field :load_order %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,231 @@
+
+
+<div class="row">
+   <div class="col-sm-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title trans-none">
+            <%= t(:MANAGE_MICROSITES) %> 
+             <span class="pull-right"> 
+               <%= link_to "Back", :back %>
+              </span>
+                <span class="right pull-right">
+                <%= link_to 'Create new microsite', new_microsite_path %>
+               </span>
+            </h3>
+         </div>
+
+        <% if @errors.size > 0 %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@errors.count, "error") %> prohibited These records from being saved:</h2>
+              <ul>
+              <% @errors.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+        <% end %>   
+
+        <% if @success != "" %>
+            <div class="success-block" style="color:green">
+             <%= @success %>
+            </div>
+        <% end %> 
+      <div class="panel-body">
+            <p id="notice"><%= notice %></p>
+            <% if @microsites.size > 0 %>
+            <h3 class="clear">Published</h3>
+          <!--  
+            <div class="assigntogroup">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Manage Microsites</h3>
+                </div>
+            </div>    
+          -->     
+            <div class="listing-microsite">
+               <ul class="micrisitelistwrapeer">
+                  <% @microsites.each do |microsite| %>
+                  <% if microsite.publish? %>
+                  <li class="micro-site-item">
+                     <div class="mi-image">
+                        <a href="/microsites/<%= microsite.id %>">
+                        <% if microsite.client_logo.present? %>
+                        <%= image_tag(microsite.client_logo)  %>
+                        <% else %>
+                        <%= image_tag(image_path("default-client-logo.png")) %>
+                        <% end %>
+                        </a>
+                     </div>
+                     <div class="clear-both microdetail">
+                        <div class="microlink">
+                           <%= link_to microsite.title, microsite %>
+                        </div>
+                        <div class="micro-permission">
+                           <span class="m-access-lock">
+                             <a href="#microaccess-<%= microsite.id %>" class="fancybox">
+                              <i class="fa fa-lock"></i>
+                             </a>
+                           </span>
+                           <span class="m-access-det">
+                              <a href="javascript:void(0)">
+                                <i class="fa fa-cog"></i>
+                              </a>
+                              <ul style="display:none">
+                                 <li class="first">
+                                    <span class="">X</span>
+                                 </li>
+                                 <li>
+                                    <a href="#rename-<%= microsite.id %>" class="fancybox">Rename</a>
+                                 </li>
+                                 <% if current_user.username.to_s !="" && microsite.users.exists?(current_user.id)  %>
+                                 <li>
+                                    <a href="<%= current_user.username %>/<%= microsite.slug %>"
+                                    traget="__BLANK"  >preview</a>
+                                 </li>
+                                 <% end %>
+                                 <li>
+                                    <%= link_to "Edit", edit_microsite_path(microsite.id) %>
+                                 </li>
+                                 <li>
+                                  <%= link_to "View", microsite_path(microsite.id) %>
+                                 </li>
+                                 <li>
+                                    <a href="#changeurl-<%= microsite.id %>" class="fancybox">Change URL</a>
+                                 </li>
+                                 <li>
+                                    <a href="#clonemicrosite-<%= microsite.id %>" class="fancybox">Clone the microsite</a>
+                                 </li>
+                                 <li>
+                                    <a href="#changelanguage-<%= microsite.id %>" class="fancybox">Change language</a>
+                                 </li>
+                                 <li>
+                                    <a href="#assign-survey-<%= microsite.id %>" class="fancybox">Survey</a>
+                                 </li>
+                                 <li>
+                                    <a href="/microsites/<%= microsite.id %>/newcmspage/<%= microsite.template_id.to_i > 0 ? microsite.template_id : 1 %>" class="fancybox" target="_blank">New page</a>
+                                 </li>
+                                 <!-- <li><a href="/convert" class="">Convert to template</a></li> -->
+                                 <li>
+                                    <a href="#deactive-<%= microsite.id %>" class="fancybox">Deactivate</a>
+                                 </li>
+                                 <li>
+                                  <%= link_to 'Destroy', "/microsites/#{microsite.id}", method: :delete, 
+                                      data: { confirm: 'Are you sure?' } %>
+                                 </li>
+                              </ul>
+                           </span>
+                        </div>
+                     </div>
+                     <div id="microaccess-<%= microsite.id %>" style="display:none;"> 
+                        <%#= render :partial => "accessmanage", :locals => {:micro => microsite, :users =>@users,:roles => @roles} %>
+                        <%= render :partial => "accessmanage", 
+                        :locals => {:micro => microsite, 
+                        :users =>listUsersofmicrosite(microsite.id),
+                        :roles => @roles} %>
+                     </div>
+                     <div id="rename-<%= microsite.id %>" style="display:none;">
+                        <%= render :partial => "rename", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+                     <div id="changeurl-<%= microsite.id %>" style="display:none;">
+                        <%= render :partial => "changeurl", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+                     <div id="clonemicrosite-<%= microsite.id %>" style="display:none;">
+                        <%= render :partial => "clonemicrosite", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+                     <div id="changelanguage-<%= microsite.id %>" style="display:none;">
+                        <%= render :partial => "changelanguage", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+                     <div id="deactive-<%= microsite.id %>" style="display:none;">
+                        <%= render :partial => "deactive", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+                     <div id="assign-survey-<%= microsite.id %>" 
+                          style="display:none;">
+                        <%= render :partial => "assignsurvey", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles, :survey => @surveys} %>
+                     </div>
+                  </li>
+                  <% end %>
+                  <% end %>
+                  <li class="micro-site-item create-mi">
+                    <a href="/microsites/new">
+                        <span class="clearfix">
+                         <i class="fa fa-plus-circle fa-6"></i>
+                        </span>
+                        <span>Create New Microsite</span>
+                    </a>
+                  </li>
+               </ul>
+            </div>
+            <div class="clearfix"></div>
+            <h3 class="clear">Unpublished</h3>
+            <div class="listing-microsite">
+               <ul class="">
+                  <% @microsites.each do |microsite| %>
+                  <% unless microsite.publish? %>
+                  <li class="micro-site-item">
+                     <div class="mi-image">
+                        <a href="/microsites/<%= microsite.id %>">
+                        <% if microsite.client_logo.present? %>
+                        <%= image_tag(microsite.client_logo)  %>
+                        <% else %>
+                        <%= image_tag(image_path("default-client-logo.png")) %>
+                        <% end %>
+                        </a>
+                     </div>
+                     <div class="clear-both microdetail">
+                        <div class="microlink">
+                           <%= link_to microsite.title, microsite %>
+                        </div>
+                        <div class="micro-permission">
+                           <span class="m-access-lock">
+                           <%#= link_to 'New', '/admin/users', 
+                              :rel => 'modal:open' %>
+                           <%#=  link_to_modal "Access", "#microaccess-#{microsite.id}", :class=>"button" %>
+                           <a href="#microaccess-<%= microsite.id %>" class="fancybox"><i class="fa fa-lock"></i></a></span>
+                           <span class="m-access-det">
+                              <a href="#"><i class="fa fa-cog"></i></a>
+                              <ul style="display:none">
+                                 <li class="first"><span class="">X</span></li>
+                                 <li><a href="#rename-<%= microsite.id %>" class="fancybox">Rename</a></li>
+                                 <li><a href="#changeurl-<%= microsite.id %>" class="fancybox">Change URL</a></li>
+                                 <li><a href="#clonemicrosite-<%= microsite.id %>" class="fancybox">Clone the microsite</a></li>
+                                 <li><a href="#changelanguage-<%= microsite.id %>" class="fancybox">Change language</a></li>
+                                 <li><a href="#deactive-<%= microsite.id %>" class="fancybox">Activate</a></li>
+                                 <li><%= link_to 'Destroy', microsite, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                              </ul>
+                           </span>
+                        </div>
+                     </div>
+                     <div id="microaccess-<%= microsite.id %>" style="display:none;"> 
+                        <%#= render :partial => "accessmanage", :locals => {:micro => microsite, :users =>@users,:roles => @roles} %>
+                        <%= render :partial => "accessmanage", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+
+                     <div id="rename-<%= microsite.id %>" style="display:none;">
+                        <%= render :partial => "rename", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+                     <div id="changeurl-<%= microsite.id %>" style="display:none;">
+                        <%= render :partial => "changeurl", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+                     <div id="clonemicrosite-<%= microsite.id %>" style="display:none;">
+                        <%= render :partial => "clonemicrosite", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+                     <div id="changelanguage-<%= microsite.id %>" style="display:none;">
+                        <%= render :partial => "changelanguage", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+                     <div id="deactive-<%= microsite.id %>" style="display:none;">
+                        <%= render :partial => "deactive", :locals => {:micro => microsite, :users =>listUsersofmicrosite(microsite.id),:roles => @roles} %>
+                     </div>
+                  </li>
+                  <% end %>
+                  <% end %>
+               </ul>
+            </div>
+            <div class="clear-both"></div>
+            <% else %>
+            <p>No microsite </p>
+            <% end %>
+         </div>
+      </div>
+   </div>
+</div>
+ 

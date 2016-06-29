@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fval: MyString
+  type_id: 1
+  section_id: 1
+
+two:
+  fval: MyString
+  type_id: 1
+  section_id: 1

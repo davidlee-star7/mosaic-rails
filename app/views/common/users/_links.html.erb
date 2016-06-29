@@ -1,0 +1,33 @@
+
+	<% if user_signed_in? %>
+<ul>
+
+
+
+
+
+<!-- 	 <%# if current_user.can? :newcmspage, :admin  %>	
+   	<li>
+	<%#= link_to t(:create_cms_page),url_for(:controller => 'admin', :action =>'newcmspage') %>
+	</li>	
+ <%# end %>
+
+  <%# if current_user.can? :listcmspages, :admin  %>	
+   	<li>
+	<%#= link_to t(:listcmspages),url_for(:controller => 'admin', :action =>'listcmspages') %>
+	</li>	
+ <%# end %> -->
+
+	<li><%= link_to 'Microsites', microsites_path %></li>
+
+<% if current_user.has_role?('Project_Manager') %>
+<li><%= link_to 'Groups', groups_path %></li>
+<% end %>
+
+<li><%= link_to 'Folders', folders_path %></li>
+
+ <li><%= link_to 'Files', file_mangers_all_files_path %></li> 
+
+</ul>
+
+<% end %>

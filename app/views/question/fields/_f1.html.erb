@@ -1,0 +1,91 @@
+<div class="f1-block fields-option" >
+
+	<div class="options-adv">
+		<div class="row">
+				<div class="col-md-6">
+					<h4>Multiple Choice Options</h4>
+				</div>
+		</div>
+	</div>
+
+	<%#= section %>
+	<%#= @question  %>	 
+
+	<div class="questions-add-option">
+		<ul> 
+		<% if @question != nil %>
+
+			<%  if @question.qfields != nil %>
+
+				<%  @question.qfields.each_with_index do |field,k|  %>
+					<li data-id="1">
+
+						<%= text_area_tag('qoption[1]',field.fval, :placeholder => 'Option 1')  %>
+					</li>
+
+				<%  end %>
+
+			<%  end %>
+
+		<% else %>
+
+			<li data-id="1" class="field-rem-1">
+				<%= text_area_tag('qoption[1]','', :placeholder => 'Option 1') 
+				%>
+
+				<%= link_to ' X ', '#', :class => 'remove_field qfield', 
+							:role=>1,
+							:onclick => "return remove_fileds(this)" %>
+			</li>
+
+			<li data-id="2" class="field-rem-2">
+				<%= text_area_tag('qoption[2]','', :placeholder => 'Option 2',
+				'data-id'=>1)
+				 %>
+				<%= link_to ' X ', '#', :class => 'remove_field qfield', 
+							:role=>2,
+							:onclick => "return remove_fileds(this)" %> 
+			</li>	
+			
+		<% end %>	
+
+				
+
+		</ul>
+
+
+	</div>
+
+	<div class="answer-grid-footer">
+
+		<span class="add-option-textbox">
+				<a class="add-option-button" 
+				data-options-add-btn="" onclick="add_more_questions()" 
+				href="javascript:void(0);">
+				<i class="icon-plus text-muted"></i> Click to Add Option</a>
+		</span>
+
+	</div>	
+
+	<!-- *********************8 -->
+
+	<div class="col-md-4 hidden-xs advisor-column">	
+		<div class="alert alert-info advisor">
+			<div class="advisor-header">
+				<a data-alertid="question-RADIO-radio" class="js-close-advice pull-right" type="button"><i class="icon-remove"></i></a>
+				<i class="icon-info-sign"></i> 
+				<strong>Getting Started Guide</strong> 
+			</div>
+			<div class="advisor-text">
+				<p>Radio Buttons only allow one selection per question. If you want to allow for multiple selections, use Checkboxes instead.<br><br>Radio Buttons are best when used for short lists of options. If your option list is long, e.g. the 50 states, try the Dropdown Menu instead.
+				</p>
+				</div>
+			</div>
+	</div>
+		<div class="clearfix"></div>
+
+</div>
+
+ 
+
+ 

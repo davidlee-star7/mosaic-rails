@@ -1,0 +1,77 @@
+<div class="row">
+<div class="col-sm-12">
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title trans-none">
+        <%= t(:MANAGE_TABLEAU_MSG) %>
+       <span class="pull-right"> 
+         <%= link_to "Back", :back %>
+       </span>
+       <span class="right pull-right">
+        <%= link_to t(:NEW_TABLEAU_DASHBOARD), new_tableau_path %>
+       </span>
+      </h3>
+    </div>
+<%#= current_user.roles.inspect  %>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="table-responsive">   
+                        <p id="notice"><%= notice %></p>
+            <table class="table tableua-prjects">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>Short Code</th>
+                  <th>Project Title</th>
+                  <th>Project Name</th>
+                  <th>Width</th>
+                  <th>Height</th>
+                  <th>Site root</th>
+                  <th>Tabs</th>
+                  <th>Toolbar</th>
+                  <th>Ticket</th>
+                  <th>Load order</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @tableaus.each do |tableau| %>
+                  <tr>
+                    <td class="fit-width"><%= tableau.id %></td>
+                    <td><pre>[project id="<%= tableau.id %>"][/project]</pre></td>
+                    <td class="fit-width"><%= tableau.project_title %></td>
+                    <td class="fit-width"><%= tableau.project_name %></td>
+                    <td><%= tableau.width %></td>
+                    <td><%= tableau.height %></td>
+                    <td class="fit-width"><%= tableau.site_root %></td>
+                    <td><%= tableau.tabs %></td>
+                    <td><%= tableau.toolbar %></td>
+                    <td><%= tableau.ticket %></td>
+                    <td><%= tableau.load_order %></td>
+                    <% if current_user.can? :preview_microsite, :page  %> 
+                    <td><%= link_to 'Preview', "/client/dashboard/#{tableau.id}", :target=> :_BLANK %></td>
+                    <% end %>
+                    <% if current_user.can? :show, :tableau  %> 
+                    <td><%= link_to 'Show', tableau %></td>
+                    <% end %>
+                    <% if current_user.can? :edit, :tableau  %> 
+                    <td><%= link_to 'Edit', edit_tableau_path(tableau) %></td>
+                    <% end %>
+                    <% if current_user.can? :destroy, :tableau  %> 
+                    <td><%= link_to 'Destroy', tableau, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+ </div>
+ </div>
+

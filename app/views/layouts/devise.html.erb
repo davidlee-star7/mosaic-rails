@@ -1,0 +1,76 @@
+<html>
+<head>
+  <title>Mosaic</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "devise/style.css" %>
+ 
+
+</head>
+<body class="row-12 users-controller">
+<div class="wrapper">
+	<div class="content-section">
+		<div class="row loadlayout form <%= params[:action].to_s+'_'+params[:controller].to_s.gsub('/','') %> ">
+
+		 <div class="cont-box">	
+			<div class="col-9">	
+				<div class="logo-block">
+		    	<%= render "common/users/header" %>
+		  		</div>	
+			</div>
+
+			<div class="col-3">
+				<div class="user-controlles">
+					<ul>
+							<% if user_signed_in? %>
+								<li>
+		<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> 
+								</li>
+
+
+								<li>
+		<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+								</li>
+							<% end %>
+
+					</ul>
+				</div>
+			</div>	
+		</div>	
+				<div class="clear"></div>
+
+			<!-- <div class="message-block">
+				<% if notice %>
+				  <p class="alert alert-success"><%= notice %></p>
+				<% end %>
+				<% if alert %>
+				  <p class="alert alert-danger"><%= alert %></p>
+				<% end %>
+			</div>	 -->
+
+			<div class="message-block">
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <%= content_tag :div, msg, :class => "flash_#{name}" %>
+  <% end %>
+<% end %>
+</div>
+
+
+
+			<div class="clear"></div>	
+
+			<div class="content">
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+	<div class="clr"></div>
+</div>
+
+<div class="copy-right"><%= t("COPY_RIGHT_MSG") %></div>
+<div class="clr"></div>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div class="panel panel-default">
+         <form action="/admin/manageSurvey" method="post" >
+            <%= hidden_field_tag("task","survey_to_group") %>
+            <%= hidden_field_tag("authenticity_token",form_authenticity_token) %>
+            <%#= params.inspect %>
+            <div class="panel-heading">
+               <h3 class="panel-title trans-none">Manage Survey
+                <span class="pull-right"> 
+               <%= link_to "Back", :back %>
+               </span>
+               <span class="pull-right"> 
+                  <li>
+               <%= link_to admin_assign_survey_path, :class => 'button white' do %>
+               <i class="fa fa-envelope-o"></i> <span> <%= t(:Send_survey_group) %> </span>
+               <% end %>
+               </li>
+               </span>
+               </h3>
+                  
+            </div>
+            <div class="assigntogroup">
+               <div class="group-survey-left">Select the Groups, assign to Survey
+               </div>
+               <div class="group-survey-right">
+                  <%= select_tag("groups",
+                     options_for_select(Group.all.map{ |g| [g.name,g.id] }),{
+                     :class=>"group-selcetor", 
+                     :multiple => true
+                     }) %>
+               </div>
+            </div>
+            <div class="panel-body">
+               <%= link_to 'Add New Survey','/admin/addSurvey' %>
+               <%= button_tag("Save", data: { 
+                  disable_with: "Please Wait...",
+                  confirm: "Are Sure?" }) %>
+               <div class="error-blok" style="color:red">
+                  <% if @errors.size > 0 %>
+                  <% @errors.each do |error|  %>
+                  <p><%=error %></p>
+                  <% end %>
+                  <% end %>
+               </div>
+               <table width="100%" class="table">
+                  <tr>
+                     <th>Survey</th>
+                     <th>Response</th>
+                     <th>Date Updated</th>
+                     <th>Action</th>
+                  </tr>
+                  <% @survey.each do |survey|  %>
+                  <tr>
+                     <td>
+                        <%= check_box_tag("survey[#{survey.id}]",survey.id) %>
+                        <%= link_to survey.name, 
+                           '/admin/buildsurvey/'+survey.id.to_s  %> 
+                     </td>
+                     <td>0</td>
+                     <td></td>
+                     <td>
+                        <%= link_to 'Delete','/surveys/'+survey.id.to_s+'/destroy',
+                           :class => 'confirm-delete' %> | 
+                        <%= link_to 'Edit', '/admin/'+survey.id.to_s+'/editsurvey'  %>
+                        <%= link_to 'PDF', '/admin/survey_exports/'+survey.id.to_s+'.pdf'  %>
+                        <%= link_to 'CSV', '/admin/survey_exports/'+survey.id.to_s+'.csv'  %>
+                     </td>
+                  </tr>
+                  <% end %>
+               </table>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>

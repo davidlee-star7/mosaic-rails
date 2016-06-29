@@ -1,0 +1,25 @@
+	<div class="message-block">
+					<% if notice %>
+					  <p class="alert alert-success"><%= notice %></p>
+					<% end %>
+					<%  if alert != nil && alert != true
+						 	if alert.is_a?(Object) && !alert.is_a?(String)    %>
+								<% alert.each do |error|   %>
+							 		 <p class="alert alert-danger">
+							 		 	<span claas="pre"><%= error[0] %></span>
+							 		 	<% if error.size > 1 %>
+							 		 		<span claas="post">
+							 		 			<%= error[1][0] %>
+							 		 		</span>
+							 		 	<% end %>
+							 		 </p>
+							    <% end  
+							else  %>
+
+							<p class="alert alert-danger"><%= alert %></p>
+
+						<%  end
+						end
+
+					 %>
+</div>	

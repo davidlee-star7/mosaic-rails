@@ -1,0 +1,32 @@
+
+
+
+<%= form_tag(file_mangers_create_file_path, multipart: true) do %>
+<%#= text_field_tag :name, nil, :placeholder => 'Enter Name of file' %>
+<%= file_field_tag :attachment %>
+<br>
+
+<%#= debug @cc.inspect %>
+<% if @cc.present? %>
+    Folder:<%= select_tag :folder_id, options_from_collection_for_select(@cc, "id", "name"),  prompt: "Select Folder",:required => true %>
+    <% else %>
+Please create a folder first
+<%#= link_to('New Folder', new_folder_path, rel: "modal:open") %>
+<%= link_to('New Folder', new_folder_path,  :class =>"fancyajax") %>
+
+
+
+
+
+<% end %>
+
+
+
+<%= submit_tag "Upload", :class=> "btn btn-info waves-effect waves-light" %> 
+<% end %>
+
+
+
+
+
+

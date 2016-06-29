@@ -1,0 +1,124 @@
+<div class="row">
+<div class="col-sm-12">
+<div class="panel panel-default">
+
+   <div class="panel-heading">
+      <h3 class="panel-title">
+      Update User
+         <span class="pull-right"> <%= link_to 'back to users', '/admin/users', :class =>'addUser' %>
+         </span>
+      </h3>
+   </div>
+
+<div class="edir-user-page">
+	<% if !@autherror.kind_of?(Array) && @autherror.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@autherror.errors.count, "error") %>
+     prohibited this article from being saved:</h2>
+    <ul>
+    <% @autherror.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+	<%#= @user.inspect  %>
+
+	<div class="panel-body">
+
+	<%= form_tag("/admin/editUser/"+@user.id.to_s, method: "post") do %>
+
+	<%= hidden_field_tag(:user_id,@user.id)  %>
+	<%= hidden_field_tag(:action_type,'update')  %>
+	<table class="table">
+		<% @user_fields.each_with_index do |field,index| %>
+		<tr>
+			<td><%= label_tag(field[1], field[1]) %></td>
+			<td>
+				<% field_val = @user[field[0]] %>
+
+				<% if field[0]=='status' %>
+
+				<% field_val = field_val==true ? 1 : 0 %>
+
+					<%= select_tag(field[0],
+						 options_for_select([
+						 ['Active',1],['Inactive',0]],field_val)) %>	 
+
+				<% elsif field[0]=='role' %>	
+
+					<% if current_user.can? :editrole, :admin %>
+
+				 <% @roles.each_with_index do |urole,index| %>
+						<div class="role-box">
+						 	<% if @user.has_role?(urole[0]) %>
+						 	<%=  check_box_tag("role["+index.to_s+"]",urole[0],1)  %>
+						    <% else %>
+						    <%=  check_box_tag("role["+index.to_s+"]",urole[0])  %>
+						 	<% end %>
+						 	<%=  label_tag("role["+index.to_s+"]", urole[0])  %>
+						</div>
+				   <% end %>
+
+				 <% end %>
+
+				 <% elsif field[0]=='password' %>
+
+				 <%= password_field_tag(field[0],"")  %>
+				  
+				 <% elsif field[0]=='admin' %>
+
+					 <%  if can? :create_admin, User %>
+					 		<% if @user.admin %>
+					 		<%=  check_box_tag(field[0],1,1) %>
+					 		<%	else  %>
+					 		<%=  check_box_tag(field[0],1) %>
+					 		<% end %>
+					  <% end %>		
+
+				<% else %>
+
+				<%= text_field_tag(field[0], field_val) %>
+				<% end %>
+			</td>
+		</tr>
+		 <% end %>
+		 <tr>
+		 	<td>Groups:</td>
+		 	<td>
+
+		<%#= @user.groups.inspect  %> 	
+		 		<table width="100%">
+		 		 
+		 			<% Group.all.each do |g| %>
+		 				<tr>
+			 				<td>
+			 					<% if @user.has_group?(g) %>
+	<%=  check_box_tag("group[#{g.id}]",1,1) %>
+	 
+	<% else %>
+	<%=  check_box_tag("group[#{g.id}]",1) %>
+			 					<% end %>
+	<%= label_tag("group[#{g.id}]", g.name) %>
+				 				 
+			 				</td>
+		 				</tr>
+		 			<% end %>
+			 	 
+		 		</table>
+		 	</td>
+		 </tr>
+
+		 <tr>
+		 	<td><%= submit_tag("Save")  %></td>
+		 </tr>
+	</table>
+
+	<% end %>
+</div>
+</div>
+
+</div>
+</div>
+</div>

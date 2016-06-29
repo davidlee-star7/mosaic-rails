@@ -1,0 +1,66 @@
+<div class="add-new-question">
+	<div class="nav-bar-question">
+		<ul>
+			<li role="question">QUESTION</li>
+			<li role="additional">Addtional Fields</li>
+		</ul>
+	</div>
+
+	<div class="clear"></div>
+
+<%= form_tag("/question/create", 
+		method: "post", :class => 'add_edit_question') do %>
+
+<%= hidden_field_tag(:section_id,@section.id)  %>	
+<%= hidden_field_tag(:action_type,'create_question')  %>
+<%= hidden_field_tag(:qtype,'1')  %>	
+
+	<div class="build-question-block sur-question quest-block">
+
+		<div class="question-type">
+			<button 
+			id="js-family-button" 
+			type="button" 
+			class="dropdown-btn" 
+			data-toggle="dropdown">
+				<label class="field-1">
+					<span class="bgimg"></span>	
+	            	<span class="ftype">Radio Buttons</span> 
+	            	<i class="caret"></i>
+				</label>
+            </button>
+
+			<ul class="dropdown">
+			<% @field_type.first[:basic].each do |field| %>
+				<li data-val="<%= field[1] %>" 
+					class="field-<%= field[1] %>">
+					<span class="spacimg"></span>
+					<%= label_tag field[0] %>
+				</li>
+			<% end %>
+		   </ul>
+		</div>
+		
+
+			<div class="question-label">
+				<%= label_tag 'What question do you want to ask?'  %>
+				<%= text_area_tag :title,'', :placeholder => 'Type Question Here!' %>
+			</div>
+
+			<div class="js-answer-grids loadFieldtype">
+				<%= render('question/fields/f')  %>
+
+			</div>
+	</div>
+
+	<!-- add addtional fields -->
+	<div class="addtional-fields sur-additional quest-block" 
+	style="display:none">
+		 <%= render('question/addtional_fields')  %>
+	</div>
+	<!-- end addtional fields -->
+
+		<%= submit_tag("Create")  %>
+<!-- form end here -->
+<% end %>
+</div>

@@ -1,0 +1,34 @@
+<div class="row">
+	                            <div class="col-sm-12">
+ <div class="panel panel-default">
+ 	                         <div class="panel-heading"><h3 class="panel-title">Played Survey
+ 	                         	     <span class="pull-right"> 
+						               <%= link_to "Back", :back %>
+						              </span>
+ 	                         </h3></div>
+<div class=" panel-body">
+<table class="table">
+<tr>
+	<th align="left"><%= t(:survey_name) %></th>
+	<th align="left"><%= t(:no_of_users_played_to_this_survey)  %></th>
+</tr>	
+<% @surveys.each do |survey|  %>
+<% played_surveys = survey.played_surveys %>
+<%  if played_surveys != nil && played_surveys.size > 0 %>
+<tr>
+	<td><%= t(survey.name.to_s) %></td>
+	<td><%= noOfUsersPlayedThisSurvey(survey) %></td>
+
+	<% played_surveys.each_with_index do |ps,index| %>
+
+<% end %>
+</tr>
+
+<% end %>
+
+<% end %>
+</table>
+</div>
+</div>
+ </div>
+ </div>

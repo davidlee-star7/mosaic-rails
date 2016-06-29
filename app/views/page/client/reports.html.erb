@@ -1,0 +1,40 @@
+
+<script type='text/javascript' src='https://mosaic-tableau.com/javascripts/api/viz_v1.js'></script>
+<div class="panel panel-default">
+<div class="row">
+ 
+<div class="panel-heading">
+	<div class="title">
+		<h3 class="panel-title"><%#= @tableau.project_title  %> </h3>
+		<h6>  </h6>
+	</div>
+</div>
+ <%
+ 
+ 
+res = Net::HTTP.post_form(URI.parse("https://mosaic-tableau.com/trusted"),
+            {
+            	'username' =>'phil@mosaicsustainability.com',
+            	'client_ip' => Socket.ip_address_list
+            	})
+
+ %>
+ <%= res %>
+<div class="panel-body">
+  	<div class="row">
+  	<div class="col-sm-12">
+  		<ul class="tableu-menu">
+  			<li><%= link_to "Dashboard","/client/dashboard"   %></li>
+  			<li><%= link_to "Tableau Ticket","/client/tableau/ticket"   %></li>
+  			<li><%= link_to "Tableau Filter","/client/tableau/filter"   %></li>
+  			<li><%= link_to "Tableau Extra Fields","/client/tableau/extended_fields"   %></li>
+  		</ul>
+  	</div>
+	 <div class="col-sm-12">
+	 	
+	 </div>
+ 	</div>
+</div>
+ 
+</div>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cms_page_id: 1
+  field_name: MyString
+  field_value: MyText
+  field_setting: MyText
+
+two:
+  cms_page_id: 1
+  field_name: MyString
+  field_value: MyText
+  field_setting: MyText

@@ -1,0 +1,114 @@
+
+
+a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, body, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav, object, ol, output, p, pre, progress, q, s, samp, section, small, span, source, strike, strong, sub, sup, table, tbody, tfoot, thead, th, tr, tdvideo, tt, u, ul, var { background: transparent; border: 0 none; margin: 0; padding: 0; border: 0; outline: 0; vertical-align: top; }
+
+ol, ul, li { list-style: none; text-decoration: none; }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'robotobold'; font-weight: normal; }
+
+@font-face {
+    font-family: 'robotobold';
+    src: url('fonts/roboto-bold-webfont.eot');
+    src: url('fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/roboto-bold-webfont.woff2') format('woff2'),
+         url('fonts/roboto-bold-webfont.woff') format('woff'),
+         url('fonts/roboto-bold-webfont.ttf') format('truetype'),
+         url('fonts/roboto-bold-webfont.svg#robotobold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotolight';
+    src: url('fonts/roboto-light-webfont.eot');
+    src: url('fonts/roboto-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/roboto-light-webfont.woff2') format('woff2'),
+         url('fonts/roboto-light-webfont.woff') format('woff'),
+         url('fonts/roboto-light-webfont.ttf') format('truetype'),
+         url('fonts/roboto-light-webfont.svg#robotolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('fonts/roboto-regular-webfont.eot');
+    src: url('fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('fonts/roboto-regular-webfont.woff') format('woff'),
+         url('fonts/roboto-regular-webfont.ttf') format('truetype'),
+         url('fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body{ background: #ccc; margin:0px; padding:0px;   font-family: 'robotoregular'; }
+
+
+table {border:1px solid #ccc; width:100%; }
+
+th, tr, td{border:none; outline:none; }
+
+td, th{padding:10px; }
+
+.list-user{margin-top:20px; }
+
+.list-user th{ border-bottom:1px solid #ccc; }
+
+.list-user tbody{ padding:0px; margin:0px; width:100%; }
+
+.wrapper{ display: block; width: 1000px; margin: 0 auto; }
+
+.login-section{ display: block; width: 100%;}
+
+.clear{ clear: both; margin: 0; padding: 0; }
+
+.login-form{ width: 500px; margin: 0 auto;}
+
+.login-section .col-9{ display: block; width: 700px; } 
+.login-section .col-3{ display: block; width: 250px; } 
+.login-section .col-3, .login-section .col-9{ float: left;}
+
+.login-section .col-3 a, .login-section .col-9 a{ text-decoration: none;}
+.login-section .col-3 li, .login-section .col-9 li{ list-style: none;}
+
+.content-wrapper{ width:96%; margin: 0 auto; padding: 10px 2%;}
+
+.content-wrapper .content-left,
+.content-wrapper .content-right
+{float: left; display: block;}
+.content-wrapper .content-left{ border-right: 1px solid #FFFFFF;
+    margin: 0 20px;
+    padding: 10px 0;
+    width: 180px; }	
+    .content-wrapper .content-left ul li{ list-style: none;}
+   .content-wrapper .content-left ul li a{ text-decoration: none;} 
+
+.content-wrapper .content-right{ width: 700px;}
+ .message-block{ display: block; max-width: 500px; margin: 0 auto}
+ .alert{ color: red }
+ 
+ 
+ .login-section{background:#fff; }
+ 
+ 
+ .content-wrapper{border-top:1px solid #ccc; display:inline-block; margin-top:20px; }
+ 
+  .login-section .row{padding:10px 0; }
+  
+  .user-controlles ul {padding:0px; }
+  .user-controlles ul li{padding:0px; margin:0px; display:inline-block; }
+  
+  
+.copy-right{display:block; clear:both; text-align:center;  }
+
+.clr{display:block; clear:both; width:100%; }

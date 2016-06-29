@@ -1,0 +1,118 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title trans-none"><%= t(:MANAGE_PAGES) %>
+               <span class="pull-right"><%= link_to "Back to microsite", microsites_path %></span>
+               <span class="pull-right"><%= link_to "New microsite", new_microsite_path  %></span>
+            </h3>
+         </div>
+         <%#= @cmspage .inspect %>
+         <form action="" method="post" >
+         <%= hidden_field_tag("task","cmspages_to_group") %>
+         <%= hidden_field_tag("authenticity_token",form_authenticity_token) %>
+<!-- 
+         <div class="assigntogroup">
+               <div class="group-survey-left">
+               <%= t("Select the Groups, assign to Pages")%>
+               </div>
+               <div class="group-survey-right">
+                  <%= select_tag("groups",
+                     options_for_select(Group.all.map{ |g| [g.name,g.id] }),{
+                     :class=>"group-selcetor", 
+                     :multiple => true
+                     }) %>
+               </div>
+         </div>
+            <div class="savebtn button">
+                <%= button_tag("Save", data: { 
+                     disable_with: "Please Wait...",
+                     confirm: "Are Sure?" }) %>
+            </div> -->
+
+            <div class="error-blok" style="color:red">
+                  <% if @errors != nil %>
+                  <% @errors.each do |error|  %>
+                  <p><%=error %></p>
+                  <% end %>
+                  <% end %>
+            </div>
+            <div class="success-block" style="color:green">
+               <% if @message != nil %>
+                  <% @message.each do |msg|  %>
+                  <p><%=msg %></p>
+                  <% end %>
+               <% end %>
+            </div>
+         <div class="panel-body">
+            <div class="row">
+               <p id="notice"><%= notice %></p>
+               <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="table-responsive">
+                     <table class="table" width="100%">
+                         
+         <% unless @cmspages.nil? %>
+               <% @cmspages.each do |page|  %>
+                        <tr>                              
+                           <td>
+                         <!--   <%= check_box_tag("pages[#{page.id}]",page.id)   %> -->
+                           <%= label_tag("pages[#{page.id}]",page.title) %>
+<!-- sub page block -->
+            <% unless page.subpages.empty? %>
+                     <br><a href="#" class="child-pages"> Child</a>
+            <% end %>
+                     <%#= debug page.subpages %>
+            <% unless page.subpages.empty? %>
+                  <ul class="subpagelist" style="display:none;">
+                  <table class="table">
+               <% for p in page.subpages %>
+                     <li>
+                        <tr>   
+                           <td>
+                           <%= p.title %>
+                           </td>
+                           <td>
+                              <a href="/<%= p.slug %>" class="" target="__blank">View</a>
+                            </td> 
+                           <td>
+                              <% if current_user.can? :editpage, :admin  %> 
+                                    <%= link_to('Edit', 
+                                     url_for(
+                                       :controller => :admin, 
+                                       :action => :editpage, 
+                                       :cms_page_id =>p.id )) 
+                                    %>
+                              <% end %>
+                            </td>       
+                        </tr>      
+                     </li>
+                  <% end %>
+                  </table>
+                  </ul>
+            <% end %>
+<!-- end sub page block -->
+             </td>
+             <td>
+               <a href="/<%= page.slug %>" target="__blank"> View
+               </a>
+             </td>               
+
+         <% if current_user.can? :editpage, :admin  %>&nbsp; 
+               <td>   
+                  <%= link_to('Edit', url_for(:controller => :admin, :action => :editpage, :cms_page_id =>page.id , :template_id =>page.template_id )) %>
+               </td>   
+         <% end %>        
+      </tr>
+               <% end %>
+         <% end %>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- End row -->
+

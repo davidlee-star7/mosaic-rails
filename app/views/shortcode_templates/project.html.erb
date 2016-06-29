@@ -1,0 +1,28 @@
+<% if @attributes[:id].to_i > 0 %>
+<% @tableaus = Tableau.find(@attributes[:id]) %>
+<% if @tableaus != nil  %>
+<% @width = @attributes[:width].to_s != "" ? @attributes[:width] : @tableaus.width %>
+<% @height = @attributes[:height].to_s != "" ? @attributes[:height] : @tableaus.height %>
+<% @name = @attributes[:name].to_s != "" ? @attributes[:name] : @tableaus.project_name %>
+<% @tabs = @attributes[:tabs].to_s != "" ? @attributes[:tabs] : @tableaus.tabs %>
+<% @toolbar = @attributes[:toolbar].to_s != "" ? @attributes[:toolbar] : @tableaus.toolbar %>
+<% @showVizHome = @attributes[:showVizHome].to_s != "" ? @attributes[:showVizHome] : "n" %>
+<h3>
+<%= @tableaus.project_title.blank? ? '' : @tableaus.project_title.gsub("_"," ") %>
+</h3>
+	<div class="tableauPlaceholder" style="<%= @width %>; <%= @height %>;">
+		<object class="tableauViz" height="<%= @height %>" style="display:none;" width="<%= @width %>">
+			<param name='host_url' value='https://mosaic-tableau.com/' /> 
+			<param name="site_root" value="" />
+			<param name="name" value="<%= @name %>?:embed=y&:display_count=no" />
+			<param name="tabs" value="<%= @tabs %>" />
+			<param name="toolbar" value="<%= @toolbar %>" />
+			<param name="showVizHome" value="<%= @showVizHome %>" />
+			<param name='ticket' value='<%= connect_to_tableau %>' />  
+		</object>
+	</div>
+<% end %>	
+<% end %>
+
+
+ 

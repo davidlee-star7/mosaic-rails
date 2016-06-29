@@ -1,0 +1,76 @@
+<div class="row">
+   <div class="col-sm-12">
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title">
+            View Tableau Project
+             <span class="pull-right"> 
+               <%= link_to "Back", :back %>
+              </span>
+                <span class="right pull-right">
+                <%= link_to 'Edit', edit_tableau_path(@tableau) %>
+               </span>
+            </h3>
+         </div>     
+
+     <div class="panel-body">
+      <div class="row">
+               <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="table-responsive">   
+                <p id="notice"><%= notice %></p>
+
+                <p>
+                  <strong>Project Title:</strong>
+                  <%= @tableau.project_title %>
+                </p>
+
+
+                <p>
+                  <strong>Project Name:</strong>
+                  <%= @tableau.project_name %>
+                </p>
+
+                <p>
+                  <strong>Width:</strong>
+                  <%= @tableau.width %>
+                </p>
+
+                <p>
+                  <strong>Height:</strong>
+                  <%= @tableau.height %>
+                </p>
+
+                <p>
+                  <strong>Site root:</strong>
+                  <%= @tableau.site_root %>
+                </p>
+
+                <p>
+                  <strong>Tabs:</strong>
+                  <%= @tableau.tabs %>
+                </p>
+
+                <p>
+                  <strong>Toolbar:</strong>
+                  <%= @tableau.toolbar %>
+                </p>
+
+                <p>
+                  <strong>Ticket:</strong>
+                  <%= @tableau.ticket %>
+                </p>
+
+                <p>
+                  <strong>Load order:</strong>
+                  <%= @tableau.load_order %>
+                </p>
+
+ 
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+

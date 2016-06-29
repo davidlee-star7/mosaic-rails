@@ -1,0 +1,66 @@
+        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+
+
+  <div class="panel-heading">
+                                        <h3 class="panel-title">Please select group of user to send invitation </h3>
+                                    </div>
+
+
+ <div class="panel-body">
+                                        <div class="row">
+<%= form_tag("/admin/sending_group_invitation_users/", method: "post",  :id => 'assign_sur') do %>
+
+<div class="select-survery row m-b-30 m-l-10">
+	<h4 class="panel-title">Select survey you want to send</h4>
+<ul>
+ <% @survey.each do |sr| %>
+    <li>
+      <%= radio_button_tag "survey",sr.id ,checked = true %>
+      <%= label_tag("survey[#{sr.id}]",sr.name) %> 
+    </li>     
+ <% end %>
+</ul>
+</div>
+<hr>
+</div>
+<div class="row">
+<h4 class="panel-title">Select user group</h4>
+                                                <div class="table-responsive">
+
+<table class="allcheckboxes table">
+  <tbody>
+    <% @grps.each do |group| %>
+      <tr>
+        <td>
+<%= check_box_tag "interests[]", group.id  %> 
+<%= group.name %>(<%= group.users.size %>)</td>
+          </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+		<%= submit_tag "send invitation" , :class=> "btn btn-info waves-effect waves-light" %>
+
+<% end %>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+jQuery(function ($) {
+    //form submit handler
+    $('#assign_sur').submit(function (e) {
+        //check atleat 1 checkbox is checked
+        if (!$('.allcheckboxes input[type=checkbox]').is(':checked')) {
+            //prevent the default form submit if it is not checked
+
+alert("You must have to select atleast one group to send survey link");
+            e.preventDefault();
+        }
+    })
+})</script>

@@ -1,0 +1,199 @@
+<div class="build-survey">
+
+	<div class="survey-title-block">
+		<%= label_tag(@survey.name) %>
+	</div>
+	<!--  this part will repeat in loop -->
+<div class="repeat-wrapper">	
+	<% @sections.each_with_index do |sect, key| %>
+
+	<div class="repeat-block section">
+
+ 
+		
+
+		<div class="update-section-1001">
+			<% key = key+1  %>
+ 
+		
+				<div class="title-block">
+					<%= label_tag('Page '+key.to_s+':') %>
+
+					<span><%= sect.title  %></span>
+
+					<div class="clear"></div>
+				</div>
+			
+
+
+				<div class="descrip-block">
+					<%= label_tag('Page Description:') %>
+					<span><%=  sect.description  %></span>
+					<div class="clear"></div>
+				</div>
+
+			
+
+		</div>
+
+		<div class="question-option-block section-sortable">
+			<% if(sect.questions!=nil) %>
+
+				<% sect.questions.each_with_index do |q,i| %>
+					<article class="question-rep-elm question">
+						<div class="sg-question-title">
+							<%= q.title %>
+						</div>
+						<% i=i+1 %>
+						<div class="qoption-rep-block">
+
+							<div class="question_field">
+<!-- question field type start -->								
+
+
+		<% case q.field_type %>
+			<% when '1' %>
+		<!-- **radio button start***** -->
+		<% if q.qfields != nil %>
+			<ul class="field-list radion-btn">
+			<% q.qfields.each do |field,j| %>
+				 <li class="field-rem-<%= field.id %>">
+				<!-- code for radion button -->				
+							
+				<%= radio_button_tag('qoption['+j.to_s+']',j) %>	
+					<span><%= field.fval %></span>
+				<!-- end code for radion button -->	 
+				</li>
+			<% end %>	
+			</ul>
+		<% end %>		
+		<!-- radion button end here -->	
+		<% when '2' %>
+		<!-- radio button grid start -->
+		<table class="radionbtn-grid">
+			<tr>
+				<th></th>
+				<% if q.qfields != nil %>
+					<% q.qfields.each do |field,j| %>
+						<th><%= field.fval %></th>
+					<% end %>
+				<% end %>	
+			</tr>
+		<% if q.qhfields != nil %>
+			<% q.qhfields.each do |hfield,j| %>
+				<tr>
+					<td><%= hfield.fval  %></td>
+
+					<% if q.qfields != nil %>
+						<% q.qfields.each do |field,j| %>
+							<td>
+								<%= radio_button_tag('qhoption_'+hfield.id.to_s, hfield.id.to_s) %>
+							</td>
+						<% end %>
+					<% end %>	
+
+				</tr>
+			<% end %>
+		<% end %>		
+
+		</table>
+		<!-- redio button grid end -->
+
+		<!-- drop down menu starts here -->
+		<% when '3' %>
+		<div class="dropdown-menu">
+		<% dropopt = [['Please Select',0]] %>
+			<% if q.qfields != nil %>
+					<% q.qfields.each_with_index do |field,j| j = j + 1 %>
+						<% dropopt[j] = [field.fval,field.id] %>
+					<% end %>
+			<% end %>	
+		<%= select_tag('qoption',options_for_select(dropopt)) %>	
+		</div>
+		<!-- drop down menu end here -->
+		
+		
+		<% when '4' %>
+		<!-- check boxes -->
+		<% if q.qfields != nil %>
+			<ul class="field-list radion-btn">
+			<% q.qfields.each_with_index do |field,j| j = j+1 %>
+				 <li class="field-rem-<%= field.id %>">
+				<!-- code for radion button -->				
+				<%= check_box_tag('qoption['+j.to_s+']',j) %>	
+					<span><%= field.fval %></span>
+				<!-- end code for radion button -->	 
+				</li>
+			<% end %>	
+			</ul>
+		<% end %>		
+		<!-- end checkboxes -->
+
+		
+
+		<% when '5' %>
+		<!-- text boxes -->
+		<div class="text-box-block">
+			<%= text_field_tag('textfield') %>
+		</div>	
+		<!-- end text boxes -->
+
+
+		<% when '6' %>
+		<!-- essay type  -->
+		<div class="text-box-block">
+			<%= text_area_tag('textarea') %>
+		</div>	
+		<!-- end text boxes -->		
+
+		<% when '7' %>
+		<!-- email type  -->
+		<div class="text-box-block">
+			<%= text_field_tag('emailfield') %>
+		</div>	
+		<!-- end text boxes -->	
+
+		<% when '8' %>
+		<!-- date type  -->
+		<div class="text-box-block">
+			<%= text_field_tag('datefield') %>
+		</div>	
+		<!-- end text boxes -->						
+
+
+	<% end %>	
+	
+ 	 
+
+
+<!-- question field type end -->		
+
+
+							<div>
+
+						</div>
+
+					</article>
+				<% end %>
+			<% end %>
+		</div>
+
+		
+
+		
+
+		<div class="clear"></div>
+
+	</div>
+
+	
+
+	<!-- reapet end here -->
+	<% end %>
+	
+
+    <!-- <div id="editquestionmodal" class="modal fade" tabindex="-1"></div> -->
+</div>	
+<!-- *************************************************** -->
+ 
+ 
