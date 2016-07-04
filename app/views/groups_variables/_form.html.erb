@@ -1,0 +1,58 @@
+<div class="panel-body">
+  <p id="notice"><%= notice %></p>
+  <%= form_for(@group_variable, url: url) do |f| %>
+  <% if @group_variable.errors.any? %>
+  <div id="error_explanation">
+    <h5><%= pluralize(@group_variable.errors.count, "error") %> prohibited this group variable from being saved:</h5>
+    <ul>
+      <% @group_variable.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <%= f.hidden_field :group_id, value: @group_variable.group_id %>
+  <div class="form-group">
+    <%= f.label :variable_id, class: "col-md-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.select :variable_id, variable_names_collection, {}, {onchange: 'variable_name_changed(event);', class: "form-control"} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-2 control-label"><%= t(:VARIABLE_TYPE) %></label>
+    <div class="col-sm-10">
+      <span id="variable_type" class="form-control"><%= Variable::Types[variable.vtype] %></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-2 control-label"><%= t(:VARIABLE_ID) %></label>
+    <div class="col-sm-10">
+      <span id="variable_identifier" class="form-control"><%= variable.identifier %></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :value, class: "col-md-2 control-label" %>
+    <div class="col-md-10">
+      <%= f.text_field :value, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group m-b-0">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit 'Save' , :class=> "btn btn-info waves-effect waves-light" %> 
+    </div>
+  </div>
+  <% end %>
+</div>
+<!-- panel-body -->
+<script type="text/javascript">
+function variable_name_changed(event) {
+  var id = event.target.value;
+  $.ajax({
+    url: "/variables/" + id + ".json",
+    success: function(result) {
+      $('#variable_type').html(result.vtype)
+      $('#variable_identifier').html(result.identifier)
+    }
+  });
+}
+</script>

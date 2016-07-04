@@ -151,6 +151,19 @@ en:
   EDIT_TABLEAU_DASHBOARD: Editing Tableau Dashboard
   
 
-  
+  VARIABLES: Variables
+  MANAGE_VARIABLES: Manage variables
+  NEW_VARIABLE: New Variable
+  EDIT_VARIABLE: Edit Variable
+  VARIABLE_NAME: Variable name
+  VARIABLE_TYPE: Variable type
+  VARIABLE_ID: Variable ID
+  VARIABLE_VALUE: Variable value
 
+  SHORT_CODE: Short Code
+  TYPE: Types
+  VALUE: Value
 
+  ADD_VARIABLES_FOR_THIS_GROUP: Add Variables for this group
+  ADD_GROUP_VARIABLE: Add Group Variable
+  EDIT_GROUP_VARIABLE: Edit Group Variable

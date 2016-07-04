@@ -9,17 +9,17 @@
 
 	<div class="panel-body">
 
-		 <div class="error-block">
-		 	<% @errors.each do |e|    %>
-		 		<p style="color:red"><%= raw(e) %></p>
-		 	<% end %>
-		 </div>
-		 <div class="success-block">
-		 	<% @success.each do |s|    %>
-		 		<p style="color:green"><%= raw(s) %></p>
-		 	<% end %>
-		 </div>
-		 <div class="form-wrapper">
+		<div class="error-block">
+			<% @errors.each do |e|    %>
+				<p style="color:red"><%= raw(e) %></p>
+			<% end %>
+		</div>
+		<div class="success-block">
+			<% @success.each do |s|    %>
+				<p style="color:green"><%= raw(s) %></p>
+			<% end %>
+		</div>
+		<div class="form-wrapper">
 			<%= form_for(@group, 
 			:url=> group_addExistingUsers_path(@group.id) ) do |f| %>
 				 
@@ -37,14 +37,14 @@
 				</div>
 			<% end %>
 		</div>
-	  	<div class="avaliavle-cms-pages">
-		  <div class="title">
-		  		<label><%= t("ASSIGN_GROUP_TO_USERS_MSG") %>:</label>
-		  </div>
-		  <% User.all.where("status = true AND id NOT IN(?)",@group.users.map{|u| u.id} ).each do |user| %>
-		  	<p><%= user.username  %></p>
-		  <% end %>
-	  	</div>
+		<div class="avaliavle-cms-pages">
+			<div class="title">
+				<label><%= t("ASSIGN_GROUP_TO_USERS_MSG") %>:</label>
+			</div>
+			<% User.all.where("status = true AND id NOT IN(?)",@group.users.map{|u| u.id} ).each do |user| %>
+				<p><%= user.username  %></p>
+			<% end %>
+		</div>
 	</div>
 </div>
 </div>

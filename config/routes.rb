@@ -31,11 +31,12 @@ Rails.application.routes.draw do
     get 'upload_users' 
     post 'upload_users'
     get 'unlink_user/:user_id' => 'groups#unlink_user'
-    get 'addExistingUsers'
+    # get 'addExistingUsers'
     patch 'addExistingUsers'
+
+    resources :variables, controller: :groups_variables
   end
   #get "groups/autocomplete"
-  resources :groups
   # resources :folders
   # resources :file_mangers
   get 'file_mangers/all_files'
@@ -249,9 +250,11 @@ Rails.application.routes.draw do
   }  do
 
 
- post 'two_factor_authentication' => 'users/sessions#check_two_factor_authentication'
+  post 'two_factor_authentication' => 'users/sessions#check_two_factor_authentication'
 
- end
+  end
+  
+  resources :variables  
 
   # resources :registrations do
     

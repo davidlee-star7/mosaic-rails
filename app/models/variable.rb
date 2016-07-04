@@ -1,0 +1,15 @@
+class Variable < ActiveRecord::Base
+  Types = {
+    'tableau_url_appendage' => 'Tableau URL Appendage',
+    'text' => 'Text',
+    'code' => 'Code',
+    'image' => 'Image',
+    'file' => 'File'
+  }
+
+  validates :name, :presence => true, :uniqueness => true
+  validates :identifier, :presence => true, :uniqueness => true
+
+  has_many :groups_variables
+  has_many :groups, through: :groups_variables
+end

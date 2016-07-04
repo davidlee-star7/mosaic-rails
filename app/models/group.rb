@@ -22,5 +22,6 @@ class Group < ActiveRecord::Base
   validates :name, length: { maximum: 50 }  
   validates :name, uniqueness: true
   
-  
+  has_many :groups_variables
+  has_many :variables, through: :groups_variables
 end

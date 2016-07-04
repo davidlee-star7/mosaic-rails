@@ -1,13 +1,13 @@
 class GroupsController < ApplicationController
-before_action :authenticate_user!
-before_action :check_permition
-before_action :set_group, only: [:show, :edit, :update, :destroy]
-# layout "admin"
- layout "dashboard"
+  before_action :authenticate_user!
+  before_action :check_permition
+  before_action :set_group, only: [:show, :edit, :update, :destroy]
+  # layout "admin"
+  layout "dashboard"
 
  
- autocomplete :group, :name, :full => true
- autocomplete :user, :username,:full => true
+  autocomplete :group, :name, :full => true
+  autocomplete :user, :username,:full => true
 
 
   # GET /groups
@@ -27,7 +27,7 @@ before_action :set_group, only: [:show, :edit, :update, :destroy]
   # GET /groups/1
   # GET /groups/1.json
   def show
-
+    @group_variables = @group.groups_variables
   end
 
   # GET /groups/new
@@ -50,12 +50,10 @@ before_action :set_group, only: [:show, :edit, :update, :destroy]
     end
   end
 
-  # GET group_addExistingUsers_path
   # POST group_addExistingUsers_path
   def addExistingUsers
     @group = Group.find(params[:group_id])
-    @errors = []
-    @success = []
+    @message = ''
     @users = []
     if params[:task] = "add_users_to_grop" && params[:users] != ""
       users = params[:users]
@@ -65,17 +63,49 @@ before_action :set_group, only: [:show, :edit, :update, :destroy]
           if user != nil
             if !user.first.groups.exists?(@group.id)
               user.first.groups << @group
-              @success << "#{user.first.username} successfully assigned to group #{@group.name}" 
+              @message = "#{user.first.username} successfully assigned to group #{@group.name}"
             else
-              @errors << "#{user.first.username} al ready exists in the group #{@group.name}" 
+              @message = "#{user.first.username} al ready exists in the group #{@group.name}"
             end
             
           end
         end
       end
+
+      respond_to do |format|
+        format.html { redirect_to @group, notice: @message }
+        format.json { render json: user.first.groups, status: :created, notice: @message }
+      end
     end
     
   end
+
+  # GET group_addExistingUsers_path
+  
+  # def addExistingUsers
+  #   @group = Group.find(params[:group_id])
+  #   @errors = []
+  #   @success = []
+  #   @users = []
+  #   if params[:task] = "add_users_to_grop" && params[:users] != ""
+  #     users = params[:users]
+  #     if users != nil
+  #       users.first.split(",").each do |u|
+  #         user = User.where(:username => u, :status => true )
+  #         if user != nil
+  #           if !user.first.groups.exists?(@group.id)
+  #             user.first.groups << @group
+  #             @success << "#{user.first.username} successfully assigned to group #{@group.name}" 
+  #           else
+  #             @errors << "#{user.first.username} al ready exists in the group #{@group.name}" 
+  #           end
+            
+  #         end
+  #       end
+  #     end
+  #   end
+    
+  # end
 
   # POST /groups
   # POST /groups.json
