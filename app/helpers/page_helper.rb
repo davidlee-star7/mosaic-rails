@@ -16,15 +16,20 @@ class VariablePresenter
 
   def attributes
     @attributes[:value] = value
+    @attributes[:type] = variable.present? ? variable.vtype : ''
     @attributes
   end
 
   private
     def value
-      variable = group.groups_variables.present? ? Variable.where(identifier: @attributes[:id].to_s).first : nil
       group_variable = variable.present? ? group.groups_variables.where(variable_id: variable.id).first : nil
       value = group_variable.present? ? group_variable.value : ''
     end
+
+    def variable
+      variable = group.groups_variables.present? ? Variable.where(identifier: @attributes[:id].to_s).first : nil
+    end
+
     def group
       @additional_attributes[:group]
     end

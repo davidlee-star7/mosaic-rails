@@ -1,1 +1,16 @@
-<%= @attributes[:value].present? ? @attributes[:value] : t(:VARIABLE_VALUE_NOT_ASSIGNED) %>
+<%
+type = @attributes[:type]
+value = @attributes[:value]
+%>
+<%= type %>
+<% if type == 'tableau_url_appendage' %>
+  <%= value %>
+<% elsif type == 'text' %>
+  <%= value %>
+<% elsif type == 'code' %>
+  <code><%= value %></code>
+<% elsif type == 'image' %>
+  <img src="<%= value %>" alt="" />
+<% elsif type == 'file' %>
+  <a href="<%= value %>">file</a>
+<% end %>
