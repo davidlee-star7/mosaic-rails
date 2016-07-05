@@ -167,3 +167,5 @@ en:
   ADD_VARIABLES_FOR_THIS_GROUP: Add Variables for this group
   ADD_GROUP_VARIABLE: Add Group Variable
   EDIT_GROUP_VARIABLE: Edit Group Variable
+
+  VARIABLE_VALUE_NOT_ASSIGNED: 'Value not assigned'

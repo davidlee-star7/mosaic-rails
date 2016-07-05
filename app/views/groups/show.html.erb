@@ -16,6 +16,7 @@
           <strong><%= t("DESCRIPTION") %>:</strong>
           <%= @group.description %>
         </p>
+        <p><%= link_to 'Edit', edit_group_path(@group), class: 'group-grey-button' %></p>
       </div>
 
       <div class="panel-heading">
@@ -23,7 +24,6 @@
       </div>
 
       <div class="panel-body">
-        <div class="ajax-msg"></div>
         <% if defined? @errors %>
           <div class="error-block">
             <% @errors.each do |e| %>
@@ -126,7 +126,6 @@
       </div>
 
       <div class="panel-body">
-        <div class="ajax-msg"></div>
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="table-responsive">
@@ -175,6 +174,7 @@
       </div>
 
       <div class="panel-body">
+        <div class="ajax-msg"></div>
       
         <div class="col-md-12 col-sm-12 col-xs-12">
           <ul class="mgroups-body">
