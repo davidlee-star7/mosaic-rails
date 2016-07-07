@@ -764,7 +764,7 @@ a:hover {
 .panel-heading h3 span a {
 	background: #333;
 	color: #fff;
-	border: #1px solid #000;
+	border: 1px solid #000;
 	color: #fff;
 	font-size: 14px;
 	padding: 7px 15px;
