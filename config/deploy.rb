@@ -75,20 +75,10 @@ namespace :deploy do
     end
   end
 
-  desc "Write a new crontab from the whenever gem"
-  task :update_crontab do
-    on roles(:app), in: :sequence, wait: 5 do
-      within current_path do
-        execute :bundle, "exec", "whenever", "-w"
-      end
-    end
-  end
-
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
-  after  :finishing,    :update_crontab
 end
 
 # ps aux | grep puma    # Get puma pid
