@@ -14,6 +14,7 @@
  *= require fancybox
  *= require_self
  *= require bootstrap/bootstrap-tooltip
+ *= require font-awesome
  */
  /*
  *= require jquery-ui

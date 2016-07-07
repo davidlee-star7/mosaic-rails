@@ -123,6 +123,8 @@ GEM
     faraday_middleware-multi_json (0.0.6)
       faraday_middleware
       multi_json
+    font-awesome-rails (4.5.0.1)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     google-analytics-rails (1.1.0)
@@ -304,6 +306,7 @@ DEPENDENCIES
   fancybox2-rails (~> 0.2.8)
   faraday_middleware (~> 0.10.0)
   faraday_middleware-multi_json
+  font-awesome-rails
   google-analytics-rails (= 1.1.0)
   groupify
   jbuilder (~> 2.0)

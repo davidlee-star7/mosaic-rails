@@ -47,7 +47,7 @@ gem 'jquery-minicolors-rails'
 #gem 'friendly_id'
 
 gem 'to_xls-rails'
-
+gem "font-awesome-rails"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-datetimepicker'

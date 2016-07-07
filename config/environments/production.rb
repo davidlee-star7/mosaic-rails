@@ -78,28 +78,26 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   Paperclip.options[:command_path] = "/usr/local/bin/"
 
-   config.action_controller.default_url_options = {:host => 'http://50.112.88.230' }
+  config.action_controller.default_url_options = {:host => 'http://50.112.88.230' }
 
-   config.action_mailer.default_url_options = {:host => 'http://50.112.88.230', :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
-config.action_mailer.raise_delivery_errors = true
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.perform_deliveries = true
-# config.action_mailer.smtp_settings = {
-# :address => "mail.ptiwebtech.com",
-# :port => 587,
-# :openssl_verify_mode => 'none',
-# :authentication => :plain, # I've also tried :login
-# :enable_starttls_auto => true, # Also tried tls => true
-# :user_name => 'rahultiwari@ptiwebtech.com',
-# :password => 'GHyibO+r~ysO'
-# } #I've also tried having the attribute :domain => 'myapp.herokuapp.com',
-config.action_mailer.smtp_settings = {
-:address => "smtp.mandrillapp.com",
-:port => 587,
-:user_name => "rahultiwari@ptiwebtech.com",
-:password => "5agSp1UnNN7bTR72qk63JA"
-}
-
-
+  config.action_mailer.default_url_options = {:host => 'http://50.112.88.230', :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  # config.action_mailer.smtp_settings = {
+  # :address => "mail.ptiwebtech.com",
+  # :port => 587,
+  # :openssl_verify_mode => 'none',
+  # :authentication => :plain, # I've also tried :login
+  # :enable_starttls_auto => true, # Also tried tls => true
+  # :user_name => 'rahultiwari@ptiwebtech.com',
+  # :password => 'GHyibO+r~ysO'
+  # } #I've also tried having the attribute :domain => 'myapp.herokuapp.com',
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.mandrillapp.com",
+    :port => 587,
+    :user_name => "rahultiwari@ptiwebtech.com",
+    :password => "5agSp1UnNN7bTR72qk63JA"
+  }
 
 end

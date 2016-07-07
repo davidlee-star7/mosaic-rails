@@ -772,6 +772,7 @@ a:hover {
 }
 .panel-heading h3 span a:hover {
 	background: #d89800;
+	border-color: #d89800;
 	color: #fff;
 }
 .panel-heading h3 span {

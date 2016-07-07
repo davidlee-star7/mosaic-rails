@@ -41,7 +41,8 @@ module Mosic2
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-
+    
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     # if Rails.env.development? 
     # config.action_controller.default_url_options = {:host => "http://localhost:3000"}
