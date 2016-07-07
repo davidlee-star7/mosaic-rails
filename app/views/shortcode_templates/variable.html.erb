@@ -2,7 +2,6 @@
 type = @attributes[:type]
 value = @attributes[:value]
 %>
-<%= type %>
 <% if type == 'tableau_url_appendage' %>
   <%= value %>
 <% elsif type == 'text' %>
@@ -12,5 +11,5 @@ value = @attributes[:value]
 <% elsif type == 'image' %>
   <img src="<%= value %>" alt="" />
 <% elsif type == 'file' %>
-  <a href="<%= value %>">file</a>
+  <a href="<%= value %>"><%= value %></a>
 <% end %>

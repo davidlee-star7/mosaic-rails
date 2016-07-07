@@ -1,11 +1,11 @@
 class FileManger < ActiveRecord::Base
-	 mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.
+	mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.
   validates :attachment, presence: true # Make sure the owner's name is present.
 
   before_save :update_attachment_attributes
 
- belongs_to :folder
-    belongs_to :user, :dependent => :destroy
+  belongs_to :folder
+  belongs_to :user, :dependent => :destroy
 
   private
 

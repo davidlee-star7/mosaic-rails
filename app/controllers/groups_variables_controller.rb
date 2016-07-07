@@ -75,6 +75,6 @@ class GroupsVariablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def groups_variable_params
-      params.require(:groups_variable).permit(:group_id, :variable_id, :value)
+      params.require(:groups_variable).permit(:group_id, :variable_id, :value_text, :value_file, :value_image)
     end
 end

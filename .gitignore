@@ -24,3 +24,5 @@ schema.rb
 passenger.80.pid    
 passenger.80.pid.lock
 /config/initializers/wicked_pdf.rb
+public/system/*
+public/ckeditor_assets/*

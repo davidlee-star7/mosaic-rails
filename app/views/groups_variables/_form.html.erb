@@ -30,10 +30,30 @@
       <span id="variable_identifier" class="form-control"><%= variable.identifier %></span>
     </div>
   </div>
-  <div class="form-group">
-    <%= f.label :value, class: "col-md-2 control-label" %>
+  <div class="form-group" id="value_text_field"<% if value_field_type(variable) != 'text' %> style="display:none"<% end%>>
+    <%= f.label :value_text, class: "col-md-2 control-label" %>
     <div class="col-md-10">
-      <%= f.text_field :value, class: "form-control" %>
+      <%= f.text_field :value_text, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group" id="value_file_field"<% if value_field_type(variable) != 'file' %> style="display:none"<% end%>>
+    <%= f.label :value_file, class: "col-md-2 control-label" %>
+    <div class="col-md-10">
+      <div>
+        <a href="<%= @group_variable.value_file.url %>"><%= @group_variable.value_file_file_name %></a>
+      </div>
+      <%= f.file_field :value_file, class: "form-control" %>
+
+    </div>
+  </div>
+  <div class="form-group" id="value_image_field"<% if value_field_type(variable) != 'image' %> style="display:none"<% end%>>
+    <%= f.label :value_image, class: "col-md-2 control-label" %>
+    <div class="col-md-10">
+      <div>
+        <%= image_tag @group_variable.value_image(:medium), alt: '' %>
+      </div>
+      <%= f.file_field :value_image, class: "form-control" %>
+
     </div>
   </div>
   <div class="form-group m-b-0">
@@ -50,8 +70,21 @@ function variable_name_changed(event) {
   $.ajax({
     url: "/variables/" + id + ".json",
     success: function(result) {
-      $('#variable_type').html(result.vtype)
+      $('#variable_type').html(result.vtype_name)
       $('#variable_identifier').html(result.identifier)
+      if (result.vtype === 'image') {
+        $('#value_text_field').hide();
+        $('#value_file_field').hide();
+        $('#value_image_field').show();
+      } else if (result.vtype === 'file') {
+        $('#value_text_field').hide();
+        $('#value_image_field').hide();
+        $('#value_file_field').show();
+      } else {
+        $('#value_file_field').hide();
+        $('#value_image_field').hide();
+        $('#value_text_field').show();
+      }
     }
   });
 }

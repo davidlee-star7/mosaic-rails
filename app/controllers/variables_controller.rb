@@ -11,6 +11,7 @@ class VariablesController < ApplicationController
   # GET /variables/1
   # GET /variables/1.json
   def show
+    @vtype_names = Variable::Types
   end
 
   # GET /variables/new
