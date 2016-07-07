@@ -1,5 +1,6 @@
 # config valid only for current version of Capistrano
 lock '3.5.0'
+server '50.112.88.230', roles: [:web, :app, :db], primary: true
 
 set :application, 'mosaic'
 set :repo_url, 'git@github.com:PortTwenty2/mosaic-anthesis.git'
