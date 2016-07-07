@@ -46,7 +46,7 @@ module Mosic2
     # if Rails.env.development? 
     # config.action_controller.default_url_options = {:host => "http://localhost:3000"}
     # elsif Rails.env.production?
-    # config.action_controller.default_url_options = {:host => "http://52.27.151.238"}
+    # config.action_controller.default_url_options = {:host => "http://50.112.88.230"}
     # else
     # config.action_controller.default_url_options = {:host => "http://localhost:3000"}
     # end

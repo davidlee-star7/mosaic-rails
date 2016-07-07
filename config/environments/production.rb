@@ -78,9 +78,9 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   Paperclip.options[:command_path] = "/usr/local/bin/"
 
-   config.action_controller.default_url_options = {:host => 'http://52.27.151.238' }
+   config.action_controller.default_url_options = {:host => 'http://50.112.88.230' }
 
-   config.action_mailer.default_url_options = {:host => 'http://52.27.151.238', :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
+   config.action_mailer.default_url_options = {:host => 'http://50.112.88.230', :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
 config.action_mailer.raise_delivery_errors = true
 config.action_mailer.delivery_method = :smtp
 config.action_mailer.perform_deliveries = true
