@@ -159,6 +159,7 @@ en:
   VARIABLE_TYPE: Variable type
   VARIABLE_ID: Variable ID
   VARIABLE_VALUE: Variable value
+  NO_VARIABLES_DEFINED: No variables defined.
 
   SHORT_CODE: Short Code
   TYPE: Types

@@ -129,43 +129,45 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="table-responsive">
-               <table class="table">
-                  <thead>
-                     <tr>
-                        <th><%= t("VARIABLE_NAME") %></th>
-                        <th><%= t("TYPE") %></th>
-                        <th>ID</th>
-                        <th><%= t("VALUE") %></th>
-                        <th colspan="2"></th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                    <% @group_variables.each do |group_variable| %>
-                    <tr>
-                      <td><%= group_variable.variable.name %></td>
-                      <td><%= group_variable.variable.vtype %></td>
-                      <td><%= group_variable.variable.identifier %></td>
-                      <td><%= group_variable.value %></td>
-                      <% # if current_user.can? :edit, :group_variables  %> 
-                      <td><%= link_to 'Edit', edit_group_variable_path(group_variable.group, group_variable) %></td>
-                      <% # end %>
-                      <% # if current_user.can? :destroy, :group_variables  %> 
-                      <td><%= link_to 'Delete', group_variable_path(group_variable.group, group_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                      <% # end %>
-                    </tr>
-                    <% end %>
-                  </tbody>
-               </table>
+             <table class="table">
+                <thead>
+                   <tr>
+                      <th><%= t("VARIABLE_NAME") %></th>
+                      <th><%= t("TYPE") %></th>
+                      <th>ID</th>
+                      <th><%= t("VALUE") %></th>
+                      <th colspan="2"></th>
+                   </tr>
+                </thead>
+                <tbody>
+                  <% @group_variables.each do |group_variable| %>
+                  <tr>
+                    <td><%= group_variable.variable.name %></td>
+                    <td><%= group_variable.variable.vtype %></td>
+                    <td><%= group_variable.variable.identifier %></td>
+                    <td><%= group_variable.value %></td>
+                    <% # if current_user.can? :edit, :group_variables  %> 
+                    <td><%= link_to 'Edit', edit_group_variable_path(group_variable.group, group_variable) %></td>
+                    <% # end %>
+                    <% # if current_user.can? :destroy, :group_variables  %> 
+                    <td><%= link_to 'Delete', group_variable_path(group_variable.group, group_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <% # end %>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-        <% if Variable.all.count %>
-        <div class="row">
-          <div class="col-xs-12">
-            <%= link_to t(:ADD_NEW_VARIABLE), new_group_variable_path(@group.id),
-            :class => "group-grey-button"  %>
+        <% if Variable.all.count > 0 %>
+          <div class="row">
+            <div class="col-xs-12">
+              <%= link_to t(:ADD_NEW_VARIABLE), new_group_variable_path(@group.id),
+              :class => "group-grey-button"  %>
+            </div>
           </div>
-        </div>
+        <% else %>
+          <p><%= t :NO_VARIABLES_DEFINED %></p>
         <% end %>
       </div>  
 

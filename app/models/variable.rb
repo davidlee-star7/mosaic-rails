@@ -10,6 +10,6 @@ class Variable < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
   validates :identifier, :presence => true, :uniqueness => true
 
-  has_many :groups_variables
-  has_many :groups, through: :groups_variables
+  has_many :groups_variables, :dependent => :destroy
+  has_many :groups, through: :groups_variables, :dependent => :destroy
 end
