@@ -7,6 +7,7 @@
 <% @tabs = @attributes[:tabs].to_s != "" ? @attributes[:tabs] : @tableaus.tabs %>
 <% @toolbar = @attributes[:toolbar].to_s != "" ? @attributes[:toolbar] : @tableaus.toolbar %>
 <% @showVizHome = @attributes[:showVizHome].to_s != "" ? @attributes[:showVizHome] : "n" %>
+<% @filter = @attributes[:filter] %>
 <h3>
 <%= @tableaus.project_title.blank? ? '' : @tableaus.project_title.gsub("_"," ") %>
 </h3>
@@ -18,7 +19,8 @@
 			<param name="tabs" value="<%= @tabs %>" />
 			<param name="toolbar" value="<%= @toolbar %>" />
 			<param name="showVizHome" value="<%= @showVizHome %>" />
-			<param name='ticket' value='<%= connect_to_tableau %>' />  
+			<param name='ticket' value='<%= connect_to_tableau %>' />
+			<% if @filter.present? %><param name="filter" value='<%= @filter %>' /><% end %>
 		</object>
 	</div>
 <% end %>	

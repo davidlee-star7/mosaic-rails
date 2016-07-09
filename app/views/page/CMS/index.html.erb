@@ -3,25 +3,25 @@
 <div class="page-wrapper">
 
 
-<div class="cmspagelayout <%= params[:action].to_s+'_'+params[:controller].to_s.gsub('/','') %>">
+  <div class="cmspagelayout <%= params[:action].to_s+'_'+params[:controller].to_s.gsub('/','') %>">
 
-<!-- block 2 -->
-<div class="row">
-<div class="col-md-12">
-<div class="portlet bx-shadow">
-<div class="">
-<div class="panel panel-default">
-<div class="panel-body">
-<div class="page-title">
-                <%= @cmspage.title %>
-</div>   
-</div>
-</div>
-</div>
-</div>
-</div>
-</div> 
-<!-- block 2 end -->
+    <!-- block 2 -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="portlet bx-shadow">
+          <div class="">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="page-title">
+                    <%= @cmspage.title %>
+                </div>   
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <!-- block 2 end -->
     <div class="row">
       <div class="col-md-12 etrafield-default col-block">
         <div class="portlet bx-shadow">
@@ -36,7 +36,7 @@
       </div>
     </div>
     <% if @groups != nil %>
-    <% @groups.each do |g| %>
+      <% @groups.each do |g| %>
       <div class="row grouped-<%= g.field_group %>">
           <% extra_fields = @cmspage.extra_fields.where(:field_group => g.field_group ) %>
           <% if extra_fields !=nil %>
@@ -72,8 +72,8 @@
               <% end %>
           <% end %>
       </div>
-    <% end %>  
+      <% end %>  
     <% end %>
-</div>       
+  </div>       
 </div>
  

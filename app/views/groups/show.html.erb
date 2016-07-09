@@ -1,12 +1,12 @@
 
 
 <div class="row">
-   <div class="col-sm-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Group Info</h3>
-        </div>
-        <div class="panel-body">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Group Info</h3>
+      </div>
+      <div class="panel-body">
         <p id="notice"><%= notice %></p>
         <p>
           <strong><%= t("NAME") %>:</strong>
@@ -20,7 +20,7 @@
       </div>
 
       <div class="panel-heading">
-         <h3 class="panel-title"><%= t("AL_USERS_OF_THIS_GROUP") %></h3>
+        <h3 class="panel-title"><%= t("AL_USERS_OF_THIS_GROUP") %></h3>
       </div>
 
       <div class="panel-body">
@@ -122,7 +122,7 @@
       -->
 
       <div class="panel-heading">
-         <h3 class="panel-title"><%= t("ADD_VARIABLES_FOR_THIS_GROUP") %></h3>
+        <h3 class="panel-title"><%= t("ADD_VARIABLES_FOR_THIS_GROUP") %></h3>
       </div>
 
       <div class="panel-body">
@@ -270,13 +270,13 @@
           </ul>
         </div>
       </div>
-   </div>
-  <!-- panel -->
-  <% if current_user.can? :edit, :group %>
-  <%= link_to 'Edit', edit_group_path(@group) %>
-  <% end %> |
-  <% if current_user.can? :index, :group %>
-  <%= link_to 'Back', groups_path %>
-  <% end %>
-</div> <!-- col -->
+     </div>
+    <!-- panel -->
+    <% if current_user.can? :edit, :group %>
+    <%= link_to 'Edit', edit_group_path(@group) %>
+    <% end %> |
+    <% if current_user.can? :index, :group %>
+    <%= link_to 'Back', groups_path %>
+    <% end %>
+  </div> <!-- col -->
 </div> <!-- End row -->

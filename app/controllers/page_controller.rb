@@ -81,35 +81,36 @@ class PageController < ApplicationController
   #
   #
   def cms
-  @cmspage = CmsPage.where('slug = ?',params[:slug])
-  @microsite = nil
-  @groups = ExtraField.all.where(:cms_page_id => @cmspage.first.id).select(:field_group).distinct
-  if @cmspage.present?
-  if @cmspage[0].microsite_id != nil
-    if Microsite.exists?(@cmspage[0].microsite_id)
-      @microsite = Microsite.find(@cmspage[0].microsite_id)
+    @cmspage = CmsPage.where('slug = ?',params[:slug])
+    @microsite = nil
+    @groups = ExtraField.all.where(:cms_page_id => @cmspage.first.id).select(:field_group).distinct
+
+    if @cmspage.present?
+      if @cmspage[0].microsite_id != nil
+        if Microsite.exists?(@cmspage[0].microsite_id)
+          @microsite = Microsite.find(@cmspage[0].microsite_id)
+        end
+      end
+    
+      # if @microsite.publish
+      @type = params[:type]
+      respond_to do |format|
+        if @cmspage.size > 0
+        @cmspage = @cmspage.first
+        format.html{ render 'page/CMS/index.html.erb' } 
+        else
+        format.html{ render 'page/CMS/notfound.html.erb' }    
+        end
+      end
+    else
+      flash[:notice] = "Page Not found"
+      redirect_to root_path
     end
-  end
-  
-#  if @microsite.publish
-    @type = params[:type]
-  	respond_to do |format|
-  		if @cmspage.size > 0
-  		@cmspage = @cmspage.first
-  		format.html{ render 'page/CMS/index.html.erb' }	
-  		else
-  		format.html{ render 'page/CMS/notfound.html.erb' }		
-  		end
-    end
-  else
-    flash[:notice] = "Page Not found"
-    redirect_to root_path
-  end
   end
  
- def unpublished
+  def unpublished
 
- end
+  end
 
   #GET ':client_slug/:microsite_slug'
   #GET ':client_slug/:microsite_slug/:cms_page_slug'
@@ -133,55 +134,55 @@ class PageController < ApplicationController
     if params[:cms_page_slug] == "profile"
       @user = current_user
     else
-          if (params[:cms_page_slug].to_s !='')
-                @cmspage =  CmsPage.find_by(:slug => params[:cms_page_slug])
-          elsif @microsite.cms_page_id.to_i > 0
-                @cmspage =  CmsPage.find_by(:id => @microsite.cms_page_id)  
-                if @cmspage == nil
-                  @msg << "Default Page deleted, Please set new one."
-                end 
-          else
-                @cmspage = @microsite.cms_pages.first
-          end
-
-          if @cmspage == nil 
-             @msg << "No default page found"
-          end
-    end
-
-
-   @body_class = "microsite-#{@microsite.id}-client#{@client.id}"
-
-   if @cmspage != nil
-     @body_class = @body_class + "-page-#{@cmspage.id}"
-     @groups = ExtraField.all.where(:cms_page_id => @cmspage.id).select(:field_group).order("field_group DESC").distinct
-   end
-
-
-   if @microsite == nil 
-    @msg << "Microsite Not found"
-   end
-
-   if @client == nil 
-    @msg << "Client Not found"
-   end
-
-
-
-  respond_to do |format|
-    if @msg.size > 0
-      format.html{ render 'page/CMS/notfound' }
-    else
-      
-      if @user != nil
-        format.html{ render '/page/profile' }
+      if (params[:cms_page_slug].to_s !='')
+            @cmspage =  CmsPage.find_by(:slug => params[:cms_page_slug])
+      elsif @microsite.cms_page_id.to_i > 0
+            @cmspage =  CmsPage.find_by(:id => @microsite.cms_page_id)  
+            if @cmspage == nil
+              @msg << "Default Page deleted, Please set new one."
+            end 
       else
-        format.html{ render '/page/preview_microsite' }
+            @cmspage = @microsite.cms_pages.first
+      end
+
+      if @cmspage == nil 
+         @msg << "No default page found"
       end
     end
-  end
 
-end
+
+    @body_class = "microsite-#{@microsite.id}-client#{@client.id}"
+
+    if @cmspage != nil
+       @body_class = @body_class + "-page-#{@cmspage.id}"
+       @groups = ExtraField.all.where(:cms_page_id => @cmspage.id).select(:field_group).order("field_group DESC").distinct
+    end
+
+
+    if @microsite == nil 
+      @msg << "Microsite Not found"
+    end
+
+    if @client == nil 
+      @msg << "Client Not found"
+    end
+
+
+
+    respond_to do |format|
+      if @msg.size > 0
+        format.html{ render 'page/CMS/notfound' }
+      else
+        
+        if @user != nil
+          format.html{ render '/page/profile' }
+        else
+          format.html{ render '/page/preview_microsite' }
+        end
+      end
+    end
+
+  end
 
  
 

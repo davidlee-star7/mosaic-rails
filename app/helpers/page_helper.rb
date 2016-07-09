@@ -35,21 +35,61 @@ class VariablePresenter
     end
 end
 
+class ProjectPresenter
+  require 'uri'
+
+  def self.for
+    :project
+  end
+
+  def initialize(attributes, content, additional_attributes)
+    @content = content
+    @attributes = attributes
+    @additional_attributes = additional_attributes
+  end
+
+  def content
+    @content
+  end
+
+  def attributes
+    @attributes[:filter] = filter
+    @attributes
+  end
+
+  private
+
+    def filter
+      group_variables = group.present? ? group.groups_variables.joins(:variable).where('variables.vtype=?', 'tableau_url_appendage') : nil
+      if group_variables.present?
+        filter_ary = group_variables.inject([]) do |filter_ary, gv|
+          filter_ary + ["#{gv.variable.identifier}=#{gv.value}"]
+        end
+        filter_str = URI::escape(filter_ary.join('&'))
+      else
+        filter_str = ''
+      end
+      filter_str
+    end
+
+    def group
+      @additional_attributes[:group]
+    end
+end
+
 module PageHelper
   def content(c)
     Shortcode.register_presenter(VariablePresenter)
+    Shortcode.register_presenter(ProjectPresenter)
     Shortcode.process(c, { group: group })
   end
 
   def content_html(c)
-     # raw content(c)
-     c = c.gsub("<pre>","").gsub("</pre>","")
-     Shortcode.register_presenter(VariablePresenter)
-     raw Shortcode.process(c, { group: group })
-  end
-
-  def group
-    current_user.present? && current_user.groups.count > 0 ? current_user.groups.first : nil
+    # raw content(c)
+    c = c.gsub("<pre>","").gsub("</pre>","")
+    Shortcode.register_presenter(VariablePresenter)
+    Shortcode.register_presenter(ProjectPresenter)
+    raw Shortcode.process(c, { group: current_group })
   end
 
   def connect_to_tableau
