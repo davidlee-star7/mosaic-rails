@@ -2,7 +2,7 @@ class GroupsVariablesController < ApplicationController
   before_action :set_groups_variable, only: [:show, :edit, :update, :destroy]
 
   layout "dashboard"
-  inlcude VariablesHelper
+  include VariablesHelper
   
   # GET /groups_variables
   # GET /groups_variables.json
