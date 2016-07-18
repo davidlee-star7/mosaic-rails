@@ -1,4 +1,4 @@
-module GroupsVariablesHelper
+module UsersVariablesHelper
   def value_field_type(variable)
     result = case variable.vtype
       when 'image'

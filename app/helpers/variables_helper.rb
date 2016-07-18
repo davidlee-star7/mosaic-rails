@@ -1,4 +1,10 @@
 module VariablesHelper
+  def variable_names_collection
+    Variable.all.map{ |variable| 
+      [variable.name, variable.id]
+    }
+  end
+  
   def get_shortcode(variable)
     "[variable id=\"#{variable.identifier}\"][/variable]"
   end

@@ -170,3 +170,7 @@ en:
   EDIT_GROUP_VARIABLE: Edit Group Variable
 
   VARIABLE_VALUE_NOT_ASSIGNED: 'Value not assigned'
+
+  ADD_VARIABLES_FOR_THIS_USER: Add Variables for this user
+  ADD_USER_VARIABLE: Add User Variable
+  EDIT_USER_VARIABLE: Edit User Variable

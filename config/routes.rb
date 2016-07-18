@@ -215,7 +215,7 @@ Rails.application.routes.draw do
   get 'admin/addUser', to: 'admin#addUser'
   post 'admin/addUser', to: 'admin#addUser'
 
-  get 'admin/editUser/:id', to:'admin#editUser'
+  get 'admin/editUser/:id', to:'admin#editUser', as: :admin_editUser
   post 'admin/editUser/:id', to:'admin#editUser'
 
   # define resurse for 
@@ -229,6 +229,9 @@ Rails.application.routes.draw do
   get 'admin/survey_exports/:id', to: 'admin#survey_exports'
   get 'admin/unlinksurvey/:survey_id/:microsite_id', to: 'admin#unlinksurvey'
 
+  resources :users do
+    resources :variables, controller: :users_variables
+  end
 
   #devise_for :users
   get 'two_factor_authentication', to: 'page#enterotp'

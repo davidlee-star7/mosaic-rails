@@ -22,6 +22,15 @@ class VariablePresenter
 
   private
     def value
+      user_value ? user_value : group_value
+    end
+
+    def user_value
+      user_variable = variable.present? ? user.user_variables.where(variable_id: variable.id).first : nil
+      value = user_variable.present? ? user_variable.value : ''
+    end
+
+    def group_value
       group_variable = variable.present? ? group.groups_variables.where(variable_id: variable.id).first : nil
       value = group_variable.present? ? group_variable.value : ''
     end
@@ -32,6 +41,10 @@ class VariablePresenter
 
     def group
       @additional_attributes[:group]
+    end
+
+    def user
+      @additional_attributes[:user]
     end
 end
 
@@ -60,9 +73,9 @@ class ProjectPresenter
   private
 
     def filter
-      group_variables = group.present? ? group.groups_variables.joins(:variable).where('variables.vtype=?', 'tableau_url_appendage') : nil
-      if group_variables.present?
-        filter_ary = group_variables.inject([]) do |filter_ary, gv|
+      variables = user_variables.present? ? user_variables : group_variables
+      if variables.present?
+        filter_ary = variables.inject([]) do |filter_ary, gv|
           filter_ary + ["#{gv.variable.identifier}=#{gv.value}"]
         end
         filter_str = URI::escape(filter_ary.join('&'))
@@ -72,8 +85,14 @@ class ProjectPresenter
       filter_str
     end
 
-    def group
-      @additional_attributes[:group]
+    def user_variables
+      user = @additional_attributes[:user]
+      user.present? ? user.users_variables.joins(:variable).where('variables.vtype=?', 'tableau_url_appendage') : nil
+    end
+
+    def group_variables
+      group = @additional_attributes[:group]
+      group.present? ? group.groups_variables.joins(:variable).where('variables.vtype=?', 'tableau_url_appendage') : nil
     end
 end
 
@@ -81,7 +100,7 @@ module PageHelper
   def content(c)
     Shortcode.register_presenter(VariablePresenter)
     Shortcode.register_presenter(ProjectPresenter)
-    Shortcode.process(c, { group: group })
+    Shortcode.process(c, { user: current_user, group: current_group })
   end
 
   def content_html(c)
@@ -89,7 +108,7 @@ module PageHelper
     c = c.gsub("<pre>","").gsub("</pre>","")
     Shortcode.register_presenter(VariablePresenter)
     Shortcode.register_presenter(ProjectPresenter)
-    raw Shortcode.process(c, { group: current_group })
+    raw Shortcode.process(c, { user: current_user, group: current_group })
   end
 
   def connect_to_tableau

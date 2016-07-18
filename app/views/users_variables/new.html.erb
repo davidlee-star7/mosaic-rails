@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title trans-none"><%= t(:ADD_GROUP_VARIABLE) %>
+        </h3>
+      </div>
+      <%= render 'form', url: user_variables_path(user_id: params[:user_id]), variable: variable_names_collection.count ? Variable.find(variable_names_collection[0][1]) : {} %>
+    </div>
+  </div>
+</div>
+<!-- End row -->
+<%= link_to 'Back', admin_editUser_url(@user_variable.user) %>

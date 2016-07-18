@@ -12,4 +12,7 @@ class Variable < ActiveRecord::Base
 
   has_many :groups_variables, :dependent => :destroy
   has_many :groups, through: :groups_variables, :dependent => :destroy
+
+  has_many :users_variables, :dependent => :destroy
+  has_many :users, through: :users_variables, :dependent => :destroy
 end

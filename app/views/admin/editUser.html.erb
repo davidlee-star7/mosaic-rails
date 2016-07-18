@@ -10,114 +10,164 @@
       </h3>
    </div>
 
-<div class="edir-user-page">
-	<% if !@autherror.kind_of?(Array) && @autherror.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@autherror.errors.count, "error") %>
-     prohibited this article from being saved:</h2>
-    <ul>
-    <% @autherror.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+  <div class="edir-user-page">
+    <% if !@autherror.kind_of?(Array) && @autherror.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@autherror.errors.count, "error") %>
+       prohibited this article from being saved:</h2>
+      <ul>
+      <% @autherror.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
     <% end %>
-    </ul>
+
+    <%#= @user.inspect  %>
+
+    <div class="panel-body">
+
+      <%= form_tag("/admin/editUser/"+@user.id.to_s, method: "post") do %>
+
+      <%= hidden_field_tag(:user_id,@user.id)  %>
+      <%= hidden_field_tag(:action_type,'update')  %>
+      <table class="table">
+        <% @user_fields.each_with_index do |field,index| %>
+        <tr>
+          <td><%= label_tag(field[1], field[1]) %></td>
+          <td>
+            <% field_val = @user[field[0]] %>
+
+            <% if field[0]=='status' %>
+
+            <% field_val = field_val==true ? 1 : 0 %>
+
+              <%= select_tag(field[0],
+                 options_for_select([
+                 ['Active',1],['Inactive',0]],field_val)) %>   
+
+            <% elsif field[0]=='role' %>  
+
+              <% if current_user.can? :editrole, :admin %>
+
+             <% @roles.each_with_index do |urole,index| %>
+                <div class="role-box">
+                  <% if @user.has_role?(urole[0]) %>
+                  <%=  check_box_tag("role["+index.to_s+"]",urole[0],1)  %>
+                    <% else %>
+                    <%=  check_box_tag("role["+index.to_s+"]",urole[0])  %>
+                  <% end %>
+                  <%=  label_tag("role["+index.to_s+"]", urole[0])  %>
+                </div>
+               <% end %>
+
+             <% end %>
+
+             <% elsif field[0]=='password' %>
+
+             <%= password_field_tag(field[0],"")  %>
+              
+             <% elsif field[0]=='admin' %>
+
+               <%  if can? :create_admin, User %>
+                  <% if @user.admin %>
+                  <%=  check_box_tag(field[0],1,1) %>
+                  <%  else  %>
+                  <%=  check_box_tag(field[0],1) %>
+                  <% end %>
+                <% end %>   
+
+            <% else %>
+
+            <%= text_field_tag(field[0], field_val) %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+        <tr>
+          <td>Groups:</td>
+          <td>
+
+        <%#= @user.users.inspect  %>   
+            <table width="100%">
+             
+              <% Group.all.each do |g| %>
+                <tr>
+                  <td>
+                    <% if @user.has_group?(g) %>
+                    <%=  check_box_tag("group[#{g.id}]",1,1) %>
+                    <% else %>
+                    <%=  check_box_tag("group[#{g.id}]",1) %>
+                    <% end %>
+                    <%= label_tag("group[#{g.id}]", g.name) %>
+                  </td>
+                </tr>
+              <% end %>
+             
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td><%= submit_tag("Save")  %></td>
+        </tr>
+      </table>
+
+      <% end %>
+    </div>
+
   </div>
-<% end %>
 
-	<%#= @user.inspect  %>
 
-	<div class="panel-body">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= t("ADD_VARIABLES_FOR_THIS_USER") %></h3>
+  </div>
 
-	<%= form_tag("/admin/editUser/"+@user.id.to_s, method: "post") do %>
-
-	<%= hidden_field_tag(:user_id,@user.id)  %>
-	<%= hidden_field_tag(:action_type,'update')  %>
-	<table class="table">
-		<% @user_fields.each_with_index do |field,index| %>
-		<tr>
-			<td><%= label_tag(field[1], field[1]) %></td>
-			<td>
-				<% field_val = @user[field[0]] %>
-
-				<% if field[0]=='status' %>
-
-				<% field_val = field_val==true ? 1 : 0 %>
-
-					<%= select_tag(field[0],
-						 options_for_select([
-						 ['Active',1],['Inactive',0]],field_val)) %>	 
-
-				<% elsif field[0]=='role' %>	
-
-					<% if current_user.can? :editrole, :admin %>
-
-				 <% @roles.each_with_index do |urole,index| %>
-						<div class="role-box">
-						 	<% if @user.has_role?(urole[0]) %>
-						 	<%=  check_box_tag("role["+index.to_s+"]",urole[0],1)  %>
-						    <% else %>
-						    <%=  check_box_tag("role["+index.to_s+"]",urole[0])  %>
-						 	<% end %>
-						 	<%=  label_tag("role["+index.to_s+"]", urole[0])  %>
-						</div>
-				   <% end %>
-
-				 <% end %>
-
-				 <% elsif field[0]=='password' %>
-
-				 <%= password_field_tag(field[0],"")  %>
-				  
-				 <% elsif field[0]=='admin' %>
-
-					 <%  if can? :create_admin, User %>
-					 		<% if @user.admin %>
-					 		<%=  check_box_tag(field[0],1,1) %>
-					 		<%	else  %>
-					 		<%=  check_box_tag(field[0],1) %>
-					 		<% end %>
-					  <% end %>		
-
-				<% else %>
-
-				<%= text_field_tag(field[0], field_val) %>
-				<% end %>
-			</td>
-		</tr>
-		 <% end %>
-		 <tr>
-		 	<td>Groups:</td>
-		 	<td>
-
-		<%#= @user.groups.inspect  %> 	
-		 		<table width="100%">
-		 		 
-		 			<% Group.all.each do |g| %>
-		 				<tr>
-			 				<td>
-			 					<% if @user.has_group?(g) %>
-	<%=  check_box_tag("group[#{g.id}]",1,1) %>
-	 
-	<% else %>
-	<%=  check_box_tag("group[#{g.id}]",1) %>
-			 					<% end %>
-	<%= label_tag("group[#{g.id}]", g.name) %>
-				 				 
-			 				</td>
-		 				</tr>
-		 			<% end %>
-			 	 
-		 		</table>
-		 	</td>
-		 </tr>
-
-		 <tr>
-		 	<td><%= submit_tag("Save")  %></td>
-		 </tr>
-	</table>
-
-	<% end %>
-</div>
-</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+               <tr>
+                  <th><%= t("VARIABLE_NAME") %></th>
+                  <th><%= t("TYPE") %></th>
+                  <th>ID</th>
+                  <th><%= t("VALUE") %></th>
+                  <th colspan="2"></th>
+               </tr>
+            </thead>
+            <tbody>
+              <% @user_variables.each do |user_variable| %>
+              <tr>
+                <td><%= user_variable.variable.name %></td>
+                <td><%= user_variable.variable.vtype %></td>
+                <td><%= user_variable.variable.identifier %></td>
+                <td><%= user_variable.value %></td>
+                <% # if current_user.can? :edit, :user_variables  %> 
+                <td><%= link_to 'Edit', edit_user_variable_path(user_variable.user, user_variable) %></td>
+                <% # end %>
+                <% # if current_user.can? :destroy, :user_variables  %> 
+                <td><%= link_to 'Delete', user_variable_path(user_variable.user, user_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% # end %>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <% if Variable.all.count > 0 %>
+      <div class="row">
+        <div class="col-xs-12">
+          <%= link_to t(:ADD_NEW_VARIABLE), new_user_variable_path(@user.id),
+          :class => "group-grey-button"  %>
+        </div>
+      </div>
+    <% else %>
+      <p><%= t :NO_VARIABLES_DEFINED %></p>
+    <% end %>
+  </div>  
 
 </div>
 </div>

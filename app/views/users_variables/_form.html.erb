@@ -1,0 +1,91 @@
+<div class="panel-body">
+  <p id="notice"><%= notice %></p>
+  <%= form_for(@user_variable, url: url) do |f| %>
+  <% if @user_variable.errors.any? %>
+  <div id="error_explanation">
+    <h5><%= pluralize(@user_variable.errors.count, "error") %> prohibited this group variable from being saved:</h5>
+    <ul>
+      <% @user_variable.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <%= f.hidden_field :user_id, value: @user_variable.user_id %>
+  <div class="form-group">
+    <%= f.label :variable_id, class: "col-md-2 control-label" %>
+    <div class="col-sm-10">
+      <%= f.select :variable_id, variable_names_collection, {}, {onchange: 'variable_name_changed(event);', class: "form-control"} %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-2 control-label"><%= t(:VARIABLE_TYPE) %></label>
+    <div class="col-sm-10">
+      <span id="variable_type" class="form-control"><%= Variable::Types[variable.vtype] %></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-2 control-label"><%= t(:VARIABLE_ID) %></label>
+    <div class="col-sm-10">
+      <span id="variable_identifier" class="form-control"><%= variable.identifier %></span>
+    </div>
+  </div>
+  <div class="form-group" id="value_text_field"<% if value_field_type(variable) != 'text' %> style="display:none"<% end%>>
+    <%= f.label :value_text, class: "col-md-2 control-label" %>
+    <div class="col-md-10">
+      <%= f.text_field :value_text, class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group" id="value_file_field"<% if value_field_type(variable) != 'file' %> style="display:none"<% end%>>
+    <%= f.label :value_file, class: "col-md-2 control-label" %>
+    <div class="col-md-10">
+      <div>
+        <a href="<%= @user_variable.value_file.url %>"><%= @user_variable.value_file_file_name %></a>
+      </div>
+      <%= f.file_field :value_file, class: "form-control" %>
+
+    </div>
+  </div>
+  <div class="form-group" id="value_image_field"<% if value_field_type(variable) != 'image' %> style="display:none"<% end%>>
+    <%= f.label :value_image, class: "col-md-2 control-label" %>
+    <div class="col-md-10">
+      <div>
+        <%= image_tag @user_variable.value_image(:medium), alt: '' %>
+      </div>
+      <%= f.file_field :value_image, class: "form-control" %>
+
+    </div>
+  </div>
+  <div class="form-group m-b-0">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit 'Save' , :class=> "btn btn-info waves-effect waves-light" %> 
+    </div>
+  </div>
+  <% end %>
+</div>
+<!-- panel-body -->
+<script type="text/javascript">
+function variable_name_changed(event) {
+  var id = event.target.value;
+  $.ajax({
+    url: "/variables/" + id + ".json",
+    success: function(result) {
+      $('#variable_type').html(result.vtype_name)
+      $('#variable_identifier').html(result.identifier)
+      if (result.vtype === 'image') {
+        $('#value_text_field').hide();
+        $('#value_file_field').hide();
+        $('#value_image_field').show();
+      } else if (result.vtype === 'file') {
+        $('#value_text_field').hide();
+        $('#value_image_field').hide();
+        $('#value_file_field').show();
+      } else {
+        $('#value_file_field').hide();
+        $('#value_image_field').hide();
+        $('#value_text_field').show();
+      }
+    }
+  });
+}
+</script>

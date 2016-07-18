@@ -134,6 +134,7 @@ class AdminController < ApplicationController
 
   def edit_user_individual
      @user = User.find(params[:user_ids])
+
   end
 
 
@@ -219,20 +220,20 @@ class AdminController < ApplicationController
     @autherror = []
     @tparm = params[:id]
 
-     if params[:action_type] =='update'
-       user = User.update_ext(params)
-       if user.errors != nil
-        @autherror = user 
-       end
-     end
+    if params[:action_type] =='update'
+      user = User.update_ext(params)
+      if user.errors != nil
+       @autherror = user 
+      end
+    end
 
-  	 user_id = Integer(@tparm)
+  	user_id = Integer(@tparm)
 
-  	 @user = User.find(user_id)
-     @user_fields = User.user_fields(current_user)
-     @roles = Role.listRoles
-     @testp = params
-    
+  	@user = User.find(user_id)
+    @user_fields = User.user_fields(current_user)
+    @roles = Role.listRoles
+    @testp = params
+    @user_variables = @user.users_variables
   end	
   #
   # edit survey
