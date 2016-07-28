@@ -132,6 +132,62 @@ class AdminController < ApplicationController
     end
   end	
 
+  USERNAME_COL = 0
+  FIRST_NAME_COL = 1
+  LAST_NAME_COL = 2
+  DISPLAY_NAME_COL = 3
+  EMAIL_COL = 4
+  PASSWORD_COL = 5
+  GROUP_COL = 6
+  # GET upload_users
+  def upload_users
+    @errors = []
+    @success = []
+    @dispatch = params[:csv_file]
+    count = 0
+    if params[:task] == "Upload_users_csv"
+      if @dispatch != nil && @dispatch.size
+
+        CSV.foreach(@dispatch.path) do |row|
+          if count > 0
+            group_name = row[GROUP_COL]
+            group = Group.find_by_name(group_name)
+            if group.nil?
+              group = Group.create(
+                name: group_name,
+                default_language: 'english'
+              )
+            end
+            user = User.create(
+                    :username => row[USERNAME_COL], 
+                    :first_name => row[FIRST_NAME_COL],
+                    :last_name => row[LAST_NAME_COL],
+                    :display_name => row[DISPLAY_NAME_COL], 
+                    :email => row[EMAIL_COL], 
+                    :password => row[PASSWORD_COL],
+                    :status => true, 
+                    :admin => false
+                    ) 
+            if user.errors.any?
+              @errors << [user,user.errors.full_messages]
+            else
+              user.save
+              group.users << user
+               @success << user
+            end
+             
+          end
+          count = count + 1
+        end
+      else
+        @errors << [nil,["Invalid File!"]]
+      end
+    end
+
+   # dd
+  end
+
+
   def edit_user_individual
      @user = User.find(params[:user_ids])
 

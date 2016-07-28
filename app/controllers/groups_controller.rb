@@ -132,35 +132,35 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:group_id])
     count = 0
     if params[:task] == "Upload_users_csv"
-    if @dispatch != nil && @dispatch.size
+      if @dispatch != nil && @dispatch.size
 
-      CSV.foreach(@dispatch.path) do |row|
-        if count > 0
-           user = User.create(
-                  :email => row[0], 
-                  :password => row[1],
-                  :username => row[2], 
-                  :first_name => row[3], 
-                  :sir_name => row[4], 
-                  :last_name => row[5], 
-                  :display_name => row[6], 
-                  :status => true, 
-                  :admin => false
-                  ) 
-           if user.errors.any?
-             @errors << [user,user.errors.full_messages]
-           else
-            user.save
-            @group.users << user
-             @success << user
-           end
-           
+        CSV.foreach(@dispatch.path) do |row|
+          if count > 0
+             user = User.create(
+                    :email => row[0], 
+                    :password => row[1],
+                    :username => row[2], 
+                    :first_name => row[3], 
+                    :sir_name => row[4], 
+                    :last_name => row[5], 
+                    :display_name => row[6], 
+                    :status => true, 
+                    :admin => false
+                    ) 
+             if user.errors.any?
+               @errors << [user,user.errors.full_messages]
+             else
+              user.save
+              @group.users << user
+               @success << user
+             end
+             
+          end
+          count = count + 1
         end
-        count = count + 1        
+      else
+        @errors << [nil,["Invalid File!"]]
       end
-    else
-      @errors << [nil,["Invalid File!"]]
-    end
     end
 
    # dd

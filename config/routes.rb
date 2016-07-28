@@ -160,7 +160,7 @@ Rails.application.routes.draw do
   end
 
 
-    resources :reports do
+  resources :reports do
     collection do
       get :iframe
       get :javascript
@@ -217,6 +217,9 @@ Rails.application.routes.draw do
 
   get 'admin/editUser/:id', to:'admin#editUser', as: :admin_editUser
   post 'admin/editUser/:id', to:'admin#editUser'
+
+  get 'admin/upload_users', to: 'admin#upload_users'
+  post 'admin/upload_users', to: 'admin#upload_users'
 
   # define resurse for 
   # survey at admin

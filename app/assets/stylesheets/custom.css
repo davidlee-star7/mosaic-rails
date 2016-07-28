@@ -107,7 +107,7 @@ tr.error-column td {
 	overflow: hidden;
 	padding: 3px;
 	width: 130px;
-	word-wrap: break-word;
+	// word-wrap: break-word;
 	margin: 1px;
 }
 .micro-permission {
