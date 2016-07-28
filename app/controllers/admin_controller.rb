@@ -166,8 +166,9 @@ class AdminController < ApplicationController
                     :email => row[EMAIL_COL], 
                     :password => row[PASSWORD_COL],
                     :status => true, 
-                    :admin => false
-                    ) 
+                    :admin => false,
+                    :confirmed_at => DateTime.now
+                  )
             if user.errors.any?
               @errors << [user,user.errors.full_messages]
             else
