@@ -101,10 +101,18 @@
         </li>
         <% end %>
 
+        <% if current_user.can? :index, :tableaus  %> 
+        <li >
+          <%= link_to tableau_users_path, :class => 'button white' do %>
+          <i class="fa fa-table"></i>
+           <span> <%= t :TABLEAU_USERNAMES %> </span>
+          <% end %>
+        </li>
+        <% end %>
         
         <li >
           <%= link_to variables_path, :class => 'button white' do %>
-          <i class="fa fa-table"></i>
+          <i class="fa fa-list"></i>
            <span> <%= t :VARIABLES %> </span>
           <% end %>
         </li>

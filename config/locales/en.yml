@@ -160,6 +160,9 @@ en:
   VARIABLE_ID: Variable ID
   VARIABLE_VALUE: Variable value
   NO_VARIABLES_DEFINED: No variables defined.
+  PROHIBITED_SAVING_VARIABLE: prohibited this variable from being saved
+  VARIABLE_CREATE_SUCCESS: 'Variable was successfully created.'
+  VARIABLE_UPDATE_SUCCESS: 'Variable was successfully updated.'
 
   SHORT_CODE: Short Code
   TYPE: Types
@@ -174,3 +177,12 @@ en:
   ADD_VARIABLES_FOR_THIS_USER: Add Variables for this user
   ADD_USER_VARIABLE: Add User Variable
   EDIT_USER_VARIABLE: Edit User Variable
+
+  TABLEAU_USERNAMES: Tableau Usernames
+  TABLEAU_USERNAME: Tableau Username
+  MANAGE_TABLEAU_USERNAMES: Manage Tableau Usernames
+  NEW_TABLEAU_USERNAME: New Tableau username
+  EDIT_TABLEAU_USERNAME: Edit Tableau username
+  PROHIBITED_SAVING_TABLEAU_USERNAME: prohibited this tableau user from being saved
+  TABLEAU_USER_CREATE_SUCCESS: 'Tableau user was successfully created.'
+  TABLEAU_USER_UPDATE_SUCCESS: 'Tableau user was successfully updated.'

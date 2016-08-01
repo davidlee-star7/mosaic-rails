@@ -31,7 +31,7 @@ class VariablesController < ApplicationController
     respond_to do |format|
       begin
         if @variable.save
-          format.html { redirect_to variables_url, notice: 'Variable was successfully created.' }
+          format.html { redirect_to variables_url, notice: t(:VARIABLE_CREATE_SUCCESS) }
           format.json { render :show, status: :created, location: @variable }
         else
           format.html { render :new }
@@ -49,7 +49,7 @@ class VariablesController < ApplicationController
   def update
     respond_to do |format|
       if @variable.update(variable_params)
-        format.html { redirect_to variables_url, notice: 'Variable was successfully updated.' }
+        format.html { redirect_to variables_url, notice: t(:VARIABLE_UPDATE_SUCCESS) }
         format.json { render :show, status: :ok, location: @variable }
       else
         format.html { render :edit }

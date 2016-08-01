@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :tableau_users
+
   resources :tableaus, path: '/tableau-dashboards'
 
   resources :extra_fields
@@ -232,8 +234,8 @@ Rails.application.routes.draw do
   get 'admin/survey_exports/:id', to: 'admin#survey_exports'
   get 'admin/unlinksurvey/:survey_id/:microsite_id', to: 'admin#unlinksurvey'
 
-  resources :users do
-    resources :variables, controller: :users_variables
+  resources :ext_users do
+    resources :variables, controller: 'users_variables'
   end
 
   #devise_for :users

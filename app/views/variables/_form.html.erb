@@ -3,7 +3,7 @@
   <%= form_for @variable, html: { multipart: true, class: "form-horizontal"} do |f| %>
   <% if @variable.errors.any? %>
   <div id="error_explanation">
-    <h5><%= pluralize(@variable.errors.count, "error") %> prohibited this variable from being saved:</h5>
+    <h5><%= pluralize(@variable.errors.count, "error") %> <%= t(:PROHIBITED_SAVING_VARIABLE) %>:</h5>
     <ul>
       <% @variable.errors.full_messages.each do |message| %>
       <li><%= message %></li>

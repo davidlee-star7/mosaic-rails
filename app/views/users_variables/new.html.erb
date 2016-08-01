@@ -5,7 +5,7 @@
         <h3 class="panel-title trans-none"><%= t(:ADD_USER_VARIABLE) %>
         </h3>
       </div>
-      <%= render 'form', url: user_variables_path(user_id: params[:user_id]), variable: variable_names_collection.count ? Variable.find(variable_names_collection[0][1]) : {} %>
+      <%= render 'form', url: ext_user_variables_path(user_id: params[:user_id]), variable: variable_names_collection.count ? Variable.find(variable_names_collection[0][1]) : {} %>
     </div>
   </div>
 </div>

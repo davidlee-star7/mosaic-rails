@@ -16,7 +16,7 @@ class UsersVariablesController < ApplicationController
 
   # GET /users_variables/new
   def new
-    @user_variable = UsersVariable.new(user_id: params[:user_id])
+    @user_variable = UsersVariable.new(user_id: params[:ext_user_id])
   end
 
   # GET /users_variables/1/edit
@@ -76,6 +76,6 @@ class UsersVariablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def users_variable_params
-      params.require(:users_variable).permit(:user_id, :variable_id, :value_text, :value_file, :value_image)
+      params.require(:ext_users_variable).permit(:ext_user_id, :variable_id, :value_text, :value_file, :value_image)
     end
 end

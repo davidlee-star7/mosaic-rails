@@ -12,9 +12,9 @@
   <tbody>
     <% @user_variables.each do |user_variable| %>
       <tr>
-        <td><%= link_to 'Show', user_variable_path(user_variable.user, user_variable) %></td>
-        <td><%= link_to 'Edit', edit_user_variable_path(user_variable.user, user_variable) %></td>
-        <td><%= link_to 'Destroy', user_variable_path(user_variable.user, user_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', ext_user_variable_path(user_variable.user, user_variable) %></td>
+        <td><%= link_to 'Edit', edit_ext_user_variable_path(user_variable.user, user_variable) %></td>
+        <td><%= link_to 'Destroy', ext_user_variable_path(user_variable.user, user_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New User variable', new_user_variable_path(params[:user_id]) %>
+<%= link_to 'New User variable', new_ext_user_variable_path(params[:user_id]) %>

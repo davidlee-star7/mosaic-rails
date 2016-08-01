@@ -145,10 +145,10 @@
                 <td><%= user_variable.variable.identifier %></td>
                 <td><%= user_variable.value %></td>
                 <% # if current_user.can? :edit, :user_variables  %> 
-                <td><%= link_to 'Edit', edit_user_variable_path(user_variable.user, user_variable) %></td>
+                <td><%= link_to 'Edit', edit_ext_user_variable_path(user_variable.user, user_variable) %></td>
                 <% # end %>
                 <% # if current_user.can? :destroy, :user_variables  %> 
-                <td><%= link_to 'Delete', user_variable_path(user_variable.user, user_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to 'Delete', ext_user_variable_path(user_variable.user, user_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 <% # end %>
               </tr>
               <% end %>
@@ -160,7 +160,7 @@
     <% if Variable.all.count > 0 %>
       <div class="row">
         <div class="col-xs-12">
-          <%= link_to t(:ADD_NEW_VARIABLE), new_user_variable_path(@user.id),
+          <%= link_to t(:ADD_NEW_VARIABLE), new_ext_user_variable_path(@user.id),
           :class => "group-grey-button"  %>
         </div>
       </div>
