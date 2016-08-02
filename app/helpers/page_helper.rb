@@ -26,12 +26,12 @@ class VariablePresenter
     end
 
     def user_value
-      user_variable = variable.present? && user.user_variables.presnet? ? user.user_variables.where(variable_id: variable.id).first : nil
+      user_variable = variable.present? ? user.users_variables.where(variable_id: variable.id).first : nil
       value = user_variable.present? ? user_variable.value : ''
     end
 
     def group_value
-      group_variable = variable.present? && group.groups_variables.present? ? group.groups_variables.where(variable_id: variable.id).first : nil
+      group_variable = variable.present? ? group.groups_variables.where(variable_id: variable.id).first : nil
       value = group_variable.present? ? group_variable.value : ''
     end
 
