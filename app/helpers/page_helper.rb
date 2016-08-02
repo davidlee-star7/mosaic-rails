@@ -26,12 +26,12 @@ class VariablePresenter
     end
 
     def user_value
-      user_variable = variable.present? ? user.user_variables.where(variable_id: variable.id).first : nil
+      user_variable = variable.present? && user.user_variables.presnet? ? user.user_variables.where(variable_id: variable.id).first : nil
       value = user_variable.present? ? user_variable.value : ''
     end
 
     def group_value
-      group_variable = variable.present? ? group.groups_variables.where(variable_id: variable.id).first : nil
+      group_variable = variable.present? && group.groups_variables.present? ? group.groups_variables.where(variable_id: variable.id).first : nil
       value = group_variable.present? ? group_variable.value : ''
     end
 
@@ -112,10 +112,14 @@ module PageHelper
   end
 
   def connect_to_tableau
+    tableau_username = "phil@mosaicsustainability.com"
+    if current_user.tableau_user.present?
+      tableau_username = current_user.tableau_user.username
+    end
     post_data = post_data = {
-      "username" => "phil@mosaicsustainability.com",
-      "password" => "Bison47!",
-      "client_ip" => "192.168.100.33"
+      "username" => tableau_username,
+      # "password" => "Bison47!",
+      "client_ip" => "50.112.88.230"
     }
     server = "https://mosaic-tableau.com"
     resp = Net::HTTP.post_form(URI.parse("#{server}/trusted"), post_data)

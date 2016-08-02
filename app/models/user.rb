@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   has_many :users_variables
   has_many :variables, through: :users_variables
 
+  belongs_to :tableau_user
+
   mount_uploader :avatar, AvatarUploader
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
@@ -67,7 +69,8 @@ def self.user_fields(current_user)
       'display_name' => 'Display Name',
       'username' => 'User Name',
       'email' => 'Email',
-      'status' => 'Status'
+      'status' => 'Status',
+      'tableau_user_id' => 'Tableau Username'
        }
 
        user = nil
@@ -230,6 +233,7 @@ end
     user.username = params[:username]
     user.email = params[:email]
     user.status = params[:status]
+    user.tableau_user_id = params[:tableau_user_id]
 
     if params[:admin] == '1'
       if user.admin != true

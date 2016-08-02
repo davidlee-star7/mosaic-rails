@@ -50,40 +50,47 @@
 
               <% if current_user.can? :editrole, :admin %>
 
-             <% @roles.each_with_index do |urole,index| %>
-                <div class="role-box">
-                  <% if @user.has_role?(urole[0]) %>
-                  <%=  check_box_tag("role["+index.to_s+"]",urole[0],1)  %>
-                    <% else %>
-                    <%=  check_box_tag("role["+index.to_s+"]",urole[0])  %>
-                  <% end %>
-                  <%=  label_tag("role["+index.to_s+"]", urole[0])  %>
-                </div>
-               <% end %>
+                <% @roles.each_with_index do |urole,index| %>
+                  <div class="role-box">
+                    <% if @user.has_role?(urole[0]) %>
+                    <%=  check_box_tag("role["+index.to_s+"]",urole[0],1)  %>
+                      <% else %>
+                      <%=  check_box_tag("role["+index.to_s+"]",urole[0])  %>
+                    <% end %>
+                    <%=  label_tag("role["+index.to_s+"]", urole[0])  %>
+                  </div>
+                <% end %>
+              <% end %>
 
-             <% end %>
+            <% elsif field[0]=='password' %>
 
-             <% elsif field[0]=='password' %>
-
-             <%= password_field_tag(field[0],"")  %>
+              <%= password_field_tag(field[0],"")  %>
               
-             <% elsif field[0]=='admin' %>
+            <% elsif field[0]=='admin' %>
 
-               <%  if can? :create_admin, User %>
-                  <% if @user.admin %>
-                  <%=  check_box_tag(field[0],1,1) %>
-                  <%  else  %>
-                  <%=  check_box_tag(field[0],1) %>
-                  <% end %>
-                <% end %>   
+              <% if can? :create_admin, User %>
+                <% if @user.admin %>
+                <%=  check_box_tag(field[0],1,1) %>
+                <%  else  %>
+                <%=  check_box_tag(field[0],1) %>
+                <% end %>
+              <% end %>
 
+            <% elsif field[0] == 'tableau_user_id' %>
+              <%= select_tag(field[0],
+                 options_for_select(TableauUser.all.collect{ |t| [ t.username, t.id ] }, field_val), include_blank: "- Choose tableau username -") %>
             <% else %>
-
-            <%= text_field_tag(field[0], field_val) %>
+              <%= text_field_tag(field[0], field_val) %>
             <% end %>
           </td>
         </tr>
         <% end %>
+        <tr>
+          <td>Tableau User:</td>
+          <td>
+
+          </td>
+        </tr>
         <tr>
           <td>Groups:</td>
           <td>
