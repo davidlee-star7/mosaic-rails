@@ -26,10 +26,14 @@ class ReportsController < ApplicationController
   end
 
   def connect_to_tableau
-    post_data = post_data = {
-      "username" => "phil@mosaicsustainability.com",
-      "password" => "Bison47!",
-      "client_ip" => "192.168.100.33"
+    tableau_username = "phil@mosaicsustainability.com"
+    if current_user.tableau_user.present?
+      tableau_username = current_user.tableau_user.username
+    end
+    post_data = {
+      "username" => tableau_username,
+      # "password" => "Bison47!",
+      "client_ip" => "50.112.88.230" # "192.168.100.33"
     }
     server = "https://mosaic-tableau.com"
     resp = Net::HTTP.post_form(URI.parse("#{server}/trusted"), post_data)

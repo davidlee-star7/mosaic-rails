@@ -116,7 +116,8 @@ module PageHelper
     if current_user.tableau_user.present?
       tableau_username = current_user.tableau_user.username
     end
-    post_data = post_data = {
+    puts '12345'
+    post_data = {
       "username" => tableau_username,
       # "password" => "Bison47!",
       "client_ip" => "50.112.88.230"
