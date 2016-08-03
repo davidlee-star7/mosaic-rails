@@ -141,16 +141,20 @@ class AdminController < ApplicationController
   GROUP_COL = 6
   # GET upload_users
   def upload_users
+    user_fields = %w(username first_name last_name display_name email password)
     @errors = []
     @success = []
     @dispatch = params[:csv_file]
-    count = 0
     if params[:task] == "Upload_users_csv"
       if @dispatch != nil && @dispatch.size
 
-        CSV.foreach(@dispatch.path) do |row|
-          if count > 0
-            group_name = row[GROUP_COL]
+        CSV.foreach(@dispatch.path, headers: true) do |row|
+
+          hashed_row = row.to_hash
+
+          # check existence and add group name
+          group_name = hashed_row['group']
+          if group_name.present?
             group = Group.find_by_name(group_name)
             if group.nil?
               group = Group.create(
@@ -158,27 +162,43 @@ class AdminController < ApplicationController
                 default_language: 'english'
               )
             end
-            user = User.create(
-                    :username => row[USERNAME_COL], 
-                    :first_name => row[FIRST_NAME_COL],
-                    :last_name => row[LAST_NAME_COL],
-                    :display_name => row[DISPLAY_NAME_COL], 
-                    :email => row[EMAIL_COL], 
-                    :password => row[PASSWORD_COL],
-                    :status => true, 
-                    :admin => false,
-                    :confirmed_at => DateTime.now
-                  )
-            if user.errors.any?
-              @errors << [user,user.errors.full_messages]
-            else
-              user.save
-              group.users << user
-               @success << user
-            end
-             
           end
-          count = count + 1
+
+          # check existence and add tableau username
+          tableau_username = hashed_row['tableau_username']
+          if tableau_username.present?
+            tableau_user = TableauUser.find_by_username(tableau_username)
+            if tableau_user.nil? && tableau_username.present?
+              tableau_user = TableauUser.create(
+                username: tableau_username
+              )
+            end
+          end
+          user_row = hashed_row.select { |key| user_fields.include?(key.to_s) }
+          user_row.merge!({
+            :status => true, 
+            :admin => false,
+            :confirmed_at => DateTime.now,
+            :tableau_user_id => tableau_username.present? ? tableau_user.id : nil
+          })
+          user = User.create(user_row)
+          if user.errors.any?
+            @errors << [hashed_row, user.errors.full_messages]
+          else
+            user.save
+            if group_name.present?
+              group.users << user
+            end
+            @success << hashed_row
+
+            # add variables
+            variables_row = hashed_row.except(*(user_fields + ['group', 'tableau_username']))
+            for k, v in variables_row
+              variable = Variable.find_by_identifier(k)
+              next if variable.nil?
+              UsersVariable.create(user_id: user.id, variable_id: variable.id, value_text: v)
+            end
+          end
         end
       else
         @errors << [nil,["Invalid File!"]]

@@ -12,7 +12,7 @@
 <%= hidden_field_tag("task","Upload_users_csv")  %>
 
 <% if @errors.size > 0 %>
-	<label>Following Records cant be added due to shown erros</label>
+	<label>Following Records can't be added due to shown errors</label>
 	<table width="100%">
 	<tr>
 	<td>
@@ -23,6 +23,8 @@
 				<td>First Name</td>
 				<td>Last Name</td>
 				<td>Display Name</td>
+				<td>Group</td>
+				<td>Tableau Username</td>
 			</tr>	
 		</table>
 	</td>
@@ -33,11 +35,13 @@
 			<% if error[0] != nil  %>
 			<table width="100%">
 				<tr class="error-column">
-					<td><%= error[0].email  %></td>
-					<td><%= error[0].username  %></td>
-					<td><%= error[0].first_name  %></td>
-					<td><%= error[0].last_name  %></td>
-					<td><%= error[0].display_name  %></td>
+					<td><%= error[0]['email'] %></td>
+					<td><%= error[0]['username'] %></td>
+					<td><%= error[0]['first_name'] %></td>
+					<td><%= error[0]['last_name'] %></td>
+					<td><%= error[0]['display_name'] %></td>
+					<td><%= error[0]['group'] %></td>
+					<td><%= error[0]['tableau_username']  %></td>
 				</tr>	
 			</table>
 			<% end %>
@@ -64,14 +68,18 @@
 		<td>First Name</td>
 		<td>Last Name</td>
 		<td>Display Name</td>
+		<td>Group</td>
+		<td>Tableau Username</td>
 	 </tr>
 		<% @success.each do |suc| %>
 	<tr>
-		<td><%= suc.email  %></td>
-		<td><%= suc.username  %></td>
-		<td><%= suc.first_name  %></td>
-		<td><%= suc.last_name  %></td>
-		<td><%= suc.display_name  %></td>
+		<td><%= suc['email']  %></td>
+		<td><%= suc['username']  %></td>
+		<td><%= suc['first_name']  %></td>
+		<td><%= suc['last_name']  %></td>
+		<td><%= suc['display_name']  %></td>
+		<td><%= suc['group']  %></td>
+		<td><%= suc['tableau_username']  %></td>
 	</tr> 	
 		<% end %>
 	</table>
