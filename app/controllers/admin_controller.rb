@@ -392,7 +392,7 @@ class AdminController < ApplicationController
     if params[:task] == "survey_to_group"
       
       if !groups
-        @errors << "You must select Grous from the list, assign to Survey!"
+        @errors << "You must select Groups from the list, assign to Survey!"
       end
 
       if !survey

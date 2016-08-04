@@ -45,6 +45,9 @@ class PageController < ApplicationController
     @task = params[:task]
     @tableau = params[:id] != nil ? Tableau.find(params[:id]) : nil
     @msg = []
+    response.headers["Cache-Control"] = "no-cache, no-store"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
     respond_to do |format|
       if @tableau != nil 
         format.html{  render :'page/client/dashboard' }
