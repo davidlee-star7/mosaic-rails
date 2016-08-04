@@ -12,7 +12,7 @@
 <%= hidden_field_tag("task","Upload_users_csv")  %>
 
 <% if @errors.size > 0 %>
-	<label>Following Records can't be added due to shown errors</label>
+	<label><%= t(:FOLLWING_RECORDS_IMPORT_FAIL) %></label>
 	<table width="100%">
 	<tr>
 	<td>
@@ -60,7 +60,7 @@
 <% end %>
 
 <% if @success.size > 0 %>
-	<label>Following Records added successfully</label>
+	<label><%= t(:FOLLWING_RECORDS_IMPORT_SUCCESS) %></label>
 	<table width="100%">
 	<tr>
 		<td>Email</td>

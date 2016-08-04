@@ -181,7 +181,12 @@ class AdminController < ApplicationController
             :confirmed_at => DateTime.now,
             :tableau_user_id => tableau_username.present? ? tableau_user.id : nil
           })
-          user = User.create(user_row)
+          user = User.find_by_username(user_row['username'])
+          if user.present?
+            user.update_attributes(user_row)
+          else
+            user = User.create(user_row)
+          end
           if user.errors.any?
             @errors << [hashed_row, user.errors.full_messages]
           else

@@ -184,5 +184,8 @@ en:
   NEW_TABLEAU_USERNAME: New Tableau username
   EDIT_TABLEAU_USERNAME: Edit Tableau username
   PROHIBITED_SAVING_TABLEAU_USERNAME: prohibited this tableau user from being saved
-  TABLEAU_USER_CREATE_SUCCESS: 'Tableau user was successfully created.'
-  TABLEAU_USER_UPDATE_SUCCESS: 'Tableau user was successfully updated.'
+  TABLEAU_USER_CREATE_SUCCESS: Tableau user was successfully created.
+  TABLEAU_USER_UPDATE_SUCCESS: Tableau user was successfully updated.
+
+  FOLLWING_RECORDS_IMPORT_SUCCESS: Following Records are imported successfully
+  FOLLWING_RECORDS_IMPORT_FAIL: Following Records can't be imported due to shown errors
