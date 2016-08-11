@@ -60,7 +60,15 @@ class User < ActiveRecord::Base
   #validates :username, uniqueness: true 
   validates :username, presence: true, uniqueness: true  
    
- rolify
+  rolify
+
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
 
 def self.user_fields(current_user)
       user_fields = { 

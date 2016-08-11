@@ -31,7 +31,7 @@ config.secret_key = 'b80c55251e4c4d66304c87c0c8c372060dad61d696b2bbe90cedb279772
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
+  config.authentication_keys = [:username]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
