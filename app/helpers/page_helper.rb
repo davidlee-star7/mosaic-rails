@@ -67,6 +67,7 @@ class ProjectPresenter
 
   def attributes
     @attributes[:filter] = filter
+    @attributes[:user] = user
     @attributes
   end
 
@@ -84,14 +85,20 @@ class ProjectPresenter
       end
       filter_str
     end
+    
+    def user
+      @additional_attributes[:user]
+    end
+
+    def group
+      @additional_attributes[:group]
+    end
 
     def user_variables
-      user = @additional_attributes[:user]
       user.present? ? user.users_variables.joins(:variable).where('variables.vtype=?', 'tableau_url_appendage') : nil
     end
 
     def group_variables
-      group = @additional_attributes[:group]
       group.present? ? group.groups_variables.joins(:variable).where('variables.vtype=?', 'tableau_url_appendage') : nil
     end
 end
@@ -113,8 +120,9 @@ module PageHelper
 
   def connect_to_tableau
     tableau_username = "phil@mosaicsustainability.com"
-    if current_user.tableau_user.present?
-      tableau_username = current_user.tableau_user.username
+    user = @attributes[:user]
+    if user.present? && user.tableau_user.present?
+      tableau_username = user.tableau_user.username
     end
     post_data = {
       "username" => tableau_username,
