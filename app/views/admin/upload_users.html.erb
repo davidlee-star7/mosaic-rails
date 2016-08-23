@@ -2,7 +2,7 @@
 <div class="col-sm-12">
 <div class="panel panel-default">
 <div class="panel-heading">
-	<h2>Upload Users</h2>
+	<h2><%= t(:UPLOAD_USERS) %></h2>
 </div>
 <div class="panel-body">
 
@@ -12,23 +12,23 @@
 <%= hidden_field_tag("task","Upload_users_csv")  %>
 
 <% if @errors.size > 0 %>
-	<label><%= t(:FOLLWING_RECORDS_IMPORT_FAIL) %></label>
+	<label><%= t(:FOLLOWING_RECORDS_IMPORT_FAIL) %></label>
 	<table width="100%">
 	<tr>
 	<td>
 		<table width="100%">
 			<tr class="error-column">
-				<td>Email</td>
-				<td>User Name</td>
-				<td>First Name</td>
-				<td>Last Name</td>
-				<td>Display Name</td>
-				<td>Group</td>
-				<td>Tableau Username</td>
+				<td><%= t(:Email) %></td>
+				<td><%= t(:USER_NAME) %></td>
+				<td><%= t(:FIRST_NAME) %></td>
+				<td><%= t(:LAST_NAME) %></td>
+				<td><%= t(:DISPLAY_NAME) %></td>
+				<td><%= t(:Group) %></td>
+				<td><%= t(:TABLEAU_USERNAME) %></td>
 			</tr>	
 		</table>
 	</td>
-	<td>Message</td></tr>
+	<td><%= t(:Message) %></td></tr>
 		<% @errors.each do |error| %>
 		<tr>
 		<td>
@@ -60,16 +60,16 @@
 <% end %>
 
 <% if @success.size > 0 %>
-	<label><%= t(:FOLLWING_RECORDS_IMPORT_SUCCESS) %></label>
+	<label><%= t(:FOLLOWING_RECORDS_IMPORT_SUCCESS) %></label>
 	<table width="100%">
 	<tr>
-		<td>Email</td>
-		<td>User Name</td>
-		<td>First Name</td>
-		<td>Last Name</td>
-		<td>Display Name</td>
-		<td>Group</td>
-		<td>Tableau Username</td>
+		<td><%= t(:Email) %></td>
+		<td><%= t(:USER_NAME) %></td>
+		<td><%= t(:FIRST_NAME) %></td>
+		<td><%= t(:LAST_NAME) %></td>
+		<td><%= t(:DISPLAY_NAME) %></td>
+		<td><%= t(:Group) %></td>
+		<td><%= t(:TABLEAU_USERNAME) %></td>
 	 </tr>
 		<% @success.each do |suc| %>
 	<tr>
@@ -85,7 +85,7 @@
 	</table>
 <% end %>
 
-<%= submit_tag "Upload", :class=> "btn btn-info waves-effect waves-light" %> 
+<%= submit_tag t(:Upload), :class=> "btn btn-info waves-effect waves-light" %> 
 <% end %>
 
 </div>

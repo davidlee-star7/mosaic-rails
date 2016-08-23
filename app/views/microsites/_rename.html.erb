@@ -1,11 +1,10 @@
 <%#= form_for(@microsite) do |f| %>
-<h3>Please enter a new name</h3>
+<h3><%= t(:PLEASE_ENTER_A_NEW_NAME) %></h3>
 <%= form_for micro,  :url => "/microsites/#{micro.id}", html: { multipart: true } do |f| %>
 
   <% if micro.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(micro.errors.count, "error") %> prohibited this microsite from being saved:
-      </h2>
+      <h2><%= t('errors.messages.not_saved', count: micro.errors.count, resource: t(:microsite)) %></h2>
 
       <ul>
       <% micro.errors.full_messages.each do |message| %>
@@ -24,7 +23,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit t(:Save) %>
   </div>
 <% end %>
 

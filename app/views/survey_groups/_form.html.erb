@@ -1,7 +1,7 @@
 <%= form_for(@survey_group) do |f| %>
   <% if @survey_group.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@survey_group.errors.count, "error") %> prohibited this survey_group from being saved:</h2>
+      <h2><%= t('errors.messages.not_saved', count: @survey_group.errors.count, resource: t(:survey_group)) %></h2>
 
       <ul>
       <% @survey_group.errors.full_messages.each do |message| %>

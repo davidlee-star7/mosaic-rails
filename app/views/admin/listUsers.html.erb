@@ -6,9 +6,9 @@
         <h3 class="panel-title trans-none"><%= t(:MANAGE_USERS) %>
           <% if current_user.can? :addUser, :admin %>
            <span class="pull-right"> 
-               <%= link_to "Back", :back %>
+               <%= link_to t(:Back), :back %>
           </span>
-          <span class="pull-right"> <%= link_to 'Add User', '/admin/addUser', :class =>'addUser' %>
+          <span class="pull-right"> <%= link_to t(:adduser), '/admin/addUser', :class =>'addUser' %>
           </span>
           <% end %>
         </h3>
@@ -27,7 +27,7 @@
             <% end %>
           </div>
         </div>
-        <div class="sepuser">All(<%= @users.count %>) | Administrator(1)</div> 
+        <div class="sepuser"><%= t(:All) %> (<%= @users.count %>) | <%= t(:Administrator) %> (1)</div> 
       
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -35,14 +35,14 @@
               <%= form_for :user, :url => admin_edit_user_individual_path, :html => { :method => :put } do |form| %>
               <table class="list-user table">
                 <tr>
-                  <th>First Name </th>
-                  <th>Last Name </th>
-                  <th>Display Name </th>
-                  <th>Email </th>
-                  <th>Status </th>
-                  <th>Admin y/n(?) </th>
-                  <th>groups (add/remove)</th>
-                  <th>Edit</th>
+                  <th><%= t(:FIRST_NAME) %></th>
+                  <th><%= t(:LAST_NAME) %></th>
+                  <th><%= t(:DISPLAY_NAME) %></th>
+                  <th><%= t(:Email) %> </th>
+                  <th><%= t(:Status) %> </th>
+                  <th><%= t(:Admin) %> y/n(?) </th>
+                  <th><%= t(:Groups) %></th>
+                  <th><%= t(:edit) %></th>
                     <!-- <th>Delete </th> -->
                 </tr>
                 <% @users.each do |user| %>
@@ -61,7 +61,7 @@
                   </td>
                   <td>
                    <% if current_user.can? :editUser, :admin %>        
-                   <%= link_to 'Edit', '/admin/editUser/'+user.id.to_s, 
+                   <%= link_to t(:edit), '/admin/editUser/'+user.id.to_s, 
                      :class =>'editUser', 
                      :id => user.id
                      %>
@@ -100,7 +100,7 @@
   <div class="col-sm-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Import Users</h3>
+        <h3 class="panel-title"><%= t(:IMPORT_USERS) %></h3>
       </div>
 
       <div class="panel-body">
@@ -123,18 +123,18 @@
   <div class="col-sm-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Invite New User(s)</h3>
+        <h3 class="panel-title"><%= t(:INVITE_NEW_USERS) %></h3>
       </div>
       <div class="panel-body">
         <%= form_tag admin_sendinvitationuser_path, :method => 'post' do %>
         <div class="form-group">
-          <label class="col-md-2 control-label" for="example-email">Email Addresses:</label>
+          <label class="col-md-2 control-label" for="example-email"><%= t(:EMAIL_ADDRESSES) %>:</label>
           <div class="col-md-10">
             <%= text_field_tag 'user_emails', '', class: 'form-control', placeholder: 'Enter comma separated emails' %>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-2 control-label">Select Role</label>
+          <label class="col-sm-2 control-label"><%= t(:SELECT_ROLE) %></label>
           <div class="col-sm-10">
             <select class="form-control" name="roleid">
               <% @roles.each_with_index do |urole,index| %>
@@ -144,7 +144,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-md-2 control-label">Message</label>
+          <label class="col-md-2 control-label"><%= t(:Message) %></label>
           <div class="col-md-10">
             <%= text_area_tag 'custom_message', nil,rows: 5, class: 'form-control' %>
           </div>
@@ -171,16 +171,16 @@
         }).get();
   
         if (!conceptName.length > 0) {
-           alert("Please select the user Role");
+           alert("<%= t(:ALERT_SELECT_USER_ROLE) %>");
              return false;
         }
   
           if (!checkedValues.length) {
-             alert("Please select at least one user");
+             alert("<%= t(:ALERT_SELECT_AT_LEAST_ONE_USER) %>");
              return false;
           }
   
-          if (!confirm("Please Note: This process will remove all existing Roles and add the selected Role only, Really Go?")) {
+          if (!confirm("<%= t(:CONFIRM_ROLE_REPLACE) %>")) {
              return false;
           }
   

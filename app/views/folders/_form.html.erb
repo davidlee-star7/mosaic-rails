@@ -3,7 +3,7 @@
                                         <%= form_for @folder, html: { multipart: true, class: "form-horizontal"} do |f| %>
                                   <% if @folder.errors.any? %>
                                     <div id="error_explanation">
-                                      <h2><%= pluralize(@folder.errors.count, "error") %> prohibited this folder from being saved:</h2>
+                                      <h2><%= t('errors.messages.not_saved', count: @folder.errors.count, resource: t(:folder)) %></h2>
 
                                       <ul>
                                       <% @folder.errors.full_messages.each do |message| %>
@@ -25,7 +25,7 @@
 
                                             <div class="form-group m-b-0">
                                                 <div class="col-sm-offset-3 col-sm-9">
-                                           <%= f.submit 'save' , :class=> "btn btn-info waves-effect waves-light" %> 
+                                           <%= f.submit t(:Save) , :class=> "btn btn-info waves-effect waves-light" %> 
 
                                                 </div>
                                             </div>

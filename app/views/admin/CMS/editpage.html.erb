@@ -10,7 +10,7 @@
 
   <h3 class="panel-title trans-none">Edit Page 
     <span class="pull-right"> 
-    <%= link_to 'View', "/#{@cmspage.slug.to_s}", :class =>'addUser', :target => "_BLANK" %>
+    <%= link_to t(:View), "/#{@cmspage.slug.to_s}", :class =>'addUser', :target => "_BLANK" %>
     </span>
 
   </h3>
@@ -32,7 +32,7 @@
 <%= form_for(@cmspage, :url => url_for(:controller => :admin, :action => :update_cmspage, :cms_page_id =>@cmspage.id)) do |f| %>
 <% if @cmspage.errors.any? %>
 <div id="error_explanation">
-   <h2><%= pluralize(@cmspage.errors.count, "error") %> prohibited this Page from being saved:</h2>
+   <h2><%= t('errors.messages.not_saved', count: @cmspage.errors.count, resource: t(:Page)) %></h2>
    <ul>
       <% @cmspage.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -188,7 +188,7 @@
       </div>
       <div class="form-group m-t-10">
          <div class="col-sm-12">
-            <%= f.submit 'save' , :class=> "btn btn-info waves-effect waves-light" %> 
+            <%= f.submit t(:Save) , :class=> "btn btn-info waves-effect waves-light" %> 
          </div>
       </div>
       <% end %>

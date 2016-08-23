@@ -1,14 +1,14 @@
 
 <%#= form_for(@microsite) do |f| %>
 <div id="assignsurtomicro-<%= micro.id %>">
-  <h3>Listing Surveys of <b><%= micro.title %></b></h3>
+  <h3><%= t(:LISTING_SURVEYS_OF) %> <b><%= micro.title %></b></h3>
   <div class="table-responsive">
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Status</th>
+      <th><%= t(:NAME) %></th>
+      <th><%= t(:DESCRIPTION) %></th>
+      <th><%= t(:STATUS) %></th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -19,7 +19,7 @@
         <td><%= survey.name %></td>
         <td><%= survey.description %></td>
         <td><%= survey.status %></td>
-         <td><a href="#" class="unassign" data-survey-id="<%=  survey.id  %>">Unassign</a></td>
+         <td><a href="#" class="unassign" data-survey-id="<%=  survey.id  %>"><%= t(:Unassign) %></a></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,7 +27,7 @@
 
 </div>
 
-  <h3>Assign survey to <b><%= micro.title %></b></h3>
+  <h3><%= t(:ASSIGN_SURVEY_TO) %> <b><%= micro.title %></b></h3>
 
 <% if current_user.can? :editrole, :admin %>
         <div class="rolebox">
@@ -74,7 +74,7 @@ $.ajax({
 
 }
 else{
-alert("Please select survey..");   
+alert("<%= t(:PLEASE_SELECT_SURVEY) %>");   
 }
 // return false;
 

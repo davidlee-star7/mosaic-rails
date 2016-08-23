@@ -1,4 +1,4 @@
-<h3>Change Language</h3>
+<h3><%= t(:CHANGE_LANGUAGE) %></h3>
 <%#= form_for(@microsite) do |f| %>
 
 <%= form_for micro, :url => "/microsites/#{micro.id}", html: { multipart: true } do |f| %>
@@ -6,7 +6,7 @@
 
   <% if micro.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(micro.errors.count, "error") %> prohibited this microsite from being saved:</h2>
+      <h2><%= t('errors.messages.not_saved', count: micro.errors.count, resource: t(:microsite)) %></h2>
 
       <ul>
       <% micro.errors.full_messages.each do |message| %>
@@ -25,7 +25,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit t(:Save) %>
   </div>
 <% end %>
  

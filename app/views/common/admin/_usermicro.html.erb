@@ -1,6 +1,6 @@
 <% if current_user.can? :addUser, :admin %>
 	<div class="create_new_user">
-		<%= link_to 'Add User', '/admin/addUser', :class =>'addUser'
+		<%= link_to t(:adduser), '/admin/addUser', :class =>'addUser'
 			 	%>
 	</div>
 <% end %>
@@ -42,7 +42,7 @@
 		<th>Email </th>
 		<th>Role</th>
 		<th>Update </th>
-		<th>Group</th>
+		<th><%= t(:Group) %></th>
 
 		<!-- <th>Delete </th> -->
 	</tr>
@@ -66,7 +66,7 @@
 
 		<td>
 		<% if current_user.can? :editUser, :admin %>		
-			<%= link_to 'Edit', '/admin/editUser/'+user.id.to_s, :class =>'editUser', :id=> user.id
+			<%= link_to t(:edit), '/admin/editUser/'+user.id.to_s, :class =>'editUser', :id=> user.id
 		 	%>
 		  <%  end %>			
 		</td>

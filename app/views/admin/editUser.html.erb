@@ -4,8 +4,8 @@
 
    <div class="panel-heading">
       <h3 class="panel-title">
-      Update User
-         <span class="pull-right"> <%= link_to 'back to users', '/admin/users', :class =>'addUser' %>
+      <%= t(:edituser) %>
+         <span class="pull-right"> <%= link_to t(:BACK_TO_USERS), '/admin/users', :class =>'addUser' %>
          </span>
       </h3>
    </div>
@@ -13,8 +13,7 @@
   <div class="edir-user-page">
     <% if !@autherror.kind_of?(Array) && @autherror.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@autherror.errors.count, "error") %>
-       prohibited this article from being saved:</h2>
+      <h2><%= t('errors.messages.not_saved', count: @autherror.errors.count, resource: t(:user)) %></h2>
       <ul>
       <% @autherror.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -86,7 +85,7 @@
         </tr>
         <% end %>
         <tr>
-          <td>Groups:</td>
+          <td><%= t(:Groups) %>:</td>
           <td>
 
         <%#= @user.users.inspect  %>   
@@ -110,7 +109,7 @@
         </tr>
 
         <tr>
-          <td><%= submit_tag("Save")  %></td>
+          <td><%= submit_tag(t :Save)%></td>
         </tr>
       </table>
 
@@ -146,10 +145,10 @@
                 <td><%= user_variable.variable.identifier %></td>
                 <td><%= user_variable.value %></td>
                 <% # if current_user.can? :edit, :user_variables  %> 
-                <td><%= link_to 'Edit', edit_ext_user_variable_path(user_variable.user, user_variable) %></td>
+                <td><%= link_to t(:edit), edit_ext_user_variable_path(user_variable.user, user_variable) %></td>
                 <% # end %>
                 <% # if current_user.can? :destroy, :user_variables  %> 
-                <td><%= link_to 'Delete', ext_user_variable_path(user_variable.user, user_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to 'Delete', ext_user_variable_path(user_variable.user, user_variable), method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
                 <% # end %>
               </tr>
               <% end %>

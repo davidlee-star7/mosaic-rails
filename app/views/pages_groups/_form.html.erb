@@ -1,7 +1,7 @@
 <%= form_for(@pages_group) do |f| %>
   <% if @pages_group.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@pages_group.errors.count, "error") %> prohibited this pages_group from being saved:</h2>
+      <h2><%= t('errors.messages.not_saved', count: @pages_group.errors.count, resource: t(:pages_group)) %></h2>
 
       <ul>
       <% @pages_group.errors.full_messages.each do |message| %>

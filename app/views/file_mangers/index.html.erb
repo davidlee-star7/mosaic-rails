@@ -4,7 +4,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title trans-none"><%= t(:MANAGE_FILES) %>
                                                <span class="pull-right"> 
-                                                 <%= link_to "Back", :back %>
+                                                 <%= link_to t(:Back), :back %>
                                                 </span>
                                         </h3>
                                     </div>
@@ -16,9 +16,9 @@
                                                 <div class="table-responsive">
                                                     <table class="table">
                                                    <tr>
-    <th>Name</th>
-      <th>Size</th>
-      <th>Attachment</th>
+    <th><%= t(:NAME) %></th>
+      <th><%= t(:Size) %></th>
+      <th><%= t(:Attachment) %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -36,15 +36,15 @@
         <td> <%= image_tag Icon.for_filename(file_manger.name) %>
 <%#= image_tag Icon.for_ext '.jpg' %>
 
-       <a target ="_blank" href="<%=  file_manger.attachment %>">Download file</a>
+       <a target ="_blank" href="<%=  file_manger.attachment %>"><%= t(:DOWNLOAD_FILE) %></a>
 
         </td>
     <!-- /posts/:post_id/comments/:id -->
-    <td><%= link_to 'Show', [file_manger.folder, file_manger] %></td>
+    <td><%= link_to t(:show), [file_manger.folder, file_manger] %></td>
     <!-- /posts/:post_id/comments/:id/edit -->
-    <td><%= link_to 'Edit', edit_folder_file_manger_path(file_manger.folder, file_manger)%></td>
+    <td><%= link_to t(:edit), edit_folder_file_manger_path(file_manger.folder, file_manger)%></td>
     <!-- /posts/:post_id/comments/:id -->
-    <td><%= link_to 'Destroy', [file_manger.folder, file_manger], :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to t(:destroy), [file_manger.folder, file_manger], :confirm => t(:ARE_YOU_SURE), :method => :delete %></td>
   </tr>
 <% end %>
                                                     </table>

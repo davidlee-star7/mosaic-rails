@@ -6,10 +6,9 @@
 
  <% if @survey!=nil %>
     <div id="error_explanation">
-      <h2>
-      	<% if @survey.errors.count >0 %> 
-      	<%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
-      	<% end %>
+      <% if @survey.errors.count >0 %> 
+        <h2><%= t('errors.messages.not_saved', count: @survey.errors.count, resource: t(:survey)) %></h2>
+      <% end %>
       <ul>
       <% @survey.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -23,7 +22,7 @@
    <%= hidden_field_tag(:action_type,'addSurvey')  %>
 
 	 <div class="title">
-	 	<%= label_tag(:name, 'Let`s Create Your New') %>
+	 	<%= label_tag(:name, t(:LETS_CREATE_YOUR_NEW)) %>
 	 	<span>Standard Survey</span>
 	 </div>
 
@@ -31,7 +30,7 @@
 
 	 <div class="form-row required new-survey-title">
 			<div class="control-la bel">
-				<label for="projecttitle" id="title-label">What would you like to name this Survey (Pick a good one!)</label>
+				<label for="projecttitle" id="title-label"><%= t(:What_would_you_like_to_name_this_survey_pick_a_good_one) %></label>
 			</div>
 			<div class="control-input">
 		<%=  text_field_tag(:name, @survey.name, :placeholder => 'Example:  Survey') %>					 

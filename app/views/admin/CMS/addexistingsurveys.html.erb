@@ -4,8 +4,7 @@
 
 <div class="panel-heading">
 
-	<h3 class="panel-title"><label>You are assigning Surveys to   
-	Microsite: <%= @microsite.title %> </label> </h3>
+	<h3 class="panel-title"><label>><%= t(:ASSIGNING_STH_TO_MICROSITE, name: t(:played_surveys), microsite: t(:Microsite)) %>
 </div>
 
 <div class="panel-body">
@@ -33,10 +32,10 @@
 			  'data-delimiter' => ',', :multiple => true %>
 			</div>
 			<div class="submitbtn">
-			    <%= button_tag("Save", 
+			    <%= button_tag(t(:Save), 
 			      data: { 
-			      disable_with: "Please Wait...",
-			      confirm: "Are Sure?" }, class:"msiteuser") %>
+			      disable_with: t(:PLEASE_WAIT),
+			      confirm: t(:ARE_YOU_SURE) }, class:"msiteuser") %>
 			</div>
 
 	    <% end %>	

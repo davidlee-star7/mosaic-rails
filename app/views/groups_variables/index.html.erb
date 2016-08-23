@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Groups Variables</h1>
+<h1><%= t(:LISTING_GROUPS_VARIABLES) %></h1>
 
 <table>
   <thead>
@@ -12,9 +12,9 @@
   <tbody>
     <% @group_variables.each do |group_variable| %>
       <tr>
-        <td><%= link_to 'Show', group_variable_path(group_variable.group, group_variable) %></td>
-        <td><%= link_to 'Edit', edit_group_variable_path(group_variable.group, group_variable) %></td>
-        <td><%= link_to 'Destroy', group_variable_path(group_variable.group, group_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t(:show), group_variable_path(group_variable.group, group_variable) %></td>
+        <td><%= link_to t(:edit), edit_group_variable_path(group_variable.group, group_variable) %></td>
+        <td><%= link_to t(:destroy), group_variable_path(group_variable.group, group_variable), method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Groups variable', new_group_variable_path(params[:group_id]) %>
+<%= link_to t(:NEW_GROUPS_VARIABLE), new_group_variable_path(params[:group_id]) %>

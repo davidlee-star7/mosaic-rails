@@ -12,9 +12,9 @@
   <tbody>
     <% @user_variables.each do |user_variable| %>
       <tr>
-        <td><%= link_to 'Show', ext_user_variable_path(user_variable.user, user_variable) %></td>
-        <td><%= link_to 'Edit', edit_ext_user_variable_path(user_variable.user, user_variable) %></td>
-        <td><%= link_to 'Destroy', ext_user_variable_path(user_variable.user, user_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t(:show), ext_user_variable_path(user_variable.user, user_variable) %></td>
+        <td><%= link_to t(:edit), edit_ext_user_variable_path(user_variable.user, user_variable) %></td>
+        <td><%= link_to t(:destroy), ext_user_variable_path(user_variable.user, user_variable), method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
       </tr>
     <% end %>
   </tbody>

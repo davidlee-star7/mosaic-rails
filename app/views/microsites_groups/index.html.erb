@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Microsites Groups</h1>
+<h1><%= t(:LISTING_MICROSITES_GROUPS) %></h1>
 
 <table>
   <thead>
@@ -12,9 +12,9 @@
   <tbody>
     <% @microsites_groups.each do |microsites_group| %>
       <tr>
-        <td><%= link_to 'Show', microsites_group %></td>
-        <td><%= link_to 'Edit', edit_microsites_group_path(microsites_group) %></td>
-        <td><%= link_to 'Destroy', microsites_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t(:show), microsites_group %></td>
+        <td><%= link_to t(:edit), edit_microsites_group_path(microsites_group) %></td>
+        <td><%= link_to t(:destroy), microsites_group, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Microsites group', new_microsites_group_path %>
+<%= link_to t(:NEW_MICROSITES_GROUP), new_microsites_group_path %>

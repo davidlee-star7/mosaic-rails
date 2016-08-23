@@ -3,8 +3,8 @@
       <div class="panel panel-default">
          <div class="panel-heading">
             <h3 class="panel-title trans-none"><%= t(:MANAGE_PAGES) %>
-               <span class="pull-right"><%= link_to "Back to microsite", microsites_path %></span>
-               <span class="pull-right"><%= link_to "New microsite", new_microsite_path  %></span>
+               <span class="pull-right"><%= link_to t(:BACK_TO_MICROSITE), microsites_path %></span>
+               <span class="pull-right"><%= link_to t(:NEW_MICROSITE), new_microsite_path  %></span>
             </h3>
          </div>
          <%#= @cmspage .inspect %>
@@ -25,9 +25,9 @@
                </div>
          </div>
             <div class="savebtn button">
-                <%= button_tag("Save", data: { 
-                     disable_with: "Please Wait...",
-                     confirm: "Are Sure?" }) %>
+                <%= button_tag(t(:Save), data: { 
+                     disable_with: t(:PLEASE_WAIT),
+                     confirm: t(:ARE_YOU_SURE) }) %>
             </div> -->
 
             <div class="error-blok" style="color:red">
@@ -76,7 +76,7 @@
                             </td> 
                            <td>
                               <% if current_user.can? :editpage, :admin  %> 
-                                    <%= link_to('Edit', 
+                                    <%= link_to(t(:edit), 
                                      url_for(
                                        :controller => :admin, 
                                        :action => :editpage, 
@@ -99,7 +99,7 @@
 
          <% if current_user.can? :editpage, :admin  %>&nbsp; 
                <td>   
-                  <%= link_to('Edit', url_for(:controller => :admin, :action => :editpage, :cms_page_id =>page.id , :template_id =>page.template_id )) %>
+                  <%= link_to(t(:edit), url_for(:controller => :admin, :action => :editpage, :cms_page_id =>page.id , :template_id =>page.template_id )) %>
                </td>   
          <% end %>        
       </tr>

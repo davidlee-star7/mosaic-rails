@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Qfields</h1>
+<h1><%= t(:LISTING_QFIELDS) %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Fval</th>
-      <th>Type</th>
-      <th>Section</th>
+      <th><%= t(:Fval) %></th>
+      <th><%= t(:Type) %></th>
+      <th><%= t(:Section) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,9 +18,9 @@
         <td><%= qfield.fval %></td>
         <td><%= qfield.type_id %></td>
         <td><%= qfield.section_id %></td>
-        <td><%= link_to 'Show', qfield %></td>
-        <td><%= link_to 'Edit', edit_qfield_path(qfield) %></td>
-        <td><%= link_to 'Destroy', qfield, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t(:show), qfield %></td>
+        <td><%= link_to t(:edit), edit_qfield_path(qfield) %></td>
+        <td><%= link_to t(:destroy), qfield, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Qfield', new_qfield_path %>
+<%= link_to t(:NEW_QFIELD), new_qfield_path %>

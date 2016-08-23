@@ -8,7 +8,7 @@
 </p>
 
 <p>
-  <strong>Size:</strong>
+  <strong><%= t(:Size) %>:</strong>
   <%= @file_manger.size %>
 </p>
 
@@ -19,9 +19,9 @@
  <a t
 
 <!-- /posts/:post_id/comments/:id/edit -->
-<%= link_to 'Edit', edit_folder_file_manger_path(@file_manger.folder, @file_manger) %> |
+<%= link_to t(:edit), edit_folder_file_manger_path(@file_manger.folder, @file_manger) %> |
 <!-- /posts/:post_id/comments/ -->
-<%= link_to 'Back', folder_file_mangers_path(@file_manger.folder) %>
+<%= link_to t(:Back), folder_file_mangers_path(@file_manger.folder) %>
 
 
 

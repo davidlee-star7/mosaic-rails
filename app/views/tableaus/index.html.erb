@@ -5,7 +5,7 @@
       <h3 class="panel-title trans-none">
         <%= t(:MANAGE_TABLEAU_MSG) %>
        <span class="pull-right"> 
-         <%= link_to "Back", :back %>
+         <%= link_to t(:Back), :back %>
        </span>
        <span class="right pull-right">
         <%= link_to t(:NEW_TABLEAU_DASHBOARD), new_tableau_path %>
@@ -22,16 +22,16 @@
               <thead>
                 <tr>
                   <th>id</th>
-                  <th>Short Code</th>
-                  <th>Project Title</th>
-                  <th>Project Name</th>
-                  <th>Width</th>
-                  <th>Height</th>
-                  <th>Site root</th>
-                  <th>Tabs</th>
-                  <th>Toolbar</th>
-                  <th>Ticket</th>
-                  <th>Load order</th>
+                  <th><%= t(:SHORT_CODE) %></th>
+                  <th><%= t('activerecord.attributes.tableau.project_title') %></th>
+                  <th><%= t('activerecord.attributes.tableau.project_name') %></th>
+                  <th><%= t('activerecord.attributes.tableau.width') %></th>
+                  <th><%= t('activerecord.attributes.tableau.height') %></th>
+                  <th><%= t('activerecord.attributes.tableau.site_root') %></th>
+                  <th><%= t('activerecord.attributes.tableau.tabs') %></th>
+                  <th><%= t('activerecord.attributes.tableau.toolbar') %></th>
+                  <th><%= t('activerecord.attributes.tableau.ticket') %></th>
+                  <th><%= t('activerecord.attributes.tableau.load_order') %></th>
                   <th colspan="3"></th>
                 </tr>
               </thead>
@@ -54,13 +54,13 @@
                     <td><%= link_to 'Preview', "/client/dashboard/#{tableau.id}", :target=> :_BLANK %></td>
                     <% end %>
                     <% if current_user.can? :show, :tableau  %> 
-                    <td><%= link_to 'Show', tableau %></td>
+                    <td><%= link_to t(:show), tableau %></td>
                     <% end %>
                     <% if current_user.can? :edit, :tableau  %> 
-                    <td><%= link_to 'Edit', edit_tableau_path(tableau) %></td>
+                    <td><%= link_to t(:edit), edit_tableau_path(tableau) %></td>
                     <% end %>
                     <% if current_user.can? :destroy, :tableau  %> 
-                    <td><%= link_to 'Destroy', tableau, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= link_to t(:destroy), tableau, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
                     <% end %>
                   </tr>
                 <% end %>

@@ -3,8 +3,7 @@
 <div class="panel panel-default">
 
 	<div class="panel-heading">
-		<h3 class="panel-title"><label>You are assigning Group <%= @group.name %> to   
-		Users</label> </h3>
+		<h3 class="panel-title"><label><%= t(:ASSIGNING_GROUP_TO_TARGET, group_name: @group.name, target: t(:Users)) %></label> </h3>
 	</div>
 
 	<div class="panel-body">
@@ -30,10 +29,10 @@
 				  <%= hidden_field_tag "task", "add_users_to_grop" %>
 				</div>
 				<div class="submitbtn">
-				    <%= button_tag("Save", 
+				    <%= button_tag(t(:Save), 
 				      data: { 
-				      disable_with: "Please Wait...",
-				      confirm: "Are Sure?" }, class:"msiteuser") %>
+				      disable_with: t(:PLEASE_WAIT),
+				      confirm: t(:ARE_YOU_SURE) }, class:"msiteuser") %>
 				</div>
 			<% end %>
 		</div>
@@ -48,5 +47,5 @@
 	</div>
 </div>
 </div>
- <%= link_to "back", "/groups/#{@group.id}" %>
+ <%= link_to t(:Back), "/groups/#{@group.id}" %>
 </div>	

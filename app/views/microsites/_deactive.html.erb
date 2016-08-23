@@ -5,7 +5,7 @@
 
   <% if micro.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(micro.errors.count, "error") %> prohibited this microsite from being saved:</h2>
+      <h2><%= t('errors.messages.not_saved', count: micro.errors.count, resource: t(:microsite)) %></h2>
 
       <ul>
       <% micro.errors.full_messages.each do |message| %>
@@ -23,6 +23,6 @@
     <%= f.check_box :publish %>
   </div>
   <div class="actions">
-    <%= f.submit "Save" %>
+    <%= f.submit t(:Save) %>
   </div>
 <% end %>

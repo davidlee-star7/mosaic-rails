@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= t(:NAME) %>:</strong>
   <%= @survey.name %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong><%= t(:DESCRIPTION) %>:</strong>
   <%= @survey.description %>
 </p>
 
 <p>
-  <strong>Status:</strong>
+  <strong><%= t(:STATUS) %>:</strong>
   <%= @survey.status %>
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong><%= t(:USER) %>:</strong>
   <%= @survey.user_id %>
 </p>
 
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+<%= link_to t(:edit), edit_survey_path(@survey) %> |
+<%= link_to t(:Back), surveys_path %>

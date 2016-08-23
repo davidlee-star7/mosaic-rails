@@ -7,7 +7,7 @@
          <div class="panel-heading">
             <h3 class="panel-title"><%= t(:all_user) %>
                <% if current_user.can? :addUser, :admin %>
-               <span class="pull-right"> <%= link_to 'Add User', '/admin/addUser', :class =>'addUser' %>
+               <span class="pull-right"> <%= link_to t(:adduser), '/admin/addUser', :class =>'addUser' %>
                </span>
                <% end %>
             </h3>
@@ -81,7 +81,7 @@
                            <th>Status </th>
                            <th>Role</th>
                            <th>Update </th>
-                           <th>Group</th>
+                           <th><%= t(:Group) %></th>
                            <!-- <th>Delete </th> -->
                         </tr>
                         <% @users.each do |user| %>
@@ -101,7 +101,7 @@
                            </td>
                            <td>
                               <% if current_user.can? :editUser, :admin %>        
-                              <%= link_to 'Edit', '/admin/editUser/'+user.id.to_s, :class =>'editUser', :id=> user.id
+                              <%= link_to t(:edit), '/admin/editUser/'+user.id.to_s, :class =>'editUser', :id=> user.id
                                  %>
                               <%  end %>            
                            </td>
@@ -169,7 +169,7 @@
             </div>
             <% end  %>
             <div class="form-group">
-               <label class="col-md-4 control-label">Message</label>
+               <label class="col-md-4 control-label"><%= t(:Message) %></label>
                <div class="col-md-8">
                   <%= text_area_tag 'custom_message', nil,rows: 5, class: 'form-control' %>
                </div>

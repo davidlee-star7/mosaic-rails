@@ -2,9 +2,9 @@
         <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                	<h3 class="panel-title">Edit Microsite
-                    	<span class="pull-right"><%= link_to 'Back', microsites_url %></span>
-                    	<span class="pull-right"><%= link_to 'Show', "/microsites/#{@microsite.id}" %></span>
+                	<h3 class="panel-title"><%= t(:EDIT_MICROSITE) %>
+                    	<span class="pull-right"><%= link_to t(:Back), microsites_url %></span>
+                    	<span class="pull-right"><%= link_to t(:show), "/microsites/#{@microsite.id}" %></span>
                 	</h3>
                 </div>
 					<%= render 'form' %>

@@ -7,17 +7,17 @@
             <h3 class="panel-title trans-none">
             <%= t(:MANAGE_MICROSITES) %> 
              <span class="pull-right"> 
-               <%= link_to "Back", :back %>
+               <%= link_to t(:Back), :back %>
               </span>
                 <span class="right pull-right">
-                <%= link_to 'Create new microsite', new_microsite_path %>
+                <%= link_to t(:CREATE_NEW_MICROSITE), new_microsite_path %>
                </span>
             </h3>
          </div>
 
         <% if @errors.size > 0 %>
             <div id="error_explanation">
-              <h2><%= pluralize(@errors.count, "error") %> prohibited These records from being saved:</h2>
+              <h2><%= t('errors.messages.not_saved', count: @errors.count, resource: t(:these_records)) %></h2>
               <ul>
               <% @errors.each do |message| %>
                 <li><%= message %></li>
@@ -75,42 +75,42 @@
                                     <span class="">X</span>
                                  </li>
                                  <li>
-                                    <a href="#rename-<%= microsite.id %>" class="fancybox">Rename</a>
+                                    <a href="#rename-<%= microsite.id %>" class="fancybox"><%= t(:Rename) %></a>
                                  </li>
                                  <% if current_user.username.to_s !="" && microsite.users.exists?(current_user.id)  %>
                                  <li>
                                     <a href="<%= current_user.username %>/<%= microsite.slug %>"
-                                    traget="__BLANK"  >preview</a>
+                                    traget="__BLANK">preview</a>
                                  </li>
                                  <% end %>
                                  <li>
-                                    <%= link_to "Edit", edit_microsite_path(microsite.id) %>
+                                    <%= link_to t(:edit), edit_microsite_path(microsite.id) %>
                                  </li>
                                  <li>
-                                  <%= link_to "View", microsite_path(microsite.id) %>
+                                  <%= link_to t(:View), microsite_path(microsite.id) %>
                                  </li>
                                  <li>
-                                    <a href="#changeurl-<%= microsite.id %>" class="fancybox">Change URL</a>
+                                    <a href="#changeurl-<%= microsite.id %>" class="fancybox"><%= t(:CHANGE_URL) %></a>
                                  </li>
                                  <li>
-                                    <a href="#clonemicrosite-<%= microsite.id %>" class="fancybox">Clone the microsite</a>
+                                    <a href="#clonemicrosite-<%= microsite.id %>" class="fancybox"><%= t(:CLONE_MICROSITE) %></a>
                                  </li>
                                  <li>
-                                    <a href="#changelanguage-<%= microsite.id %>" class="fancybox">Change language</a>
+                                    <a href="#changelanguage-<%= microsite.id %>" class="fancybox"><%= t(:CHANGE_LANGUAGE) %></a>
                                  </li>
                                  <li>
-                                    <a href="#assign-survey-<%= microsite.id %>" class="fancybox">Survey</a>
+                                    <a href="#assign-survey-<%= microsite.id %>" class="fancybox"><%= t(:survey) %></a>
                                  </li>
                                  <li>
-                                    <a href="/microsites/<%= microsite.id %>/newcmspage/<%= microsite.template_id.to_i > 0 ? microsite.template_id : 1 %>" class="fancybox" target="_blank">New page</a>
+                                    <a href="/microsites/<%= microsite.id %>/newcmspage/<%= microsite.template_id.to_i > 0 ? microsite.template_id : 1 %>" class="fancybox" target="_blank"><%= t(:NEW_PAGE) %></a>
                                  </li>
                                  <!-- <li><a href="/convert" class="">Convert to template</a></li> -->
                                  <li>
-                                    <a href="#deactive-<%= microsite.id %>" class="fancybox">Deactivate</a>
+                                    <a href="#deactive-<%= microsite.id %>" class="fancybox"><%= t(:Deactivate) %></a>
                                  </li>
                                  <li>
-                                  <%= link_to 'Destroy', "/microsites/#{microsite.id}", method: :delete, 
-                                      data: { confirm: 'Are you sure?' } %>
+                                  <%= link_to t(:destroy), "/microsites/#{microsite.id}", method: :delete, 
+                                      data: { confirm: t(:ARE_YOU_SURE) } %>
                                  </li>
                               </ul>
                            </span>
@@ -150,13 +150,13 @@
                         <span class="clearfix">
                          <i class="fa fa-plus-circle fa-6"></i>
                         </span>
-                        <span>Create New Microsite</span>
+                        <span><%= t(:CREATE_NEW_MICROSITE) %></span>
                     </a>
                   </li>
                </ul>
             </div>
             <div class="clearfix"></div>
-            <h3 class="clear">Unpublished</h3>
+            <h3 class="clear"><%= t(:Unpublished) %></h3>
             <div class="listing-microsite">
                <ul class="">
                   <% @microsites.each do |microsite| %>
@@ -185,12 +185,12 @@
                               <a href="#"><i class="fa fa-cog"></i></a>
                               <ul style="display:none">
                                  <li class="first"><span class="">X</span></li>
-                                 <li><a href="#rename-<%= microsite.id %>" class="fancybox">Rename</a></li>
-                                 <li><a href="#changeurl-<%= microsite.id %>" class="fancybox">Change URL</a></li>
-                                 <li><a href="#clonemicrosite-<%= microsite.id %>" class="fancybox">Clone the microsite</a></li>
-                                 <li><a href="#changelanguage-<%= microsite.id %>" class="fancybox">Change language</a></li>
+                                 <li><a href="#rename-<%= microsite.id %>" class="fancybox"><%= t(:Rename) %></a></li>
+                                 <li><a href="#changeurl-<%= microsite.id %>" class="fancybox"><%= t(:CHANGE_URL) %></a></li>
+                                 <li><a href="#clonemicrosite-<%= microsite.id %>" class="fancybox"><%= t(:CLONE_MICROSITE) %></a></li>
+                                 <li><a href="#changelanguage-<%= microsite.id %>" class="fancybox"><%= t(:CHANGE_LANGUAGE) %></a></li>
                                  <li><a href="#deactive-<%= microsite.id %>" class="fancybox">Activate</a></li>
-                                 <li><%= link_to 'Destroy', microsite, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                                 <li><%= link_to t(:destroy), microsite, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></li>
                               </ul>
                            </span>
                         </div>
@@ -222,7 +222,7 @@
             </div>
             <div class="clear-both"></div>
             <% else %>
-            <p>No microsite </p>
+            <p><%= t(:NO_MICROSITE) %></p>
             <% end %>
          </div>
       </div>

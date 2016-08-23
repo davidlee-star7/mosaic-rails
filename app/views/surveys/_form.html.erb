@@ -5,7 +5,7 @@
                                         <%= form_for @survey, html: { multipart: true, class: "form-horizontal"} do |f| %>
    <% if @survey.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+      <h2><%= t('errors.messages.not_saved', count: @survey.errors.count, resource: t(:survey)) %></h2>
 
       <ul>
       <% @survey.errors.full_messages.each do |message| %>
@@ -34,7 +34,7 @@
 
                                             <div class="form-group m-b-0">
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                           <%= f.submit 'save' , :class=> "btn btn-info waves-effect waves-light" %> 
+                                           <%= f.submit t(:Save) , :class=> "btn btn-info waves-effect waves-light" %> 
 
                                                 </div>
                                             </div>

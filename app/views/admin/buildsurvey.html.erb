@@ -13,7 +13,7 @@
 		<div class="page-controlles">
 			<ul>
 				<li>
-			<%= link_to 'Edit', '/section/'+sect.id.to_s+'/edit', 
+			<%= link_to t(:edit), '/section/'+sect.id.to_s+'/edit', 
 			:rel => 'modal:open' %>
 				</li>
 				<li>
@@ -194,7 +194,7 @@
 				:class=>'confirm-delete') %>
 		 	</li>
 		 	<li class="edit">
-				<%= link_to('Edit',
+				<%= link_to(t(:edit),
 				'/question/'+q.id.to_s+'/edit/'+sect.survey_id.to_s, 
 				:class=>'edit_question question_modal',
 				'data-questionid' =>q.id,

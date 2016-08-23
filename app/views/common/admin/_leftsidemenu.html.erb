@@ -19,14 +19,14 @@
            <ul class="sub-1 has_sub">
             <% if current_user.can? :newclient, :admin  %>  
             <li>
-              <%= link_to "New Client", url_for(:controller => 'admin', 
+              <%= link_to t(:NEW_CLIENT), url_for(:controller => 'admin', 
                :action => 'newclient') %>
             </li>
             <% end %>
 
             <% if current_user.can? :listClients, :admin  %>  
             <li>
-              <%= link_to "Manage Clients", url_for(:controller => 'admin', 
+              <%= link_to t(:MANAGE_CLIENTS), url_for(:controller => 'admin', 
                :action => 'listClients') %>
             </li>
             <% end %>
@@ -36,16 +36,16 @@
         <% if current_user.can? :index, :microsite  %> 
         <li class="has_sub">
           <%= link_to '/microsites', :class => 'button white' do %>
-          <i class="fa fa-list-alt"></i><span> <%= t("Microsites") %></span>
+          <i class="fa fa-list-alt"></i><span> <%= t(:Microsites) %></span>
         <% end %>
           <span class="pull-right has-sub"><i class="md md-add"></i></span>
           <ul class="list-unstyled ub-1 has_sub">
             <li>
-              <%= link_to "New Microsite", url_for(:controller => 'microsites', 
+              <%= link_to t(:NEW_MICROSITE), url_for(:controller => 'microsites', 
                :action => 'new') %>
             </li>
             <li>
-              <%= link_to "Manage Microsites", url_for(:controller => 'microsites', 
+              <%= link_to t(:MANAGE_MICROSITES), url_for(:controller => 'microsites', 
                :action => 'index') %>
             </li>
           </ul>

@@ -1,12 +1,12 @@
 <div class="edit-role">
-	<div class="title">Edit Role</div>
+	<div class="title"><%= t(:editrole) %></div>
 	<ul class="manage">
 		<%= form_for(@role, as: 'Role', 
 		url: '/admin/'+@role.id.to_s+'/updaterole') do |f| %>
 
 		<li><%= f.label :name %></li>
 		<li> <%= f.text_field :name, autofocus: true %></li>
-		<li class="submit"><%= f.submit "Save" %></li>
+		<li class="submit"><%= f.submit t(:Save) %></li>
 		 
 
 		<% end %>

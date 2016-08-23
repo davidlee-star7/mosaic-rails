@@ -72,13 +72,13 @@ class User < ActiveRecord::Base
 
 def self.user_fields(current_user)
       user_fields = { 
-      'first_name' => 'First Name',
-      'last_name' => 'Last Name',
-      'display_name' => 'Display Name',
-      'username' => 'User Name',
-      'email' => 'Email',
-      'status' => 'Status',
-      'tableau_user_id' => 'Tableau Username'
+      'first_name' => I18n.translate(:FIRST_NAME),
+      'last_name' => I18n.translate(:LAST_NAME),
+      'display_name' => I18n.translate(:DISPLAY_NAME),
+      'username' => I18n.translate(:USER_NAME),
+      'email' => I18n.translate(:Email),
+      'status' => I18n.translate(:STATUS),
+      'tableau_user_id' => I18n.translate(:TABLEAU_USERNAME)
        }
 
        user = nil
@@ -88,12 +88,12 @@ def self.user_fields(current_user)
 
        if user!=nil
             if current_user.can? :create_admin, User
-             user_fields['admin'] = 'Admin'
+             user_fields['admin'] = I18n.translate(:Admin)
             end
        end
 
-       user_fields['role'] = 'User Role'
-       user_fields['password'] = 'Password'
+       user_fields['role'] = I18n.translate(:USER_ROLE)
+       user_fields['password'] = I18n.translate(:Password)
 
       return user_fields
 end  

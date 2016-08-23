@@ -7,7 +7,7 @@
 
                                  <% if @file_manger.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@file_manger.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <h2><%= t('errors.messages.not_saved', count: @file_manger.errors.count, resource: t(:comment)) %></h2>
 
       <ul>
       <% @file_manger.errors.full_messages.each do |msg| %>
@@ -34,7 +34,7 @@
 
                                             <div class="form-group m-b-0">
                                                 <div class="col-sm-offset-3 col-sm-9">
-                                           <%= f.submit 'save' , :class=> "btn btn-info waves-effect waves-light" %> 
+                                           <%= f.submit t(:Save) , :class=> "btn btn-info waves-effect waves-light" %> 
 
                                                 </div>
                                             </div>

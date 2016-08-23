@@ -1,8 +1,7 @@
 <div class="microsite-wrapper">
 
 	<div class="clent-section">
-	<label>Your are assigning Mirosites to The 
-	client: <%= @client.name %>  </label>
+	<label><%= t(:YOU_ARE_ASSIGNING_MICROSITES_TO) %>: <%= @client.name %>  </label>
 	</div>
 	<div class="form-wrapper">
 		<%= form_for(@client, :url=>"/client/#{@client.id}") do |f| %>	
@@ -13,14 +12,14 @@
 			  'data-delimiter' => ',', :multiple => true %>
 			</div>
 			<div class="submitbtn">
-			    <%= button_tag("Save", 
+			    <%= button_tag(t(:Save), 
 			      data: { 
-			      disable_with: "Please Wait...",
-			      confirm: "Are Sure?" }, class:"msiteuser") %>
+			      disable_with: t(:PLEASE_WAIT),
+			      confirm: t(:ARE_YOU_SURE) }, class:"msiteuser") %>
 			</div>
 		<% end %>
 	</div>
-	<label>Following Microsites exists in the system</label>
+	<label><%= t(:FOLLOWING_MICROSITES_EXISTS_IN_THE_SYSTEM) %></label>
 	<ul>
 		<% @microsites.each do |m| %>
 		<li><%= m.title %></li>

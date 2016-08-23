@@ -61,7 +61,7 @@
 		
 <% if user_signed_in? %>
 <% if current_user.can? :editpage, :admin  %>
-<%= link_to "Edit", "/admin/editpage/#{@cmspage.id}", :target => "_BLANK"  %>
+<%= link_to t(:Edit), "/admin/editpage/#{@cmspage.id}", :target => "_BLANK"  %>
 <% end %> 
 <% end %>	 
 </div>

@@ -4,7 +4,7 @@
 	 <% allmicrosites.each do |microsite| %>
 	 <li><%= link_to microsite.title, microsite %></li>
 	 <% end %>
-	 <li><%= link_to 'New Microsite', new_microsite_path %></li>
+	 <li><%= link_to t(:NEW_MICROSITE), new_microsite_path %></li>
 </ul>
 </li>
 <% if current_user.can? :listUsers, :admin  %>	

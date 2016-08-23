@@ -29,10 +29,10 @@
                     <td><%= index + 1 %></td>
                     <td><%= tableau_user.username %></td>
                     <% # if current_user.can? :edit, :tableau_user  %> 
-                    <td><%= link_to 'Edit', edit_tableau_user_path(tableau_user) %></td>
+                    <td><%= link_to t(:edit), edit_tableau_user_path(tableau_user) %></td>
                     <% # end %>
                     <% # if current_user.can? :destroy, :tableau_user  %> 
-                    <td><%= link_to 'Delete', tableau_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= link_to 'Delete', tableau_user, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
                     <% # end %>
                   </tr>
                   <% end %>

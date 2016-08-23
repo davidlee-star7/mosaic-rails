@@ -1,7 +1,7 @@
 <%= form_for(@microsites_group) do |f| %>
   <% if @microsites_group.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@microsites_group.errors.count, "error") %> prohibited this microsites_group from being saved:</h2>
+      <h2><%= t('errors.messages.not_saved', count: @microsites_group.errors.count, resource: t(:microsites_group)) %></h2>
 
       <ul>
       <% @microsites_group.errors.full_messages.each do |message| %>

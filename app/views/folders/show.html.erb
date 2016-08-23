@@ -10,7 +10,7 @@
 
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= t(:NAME) %>:</strong>
   <%= @folder.name %>
 </p>
 
@@ -18,8 +18,8 @@
 
  <!-- /posts/:post_id/comments/ -->
 <%= link_to 'Files', folder_file_mangers_path(@folder) %> |
-<%= link_to 'Edit', edit_folder_path(@folder) %> |
-<%= link_to 'Back', folders_path %>
+<%= link_to t(:edit), edit_folder_path(@folder) %> |
+<%= link_to t(:Back), folders_path %>
 
                             </div> <!-- col -->
                         </div> <!-- End row -->
@@ -34,7 +34,7 @@
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Listing Files Of '<%= @folder.name %>' Folder</h3>
+                                        <h3 class="panel-title"><%= t(:LISTING_FILES_OF_FOLDER, folder_name: @folder.name) %></h3>
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
@@ -44,9 +44,9 @@
                                                 <div class="table-responsive">
                                                     <table class="table">
  <tr>
-    <th>Name</th>
-      <th>Size</th>
-      <th>Attachment</th>
+    <th><%= t(:NAME) %></th>
+      <th><%= t(:Size) %></th>
+      <th><%= t(:Attachment) %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -63,22 +63,22 @@
         <td> <%= image_tag Icon.for_filename(file_manger.name) %>
 <%#= image_tag Icon.for_ext '.jpg' %>
 
-       <a target ="_blank" href="<%=  file_manger.attachment %>">Download file</a>
+       <a target ="_blank" href="<%=  file_manger.attachment %>"><%= t(:DOWNLOAD_FILE) %></a>
 
         </td>
     <!-- /posts/:post_id/comments/:id -->
-    <td><%= link_to 'Show', [file_manger.folder, file_manger] %></td>
+    <td><%= link_to t(:show), [file_manger.folder, file_manger] %></td>
     <!-- /posts/:post_id/comments/:id/edit -->
-    <td><%= link_to 'Edit', edit_folder_file_manger_path(file_manger.folder, file_manger)%></td>
+    <td><%= link_to t(:edit), edit_folder_file_manger_path(file_manger.folder, file_manger)%></td>
     <!-- /posts/:post_id/comments/:id -->
-    <td><%= link_to 'Destroy', [file_manger.folder, file_manger], :confirm => "Are you sure? All files in this folder will be deleted and once deleted can't be recoverd", :method => :delete %></td>
+    <td><%= link_to t(:destroy), [file_manger.folder, file_manger], :confirm => t(:FOLDER_DELETE_CONFIRM), :method => :delete %></td>
   </tr>
 <% end %>
                                                     </table>
                                                 </div>
                                             </div>
 <%#= link_to('New File',file_mangers_new_file_path, rel: "modal:open") %>
-<%= link_to('New File', file_mangers_new_file_path ,  :class =>"fancyajax") %>
+<%= link_to(t(:NEW_FILE), file_mangers_new_file_path ,  :class =>"fancyajax") %>
 
                                         </div>
                                     </div>

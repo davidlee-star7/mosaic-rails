@@ -33,10 +33,10 @@
                     <td><%= variable.name %></td>
                     <td><%= variable.vtype %></td>
                     <% # if current_user.can? :edit, :variable  %> 
-                    <td><%= link_to 'Edit', edit_variable_path(variable) %></td>
+                    <td><%= link_to t(:edit), edit_variable_path(variable) %></td>
                     <% # end %>
                     <% # if current_user.can? :destroy, :variable  %> 
-                    <td><%= link_to 'Delete', variable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= link_to 'Delete', variable, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
                     <% # end %>
                   </tr>
                   <% end %>

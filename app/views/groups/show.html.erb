@@ -4,7 +4,7 @@
   <div class="col-sm-12">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Group Info</h3>
+        <h3 class="panel-title"><%= t(:GROUP_INFO) %></h3>
       </div>
       <div class="panel-body">
         <p id="notice"><%= notice %></p>
@@ -16,7 +16,7 @@
           <strong><%= t("DESCRIPTION") %>:</strong>
           <%= @group.description %>
         </p>
-        <p><%= link_to 'Edit', edit_group_path(@group), class: 'group-grey-button' %></p>
+        <p><%= link_to t(:edit), edit_group_path(@group), class: 'group-grey-button' %></p>
       </div>
 
       <div class="panel-heading">
@@ -83,8 +83,8 @@
                   <div class="submitbtn">
                       <%= button_tag("Add Users to Group", 
                         data: { 
-                        disable_with: "Please Wait...",
-                        confirm: "Are Sure?" }, class:"group-black-button") %>
+                        disable_with: t(:PLEASE_WAIT),
+                        confirm: t(:ARE_YOU_SURE) }, class:"group-black-button") %>
                   </div>
                 </div>
               </div>
@@ -147,10 +147,10 @@
                     <td><%= group_variable.variable.identifier %></td>
                     <td><%= group_variable.value %></td>
                     <% # if current_user.can? :edit, :group_variables  %> 
-                    <td><%= link_to 'Edit', edit_group_variable_path(group_variable.group, group_variable) %></td>
+                    <td><%= link_to t(:edit), edit_group_variable_path(group_variable.group, group_variable) %></td>
                     <% # end %>
                     <% # if current_user.can? :destroy, :group_variables  %> 
-                    <td><%= link_to 'Delete', group_variable_path(group_variable.group, group_variable), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= link_to 'Delete', group_variable_path(group_variable.group, group_variable), method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
                     <% # end %>
                   </tr>
                   <% end %>
@@ -273,10 +273,10 @@
      </div>
     <!-- panel -->
     <% if current_user.can? :edit, :group %>
-    <%= link_to 'Edit', edit_group_path(@group) %>
+    <%= link_to t(:edit), edit_group_path(@group) %>
     <% end %> |
     <% if current_user.can? :index, :group %>
-    <%= link_to 'Back', groups_path %>
+    <%= link_to t(:Back), groups_path %>
     <% end %>
   </div> <!-- col -->
 </div> <!-- End row -->

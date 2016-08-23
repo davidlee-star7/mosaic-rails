@@ -4,7 +4,7 @@
                                     <div class="panel-heading">
                                         <h3 class="panel-title"><%= t(:MANAGE_FOLDERS) %> 
                                             <span class="pull-right"> 
-                                             <%= link_to "Back", :back %>
+                                             <%= link_to t(:Back), :back %>
                                             </span>
                                         </h3>
                                     </div>
@@ -33,8 +33,8 @@
                                                             <% end %>
                                                             </td>
                                                         <td></td>
-                                                        <td><%= link_to 'Edit', edit_folder_path(folder) %></td>
-                                                        <td><%= link_to 'Destroy', folder, method: :delete, data: { confirm: "Are you sure? All files in this folder will be deleted and once deleted can't be recoverd" } %></td>
+                                                        <td><%= link_to t(:edit), edit_folder_path(folder) %></td>
+                                                        <td><%= link_to t(:destroy), folder, method: :delete, data: { confirm: "Are you sure? All files in this folder will be deleted and once deleted can't be recoverd" } %></td>
                                                       </tr>
                                                     <% end %>
                                                   </tbody>

@@ -5,16 +5,16 @@
 <%#= @microsite.inspect %>
 
 <div class="panel-heading">
-<h3 class="panel-title"><%= t("View Microsite") %>
+<h3 class="panel-title"><%= t(:VIEW_MICROSITE) %>
  <% if @microsite.client_id != nil %>
         <span class="right pull-right">
         <%= link_to 'Go To Client Page',  "/client/#{@microsite.client_id}"  %>
        </span>
  <% else %>
-  <span class="pull-right"><%= link_to 'Back', microsites_url %></span>      
+  <span class="pull-right"><%= link_to t(:Back), microsites_url %></span>      
  <% end %>
   <span class="pull-right">
-    <%= link_to 'Edit', edit_microsite_path(@microsite.id) %>
+    <%= link_to t(:edit), edit_microsite_path(@microsite.id) %>
   </span>
 
 </h3>

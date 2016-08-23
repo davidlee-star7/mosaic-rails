@@ -68,7 +68,6 @@ zh-CN:
   permission_saved_successfully: '权限保存成功'
 
   ## add survey
-  prohibited_this_survey_from_being_saved: '你要什么来命名这种调查（挑好一个！ ）'
   thank_page_title: '谢谢页面标题'
   page_example_title: '实例：我的测试页'
   thanks_page_description: '谢谢页面描述'
@@ -93,3 +92,285 @@ zh-CN:
   Microsites: '微型网站'
   Folders: '文件夹'
   Files: '档'
+
+  CLIENT_INFO: 'Client Info'
+  ALL_GROUP_OF_THIS_CLIENT: 'Al Group of this Client'
+  NAME: 'Name'
+  DESCRIPTION: 'Description'
+  SHOW: 'Show'
+  EDIT: 'Edit'
+  DESTROY: 'Destroy'
+  ARE_YOU_SURE: 'Are you sure?'
+  ADD_NEW_GROUP: 'Add New Group'
+  ALL_SURVEY_OF_THIS_CLIENT: 'Al Survey of this Client'
+  STATUS: 'Status'
+  ASSIGN_TO_MICROSITE: 'Assign to Microsite'
+  USER: 'User'
+  MANAGE: 'Manage'
+  ALL_MICROSITE_OF_THIS_CLIENT: 'All Microsites of this Client'
+  ADD_EXISTING_MICROSITES: 'Add Existing microsites'
+  UNPUBLISH: 'Unpublished'
+  PUBLISHED: Published
+  COPY_RIGHT_MSG: '© 2016 Mosaic Sustainability. All rights reserved'
+  SURVEY_OF_THIS_CLIENT: 'Surveys Of This Client'
+  CMS_PAGES_OF_THIS_MICROSITE: 'CMS Pages Of this microsite'
+  SELECT_THE_GROUPS_FOR_THIS_MICROSITE: 'Select the Groups For this microsite'
+  ASSIGN_CMS_PAGE_MSG: 'Following CMS PAges are avaliable assign to microsite'
+  SEARCH_CMS_PAGE_FOR_MICROSITE: 'Search the Pages Assign to Microsite'
+  UNLINK: 'Remove'
+  SURVEYS_OF_THIS_MICROSITE: 'Surveys Of this microsite'
+  SEARCH_SURVEY_FOR_MICROSITE: 'Search Survey for this microsite'
+  SURVEY_LIST_TO_ASSIGN: 'Survey List assign to microsite'
+  MICROSITES_OF_THIS_GROUP: 'Microsites this Group has access to'
+  ADD_EXISTING_MICROSITES_IN_THIS_GROUP: 'Add Existing Microsites in this group'
+  SEARCH_MICROSITE_ASSIGN_TO_GROUP: 'Search Microsites assign to group'
+  ASSIGN_GROUP_TO_MICROSITE_MSG: 'Following Microsites are avaliable to assign this group'
+  AL_USERS_OF_THIS_GROUP: 'Users in this Group'
+  FIRST_NAME: 'First Name'
+  LAST_NAME: 'Last Name'
+  SURVEYS_OF_THIS_GROUP: 'Surveys this Group has access to'
+  ADD_EXISTING_SURVEYS_IN_THIS_GROUP: 'Add Existing Surveys In this Group'
+  ASSIGN_GROUP_TO_SURVEY_MSG: 'Following Surveys are avaliable to assign this group'
+  SEARCH_SURVEY_ASSIGN_TO_GROUP: 'Search Surveys Assign to Group'
+  LISTING_SURVEYS_OF: Listing Surveys of
+  CMSPAGES: 'Pages'
+  ADD_EXISTING_USERS: 'Add Existing Users in this Group'
+  IMPORT_MORE_USERS_IN_GROUP: 'Import More Users in this Group'
+  ASSIGN_GROUP_TO_USERS_MSG: 'Following Users are avaliable, assign to Group'
+  CREATE_NEW_OBJECT_LABEL: 'Give the suitable name to extra field, Ex.: Left Column.'
+  SURVEYS: Surveys
+  WELCOME_MSG: Welcome to your dashboard
+  MANAGE_TABLEAU_MSG: Manage Tableau Dashboards
+  MANAGE_CLIENTS: Manage Clients
+  MANAGE_TEMPLATES: Manage templates
+  MANAGE_PAGES: Manage pages
+  MANAGE_USERS: Manage users
+  MANAGE_GROUPS: Manage groups
+  MANAGE_FILES: Manage files
+  MANAGE_FOLDERS: Manage folders
+  NEW_FOLDER: New Folder
+  EDIT_FOLDER: Editing Folder
+  MANAGE_MICROSITES: Manage Microsites
+  TABLEAU_DASHBOARD: Tableau Dashboards
+  NEW_TABLEAU_DASHBOARD: New Tableau Dashboard
+  EDIT_TABLEAU_DASHBOARD: Editing Tableau Dashboard
+  What_would_you_like_to_name_this_survey_pick_a_good_one: What would you like to name this Survey (Pick a good one!)
+  PLEASE_SELECT_USER_GROUP_FOR_INVITATION: Please select group of user to send invitation
+  IMPORT_USERS: Import Users
+  INVITE_NEW_USERS: Invite New User(s)
+  EMAIL_ADDRESSES: Email Addresses
+  SELECT_ROLE: Select Role
+  ALERT_SELECT_USER_ROLE: Please select the user Role
+  ALERT_SELECT_AT_LEAST_ONE_USER: Please select at least one user
+  CONFIRM_ROLE_REPLACE: 'Please Note: This process will remove all existing Roles and add the selected Role only, Really Go?'
+
+  SIGN_IN_TO_CONTINUE: Please sign in to continue
+  Save: Save
+  user: user
+  DISPLAY_NAME: Display Name
+  USER_NAME: User Name
+  Email: Email
+  USER_ROLE: User Role
+  Password: Password
+  Admin: Admin
+  Client: Client
+  Page: Page
+  extra_field: extra field
+  comment: comment
+  folder: folder
+  group: group
+  microsite: microsite
+  these_records: these records
+  microsites_group: microsites group
+  pages_group: pages group
+  played_survey: playedsurvey
+  qfield: qfield
+  survey_group: survey group
+  tableau: tableau
+  user_variable: user variable
+  NEW_CLIENT: New Client
+  NEW_MICROSITE: New Microsite
+  BACK_TO_MICROSITE: Back to Microsite
+  NEW_MICROSITES_GROUP: New Microsites Group
+  EDIT_MICROSITES_GROUP: Editing Microsites Group
+  BACK_TO_USERS: Back to Users
+  Saving: Saving
+  MANAGE_ACCESS: Manage Access
+  Back: Back
+  STANDARD_SURVEY: Standard Survey
+  CREATE_SURVEY: Create Survey
+  LETS_CREATE_YOUR_NEW: Let's Create Your New
+  PLEASE_WAIT: Please Wait...
+  ARE_YOU_SURE: Are you sure?
+  ADD_NEW_SURVEY: Add New Survey
+  NEW_SURVEY: New Survey
+  EDIT_SURVEY: Edit Survey
+  FOLLOWING_MICROSITES_EXISTS_IN_THE_SYSTEM: Following Microsites exists in the system
+  YOU_ARE_ASSIGNING_MICROSITES_TO: Your are assigning Mirosites to the client
+  SELECT_SURVEY_YOU_WANT_TO_SEND: Select survey you want to send
+  SELECT_USER_GROUP: Select user group
+  SEND_INVITATION: Send Invitation
+  ALERT_SELECT_GROUP_TO_SEND_SURVEY_LINK: You must have to select at least one group to send survey link
+  Administrator: Administrator
+  All: All
+  EDIT_CLIENT: Edit Client
+  LISTING_QFIELDS: Listing Qfields
+  NEW_QFIELD: New Qfield
+  EDIT_QFIELD: Edit Qfield
+  Section: Section
+  Option: Option
+  Fval: Fval
+  LISTING_SURVEYS: Listing Surveys
+  PLAYED_SURVEY: Played Survey
+  NEW_PLAYED_SURVEY: New Played Survey
+  LISTING_PLAYED_SURVEYS: Listing Played Surveys
+  NEW_PAGES_GROUP: New Pages group
+  LISTING_PAGES_GROUP: Listing Pages Groups
+  LISTING_MICROSITES_GROUPS: Listing Microsites Groups
+  NEW_MICROSITES_GROUP: New Microsites group
+  NO_MICROSITE: No microsite
+  Unpublished: Unpublished
+  CREATE_NEW_MICROSITE: Create New Microsite
+  EDIT_MICROSITE: Edit Microsite
+  VIEW_MICROSITE: View Microsite
+  COMPANY_NAME: Company Name
+  Logo: Logo
+  CLONE_MICROSITE: Clone the microsite
+  CHANGE_URL: Change URL
+  Rename: Rename
+  LISTING_GROUPS_VARIABLES: Listing Groups Variables
+  NEW_GROUPS_VARIABLE: New Groups variable
+  LISTING_EXTRA_FIELDS: Listing Extra Fields
+  CMS_PAGE: Cms page
+  FIELD_NAME: Field name
+  FIELD_VALUE: Field value
+  FIELD_SETTING: Field setting
+  NEW_EXTRA_FIELD: New Extra field
+  CHANGE_LANGUAGE: Change language
+  NEW_PAGE: New page
+  Deactivate: Deactivate
+  View: View
+  Size: Size
+  Action: Action
+  LIST_ROLES: List Roles
+  Attachment: Attachment
+  DOWNLOAD_FILE: Download file
+  ASSIGNING_GROUP_TO_TARGET: You are assigning Group %{group_name} to %{target}
+  ASSIGNING_STH_TO_MICROSITE: "You are assigning %{name} to Microsite: %{microsite}"
+  Group: Group
+  EDIT_GROUP: Edit Group
+  DELETE_GROUP: Delete Group
+  BACK_TO_GROUPS : Back to Groups
+  GROUP_INFO: Group Info
+  Users: Users
+  CMS_PAGES: CMS Pages
+  FOLLOWING_CANT_BE_ADDED: Following Records can't be added due to shown errors
+  Upload: Upload
+  UPLOAD_USERS: Upload Users
+  Unassign: Unassign
+  ASSIGN_SURVEY_TO: Assign survey to
+  PLEASE_SELECT_SURVEY: Please select survey...
+  PLEASE_ENTER_A_NEW_URL: Please enter a new URL
+  PLEASE_ENTER_A_NEW_NAME: Please enter a new name
+  PAGE_NOT_FOUND: Page Not Found!
+  MICROSITE_UNPUBLISHED: Microsite unpublished
+  Message: Message
+  NEW_SURVEY_GROUP: New Survey group
+  EDIT_SURVEY_GROUP: Edit Survey Group
+  LISTING_SURVEY_GROUPS: Listing Survey Groups
+  MANAGE_SURVEY: Manage Survey
+  NEW_PLAYED_SURVEY: New Played Survey
+  EDIT_PLAYED_SURVEY: Editing Played Survey
+  SELECT_GROUP_ASSIGN_SURVEY: Select the Groups, assign to Survey
+  NEW_PAGES_GROUP: New Pages Group
+  EDIT_PAGES_GROUP: Editing Pages Group
+  Response: Response
+  DATE_UPDATED: Date Updated
+  LISTING_FILES_OF_FOLDER: Listing Files Of %{folder_name} Folder
+  FOLDER_DELETE_CONFIRM: Are you sure? All files in this folder will be deleted and once deleted can't be recoverd
+  NEW_FILE: New File
+  
+  VARIABLES: Variables
+  MANAGE_VARIABLES: Manage variables
+  NEW_VARIABLE: New Variable
+  EDIT_VARIABLE: Edit Variable
+  VARIABLE_NAME: Variable name
+  VARIABLE_TYPE: Variable type
+  VARIABLE_ID: Variable ID
+  VARIABLE_VALUE: Variable value
+  NO_VARIABLES_DEFINED: No variables defined.
+  PROHIBITED_SAVING_VARIABLE: prohibited this variable from being saved
+  VARIABLE_CREATE_SUCCESS: 'Variable was successfully created.'
+  VARIABLE_UPDATE_SUCCESS: 'Variable was successfully updated.'
+
+  SHORT_CODE: Short Code
+  TYPE: Types
+  VALUE: Value
+
+  ADD_VARIABLES_FOR_THIS_GROUP: Add Variables for this group
+  ADD_GROUP_VARIABLE: Add Group Variable
+  EDIT_GROUP_VARIABLE: Edit Group Variable
+  group_variable: group variable
+
+  VARIABLE_VALUE_NOT_ASSIGNED: 'Value not assigned'
+
+  ADD_VARIABLES_FOR_THIS_USER: Add Variables for this user
+  ADD_USER_VARIABLE: Add User Variable
+  EDIT_USER_VARIABLE: Edit User Variable
+
+  TABLEAU_USERNAMES: Tableau Usernames
+  TABLEAU_USERNAME: Tableau Username
+  MANAGE_TABLEAU_USERNAMES: Manage Tableau Usernames
+  NEW_TABLEAU_USERNAME: New Tableau username
+  EDIT_TABLEAU_USERNAME: Edit Tableau username
+  VIEW_TABLEAU_PROJECT: View Tableau Project
+  PROHIBITED_SAVING_TABLEAU_USERNAME: prohibited this tableau user from being saved
+  TABLEAU_USER_CREATE_SUCCESS: Tableau user was successfully created.
+  TABLEAU_USER_UPDATE_SUCCESS: Tableau user was successfully updated.
+
+  FOLLOWING_RECORDS_IMPORT_SUCCESS: Following Records are imported successfully
+  FOLLOWING_RECORDS_IMPORT_FAIL: Following Records can't be imported due to shown errors
+
+  activerecord:
+    attributes:
+      group:
+        name: Name
+        description: Description
+        default_language: Default Language
+      groups_variable:
+        value_text: Text Value
+        value_file: File Value
+        value_image: Image Value
+      user:
+        first_name: First Name
+        last_name: Last Name
+        display_name: Display Name
+        username: Username
+        email: Email
+        password: Password
+        status: Status
+        admin: Admin
+        roles: Roles
+        groups: Groups
+      tableau:
+        project_title: Project Title
+        project_name: Project Name
+        width: Width
+        height: Height
+        site_root: Site Root
+        tabs: Tabs
+        toolbar: Toolbar
+        ticket: Ticket
+        load_order: Load Order
+      tableau_user:
+        username: Username
+      users_variable:
+        value_text: Text Value
+        value_file: File Value
+        value_image: Image Value
+      role:
+        name: Name
+      variable:
+        name: Name
+        vtype: Variable Type
+        identifier: Identifier

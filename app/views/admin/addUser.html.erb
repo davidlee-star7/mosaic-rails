@@ -3,8 +3,8 @@
 <div class="panel panel-default">
    <div class="panel-heading">
       <h3 class="panel-title">
-      Add User
-         <span class="pull-right"> <%= link_to 'back to users', '/admin/users', :class =>'addUser' %>
+         <%= t(:adduser) %>
+         <span class="pull-right"> <%= link_to t(:BACK_TO_USERS), '/admin/users', :class =>'addUser' %>
          </span>
       </h3>
    </div>
@@ -13,7 +13,7 @@
 
       <% if @user.errors.any? %>
    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= t('errors.messages.not_saved', count: @user.errors.count, resource: t(:user)) %></h2>
       <ul>
          <% @user.errors.full_messages.each do |message| %>
          <li><%= message %></li>
@@ -140,7 +140,7 @@
 
    <div class="form-group m-b-0">
       <div class="col-sm-offset-2 col-sm-10">
-         <%= f.submit 'save' , :class=> "btn btn-info waves-effect waves-light", :data => { :disable_with => "Saving" }  %> 
+         <%= f.submit t(:Save) , :class=> "btn btn-info waves-effect waves-light", :data => { :disable_with => t(:Saving) }  %> 
       </div>
    </div>
 

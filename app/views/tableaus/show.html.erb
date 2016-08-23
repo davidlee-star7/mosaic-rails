@@ -3,12 +3,12 @@
       <div class="panel panel-default">
          <div class="panel-heading">
             <h3 class="panel-title">
-            View Tableau Project
+            <%= t(:VIEW_TABLEAU_PROJECT) %>
              <span class="pull-right"> 
-               <%= link_to "Back", :back %>
+               <%= link_to t(:Back), :back %>
               </span>
                 <span class="right pull-right">
-                <%= link_to 'Edit', edit_tableau_path(@tableau) %>
+                <%= link_to t(:edit), edit_tableau_path(@tableau) %>
                </span>
             </h3>
          </div>     
@@ -20,48 +20,48 @@
                 <p id="notice"><%= notice %></p>
 
                 <p>
-                  <strong>Project Title:</strong>
+                  <strong><%= t('activerecord.attributes.tableau.project_title') %>:</strong>
                   <%= @tableau.project_title %>
                 </p>
 
 
                 <p>
-                  <strong>Project Name:</strong>
+                  <strong><%= t('activerecord.attributes.tableau.project_name') %>:</strong>
                   <%= @tableau.project_name %>
                 </p>
 
                 <p>
-                  <strong>Width:</strong>
+                  <strong><%= t('activerecord.attributes.tableau.width') %>:</strong>
                   <%= @tableau.width %>
                 </p>
 
                 <p>
-                  <strong>Height:</strong>
+                  <strong><%= t('activerecord.attributes.tableau.height') %>:</strong>
                   <%= @tableau.height %>
                 </p>
 
                 <p>
-                  <strong>Site root:</strong>
+                  <strong><%= t('activerecord.attributes.tableau.site_root') %>:</strong>
                   <%= @tableau.site_root %>
                 </p>
 
                 <p>
-                  <strong>Tabs:</strong>
+                  <strong><%= t('activerecord.attributes.tableau.tabs') %>:</strong>
                   <%= @tableau.tabs %>
                 </p>
 
                 <p>
-                  <strong>Toolbar:</strong>
+                  <strong><%= t('activerecord.attributes.tableau.toolbar') %>:</strong>
                   <%= @tableau.toolbar %>
                 </p>
 
                 <p>
-                  <strong>Ticket:</strong>
+                  <strong><%= t('activerecord.attributes.tableau.ticket') %>:</strong>
                   <%= @tableau.ticket %>
                 </p>
 
                 <p>
-                  <strong>Load order:</strong>
+                  <strong><%= t('activerecord.attributes.tableau.load_order') %>:</strong>
                   <%= @tableau.load_order %>
                 </p>
 

@@ -1,7 +1,7 @@
 <%= form_for(@qfield) do |f| %>
   <% if @qfield.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@qfield.errors.count, "error") %> prohibited this qfield from being saved:</h2>
+      <h2><%= t('errors.messages.not_saved', count: @qfield.errors.count, resource: t(:qfield)) %></h2>
 
       <ul>
       <% @qfield.errors.full_messages.each do |message| %>

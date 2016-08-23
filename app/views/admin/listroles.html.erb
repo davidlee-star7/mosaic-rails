@@ -3,7 +3,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
-                                        	List Roles
+                                        	<%= t(:LIST_ROLES) %>
                                     </h3>
                                     </div>
                                     <div class="panel-body">
@@ -12,8 +12,8 @@
 	<table width="100%" class="table">
 		<tr>
 			<th>S.No.</th>
-			<th>Name</th>
-			<th>Action<th>
+			<th><%= t(:NAME) %></th>
+			<th><%= t(:Action) %><th>
 		</tr>
 		<% @roles.each_with_index do |role,i| i = i+1 %>
 		<tr>
@@ -21,7 +21,7 @@
 			<td align="center">
 				<%= link_to t(role.name.downcase), '/admin/listRoleCapability/'+current_user.id.to_s+'/'+role.id.to_s %>
 			</td>
-			<td><%= link_to('Edit','/admin/editrole/'+current_user.id.to_s+'/'+role.id.to_s, :rel => 'modal:open')  %></td>
+			<td><%= link_to(t(:edit),'/admin/editrole/'+current_user.id.to_s+'/'+role.id.to_s, :rel => 'modal:open')  %></td>
 		</tr>
 		<% end %>
 	</table>

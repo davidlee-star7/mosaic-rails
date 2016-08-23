@@ -6,9 +6,9 @@
             <%= hidden_field_tag("authenticity_token",form_authenticity_token) %>
             <%#= params.inspect %>
             <div class="panel-heading">
-               <h3 class="panel-title trans-none">Manage Survey
+               <h3 class="panel-title trans-none"><%= t(:MANAGE_SURVEY) %>
                 <span class="pull-right"> 
-               <%= link_to "Back", :back %>
+               <%= link_to t(:Back), :back %>
                </span>
                <span class="pull-right"> 
                   <li>
@@ -21,7 +21,7 @@
                   
             </div>
             <div class="assigntogroup">
-               <div class="group-survey-left">Select the Groups, assign to Survey
+               <div class="group-survey-left"><%= t(:SELECT_GROUP_ASSIGN_SURVEY) %>
                </div>
                <div class="group-survey-right">
                   <%= select_tag("groups",
@@ -33,9 +33,9 @@
             </div>
             <div class="panel-body">
                <%= link_to 'Add New Survey','/admin/addSurvey' %>
-               <%= button_tag("Save", data: { 
-                  disable_with: "Please Wait...",
-                  confirm: "Are Sure?" }) %>
+               <%= button_tag(t(:Save), data: { 
+                  disable_with: t(:PLEASE_WAIT),
+                  confirm: t(:ARE_YOU_SURE) }) %>
                <div class="error-blok" style="color:red">
                   <% if @errors.size > 0 %>
                   <% @errors.each do |error|  %>
@@ -45,10 +45,10 @@
                </div>
                <table width="100%" class="table">
                   <tr>
-                     <th>Survey</th>
-                     <th>Response</th>
-                     <th>Date Updated</th>
-                     <th>Action</th>
+                     <th><%= t(:survey) %></th>
+                     <th><%= t(:Response) %></th>
+                     <th><%= t(:DATE_UPDATED) %></th>
+                     <th><%= t(:Action) %></th>
                   </tr>
                   <% @survey.each do |survey|  %>
                   <tr>
@@ -62,7 +62,7 @@
                      <td>
                         <%= link_to 'Delete','/surveys/'+survey.id.to_s+'/destroy',
                            :class => 'confirm-delete' %> | 
-                        <%= link_to 'Edit', '/admin/'+survey.id.to_s+'/editsurvey'  %>
+                        <%= link_to t(:edit), '/admin/'+survey.id.to_s+'/editsurvey'  %>
                         <%= link_to 'PDF', '/admin/survey_exports/'+survey.id.to_s+'.pdf'  %>
                         <%= link_to 'CSV', '/admin/survey_exports/'+survey.id.to_s+'.csv'  %>
                      </td>

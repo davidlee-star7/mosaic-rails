@@ -2,9 +2,9 @@
    	 <div class="col-sm-12">
                                 <div class="panel panel-default">
 
-                         <div class="panel-heading"><h3 class="panel-title">Add New Survey
+                         <div class="panel-heading"><h3 class="panel-title"><%= t(:ADD_NEW_SURVEY) %>
                           <span class="pull-right"> 
-                             <%= link_to "Back", :back %>
+                             <%= link_to t(:Back), :back %>
                           </span>
                          </h3></div>
 
@@ -15,9 +15,7 @@
 
  <% if @survey!=nil %>
     <div id="error_explanation">
-      <h2><%= pluralize(@survey.errors.count, "error") %> 
-      	<%= t(:prohibited_this_survey_from_being_saved) %>:</h2>
-
+      <h2><%= t('errors.messages.not_saved', count: @survey.errors.count, resource: t(:survey)) %></h2>
       <ul>
       <% @survey.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -32,8 +30,8 @@
    <%= hidden_field_tag(:user_id, params[:client_id].to_i > 0 ? params[:client_id] : current_user.id) %>
 
 	 <div class="title form-group">
-	 	<%= label_tag(:name, 'Let`s Create Your New',class: "col-md-12 control-label") %>
-	 	<span>Standard Survey</span>
+	 	<%= label_tag(:name, t(:LETS_CREATE_YOUR_NEW), class: "col-md-12 control-label") %>
+	 	<span><%= t(:STANDARD_SURVEY) %></span>
 	 </div>
 
 	 <%=  @tparmas %>
@@ -76,7 +74,7 @@
 
 		<%#= submit_tag(t(:select_group))  %>
 
-			<%= submit_tag("create survey", :class=> "btn btn-info waves-effect waves-light")  %>
+			<%= submit_tag(t(:CREATE_SURVEY), :class=> "btn btn-info waves-effect waves-light")  %>
 	 </div>
 <% end %>
 	</div>
