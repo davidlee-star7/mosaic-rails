@@ -28,52 +28,52 @@
    <%= f.hidden_field(:status,:value=>true) %>
    <%= f.hidden_field :microsite_id, :value => @microsite != nil ? @microsite.id : 0 %>
  
-   <div class="field clear">
+   <div class="form-group">
       <%= f.label :page_title %><br>
-      <%= f.text_field :title, :class=>'create_slug' %>
+      <%= f.text_field :title, :class=>'create_slug form-control' %>
       <%#= f.text_field :title, :class => 'genslug' %>
    </div>
-   <div class="field">
+   <div class="form-group">
       <%= f.label :page_slug %><br>
-      <%= f.text_field :slug, :class => 'put_slug' %>
+      <%= f.text_field :slug, :class => 'put_slug form-control' %>
       <%#= f.text_field :slug, disabled: true, :class => 'getslug' %>
    </div>
    
-    <div class="field">
+    <div class="form-group">
      <%= f.label :content %><br>
       <%#= f.label :page_content %><br>
       <%= f.cktext_area :content, :ckeditor => {:language => 'en'} %>
    </div>
 
     
-   <div class="field">
+   <div class="form-group">
       <%= f.label :meta_title %><br>
-      <%= f.text_field :meta_title %>
+      <%= f.text_field :meta_title, class: 'form-control' %>
    </div>
-   <div class="field">
+   <div class="form-group">
       <%= f.label :meta_keyword %><br>
-      <%= f.text_area :meta_keyword %>
+      <%= f.text_area :meta_keyword, class: 'form-control' %>
    </div>
-   <div class="field">
+   <div class="form-group">
       <%= f.label :page_css %><br>
-      <%= f.text_area :page_css %>
+      <%= f.text_area :page_css, class: 'form-control' %>
    </div>
-   <div class="field">
+   <div class="form-group">
       <%= f.label :page_js %><br>
-      <%= f.text_area :page_js %>
+      <%= f.text_area :page_js, class: 'form-control' %>
    </div>
-   <div class="field">
+   <div class="form-group">
       <%= f.label :page_class %><br>
-      <%= f.text_field :page_class %>
+      <%= f.text_field :page_class, class: 'form-control' %>
    </div>
   
 
-   <div class="field">
+   <div class="form-group">
       <%= f.label :parent_id %><br>
-      <%= f.select :parent_id, CmsPage.where(:microsite_id=> params[:id], :user_id => current_user.id ).collect{|u| [u.title, u.id]}, {:include_blank => 'Select parent page'}  %>
+      <%= f.select :parent_id, CmsPage.where(:microsite_id=> params[:id], :user_id => current_user.id ).collect{|u| [u.title, u.id]}, {:include_blank => 'Select parent page'}, class: 'form-control' %>
    </div>
-   <div class="actions">
-      <%= f.submit('Create CMS Page') %>
+   <div class="form-group actions">
+      <%= f.submit('Create CMS Page', :class=> "btn btn-info waves-effect waves-light") %>
    </div>
    <% end %>
 </div>

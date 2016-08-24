@@ -148,4 +148,11 @@ module PageHelper
     ]
   end
 
+  def nest_pages(microsite, parent_id = nil)
+    if parent_id.nil?
+      microsite.cms_pages.where("parent_id IS NULL")
+    else
+      microsite.cms_pages.where(parent_id: parent_id)
+    end
+  end
 end

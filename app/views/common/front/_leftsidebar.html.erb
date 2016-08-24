@@ -25,31 +25,9 @@
                          </div>
                         </div>
                     <!--- Divider -->
-                    <div id="sidebar-menu">
-                        <ul class="">
-                            <!-- <li>
-                                <a href="" class="waves-effect active">
-                                    <i class="md md-home"></i>
-                                    <span>Dashboard</span>
-                                </a>
-                            </li> -->
-                           <!--  <li class="has_sub">
-                                <a href="javascript:void(0)" class="waves-effect"><i class="md md-palette"></i> <span> <%#= t(:CMSPAGES) %> </span> <span class="pull-right"><i class="md md-add"></i></span></a>
-                                <ul class="list-unstyled">
-                                   
-                                </ul>
-                            </li> -->
+                    <div id="front-sidebar-menu">
 
-    <% if(@microsite.cms_pages != nil ) %>
-        <% @microsite.cms_pages.each do |p| %>
-        <li>
-            <a href='<%= "/#{@client.slug}/#{@microsite.slug}/#{p.slug}" %>'
-               class="<%= @cmspage.id == p.id ? 'active' : 'inactive'  %>">
-            <%= p.title %>
-            </a>
-        </li>
-        <% end %>
-    <% end %>
+            <%= render 'common/front/leftsidemenu', client: @client, microsite: @microsite, parent_id: nil, cmspage: @cmspage %>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
