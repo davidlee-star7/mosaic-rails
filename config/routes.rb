@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :uploaded_files
+
   resources :tableau_users
 
   resources :tableaus, path: '/tableau-dashboards'

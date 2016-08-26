@@ -1,0 +1,26 @@
+<%
+text = @attributes[:text]
+id = @attributes[:id]
+uf = UploadedFile.find(id)
+%>
+
+
+
+<div class="file-uploader-wrapper">
+  <form action="/uploaded_files/<%=id%>" method="put" class="file-uploader-form" enctype="multipart/form-data">
+    <input type="file" name="uploaded_file[file]" class="hide file-uploader-input" data-id="<%= id %>" />
+  </form>
+  <div>
+    <button type="submit" class="btn btn-primary btn-file-uploader" data-id="<%= id %>"><i class="fa fa-upload" aria-hidden="true" style="vertical-align: middle;"></i> <span style="vertical-align: middle"><%= text %></span></button>
+  </div>
+  <div class="uploaded-file-wrapper" style="margin-top: 20px">
+    <% if uf.present? && uf.file.present? %>
+      <% if uf.file_content_type.start_with? 'image' %>
+        <img src="<%= uf.file %>" alt="" style="max-width: 100%;" />
+      <% else %>
+        <a href="<%= uf.file %>"><%= uf.file_file_name %></a>
+      <% end %>
+    <%= uf.file %>
+    <% end %>
+  </div>
+</div>

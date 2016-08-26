@@ -103,10 +103,34 @@ class ProjectPresenter
     end
 end
 
+class FileuploaderPresenter
+
+  def self.for
+    :fileuploader
+  end
+
+  def initialize(attributes, content, additional_attributes)
+    @content = content
+    @attributes = attributes
+    @additional_attributes = additional_attributes
+  end
+
+  def content
+    @content
+  end
+
+  def attributes
+
+    @attributes
+  end
+
+end
+
 module PageHelper
   def content(c)
     Shortcode.register_presenter(VariablePresenter)
     Shortcode.register_presenter(ProjectPresenter)
+    Shortcode.register_presenter(FileuploaderPresenter)
     Shortcode.process(c, { user: current_user, group: current_group })
   end
 

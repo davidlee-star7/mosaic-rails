@@ -267,7 +267,7 @@ end
 
 
 Shortcode.setup do |config|
-  config.block_tags = [:project, :quote, :variable]
+  config.block_tags = [:project, :quote, :variable, :fileuploader]
   config.helpers = [PageHelper]
    
 end
