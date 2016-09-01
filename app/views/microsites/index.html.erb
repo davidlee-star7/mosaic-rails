@@ -58,7 +58,7 @@
                      </div>
                      <div class="clear-both microdetail">
                         <div class="microlink">
-                           <%= link_to microsite.title, microsite %>
+                           <%= link_to microsite.title, "/microsites/#{microsite.id}" %>
                         </div>
                         <div class="micro-permission">
                            <span class="m-access-lock">
@@ -173,7 +173,7 @@
                      </div>
                      <div class="clear-both microdetail">
                         <div class="microlink">
-                           <%= link_to microsite.title, microsite %>
+                           <%= link_to microsite.title, "/microsites/#{microsite.id}" %>
                         </div>
                         <div class="micro-permission">
                            <span class="m-access-lock">
@@ -190,7 +190,7 @@
                                  <li><a href="#clonemicrosite-<%= microsite.id %>" class="fancybox"><%= t(:CLONE_MICROSITE) %></a></li>
                                  <li><a href="#changelanguage-<%= microsite.id %>" class="fancybox"><%= t(:CHANGE_LANGUAGE) %></a></li>
                                  <li><a href="#deactive-<%= microsite.id %>" class="fancybox">Activate</a></li>
-                                 <li><%= link_to t(:destroy), microsite, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></li>
+                                 <li><%= link_to t(:destroy), "/microsites/#{microsite.id}", method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></li>
                               </ul>
                            </span>
                         </div>
