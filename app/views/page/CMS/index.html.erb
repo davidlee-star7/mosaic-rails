@@ -63,6 +63,8 @@
                     <div class="">  
                       <div class="panel panel-default">
                           <div class="panel-body">
+                            <% field.field_value = raw(field.field_value).gsub("&quot;",'"') ; %>
+                            <% field.field_value = content_html field.field_value %>
                             <%= raw field.field_value  %>
                           </div>
                       </div>    

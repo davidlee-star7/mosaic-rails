@@ -139,6 +139,7 @@ module PageHelper
     c = c.gsub("<pre>","").gsub("</pre>","")
     Shortcode.register_presenter(VariablePresenter)
     Shortcode.register_presenter(ProjectPresenter)
+    Shortcode.register_presenter(FileuploaderPresenter)
     raw Shortcode.process(c, { user: current_user, group: current_group })
   end
 
