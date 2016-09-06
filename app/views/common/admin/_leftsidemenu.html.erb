@@ -110,10 +110,17 @@
         </li>
         <% end %>
         
-        <li >
+        <li>
           <%= link_to variables_path, :class => 'button white' do %>
           <i class="fa fa-list"></i>
            <span> <%= t :VARIABLES %> </span>
+          <% end %>
+        </li>
+
+        <li>
+          <%= link_to uploaded_files_path, :class => 'button white' do %>
+          <i class="fa fa-files-o"></i>
+           <span> <%= t :UPLOADED_FILES %> </span>
           <% end %>
         </li>
 

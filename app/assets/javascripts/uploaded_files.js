@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $('.btn-file-uploader').on('click', function() {
     // $(this).data('id')
-    $('.file-uploader-input').click();
+    $(this).closest('.file-uploader-wrapper').find('.file-uploader-input').click();
   })
   $('.file-uploader-input').on('change', function() {
     $(this).closest("form").submit();

@@ -328,6 +328,11 @@ en:
   FOLLOWING_RECORDS_IMPORT_SUCCESS: Following Records are imported successfully
   FOLLOWING_RECORDS_IMPORT_FAIL: Following Records can't be imported due to shown errors
 
+  UPLOADED_FILES: Uploaded Files
+  FILE_NAME: File Name
+  FILE_TYPE: File Type
+  DATE_ADDED: Date Added
+
   activerecord:
     attributes:
       group:

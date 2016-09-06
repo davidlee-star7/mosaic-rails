@@ -1,10 +1,20 @@
 class UploadedFilesController < ApplicationController
   before_action :set_uploaded_file, only: [:show, :edit, :update, :destroy]
 
+  layout "dashboard"
+
   # GET /uploaded_files
   # GET /uploaded_files.json
   def index
-    @uploaded_files = UploadedFile.all
+    orderby = 'file_file_name' if params[:orderby] == 'name'
+    orderby = 'file_content_type' if params[:orderby] == 'type'
+    orderby = 'file_updated_at' if params[:orderby] == 'date'
+    direction = params[:direction]
+    direction = 'ASC' if direction != 'DESC' && direction != 'desc'
+    @uploaded_files = UploadedFile.where.not(file_file_name: nil)
+    if orderby.present?
+      @uploaded_files = @uploaded_files.order("#{orderby} #{direction}")
+    end
   end
 
   # GET /uploaded_files/1
@@ -54,7 +64,8 @@ class UploadedFilesController < ApplicationController
   # DELETE /uploaded_files/1
   # DELETE /uploaded_files/1.json
   def destroy
-    @uploaded_file.destroy
+    # @uploaded_file.destroy
+    @uploaded_file.remove_file
     respond_to do |format|
       format.html { redirect_to uploaded_files_url, notice: 'Uploaded file was successfully destroyed.' }
       format.json { head :no_content }
