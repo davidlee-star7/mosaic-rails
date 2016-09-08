@@ -44,6 +44,7 @@
                <table class="table">
                   <thead>
                     <tr>
+                      <th><%= t("USER_NAME") %></th>
                       <th><%= t("FIRST_NAME") %></th>
                       <th><%= t("LAST_NAME") %></th>
                       <th><%= t("UNLINK") %></th>
@@ -52,6 +53,7 @@
                   <tbody>
                     <% @group.users.each do |user| %>
                     <tr>
+                      <td><%= user.username %></td>
                       <td><%= user.first_name %></td>
                       <td><%= user.last_name %></td>
                       <% if current_user.can? :unlink_user, :group  %> 

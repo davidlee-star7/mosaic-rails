@@ -1,6 +1,7 @@
 <%
 text = @attributes[:text]
 id = @attributes[:id]
+user_id = @attributes[:user].present? ? @attributes[:user].id : ''
 uf = UploadedFile.find(id)
 %>
 
@@ -9,6 +10,7 @@ uf = UploadedFile.find(id)
 <div class="file-uploader-wrapper">
   <form action="/uploaded_files/<%=id%>" method="put" class="file-uploader-form" enctype="multipart/form-data">
     <input type="file" name="uploaded_file[file]" class="hide file-uploader-input" data-id="<%= id %>" />
+    <input type="hidden" name="uploaded_file[user_id]" class="file-uploader-user" value="<%= user_id %>" />
   </form>
   <div>
     <button type="submit" class="btn btn-primary btn-file-uploader" data-id="<%= id %>"><i class="fa fa-upload" aria-hidden="true" style="vertical-align: middle;"></i> <span style="vertical-align: middle"><%= text %></span></button>

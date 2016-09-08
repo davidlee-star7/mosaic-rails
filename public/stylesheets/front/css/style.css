@@ -3445,3 +3445,7 @@ div.dataTables_info {
   width: 20px;
   z-index: 9999;
 }
+
+.delete-uploaded-file-link i {
+  font-size: 20px;
+}

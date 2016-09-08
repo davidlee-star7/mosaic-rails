@@ -7,17 +7,19 @@ $(document).ready(function() {
     $(this).closest("form").submit();
   })
   $('.file-uploader-form').on('submit', function() {
-    var file = new FormData();
+    var form_data = new FormData();
     var $this = $(this);
     var file_input = $this.find('.file-uploader-input')[0];
-    file.append('uploaded_file[file]', file_input.files[0]);
+    form_data.append('uploaded_file[file]', file_input.files[0]);
+    var user_id = $this.find('.file-uploader-user').val();
+    form_data.append('uploaded_file[user_id]', user_id);
     file_input.type = '';
     file_input.type = 'file';
     $.ajax({
       url: $this.attr('action'),
       type: 'PUT',
       dataType: "json",
-      data: file,
+      data: form_data,
       cache: false,
       contentType: false,
       processData: false,

@@ -76,6 +76,6 @@ class UsersVariablesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def users_variable_params
-      params.require(:ext_users_variable).permit(:ext_user_id, :variable_id, :value_text, :value_file, :value_image)
+      params.require(:users_variable).permit(:user_id, :variable_id, :value_text, :value_file, :value_image)
     end
 end

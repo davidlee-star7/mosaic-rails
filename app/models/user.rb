@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
   has_many :users_variables
   has_many :variables, through: :users_variables
 
+  has_many :uploaded_files
+
   belongs_to :tableau_user
 
   mount_uploader :avatar, AvatarUploader

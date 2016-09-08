@@ -36,7 +36,7 @@ class VariablePresenter
     end
 
     def variable
-      variable = group.groups_variables.present? ? Variable.where(identifier: @attributes[:id].to_s).first : nil
+      variable = group.present? && group.groups_variables.present? ? Variable.where(identifier: @attributes[:id].to_s).first : nil
     end
 
     def group
@@ -121,7 +121,12 @@ class FileuploaderPresenter
 
   def attributes
 
+    @attributes[:user] = user
     @attributes
+  end
+
+  def user
+    @additional_attributes[:user]
   end
 
 end

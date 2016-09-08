@@ -19,6 +19,9 @@
                     <th><%= t(:FILE_TYPE) %>
                       <%= render :partial => "uploaded_files/sort_icon", :locals => {:field => 'type'} %>
                     </th>
+                    <th><%= t(:USER) %>
+                      <%= render :partial => "uploaded_files/sort_icon", :locals => {:field => 'user_id'} %>
+                    </th>
                     <th><%= t(:DATE_ADDED) %>
                       <%= render :partial => "uploaded_files/sort_icon", :locals => {:field => 'date'} %>
                     </th>
@@ -31,6 +34,7 @@
                     <td><%= index + 1 %></td>
                     <td><a href="<%= uploaded_file.file %>"><%= uploaded_file.file_file_name %></a></td>
                     <td><%= uploaded_file.file_content_type %></td>
+                    <td><%= uploaded_file.user.present? ? uploaded_file.user.username : '' %></td>
                     <td><%= uploaded_file.file_updated_at %></td>
                     <td><%= link_to 'Delete', uploaded_file, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
                   </tr>
