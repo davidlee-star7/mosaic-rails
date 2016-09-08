@@ -5,18 +5,12 @@
 <%#= @microsite.inspect %>
 
 <div class="panel-heading">
-<h3 class="panel-title"><%= t(:VIEW_MICROSITE) %>
- <% if @microsite.client_id != nil %>
-        <span class="right pull-right">
-        <%= link_to 'Go To Client Page',  "/client/#{@microsite.client_id}"  %>
-       </span>
- <% else %>
-  <span class="pull-right"><%= link_to t(:Back), microsites_url %></span>      
- <% end %>
-  <span class="pull-right">
-    <%= link_to t(:edit), edit_microsite_path(@microsite.id) %>
-  </span>
-
+<h3 class="panel-title"><%= t(:MICROSITE_DETAILS) %>
+  <% if @microsite.client_id != nil %>
+    <span class="right pull-right">
+      <a href='<%= "/#{@microsite.client.slug}/#{@microsite.slug}" %>'><%= t(:Preview) %></a>
+    </span>
+  <% end %>  
 </h3>
 </div>
  
@@ -25,15 +19,6 @@
 <div class="mid-section">
 <p id="notice"><%= notice %></p>
 <table class="table table-bold">
-<% if @microsite.client_id != nil %>
-  <tr>
-    <td colspan="2" align="center">
-      <strong>
-        <a href='<%= "/#{@microsite.client.slug}/#{@microsite.slug}" %>'>preview</a>
-      </strong>
-      </td>
-  </tr>
-<% end %>  
   <tr>
     <td><strong>Title:</strong></td>
     <td><%= @microsite.title %></td>
@@ -95,61 +80,65 @@
         <%= @microsite.groups.any? ? "" : "No Group Assigened Yet!" %>
     </td>
   </tr>
+</table>
+</div>
+</div>
 
+<div class="panel-heading">
+<h3 class="panel-title"><%= t(:MICROSITE_PAGES) %>
+  <span class="right pull-right">
+    <%= link_to t(:ADD_NEW_PAGE), "/microsites/#{@microsite.id}/newcmspage/1" %>
+  </span>
+  <span class="right pull-right">
+    <%= link_to t(:ADD_EXISTING_PAGE), "/microsites/#{@microsite.id}/addexistingpages", :rel => "modal:open" %>
+  </span>
+</h3>
+</div>
+ 
+<div class="panel-body">
+
+<div class="mid-section">
+<p id="notice"><%= notice %></p>
+<table class="table table-bold">
+  <% @microsite.cms_pages.each do |page| %>
   <tr>
-    <td><%= t("CMS_PAGES_OF_THIS_MICROSITE") %></td>
-    <td>
-    <table class="table">
-        <% @microsite.cms_pages.each do |page| %>
-        <tr>
-          <td><%= page.title %></td>
+    <td><%= page.title %></td>
 
-          <td>
-              <% if page.id == @microsite.cms_page_id %>
-                    <label title="Default page", alt="Default page", rel="tooltip",>
-                      <%= radio_button_tag :default_page, page.id, :checked => true   %>
-                      <i class="fa fa-question align-bottm"></i>
-                    </label>
-                  <% else %>
-                  <%= link_to (radio_button_tag(:default_page, page.id).to_s+raw('<i class="fa fa-question align-bottm"></i>')), "/microsites/#{@microsite.id}/#{page.id}/default_page", :rel=>"tooltip",
-                  :title => "Set as default page", :alt => "Set as default page"
-                       %>  
-              <% end %>
-          </td>
-          <td>
-              <%= link_to t("EDIT") , 
-                    "/admin/editpage/#{page.id}", 
-                    :target => "_BLANK" 
-                %>
-          </td>
-          <td>
-              <%= link_to t("VIEW") , "/#{page.slug}", :target => "_BLANK" %>
-          </td>
-          <td>
-            <%= link_to t("UNLINK") , "/admin/unlinkcmspage/#{page.id}",
-              :data => { :confirm => "Are you sure?"} %>
-          </td>
-        </tr>
+    <td>
+        <% if page.id == @microsite.cms_page_id %>
+              <label title="Default page", alt="Default page", rel="tooltip",>
+                <%= radio_button_tag :default_page, page.id, :checked => true   %>
+                <i class="fa fa-question align-bottm"></i>
+              </label>
+            <% else %>
+            <%= link_to (radio_button_tag(:default_page, page.id).to_s+raw('<i class="fa fa-question align-bottm"></i>')), "/microsites/#{@microsite.id}/#{page.id}/default_page", :rel=>"tooltip",
+            :title => "Set as default page", :alt => "Set as default page"
+                 %>  
         <% end %>
-        <tr>
-          <td colspan="4">
-              <%= link_to " + Add New CMS Page", 
-            "/microsites/#{@microsite.id}/newcmspage/1" %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <%= link_to "Add Existing CMS Pages", "/microsites/#{@microsite.id}/addexistingpages", :rel => "modal:open" %>
-          </td>
-        </tr>
-      </table>
+    </td>
+    <td>
+        <%= link_to t("EDIT") , 
+              "/admin/editpage/#{page.id}", 
+              :target => "_BLANK" 
+          %>
+    </td>
+    <td>
+        <%= link_to t("VIEW") , "/#{page.slug}", :target => "_BLANK" %>
+    </td>
+    <td>
+      <%= link_to t("UNLINK") , "/admin/unlinkcmspage/#{page.id}",
+        :data => { :confirm => "Are you sure?"} %>
     </td>
   </tr>
+  <% end %>
+</table>
+<!--
+<table class="table table-bold">
   <tr>
-   <td><%= t("SURVEYS_OF_THIS_MICROSITE") %></td>
-   <td>
-     <%#= @microsite.surveys.inspect %>
-     <ul class="microsite-survey-wrapper">
+    <td><%= t("SURVEYS_OF_THIS_MICROSITE") %></td>
+    <td>
+      <%#= @microsite.surveys.inspect %>
+      <ul class="microsite-survey-wrapper">
         <% @microsite.surveys.each do |survey| %>
         <li class="survey-item">
           <ul class="controls-t">
@@ -174,7 +163,9 @@
    </td>
   </tr>
 </table>
+-->
 </div>
+<!--
   <ul class="page-hori-menu">
     <li>
         <%= link_to t(
@@ -191,6 +182,7 @@
       %>
     </li> 
   </ul>
+-->
 </div>
 </div>
 </div>

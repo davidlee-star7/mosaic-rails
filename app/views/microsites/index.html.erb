@@ -6,12 +6,9 @@
          <div class="panel-heading">
             <h3 class="panel-title trans-none">
             <%= t(:MANAGE_MICROSITES) %> 
-             <span class="pull-right"> 
-               <%= link_to t(:Back), :back %>
-              </span>
-                <span class="right pull-right">
+              <span class="right pull-right">
                 <%= link_to t(:CREATE_NEW_MICROSITE), new_microsite_path %>
-               </span>
+              </span>
             </h3>
          </div>
 
@@ -43,7 +40,7 @@
             </div>    
           -->     
             <div class="listing-microsite">
-               <ul class="micrisitelistwrapeer">
+               <ul class="micrisitelistwrapeer clearfix">
                   <% @microsites.each do |microsite| %>
                   <% if microsite.publish? %>
                   <li class="micro-site-item">
@@ -60,6 +57,7 @@
                         <div class="microlink">
                            <%= link_to microsite.title, "/microsites/#{microsite.id}" %>
                         </div>
+                        <!--
                         <div class="micro-permission">
                            <span class="m-access-lock">
                              <a href="#microaccess-<%= microsite.id %>" class="fancybox">
@@ -104,7 +102,7 @@
                                  <li>
                                     <a href="/microsites/<%= microsite.id %>/newcmspage/<%= microsite.template_id.to_i > 0 ? microsite.template_id : 1 %>" class="fancybox" target="_blank"><%= t(:NEW_PAGE) %></a>
                                  </li>
-                                 <!-- <li><a href="/convert" class="">Convert to template</a></li> -->
+                                 <!- <li><a href="/convert" class="">Convert to template</a></li> ->
                                  <li>
                                     <a href="#deactive-<%= microsite.id %>" class="fancybox"><%= t(:Deactivate) %></a>
                                  </li>
@@ -115,6 +113,7 @@
                               </ul>
                            </span>
                         </div>
+                        -->
                      </div>
                      <div id="microaccess-<%= microsite.id %>" style="display:none;"> 
                         <%#= render :partial => "accessmanage", :locals => {:micro => microsite, :users =>@users,:roles => @roles} %>
@@ -145,14 +144,6 @@
                   </li>
                   <% end %>
                   <% end %>
-                  <li class="micro-site-item create-mi">
-                    <a href="/microsites/new">
-                        <span class="clearfix">
-                         <i class="fa fa-plus-circle fa-6"></i>
-                        </span>
-                        <span><%= t(:CREATE_NEW_MICROSITE) %></span>
-                    </a>
-                  </li>
                </ul>
             </div>
             <div class="clearfix"></div>

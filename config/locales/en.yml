@@ -334,6 +334,11 @@ en:
   DATE_ADDED: Date Added
 
   ADD_NEW_MICROSITE: Add New Microsite
+  MICROSITE_DETAILS: Microsite Details
+  MICROSITE_PAGES: Microsite Pages
+  Preview: Preview
+  ADD_NEW_PAGE: Add New Page
+  ADD_EXISTING_PAGE: Add Existing Page
 
   activerecord:
     attributes:
