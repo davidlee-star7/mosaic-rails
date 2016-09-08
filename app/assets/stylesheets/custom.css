@@ -565,7 +565,11 @@ a:hover {
 
 .listing-microsite {
 	display: block;
-	margin-top: 23px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.listing-microsite ul {
+	margin: 0 -5px;
 }
 .micro-site-item {
 	float: left;
@@ -831,3 +835,9 @@ li.micro-site-item .mi-image span.title {display:block; clear:both; }
  
 
 li.micro-site-item .mi-image {text-align:center; }
+
+.clearfix:after {
+	clear:both;
+	content: '';
+	display: table;
+}

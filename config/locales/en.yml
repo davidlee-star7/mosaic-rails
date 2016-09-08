@@ -333,6 +333,8 @@ en:
   FILE_TYPE: File Type
   DATE_ADDED: Date Added
 
+  ADD_NEW_MICROSITE: Add New Microsite
+
   activerecord:
     attributes:
       group:
