@@ -6,12 +6,18 @@ class UploadedFilesController < ApplicationController
   # GET /uploaded_files
   # GET /uploaded_files.json
   def index
+    @uploaded_files = UploadedFile.where.not(file_file_name: nil)
+
     orderby = 'file_file_name' if params[:orderby] == 'name'
     orderby = 'file_content_type' if params[:orderby] == 'type'
     orderby = 'file_updated_at' if params[:orderby] == 'date'
+    if params[:orderby] == 'user_id'
+      orderby = 'users.username' 
+      @uploaded_files = @uploaded_files.includes(:user)
+    end
     direction = params[:direction]
     direction = 'ASC' if direction != 'DESC' && direction != 'desc'
-    @uploaded_files = UploadedFile.where.not(file_file_name: nil)
+    
     if orderby.present?
       @uploaded_files = @uploaded_files.order("#{orderby} #{direction}")
     end
