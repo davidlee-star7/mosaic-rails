@@ -73,8 +73,9 @@
       <div class="col-sm-12">
          <div class="form-group m-b-0">
             <div class="col-sm-offset-0">
-               <%= f.submit url , 
+               <%= f.submit url, 
                :class=> "btn btn-info waves-effect waves-light col-md-12 trans-none",
+               :value => t(:update),
                 data: { disable_with: "#{url.gsub('e','ing')}..."} %> 
             </div>
          </div>

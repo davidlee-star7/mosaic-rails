@@ -202,7 +202,7 @@ a:focus {
      background: #fff;
     float: left;
     height: 70px;
-    padding: 0 8px;
+    padding-right: 8px;
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -210,10 +210,17 @@ a:focus {
 
 .top-logo-anethisis {
     display: block;
-    margin:12px 0;
     position: relative;
     float: left;
-    max-width: 60px;
+    max-width: 100px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+.top-logo-anethisis h1 {
+  font-size: 16px;
+  line-height: 1.25;
+  margin: 0;
 }
 .top-logo-anethisis img{
   max-height: 46px;
@@ -1528,10 +1535,10 @@ body.fixed-left .side-menu.left {
   z-index: 5;
 }
 #wrapper.enlarged .content-page {
-  margin-left: 50px;
+  margin-left: 0px;
 }
 #wrapper.enlarged .topbar .topbar-left {
-  width: 50px !important;
+  width: 0px !important;
 }
 #wrapper.enlarged .topbar .topbar-left .logo span{
   opacity: 0;
