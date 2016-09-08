@@ -69,6 +69,7 @@ class UploadedFilesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to uploaded_files_url, notice: 'Uploaded file was successfully destroyed.' }
       format.json { head :no_content }
+      format.js {}
     end
   end
 

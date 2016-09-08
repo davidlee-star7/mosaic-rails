@@ -13,13 +13,12 @@ uf = UploadedFile.find(id)
   <div>
     <button type="submit" class="btn btn-primary btn-file-uploader" data-id="<%= id %>"><i class="fa fa-upload" aria-hidden="true" style="vertical-align: middle;"></i> <span style="vertical-align: middle"><%= text %></span></button>
   </div>
-  <div class="uploaded-file-wrapper" style="margin-top: 20px">
+  <div class="uploaded-file-wrapper" id="uploaded_file_<%= uf.id %>" style="margin-top: 20px">
     <% if uf.present? && uf.file.present? %>
-      <% if uf.file_content_type.start_with? 'image' %>
-        <img src="<%= uf.file %>" alt="" style="max-width: 100%;" />
-      <% else %>
-        <a href="<%= uf.file %>"><%= uf.file_file_name %></a>
-      <% end %>
+      <a href="<%= uf.file %>" target="_blank"><%= uf.file_file_name %></a>
+      <a class="delete-uploaded-file-link" data-confirm="Are you sure?" rel="nofollow" data-method="delete" data-remote="true" href="/uploaded_files/<%= uf.id %>">
+        <i class="fa fa-remove"></i>
+      </a>
     <% end %>
   </div>
 </div>
