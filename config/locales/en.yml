@@ -81,7 +81,7 @@ en:
   create_cms_page: 'New Page'
   create_cmspage: 'New Page'
   listcmspages: 'Al Pages'
-  editpage: 'Edit Pageview'
+  editpage: 'Edit Page'
   update_cmspage: 'Update Pageview'
   Groups: 'Groups'
   Clients: 'Clients'
@@ -339,6 +339,12 @@ en:
   Preview: Preview
   ADD_NEW_PAGE: Add New Page
   ADD_EXISTING_PAGE: Add Existing Page
+  CREATE_NEW_PAGE: Create New Page
+  NOT_ASSIGNED_YET: Not Assigned Yet
+  FIELD_TYPE: Field Type
+  REMOVE_THIS_ROW: Remove This Row
+  ADD_ANOTHER_ROW: Add another row
+  Content: Content
 
   activerecord:
     attributes:
@@ -383,3 +389,13 @@ en:
         name: Name
         vtype: Variable Type
         identifier: Identifier
+      cms_page:
+        page_title: Page Title
+        slug: Page Slug
+        meta_title: Meta Title
+        meta_keyword: Meta Keyword
+        page_css: Page CSS
+        page_js: Page JS
+        page_class: Page Class
+        parent_id: Parent ID
+        content: Content

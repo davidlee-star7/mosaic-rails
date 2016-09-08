@@ -3,8 +3,7 @@
       <div class="panel panel-default">
          <div class="panel-heading">
             <h3 class="panel-title trans-none"><%= t(:MANAGE_PAGES) %>
-               <span class="pull-right"><%= link_to t(:BACK_TO_MICROSITE), microsites_path %></span>
-               <span class="pull-right"><%= link_to t(:create_cms_page), admin_newcmspage_path  %></span>
+               <span class="pull-right"><%= link_to t(:CREATE_NEW_PAGE), admin_newcmspage_path  %></span>
             </h3>
          </div>
          <%#= @cmspage .inspect %>
@@ -93,16 +92,24 @@
 <!-- end sub page block -->
              </td>
              <td>
-               <a href="/<%= page.slug %>" target="__blank"> View
-               </a>
-             </td>               
+               <% if page.microsite.present? %>
+                  <a href="/microsites/<%= page.microsite.id %>"><%= page.microsite.title %></a>
+               <% else %>
+                  <%= t(:NOT_ASSIGNED_YET) %>
+               <% end %>
+             </td>
 
-         <% if current_user.can? :editpage, :admin  %>&nbsp; 
+            <% if current_user.can? :editpage, :admin  %>&nbsp; 
                <td>   
                   <%= link_to(t(:edit), url_for(:controller => :admin, :action => :editpage, :cms_page_id =>page.id , :template_id =>page.template_id )) %>
-               </td>   
-         <% end %>        
-      </tr>
+               </td>
+               <td>
+                  <%= link_to (url_for(:controller => 'admin', :action =>'clonepage', :page_id => page.id)) do %>
+                     <i class="fa fa-copy"></i>
+                  <% end %>
+               </td>
+            <% end %>
+         </tr>
                <% end %>
          <% end %>
                      </table>

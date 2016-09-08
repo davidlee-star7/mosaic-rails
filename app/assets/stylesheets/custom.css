@@ -841,3 +841,14 @@ li.micro-site-item .mi-image {text-align:center; }
 	content: '';
 	display: table;
 }
+
+.extra-field-col {
+	margin-bottom: 20px;
+}
+.already-added-fields {
+	margin-top: 10px;
+}
+
+.extra-field-remove {
+	margin-bottom: 10px;
+}
