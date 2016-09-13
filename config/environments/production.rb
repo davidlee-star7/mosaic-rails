@@ -95,9 +95,10 @@ Rails.application.configure do
   # } #I've also tried having the attribute :domain => 'myapp.herokuapp.com',
   config.action_mailer.smtp_settings = {
     :address => "smtp.mandrillapp.com",
+    :domain => "localhost",
     :port => 587,
-    :user_name => "rahultiwari@ptiwebtech.com",
-    :password => "5agSp1UnNN7bTR72qk63JA"
+    :user_name => "kevbrinkley",
+    :password => "c5804ab08d7b0cd4826726b9a6ec90c2-us9"
   }
 
 end
