@@ -173,13 +173,11 @@
           <% end %>
         </li> -->
         <% end %>
-        <% if current_user.has_role?('Project_Manager') %>
         <li>
           <%= link_to groups_path, :class => 'button white' do %>
           <i class="fa fa-users"></i> <span> <%= t(:Groups) %> </span>
           <% end %>
         </li>
-        <% end %>
         <% end %>
         
         <li>
