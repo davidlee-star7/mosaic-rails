@@ -11,6 +11,9 @@
       <a href='<%= "/#{@microsite.client.slug}/#{@microsite.slug}" %>'><%= t(:Preview) %></a>
     </span>
   <% end %>  
+  <span class="right pull-right">
+    <a href='<%= "/microsites/#{@microsite.id}/edit" %>'><%= t(:edit) %></a>
+  </span>
 </h3>
 </div>
  
@@ -108,10 +111,10 @@
         <% if page.id == @microsite.cms_page_id %>
               <label title="Default page", alt="Default page", rel="tooltip",>
                 <%= radio_button_tag :default_page, page.id, :checked => true   %>
-                <i class="fa fa-question align-bottm"></i>
+                Home
               </label>
             <% else %>
-            <%= link_to (radio_button_tag(:default_page, page.id).to_s+raw('<i class="fa fa-question align-bottm"></i>')), "/microsites/#{@microsite.id}/#{page.id}/default_page", :rel=>"tooltip",
+            <%= link_to (radio_button_tag(:default_page, page.id).to_s+raw(' Home')), "/microsites/#{@microsite.id}/#{page.id}/default_page", :rel=>"tooltip",
             :title => "Set as default page", :alt => "Set as default page"
                  %>  
         <% end %>

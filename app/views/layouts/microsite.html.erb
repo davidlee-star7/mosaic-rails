@@ -75,17 +75,11 @@
             <div class="topbar">
                 <!-- LOGO -->
                 <div class="topbar-left toggler">
-                  <div class="toggler mosic-logo closer col-xs-12">
+                  <div class="toggler mosic-logo closer col-xs-9">
                     <%= image_tag("site/logo.png", :alt => "mosaic logo") %>
-                  </div>  
-                </div>
-                <!-- Button mobile view to collapse sidebar menu -->
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="container">
-                        <div class="row"> 
-                        <!-- logo -->
-                     <div class="topbar-left-1">   
-                     <!-- mobile button -->
+                  </div>
+                  <div class="col-xs-3">
+                    <!-- mobile button -->
                     <div class="text-center m-menu-block toggler">
                           <button class="button-menu-mobile open-left">
                               <i class="fa fa-bars"></i>
@@ -94,6 +88,23 @@
                           <span class="clearfix"></span>
                     </div>        
                     <!-- mobile button end --> 
+                  </div>
+                </div>
+                <!-- Button mobile view to collapse sidebar menu -->
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="container">
+                        <div class="row"> 
+                        <!-- logo -->
+                     <div class="topbar-left-1">   
+                      <!-- mobile button -->
+                      <div class="text-center m-menu-block toggler">
+                          <button class="button-menu-mobile open-left">
+                              <i class="fa fa-bars"></i>
+                              <i class="fa fa-times"></i>
+                          </button>
+                          <span class="clearfix"></span>
+                      </div>
+                      <!-- mobile button end --> 
                       <div class="top-logo-anethisis">
                           <a href='<%= "/#{@client.slug}/#{@microsite.slug}" %>'>
                           <% if @client.logo.blank? %>

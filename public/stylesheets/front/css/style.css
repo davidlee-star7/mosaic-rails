@@ -217,6 +217,7 @@ a:focus {
     display: flex;
     align-items: center;
 }
+
 .top-logo-anethisis h1 {
   font-size: 16px;
   line-height: 1.25;
@@ -227,8 +228,23 @@ a:focus {
     max-width: 100%;
   }
 .text-center.m-menu-block {
-    float: left;
+  float: left;
 }
+
+
+.topbar-left-1 .text-center.m-menu-block {
+  display: none;
+}
+.enlarged .topbar-left-1 .text-center.m-menu-block {
+  display: block;
+}
+.topbar-left-1 .top-logo-anethisis {
+  margin-left: 15px;
+}
+.enlarged .topbar-left-1 .top-logo-anethisis {
+  margin-left: 0;
+}
+
 
 .m-menu-block.closer .fa-bars{
   display: none;

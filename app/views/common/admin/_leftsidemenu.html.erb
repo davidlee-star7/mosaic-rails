@@ -13,7 +13,8 @@
         <li >
           <%= link_to '/admin/clients', :class => 'button white' do %>
           <i class="fa fa-user-plus"></i><span> Clients </span>
-          <%    end %>
+          <% end %>
+          <!--
           <span class="pull-right has-sub"><i class="md md-add"></i></span> 
 
            <ul class="sub-1 has_sub">
@@ -30,7 +31,8 @@
                :action => 'listClients') %>
             </li>
             <% end %>
-          </ul> 
+          </ul>
+          --> 
         </li>
         <% end %>
         <% if current_user.can? :index, :microsite  %> 
@@ -38,6 +40,7 @@
           <%= link_to '/microsites', :class => 'button white' do %>
           <i class="fa fa-list-alt"></i><span> <%= t(:Microsites) %></span>
         <% end %>
+          <!--
           <span class="pull-right has-sub"><i class="md md-add"></i></span>
           <ul class="list-unstyled ub-1 has_sub">
             <li>
@@ -49,6 +52,7 @@
                :action => 'index') %>
             </li>
           </ul>
+          -->
         </li>
         <% end %>
         <% if current_user.can? :listcmspages, :admin  %> 

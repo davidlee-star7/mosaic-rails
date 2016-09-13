@@ -9,11 +9,13 @@
 
         <div class="panel-heading">
 
-          <h3 class="panel-title trans-none"><%= t(:editpage) %>
+          <h3 class="panel-title"><%= t(:editpage) %>
             <span class="pull-right"> 
-            <%= link_to t(:Preview), "/#{@cmspage.slug.to_s}", :target => "_BLANK" %>
+              <%= link_to t(:Preview), "/#{@cmspage.slug.to_s}", :target => "_BLANK" %>
             </span>
-
+            <span class="pull-right">
+              <%= f.submit t(:Save) , :class=> "btn btn-info waves-effect waves-light" %> 
+            </span>
           </h3>
         </div>
 

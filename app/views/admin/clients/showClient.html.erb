@@ -52,8 +52,8 @@
                   <% if microsite.publish? %>
                   <li class="micro-site-item">
                      <div class="mi-image">
-                        <span class="title"><%= microsite.title %></span>
-                        <a href="/microsites/<%= microsite.id %>/edit">
+                        <!--<span class="title"><%= microsite.title %></span>-->
+                        <a href="/microsites/<%= microsite.id %>">
                            <% if microsite.client_logo.present? %>
                               <%= image_tag(microsite.client_logo)  %>
                            <% else %>
@@ -65,10 +65,12 @@
                      </div>
                      <div class="clear-both microdetail">
                         <div class="micro-permission">
+                           <%= link_to microsite.title, "/microsites/#{microsite.id}", :target => "_BLANK" %>  
+                           <!--
                            <span class="m-access-lock">
-                           <a href="#microaccess-<%= microsite.id %>" class="fancybox">
-                              <i class="fa fa-lock"></i>
-                           </a>
+                              <a href="#microaccess-<%= microsite.id %>" class="fancybox">
+                                 <i class="fa fa-lock"></i>
+                              </a>
                            </span>
                            <span class="m-access-det">
                               <a href="#"><i class="fa fa-cog"></i></a>
@@ -110,6 +112,7 @@
                                  </li>
                               </ul>
                            </span>
+                           -->
                         </div>
                      </div>
                      <div id="microaccess-<%= microsite.id %>" style="display:none;"> 

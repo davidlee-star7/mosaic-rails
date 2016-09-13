@@ -19,20 +19,25 @@
                   <li class="micro-site-item">
                      <div class="clear-both microdetail-clis">
                         <div class="microlink">
-                           <div class="mi-image-mlink">
-                              <div class="cntrol-item">
-                                 <% if client.logo.present? && client.logo.url != nil %>
-                                       <%= image_tag client.logo.url, 
-                                       :style => "max-width:100%" %> 
-                                 <% else %>      
-                                 <%= image_tag(image_path("default-client-logo.png")) %>
-                                 <% end %>
+                           <a href="/client/<%= client.id %>">
+                              <div class="mi-image-mlink">
+                                 <div class="cntrol-item">
+                                    <% if client.logo.present? && client.logo.url != nil %>
+                                          <%= image_tag client.logo.url, 
+                                          :style => "max-width:100%" %> 
+                                    <% else %>      
+                                    <%= image_tag(image_path("default-client-logo.png")) %>
+                                    <% end %>
+                                 </div>
                               </div>
-                           </div>
+                           </a>
                            <div class="clear-both microdetail">
-                              <div class="microlink">    
-                                 <%= client.name %>  
+                              <div class="microlink">
+                                 <a href="/client/<%= client.id %>">
+                                    <%= client.name %>
+                                 </a>
                               </div>
+                              <!--
                               <div class="micro-permission">
                                  <% if current_user.can? :showClient, :admin  %> 
                                  <a href="/client/<%= client.id %>">View</a>
@@ -41,6 +46,7 @@
                                  <a href="/admin/clients/<%= client.id %>/edit">Edit</a>
                                  <% end %>  
                               </div>
+                              -->
                            </div>
                         </div>
                      </div>

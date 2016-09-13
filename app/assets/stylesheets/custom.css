@@ -95,6 +95,17 @@ ul.micrisitelistwrapeer li.micro-site-item,  .listing-microsite ul li.micro-site
 	text-align: center;
 	width: 284px;
 }
+.mi-image-mlink {
+	width: 270px;
+	height: 256px;
+	position: relative;
+}
+.mi-image-mlink .cntrol-item {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
 .mgroups-body .fa.fa-pencil-square-o {
 	margin: 1px 13px;
 }
@@ -593,10 +604,16 @@ a:hover {
 }
 .mi-image img {
 	max-width: 100%;
-}
-.mi-image {
 	max-height: 204px;
 	min-height: 170px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.mi-image {
+	position: relative;
+	height: 255px;
 }
 .m-access-det > ul {
 	background: #cccccc;
@@ -782,7 +799,9 @@ a:hover {
 .panel-heading h3 span {
 	margin-left: 15px;
 }
-
+.panel-heading h3 input {
+	font-weight: bold;
+}
 .m-access-det ul a:hover {color:#000 !important; }
 
 
