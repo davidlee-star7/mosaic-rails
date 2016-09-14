@@ -20,7 +20,14 @@
       </div>
 
       <div class="panel-heading">
-        <h3 class="panel-title"><%= t("AL_USERS_OF_THIS_GROUP") %></h3>
+        <h3 class="panel-title"><%= t("AL_USERS_OF_THIS_GROUP") %>
+          <% if current_user.can? :upload_users, :group  %>
+            <span class="pull-right">
+              <%= link_to "Import CSV", group_upload_users_path(@group.id), 
+              :class => "fancyajax"  %>
+            </span>
+          <% end %>
+        </h3>
       </div>
 
       <div class="panel-body">
@@ -87,7 +94,7 @@
                 </div>
                 <div class="col-sm-6">
                   <div class="submitbtn">
-                      <%= button_tag("Add Users to Group", 
+                      <%= button_tag(t(:ADD_USERS_TO_GROUP), 
                         data: { 
                         disable_with: t(:PLEASE_WAIT),
                         confirm: t(:ARE_YOU_SURE) }, class:"group-black-button") %>
@@ -97,14 +104,6 @@
             <% end %>
           </div>
         </div>
-        <% if current_user.can? :upload_users, :group  %>
-        <div class="row">
-          <div class="col-xs-12">
-            <%= link_to "Import CSV", group_upload_users_path(@group.id), 
-            :class => "fancyajax group-grey-button"  %>
-          </div>
-        </div>
-        <% end %>
       </div>  
       <!--
       <div class="panel-heading">
@@ -128,7 +127,13 @@
       -->
 
       <div class="panel-heading">
-        <h3 class="panel-title"><%= t("ADD_VARIABLES_FOR_THIS_GROUP") %></h3>
+        <h3 class="panel-title"><%= t("ADD_VARIABLES_FOR_THIS_GROUP") %>
+          <% if Variable.all.count > 0 %>
+            <span class="pull-right">
+              <%= link_to t(:ADD_NEW_VARIABLE), new_group_variable_path(@group.id) %>
+            </span>
+          <% end %>
+        </h3>
       </div>
 
       <div class="panel-body">
@@ -165,20 +170,18 @@
             </div>
           </div>
         </div>
-        <% if Variable.all.count > 0 %>
-          <div class="row">
-            <div class="col-xs-12">
-              <%= link_to t(:ADD_NEW_VARIABLE), new_group_variable_path(@group.id),
-              :class => "group-grey-button"  %>
-            </div>
-          </div>
-        <% else %>
+        <% if Variable.all.count == 0 %>
           <p><%= t :NO_VARIABLES_DEFINED %></p>
         <% end %>
       </div>  
 
       <div class="panel-heading">
-        <h3 class="panel-title"><%= t("MICROSITES_OF_THIS_GROUP")  %></h3>
+        <h3 class="panel-title"><%= t("MICROSITES_OF_THIS_GROUP")  %>
+          <span class="pull-right">
+            <%= link_to t("ADD_MICROSITE"),
+              "/microsites_groups/addexistingmicrositestogroups/#{@group.id}",
+              :target => "_BLANK", :class => "fancyajax" %>
+        </h3>
       </div>
 
       <div class="panel-body">
@@ -223,6 +226,7 @@
                 </ul>
               </li>
               <% end %>
+              <!--
               <li class="microsite-item">
                 <ul class="controls">
                 <% if current_user.can? :addexistingmicrositestogroups, :microsites_groups  %> 
@@ -235,9 +239,11 @@
                 </ul>
                 <i class="fa fa-plus-circle fa-6" style="font-size:100px"></i>
               </li>
+              -->
           </ul>
         </div> 
       </div>
+      <!--
       <div class="panel-heading">
         <h3 class="panel-title"><%= t("SURVEYS_OF_THIS_GROUP")  %></h3>
       </div>
@@ -276,7 +282,8 @@
           </ul>
         </div>
       </div>
-     </div>
+      -->
+    </div>
     <!-- panel -->
     <% if current_user.can? :edit, :group %>
     <%= link_to t(:edit), edit_group_path(@group) %>

@@ -345,6 +345,9 @@ en:
   REMOVE_THIS_ROW: Remove This Row
   ADD_ANOTHER_ROW: Add another row
   Content: Content
+  ADD_USERS_TO_GROUP: Add Users to Group
+  ADD_NEW_VARIABLE: Add New Variable
+  ADD_MICROSITE: Add Microsite
 
   activerecord:
     attributes:

@@ -59,7 +59,7 @@ class GroupsController < ApplicationController
       users = params[:users]
       if users != nil
         users.first.split(",").each do |u|
-          user = User.where(:username => u, :status => true )
+          user = User.where(:username => u)
           if user != nil
             if !user.first.groups.exists?(@group.id)
               user.first.groups << @group

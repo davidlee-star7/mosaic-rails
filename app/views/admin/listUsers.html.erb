@@ -37,7 +37,7 @@
                 <tr>
                   <th><%= t(:FIRST_NAME) %></th>
                   <th><%= t(:LAST_NAME) %></th>
-                  <th><%= t(:DISPLAY_NAME) %></th>
+                  <th><%= t(:USER_NAME) %></th>
                   <th><%= t(:Email) %> </th>
                   <th><%= t(:Status) %> </th>
                   <th><%= t(:Admin) %> y/n(?) </th>
@@ -50,7 +50,7 @@
                   <!--  <td><%= check_box_tag "user_ids[]", user.id %></td> -->
                   <td><%= user.first_name %></td>
                   <td><%= user.last_name %></td>
-                  <td><%= user.display_name %></td>
+                  <td><%= user.username %></td>
                   <td><%= user.email %></td>
                   <td><%= user.status %></td>
                   <td><%= user.admin ? "Yes" : "No" %></td>
