@@ -3452,8 +3452,10 @@ div.dataTables_info {
 
 
 
-.mosic-logo{margin:7px 0; }
-
+.mosic-logo{margin:13px 0; }
+.mosic-logo img {
+  max-width: 100%;
+}
 .user-details{display:none; }
 
 
