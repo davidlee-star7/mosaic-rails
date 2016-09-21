@@ -5,11 +5,7 @@
       <div class="panel-heading">
         <h3 class="panel-title trans-none"><%= t(:MANAGE_USERS) %>
           <% if current_user.can? :addUser, :admin %>
-           <span class="pull-right"> 
-               <%= link_to t(:Back), :back %>
-          </span>
-          <span class="pull-right"> <%= link_to t(:adduser), '/admin/addUser', :class =>'addUser' %>
-          </span>
+            <span class="pull-right"> <%= link_to t(:adduser), '/admin/addUser', :class =>'addUser' %></span>
           <% end %>
         </h3>
       </div>
@@ -39,7 +35,9 @@
                   <th><%= t(:LAST_NAME) %></th>
                   <th><%= t(:USER_NAME) %></th>
                   <th><%= t(:Email) %> </th>
+                  <!--
                   <th><%= t(:Status) %> </th>
+                  -->
                   <th><%= t(:Admin) %> y/n(?) </th>
                   <th><%= t(:Groups) %></th>
                   <th><%= t(:edit) %></th>
@@ -52,7 +50,9 @@
                   <td><%= user.last_name %></td>
                   <td><%= user.username %></td>
                   <td><%= user.email %></td>
+                  <!--
                   <td><%= user.status %></td>
+                  -->
                   <td><%= user.admin ? "Yes" : "No" %></td>
                   <td>
                   <% user.groups.each do |g| %>

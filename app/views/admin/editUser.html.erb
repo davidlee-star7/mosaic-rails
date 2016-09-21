@@ -3,10 +3,10 @@
 <div class="panel panel-default">
 
    <div class="panel-heading">
-      <h3 class="panel-title">
-      <%= t(:edituser) %>
-         <span class="pull-right"> <%= link_to t(:BACK_TO_USERS), '/admin/users', :class =>'addUser' %>
-         </span>
+      <h3 class="panel-title"><%= t(:edituser) %>
+        <!--
+        <span class="pull-right"> <%= link_to t(:BACK_TO_USERS), '/admin/users', :class =>'addUser' %></span>
+        -->
       </h3>
    </div>
 
@@ -44,7 +44,7 @@
               <%= select_tag(field[0],
                  options_for_select([
                  ['Active',1],['Inactive',0]],field_val)) %>   
-
+<!--
             <% elsif field[0]=='role' %>  
 
               <% if current_user.can? :editrole, :admin %>
@@ -60,7 +60,7 @@
                   </div>
                 <% end %>
               <% end %>
-
+-->
             <% elsif field[0]=='password' %>
 
               <%= password_field_tag(field[0],"")  %>
@@ -120,7 +120,13 @@
 
 
   <div class="panel-heading">
-    <h3 class="panel-title"><%= t("ADD_VARIABLES_FOR_THIS_USER") %></h3>
+    <h3 class="panel-title"><%= t("ADD_VARIABLES_FOR_THIS_USER") %>
+      <span class="pull-right">
+        <% if Variable.all.count > 0 %>
+          <%= link_to t(:ADD_NEW_VARIABLE), new_ext_user_variable_path(@user.id) %>
+        <% end %>
+      </span>
+    </h3>
   </div>
 
   <div class="panel-body">
@@ -157,16 +163,6 @@
         </div>
       </div>
     </div>
-    <% if Variable.all.count > 0 %>
-      <div class="row">
-        <div class="col-xs-12">
-          <%= link_to t(:ADD_NEW_VARIABLE), new_ext_user_variable_path(@user.id),
-          :class => "group-grey-button"  %>
-        </div>
-      </div>
-    <% else %>
-      <p><%= t :NO_VARIABLES_DEFINED %></p>
-    <% end %>
   </div>  
 
 </div>
