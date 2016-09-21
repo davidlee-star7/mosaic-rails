@@ -19,7 +19,7 @@
                 <thead>
                   <tr>
                     <th>&nbsp;</th>
-                    <th><%= t(:TABLEAU_USERNAME) %></th>
+                    <th width="90%"><%= t(:TABLEAU_USERNAME) %></th>
                     <th colspan="2"></th>
                   </tr>
                 </thead>
@@ -29,10 +29,18 @@
                     <td><%= index + 1 %></td>
                     <td><%= tableau_user.username %></td>
                     <% # if current_user.can? :edit, :tableau_user  %> 
-                    <td><%= link_to t(:edit), edit_tableau_user_path(tableau_user) %></td>
+                    <td>
+                      <%= link_to edit_tableau_user_path(tableau_user) do %>
+                        <i class="fa fa-edit"></i>
+                      <% end %>
+                    </td>
                     <% # end %>
                     <% # if current_user.can? :destroy, :tableau_user  %> 
-                    <td><%= link_to 'Delete', tableau_user, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
+                    <td>
+                      <%= link_to tableau_user, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } do %>
+                        <i class="fa fa-remove"></i>
+                      <% end %>
+                    </td>
                     <% # end %>
                   </tr>
                   <% end %>

@@ -19,7 +19,7 @@
                 <thead>
                   <tr>
                     <th>&nbsp;</th>
-                    <th><%= t(:SHORT_CODE) %></th>
+                    <th width="50%"><%= t(:SHORT_CODE) %></th>
                     <th><%= t(:VARIABLE_NAME) %></th>
                     <th><%= t(:VARIABLE_TYPE) %></th>
                     <th colspan="2"></th>
@@ -33,10 +33,18 @@
                     <td><%= variable.name %></td>
                     <td><%= variable.vtype %></td>
                     <% # if current_user.can? :edit, :variable  %> 
-                    <td><%= link_to t(:edit), edit_variable_path(variable) %></td>
+                    <td>
+                      <%= link_to edit_variable_path(variable) do %>
+                        <i class="fa fa-edit"></i>
+                      <% end %>
+                    </td>
                     <% # end %>
                     <% # if current_user.can? :destroy, :variable  %> 
-                    <td><%= link_to 'Delete', variable, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
+                    <td>
+                      <%= link_to variable, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } do %>
+                        <i class="fa fa-remove"></i>
+                      <% end %>
+                    </td>
                     <% # end %>
                   </tr>
                   <% end %>

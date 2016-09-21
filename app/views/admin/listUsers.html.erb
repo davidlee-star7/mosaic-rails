@@ -40,7 +40,7 @@
                   -->
                   <th><%= t(:Admin) %> y/n(?) </th>
                   <th><%= t(:Groups) %></th>
-                  <th><%= t(:edit) %></th>
+                  <th colspan="2"></th>
                     <!-- <th>Delete </th> -->
                 </tr>
                 <% @users.each do |user| %>
@@ -60,19 +60,22 @@
                   <% end %>
                   </td>
                   <td>
-                   <% if current_user.can? :editUser, :admin %>        
-                   <%= link_to t(:edit), '/admin/editUser/'+user.id.to_s, 
-                     :class =>'editUser', 
-                     :id => user.id
-                     %>
-                   <% end %>    
-
-                   <% if current_user.can? :delUser, :admin %>        
-                   <%= link_to 'Remove', '/admin/delUser/'+user.id.to_s, 
-                     :class =>'delUser doaction', 
-                     :id => user.id
-                     %>
-                   <% end %>         
+                    <% # if current_user.can? :editUser, :admin %>        
+                      <%= link_to '/admin/editUser/'+user.id.to_s, 
+                        :class =>'editUser', 
+                        :id => user.id do %>
+                        <i class="fa fa-edit"></i>
+                      <% end %>
+                    <% # end %>
+                  </td>
+                  <td>
+                    <% # if current_user.can? :delUser, :admin %>        
+                      <%= link_to '/admin/delUser/'+user.id.to_s, 
+                        :class =>'delUser doaction', 
+                        :id => user.id do %>
+                        <i class="fa fa-remove"></i>
+                      <% end%>
+                    <% # end %>         
                   </td>
                 </tr>
                 <% end %>

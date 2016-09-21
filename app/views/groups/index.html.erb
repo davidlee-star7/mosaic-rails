@@ -5,11 +5,6 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><%= t(:MANAGE_GROUPS) %>
-             
-            <span class="pull-right"> 
-                <%= link_to t(:Back), :back %>
-            </span>
-            
             <% if current_user.can? :create, :group  %> 
             <span class="pull-right"> 
                  <%= link_to 'create a new group', new_group_path %>
@@ -25,8 +20,8 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th><%= t(:NAME) %></th>
-                    <th><%= t(:DESCRIPTION) %></th>
+                    <th width="30%"><%= t(:NAME) %></th>
+                    <th width="60%"><%= t(:DESCRIPTION) %></th>
                     <th colspan="2"></th>
                   </tr>
                 </thead>
@@ -35,12 +30,16 @@
                   <tr>
                     <td><%= group.name %></td>
                     <td><%= group.description %></td>
-                    <% if current_user.can? :show, :group  %> 
-                    <td><%= link_to t(:edit), group %></td>
-                    <% end %>
-                    <% if current_user.can? :destroy, :group  %> 
-                    <td><%= link_to t(:DELETE_GROUP), group, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
-                    <% end %>
+                    <td>
+                      <%= link_to group do %>
+                        <i class="fa fa-edit"></i>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to group, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } do %>
+                        <i class="fa fa-remove"></i>
+                      <% end %>
+                    </td>
                   </tr>
                   <% end %>
                 </tbody>

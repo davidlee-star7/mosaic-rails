@@ -64,12 +64,16 @@
                     <td><%= link_to t(:show), tableau %></td>
                     <% end %>
                     -->
-                    <% if current_user.can? :edit, :tableau  %> 
-                    <td><%= link_to t(:edit), edit_tableau_path(tableau) %></td>
-                    <% end %>
-                    <% if current_user.can? :destroy, :tableau  %> 
-                    <td><%= link_to t(:destroy), tableau, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
-                    <% end %>
+                    <td>
+                      <%= link_to edit_tableau_path(tableau) do %>
+                        <i class="fa fa-edit"></i>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to tableau, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } do %>
+                        <i class="fa fa-remove"></i>
+                      <% end %>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>
