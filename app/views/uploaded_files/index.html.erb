@@ -32,7 +32,7 @@
                   <% @uploaded_files.each_with_index do |uploaded_file, index| %>
                   <tr>
                     <td><%= index + 1 %></td>
-                    <td><a href="<%= uploaded_file.file %>"><%= uploaded_file.file_file_name %></a></td>
+                    <td><a target="_blank" href="<%= uploaded_file.file %>"><%= uploaded_file.file_file_name %></a></td>
                     <td><%= uploaded_file.file_content_type %></td>
                     <td>
                       <% if uploaded_file.user.present? %>
@@ -42,7 +42,12 @@
                       <% end %>
                     </td>
                     <td><%= uploaded_file.file_updated_at %></td>
-                    <td><%= link_to 'Delete', uploaded_file, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
+                    <td><a download href="<%= uploaded_file.file %>"><i class="fa fa-download"></i></a></td>
+                    <td>
+                      <%= link_to uploaded_file, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } do %>
+                        <i class="fa fa-remove"></i>
+                      <% end %>
+                    </td>
                   </tr>
                   <% end %>
                 </tbody>
