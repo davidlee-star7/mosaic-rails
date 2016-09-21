@@ -16,8 +16,8 @@ class CmsPage < ActiveRecord::Base
     belongs_to :parent, :class_name => 'CmsPage', :foreign_key => 'parent_id'
 
 
-    belongs_to :microsite, :dependent => :destroy
-    belongs_to :user, :dependent => :destroy
+    belongs_to :microsite
+    belongs_to :user
 
     has_many :pages_groups
 	has_many :groups, :through => :pages_groups

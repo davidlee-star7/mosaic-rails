@@ -101,12 +101,19 @@
 
             <% if current_user.can? :editpage, :admin  %>&nbsp; 
                <td>   
-                  <%= link_to(t(:edit), url_for(:controller => :admin, :action => :editpage, :cms_page_id =>page.id , :template_id =>page.template_id )) %>
+                  <%= link_to(url_for(:controller => :admin, :action => :editpage, :cms_page_id =>page.id , :template_id =>page.template_id )) do %>
+                     <i class="fa fa-edit"></i>
+                  <% end %>
                </td>
                <td>
                   <%= link_to (url_for(:controller => 'admin', :action =>'clonepage', :page_id => page.id)) do %>
                      <i class="fa fa-copy"></i>
                   <% end %>
+               </td>
+               <td>
+                  <a data-confirm="Are you sure?" data-method="delete" href="/admin/deletepage/<%=page.id %>" rel="nofollow">
+                     <i class="fa fa-remove"></i>
+                  </a>
                </td>
             <% end %>
          </tr>

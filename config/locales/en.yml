@@ -348,6 +348,7 @@ en:
   ADD_USERS_TO_GROUP: Add Users to Group
   ADD_NEW_VARIABLE: Add New Variable
   ADD_MICROSITE: Add Microsite
+  SAVE_AS_TEMPLATE: Save as Template
 
   activerecord:
     attributes:

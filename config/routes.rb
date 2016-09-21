@@ -201,6 +201,7 @@ Rails.application.routes.draw do
   post 'surveys/:id/update' => 'surveys#update'
 
   get 'admin/clonepage/:page_id' => 'admin#clonepage'
+  delete 'admin/deletepage/:page_id' => 'admin#deletepage'
   
   get  'surveyresults' => 'admin#survey_results'
 

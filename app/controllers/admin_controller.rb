@@ -729,6 +729,17 @@ class AdminController < ApplicationController
     end
   end
 
+  def deletepage
+    @cmspage = CmsPage.find(params[:page_id])
+    @cmspage.destroy
+    # respond_to do |format|
+    #   format.html { render 'admin/CMS/newcmspage' }
+    # end
+    respond_to do |format|
+      format.html { redirect_to :controller =>:admin, :action => :listcmspages }
+      format.json { head :no_content }
+    end
+  end
 #
 #
 #
