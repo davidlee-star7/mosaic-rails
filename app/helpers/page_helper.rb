@@ -150,7 +150,7 @@ module PageHelper
 
   def connect_to_tableau
     tableau_username = "phil@mosaicsustainability.com"
-    user = @attributes[:user]
+    user = current_user || @attributes[:user]
     if user.present? && user.tableau_user.present?
       tableau_username = user.tableau_user.username
     end

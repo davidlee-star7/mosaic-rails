@@ -4,12 +4,14 @@
     <div class="panel-heading">
       <h3 class="panel-title trans-none">
         <%= t(:MANAGE_TABLEAU_MSG) %>
-       <span class="pull-right"> 
-         <%= link_to t(:Back), :back %>
-       </span>
-       <span class="right pull-right">
-        <%= link_to t(:NEW_TABLEAU_DASHBOARD), new_tableau_path %>
-       </span>
+        <!--
+        <span class="pull-right">
+          <%= link_to t(:Back), :back %>
+        </span>
+        -->
+        <span class="right pull-right">
+          <%= link_to t(:NEW_TABLEAU_DASHBOARD), new_tableau_path %>
+        </span>
       </h3>
     </div>
 <%#= current_user.roles.inspect  %>
@@ -28,11 +30,13 @@
                   <th><%= t('activerecord.attributes.tableau.width') %></th>
                   <th><%= t('activerecord.attributes.tableau.height') %></th>
                   <th><%= t('activerecord.attributes.tableau.site_root') %></th>
+                  <!--
                   <th><%= t('activerecord.attributes.tableau.tabs') %></th>
                   <th><%= t('activerecord.attributes.tableau.toolbar') %></th>
                   <th><%= t('activerecord.attributes.tableau.ticket') %></th>
                   <th><%= t('activerecord.attributes.tableau.load_order') %></th>
-                  <th colspan="3"></th>
+                  -->
+                  <th colspan="2"></th>
                 </tr>
               </thead>
 
@@ -46,16 +50,20 @@
                     <td><%= tableau.width %></td>
                     <td><%= tableau.height %></td>
                     <td class="fit-width"><%= tableau.site_root %></td>
+                    <!--
                     <td><%= tableau.tabs %></td>
                     <td><%= tableau.toolbar %></td>
                     <td><%= tableau.ticket %></td>
                     <td><%= tableau.load_order %></td>
+                    -->
+                    <!--
                     <% if current_user.can? :preview_microsite, :page  %> 
                     <td><%= link_to 'Preview', "/client/dashboard/#{tableau.id}", :target=> :_BLANK %></td>
                     <% end %>
                     <% if current_user.can? :show, :tableau  %> 
                     <td><%= link_to t(:show), tableau %></td>
                     <% end %>
+                    -->
                     <% if current_user.can? :edit, :tableau  %> 
                     <td><%= link_to t(:edit), edit_tableau_path(tableau) %></td>
                     <% end %>
