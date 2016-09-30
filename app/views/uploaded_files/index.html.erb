@@ -16,7 +16,7 @@
                     <th width="35%"><%= t(:FILE_NAME) %>
                       <%= render :partial => "uploaded_files/sort_icon", :locals => {:field => 'name'} %>
                     </th>
-                    <th><%= t(:FILE_TYPE) %>
+                    <th><%= t(:Groups) %>
                       <%= render :partial => "uploaded_files/sort_icon", :locals => {:field => 'type'} %>
                     </th>
                     <th><%= t(:USER) %>
@@ -33,7 +33,13 @@
                   <tr>
                     <td><%= index + 1 %></td>
                     <td><a target="_blank" href="<%= uploaded_file.file %>"><%= uploaded_file.file_file_name %></a></td>
-                    <td><%= uploaded_file.file_content_type %></td>
+                    <td>
+                      <% if uploaded_file.user.present? %>
+                        <% uploaded_file.user.groups.each_with_index do |group, index| %>
+                          <div style="margin-bottom:5px"><%= group.name %></div>
+                        <% end %>
+                      <% end %>
+                    </td>
                     <td>
                       <% if uploaded_file.user.present? %>
                         <%= link_to ('/admin/editUser/'+uploaded_file.user.id.to_s) do %>
