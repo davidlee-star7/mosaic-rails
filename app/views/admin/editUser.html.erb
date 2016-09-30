@@ -44,23 +44,7 @@
               <%= select_tag(field[0],
                  options_for_select([
                  ['Active',1],['Inactive',0]],field_val)) %>   
-<!--
-            <% elsif field[0]=='role' %>  
 
-              <% if current_user.can? :editrole, :admin %>
-
-                <% @roles.each_with_index do |urole,index| %>
-                  <div class="role-box">
-                    <% if @user.has_role?(urole[0]) %>
-                    <%=  check_box_tag("role["+index.to_s+"]",urole[0],1)  %>
-                      <% else %>
-                      <%=  check_box_tag("role["+index.to_s+"]",urole[0])  %>
-                    <% end %>
-                    <%=  label_tag("role["+index.to_s+"]", urole[0])  %>
-                  </div>
-                <% end %>
-              <% end %>
--->
             <% elsif field[0]=='password' %>
 
               <%= password_field_tag(field[0],"")  %>
