@@ -91,27 +91,29 @@ class AdminController < ApplicationController
 
     respond_to do |format|
       if params[:action_type] == "addUser"
-         @user = User.create user_params
-         @role = params[:role]
-         @groups = params[:group]
-         if @role != nil
-            @role.each do |r|
-              @user.add_role(r[1])
-            end
-         end
+        @user = User.new user_params
+        @user.skip_confirmation!
+        @user.save!
+        @role = params[:role]
+        @groups = params[:group]
+        if @role != nil
+          @role.each do |r|
+            @user.add_role(r[1])
+          end
+        end
 
-         if @groups != nil
-            @user.update_groups params
-         end
+        if @groups != nil
+          @user.update_groups params
+        end
          
           
-         if @user.save
-           format.html{ redirect_to :action => "listUsers", notice: 'User was successfully created.'}
-         else
-           format.html{ render "/admin/addUser" }
-         end
+        if @user.save
+          format.html{ redirect_to :action => "listUsers", notice: 'User was successfully created.'}
+        else
+          format.html{ render "/admin/addUser" }
+        end
       else
-           format.html{ render "/admin/addUser" }   
+        format.html{ render "/admin/addUser" }   
       end
 
     end
@@ -332,21 +334,21 @@ class AdminController < ApplicationController
     user_id = Integer(params[:id])
     if user_id > 0
       user = User.find(user_id)
-      if user.admin 
-        flash[:alert] = [['You can not delete Admin Users']]
-      else
-          roles = Role.listRoles
-          roles.each do |role| 
-            if user.has_role?role[0]
-             user.remove_role(role[0]) 
-            end
+      # if user.admin 
+      #   flash[:alert] = [['You can not delete Admin Users']]
+      # else
+        roles = Role.listRoles
+        roles.each do |role| 
+          if user.has_role?role[0]
+            user.remove_role(role[0]) 
           end
-         admin = Admin.exists?(user.id)
-         if admin !=false
-             Admin.find(user.id).destroy 
-         end    
-         user.destroy
-      end
+        end
+        admin = Admin.exists?(user.id)
+        if admin !=false
+          Admin.find(user.id).destroy 
+        end    
+        user.destroy
+      # end
     end
     redirect_to :action => "listUsers"
   end
