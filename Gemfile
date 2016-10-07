@@ -57,7 +57,9 @@ gem 'rails-jquery-autocomplete'
 
 gem 'carrierwave', :git => 'git://github.com/jnicklas/carrierwave.git'
 #gem 'carrierwave'
-gem "paperclip", "~> 4.3"
+gem 'paperclip', "~> 4.3"
+gem 'aws-sdk', '< 2.0'
+gem 'fog-aws'
 
 # Turbolinks makes following links in your web application faster.
 # Read more: https://github.com/rails/turbolinks

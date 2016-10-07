@@ -101,4 +101,8 @@ Rails.application.configure do
     :password => "c5804ab08d7b0cd4826726b9a6ec90c2-us9"
   }
 
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :bucket => 'mosaiccms'
+  }
 end

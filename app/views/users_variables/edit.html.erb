@@ -3,6 +3,9 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title trans-none"><%= t(:EDIT_USER_VARIABLE) %>
+          <span class="pull-right">
+          	<%= link_to t(:Back), admin_editUser_url(@user_variable.user) %>
+          </span>
         </h3>
       </div>
       <%= render 'form', url: ext_user_variable_path(@user_variable.user, @user_variable), variable: @user_variable.variable %>
@@ -10,4 +13,3 @@
   </div>
 </div>
 <!-- End row -->
-<%= link_to t(:Back), admin_editUser_url(@user_variable.user) %>

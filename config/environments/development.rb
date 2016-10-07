@@ -72,7 +72,10 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost' }
   config.action_mailer.smtp_settings = { :address => 'localhost', :port => 1025 }
-
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :bucket => 'mosaiccms'
+  }
 end
 
 
