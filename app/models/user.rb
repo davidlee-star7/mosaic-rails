@@ -81,21 +81,21 @@ def self.user_fields(current_user)
       'email' => I18n.translate(:Email),
       'status' => I18n.translate(:STATUS),
       'tableau_user_id' => I18n.translate(:TABLEAU_USERNAME)
-       }
+      }
 
-       user = nil
-       if (current_user!=nil)
+      user = nil
+      if (current_user!=nil)
         user = User.find(current_user)
        end
 
-       if user!=nil
+      if user!=nil
             if current_user.can? :create_admin, User
              user_fields['admin'] = I18n.translate(:Admin)
             end
        end
 
-       user_fields['role'] = I18n.translate(:USER_ROLE)
-       user_fields['password'] = I18n.translate(:Password)
+      # user_fields['role'] = I18n.translate(:USER_ROLE)
+      user_fields['password'] = I18n.translate(:Password)
 
       return user_fields
 end  
