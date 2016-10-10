@@ -39,7 +39,7 @@ class AdminController < ApplicationController
 
      user_hash = row.to_hash
      #check if user 
-     get_user = User.where(:email =>user_hash["email"])
+     get_user = User.where(:username =>user_hash["username"])
      if get_user.size == 0
       user = [:first_name =>user_hash['first_name'],
               :last_name =>user_hash['last_name'],
