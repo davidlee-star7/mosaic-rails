@@ -3474,3 +3474,8 @@ div.dataTables_info {
 .delete-uploaded-file-link i {
   font-size: 20px;
 }
+
+.tableauPlaceholder {
+	margin-left: auto;
+	margin-right: auto;
+}
