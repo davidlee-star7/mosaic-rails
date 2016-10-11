@@ -33,13 +33,13 @@
 	 		<div class='tableauPlaceholder' style='width: <%= @tableau.width  %>; height: <%= @tableau.height  %>;'>
 		 		<object class='tableauViz' width='<%= @tableau.width  %>' 
 		 			height='<%= @tableau.height %>' style='display:none;'>
-			 		<param name='host_url' value='https://mosaic-tableau.com/' /> 
-			 		<param name='site_root' value='<%= @tableau.site_root  %>' />
+			 		<param name='host_url' value='https://www.mosaic-tableau.com/' />
+			 		<param name="site_root" value="" />
 			 		<param name='name' value='<%= raw(@tableau.project_name)  %>' />
 			 		<param name='tabs' value='<%= @tableau.tabs  %>' />
 			 		<param name='ticket' value='<%= connect_to_tableau %>' />  
 			 		<param name='toolbar' value='<%= @tableau.toolbar  %>' />
-			 		<param name="filter" value="[[+filter]]">
+			 		<param name="filter" value="[[+filter]]" />
 			 		<param name='showVizHome' value='n' />
 	 			</object>
 	 		</div>
