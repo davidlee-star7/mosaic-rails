@@ -11,46 +11,46 @@
     </div>
   <% end %>
 
-   <div class="field">
+   <div class="form-group">
     <%= f.label :project_title %><br>
-    <%= f.text_field :project_title %>
+    <%= f.text_field :project_title, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :project_name %><br>
-    <%= f.text_field :project_name %>
+    <%= f.text_field :project_name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :width %><br>
-    <%= f.text_field :width %>
+    <%= f.text_field :width, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :height %><br>
-    <%= f.text_field :height %>
+    <%= f.text_field :height, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :site_root %><br>
-    <%= f.text_field :site_root %>
+    <%= f.text_field :site_root, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :tabs %><br>
-    <%= f.text_field :tabs %>
+    <%= f.text_field :tabs, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :toolbar %><br>
-    <%= f.select :toolbar, options_for_select([['Yes','y'],['No','n']]) %>
+    <%= f.select :toolbar, options_for_select([['Yes','y'],['No','n']]), {}, {class: 'form-control'} %>
   </div>
- <!--  <div class="field">
+ <!--  <div class="form-group">
     <%#= f.label :ticket %><br>
     <%#= f.text_field :ticket %>
   </div> -->
-  <div class="field">
+  <div class="form-group">
     <%= f.label :load_order %><br>
-    <%= f.text_field :load_order %>
+    <%= f.text_field :load_order, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class=> "btn btn-info waves-effect waves-light"%>
   </div>
 <% end %>
