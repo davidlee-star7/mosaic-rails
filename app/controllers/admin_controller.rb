@@ -66,6 +66,19 @@ class AdminController < ApplicationController
 
   #
   def home
+  	if !current_user.admin
+      group = current_user.groups.first
+      puts group
+      redirect_path = edit_user_registration_path
+      if group.present?
+        microsite = group.microsites.first
+        puts microsite
+        if microsite.present?
+          redirect_path = client_microsite_path(microsite.client.slug, microsite.slug)
+        end
+      end
+    end
+    redirect_to(redirect_path)
   end
   #
  
