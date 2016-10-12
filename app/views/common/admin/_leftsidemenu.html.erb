@@ -106,7 +106,7 @@
         </li>
         <% end %>
 
-        <% if current_user.can? :index, :tableaus  %> 
+        <% if current_user.can? :listUsers, :admin  %>
         <li >
           <%= link_to tableau_users_path, :class => 'button white' do %>
           <i class="fa fa-table"></i>
@@ -115,12 +115,14 @@
         </li>
         <% end %>
         
+        <% if current_user.can? :listUsers, :admin  %>
         <li>
           <%= link_to variables_path, :class => 'button white' do %>
           <i class="fa fa-list"></i>
            <span> <%= t :VARIABLES %> </span>
           <% end %>
         </li>
+        <% end %>
 
         <li>
           <%= link_to uploaded_files_path, :class => 'button white' do %>
@@ -129,7 +131,7 @@
           <% end %>
         </li>
 
-        <% if current_user.can? :listUsers, :admin  %>  
+        <% if current_user.can? :listUsers, :admin  %>
         <li>
           <%= link_to url_for(:controller => :admin, :action => :listUsers), 
           :class => 'button white list_user' do %>

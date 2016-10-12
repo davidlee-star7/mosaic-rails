@@ -25,36 +25,43 @@
                     <th><%= t(:DATE_ADDED) %>
                       <%= render :partial => "uploaded_files/sort_icon", :locals => {:field => 'date'} %>
                     </th>
-                    <th colspan="2"></th>
+                    <th></th>
+                    <% if current_user.admin %>
+                      <th></th>
+                    <% end %>
                   </tr>
                 </thead>
                 <tbody>
                   <% @uploaded_files.each_with_index do |uploaded_file, index| %>
-                  <tr>
-                    <td><%= index + 1 %></td>
-                    <td><a target="_blank" href="<%= uploaded_file.file %>"><%= uploaded_file.file_file_name %></a></td>
-                    <td>
-                      <% if uploaded_file.user.present? %>
-                        <% uploaded_file.user.groups.each_with_index do |group, index| %>
-                          <div style="margin-bottom:5px"><%= group.name %></div>
+                    <% if current_user.admin || (uploaded_file.user.present? && uploaded_file.user.id === current_user.id) %>
+                      <tr>
+                        <td><%= index + 1 %></td>
+                        <td><a target="_blank" href="<%= uploaded_file.file %>"><%= uploaded_file.file_file_name %></a></td>
+                        <td>
+                          <% if uploaded_file.user.present? %>
+                            <% uploaded_file.user.groups.each_with_index do |group, index| %>
+                              <div style="margin-bottom:5px"><%= group.name %></div>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% if uploaded_file.user.present? %>
+                            <%= link_to ('/admin/editUser/'+uploaded_file.user.id.to_s) do %>
+                              <%= uploaded_file.user.username %>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td><%= uploaded_file.file_updated_at %></td>
+                        <td><a download href="<%= uploaded_file.file %>"><i class="fa fa-download"></i></a></td>
+                        <% if current_user.admin %>
+                          <td>
+                            <%= link_to uploaded_file, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } do %>
+                              <i class="fa fa-remove"></i>
+                            <% end %>
+                          </td>
                         <% end %>
-                      <% end %>
-                    </td>
-                    <td>
-                      <% if uploaded_file.user.present? %>
-                        <%= link_to ('/admin/editUser/'+uploaded_file.user.id.to_s) do %>
-                          <%= uploaded_file.user.username %>
-                        <% end %>
-                      <% end %>
-                    </td>
-                    <td><%= uploaded_file.file_updated_at %></td>
-                    <td><a download href="<%= uploaded_file.file %>"><i class="fa fa-download"></i></a></td>
-                    <td>
-                      <%= link_to uploaded_file, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } do %>
-                        <i class="fa fa-remove"></i>
-                      <% end %>
-                    </td>
-                  </tr>
+                      </tr>
+                    <% end %>
                   <% end %>
                 </tbody>
               </table>

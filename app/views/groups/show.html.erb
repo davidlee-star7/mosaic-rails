@@ -16,7 +16,10 @@
           <strong><%= t("DESCRIPTION") %>:</strong>
           <%= @group.description %>
         </p>
-        <p><%= link_to t(:edit), edit_group_path(@group), class: 'group-grey-button' %></p>
+
+        <% if current_user.can? :edit, :group  %>
+          <p><%= link_to t(:edit), edit_group_path(@group), class: 'group-grey-button' %></p>
+        <% end %>
       </div>
 
       <div class="panel-heading">
@@ -54,7 +57,9 @@
                       <th><%= t("USER_NAME") %></th>
                       <th><%= t("FIRST_NAME") %></th>
                       <th><%= t("LAST_NAME") %></th>
+                      <% if current_user.can? :unlink_user, :group  %> 
                       <th><%= t("UNLINK") %></th>
+                      <% end %>
                     </tr>
                   </thead>
                   <tbody>
@@ -79,31 +84,33 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-6 col-md-7 group-add-user-form">
-            <%= form_for(@group, :url=> group_addExistingUsers_path(@group.id) ) do |f| %>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="search-pages">
-                    <%= autocomplete_field_tag "users[]", "", autocomplete_user_username_groups_path,
-                      class: 'group-add-user-input',
-                      placeholder: 'Existing User Names(s)',
-                      'data-delimiter' => ',', :multiple => true %>
-                    <%= hidden_field_tag "task", "add_users_to_grop" %>
+        <% if current_user.can? :addExistingUsers, :group %> 
+          <div class="row">
+            <div class="col-lg-6 col-md-7 group-add-user-form">
+              <%= form_for(@group, :url=> group_addExistingUsers_path(@group.id) ) do |f| %>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="search-pages">
+                      <%= autocomplete_field_tag "users[]", "", autocomplete_user_username_groups_path,
+                        class: 'group-add-user-input',
+                        placeholder: 'Existing User Names(s)',
+                        'data-delimiter' => ',', :multiple => true %>
+                      <%= hidden_field_tag "task", "add_users_to_grop" %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="submitbtn">
+                        <%= button_tag(t(:ADD_USERS_TO_GROUP), 
+                          data: { 
+                          disable_with: t(:PLEASE_WAIT),
+                          confirm: t(:ARE_YOU_SURE) }, class:"group-black-button") %>
+                    </div>
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <div class="submitbtn">
-                      <%= button_tag(t(:ADD_USERS_TO_GROUP), 
-                        data: { 
-                        disable_with: t(:PLEASE_WAIT),
-                        confirm: t(:ARE_YOU_SURE) }, class:"group-black-button") %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>  
       <!--
       <div class="panel-heading">
@@ -127,11 +134,13 @@
       -->
 
       <div class="panel-heading">
-        <h3 class="panel-title"><%= t("ADD_VARIABLES_FOR_THIS_GROUP") %>
-          <% if Variable.all.count > 0 %>
-            <span class="pull-right">
-              <%= link_to t(:ADD_NEW_VARIABLE), new_group_variable_path(@group.id) %>
-            </span>
+        <h3 class="panel-title"><%= t("VARIABLES_FOR_THIS_GROUP") %>
+        	<% if current_user.can? :addExistingUsers, :group  %> 
+            <% if Variable.all.count > 0 %>
+              <span class="pull-right">
+                <%= link_to t(:ADD_NEW_VARIABLE), new_group_variable_path(@group.id) %>
+              </span>
+            <% end %>
           <% end %>
         </h3>
       </div>
@@ -157,12 +166,12 @@
                     <td><%= group_variable.variable.vtype %></td>
                     <td><%= group_variable.variable.identifier %></td>
                     <td><%= group_variable.value %></td>
-                    <% # if current_user.can? :edit, :group_variables  %> 
+                    <% if current_user.can? :edit, :groups_variables  %> 
                     <td><%= link_to t(:edit), edit_group_variable_path(group_variable.group, group_variable) %></td>
-                    <% # end %>
-                    <% # if current_user.can? :destroy, :group_variables  %> 
+                    <% end %>
+                    <% if current_user.can? :destroy, :groups_variables  %> 
                     <td><%= link_to 'Delete', group_variable_path(group_variable.group, group_variable), method: :delete, data: { confirm: t(:ARE_YOU_SURE) } %></td>
-                    <% # end %>
+                    <% end %>
                   </tr>
                   <% end %>
                 </tbody>
@@ -177,10 +186,13 @@
 
       <div class="panel-heading">
         <h3 class="panel-title"><%= t("MICROSITES_OF_THIS_GROUP")  %>
-          <span class="pull-right">
-            <%= link_to t("ADD_MICROSITE"),
-              "/microsites_groups/addexistingmicrositestogroups/#{@group.id}",
-              :target => "_BLANK", :class => "fancyajax" %>
+          <% if current_user.can? :addexistingmicrositestogroups, :microsites_groups  %> 
+            <span class="pull-right">
+              <%= link_to t("ADD_MICROSITE"),
+                "/microsites_groups/addexistingmicrositestogroups/#{@group.id}",
+                :target => "_BLANK", :class => "fancyajax" %>
+            </span>
+          <% end %>
         </h3>
       </div>
 
@@ -193,15 +205,15 @@
               <li class="microsite-item">
                 <i class="fa fa-pencil-square-o" style="font-size:100px"></i>
                 <ul class="controls">
-                <% if current_user.can? :unlinkmicrosite, :micrositegroup  %> 
-                  <li>
-                  <%= link_to t("UNLINK"),
-                  "/microsites_groups/unlinkmicrosite/#{site.id}/#{@group.id}",
-                  :data => { 
-                    :confirm => "Confirm Unlink?",
-                    "disable-with" => "Please Wait ..." }
-                  %>
-                  </li>
+                  <% if current_user.can? :unlinkmicrosite, :micrositegroup  %> 
+                    <li>
+                      <%= link_to t("UNLINK"),
+                      "/microsites_groups/unlinkmicrosite/#{site.id}/#{@group.id}",
+                      :data => { 
+                        :confirm => "Confirm Unlink?",
+                        "disable-with" => "Please Wait ..." }
+                      %>
+                    </li>
                   <% end %>
                   <!-- <li><%= link_to "CMS Pages", "/microsites_groups/listpagesbymicrositeandgroup/#{site.id}/#{@group.id}", :rel => "modal:open" %></li> -->
                 </ul>
@@ -209,19 +221,21 @@
                 <ul class="mgp-wrapper modal-control">
                   <li><label>CMS Pages</label></li>
                   <% if site.cms_pages.size > 0 %>
-                  <% site.cms_pages.each do |page|  %>
-
-                  <% if current_user.can? :managegroup, :cms_pages  %> 
-                    <li class="page-item control-item" data-url="/cms_pages/<%= page.id %>/managegroup/<%= @group.id %>">
-                    <i class="fa check 
-                    <%= @group.cms_pages.exists?(page.id) ? 'fa-check-circle' : 'fa-times' %>"></i>
-                      <%= page.title %>
-                    </li>
-                  <% end %>  
-
-                  <% end %>
+                    <% site.cms_pages.each do |page|  %>
+                      <% if current_user.can? :managegroup, :cms_pages  %> 
+                        <li class="page-item control-item" data-url="/cms_pages/<%= page.id %>/managegroup/<%= @group.id %>">
+                          <i class="fa check 
+                          <%= @group.cms_pages.exists?(page.id) ? 'fa-check-circle' : 'fa-times' %>"></i>
+                          <%= page.title %>
+                        </li>
+                      <% else %>
+                        <li class="page-item">
+                          <%= page.title %>
+                        </li>
+                      <% end %>
+                    <% end %>
                   <% else %>
-                  <li class="age-item">No Page added yet!</li>
+                    <li class="age-item">No Page added yet!</li>
                   <% end %>
                 </ul>
               </li>

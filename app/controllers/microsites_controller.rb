@@ -1,6 +1,6 @@
 class MicrositesController < ApplicationController
    before_action :authenticate_user!
-   before_action :check_permition
+   # before_action :check_permition
    before_action :set_microsite, only: [:show, :edit, :update, :destroy]
    before_action :set_client, only: [:show, :edit, :update, :create]
    layout "dashboard"

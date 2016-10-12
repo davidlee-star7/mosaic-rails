@@ -304,7 +304,7 @@ en:
   TYPE: Types
   VALUE: Value
 
-  ADD_VARIABLES_FOR_THIS_GROUP: Add Variables for this group
+  VARIABLES_FOR_THIS_GROUP: Add Variables for this group
   ADD_GROUP_VARIABLE: Add Group Variable
   EDIT_GROUP_VARIABLE: Edit Group Variable
   group_variable: group variable

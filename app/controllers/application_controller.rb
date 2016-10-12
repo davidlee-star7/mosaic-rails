@@ -36,36 +36,49 @@ class ApplicationController < ActionController::Base
         |u| u.permit(registration_params << :current_password)
          
       }
-      elsif params[:action] == 'create'
+    elsif params[:action] == 'create'
       devise_parameter_sanitizer.for(:sign_up) {  
         |u| u.permit(registration_params) 
       }
-      end 
+    end 
+
+  end
 
 
+  # def default_url_options(options={})
+  #   logger.debug "default_url_options is passed options: #{options.inspect}\n"
+  #   { :locale => I18n.locale }
+  # end
+
+
+
+  def after_sign_in_path_for(resource)
+    #  if current_user
+    #    puts "logged in"
+    #   # redirect_to :controller => :admin, :action =>:home
+    #   # redirect_to controller: 'admin', action: 'home'
+    # else 
+    #  puts "not logged -in"
+    # end
+    # redirect_to controller: 'admin', action: 'home'
+
+    if current_user.admin
+      redirect_path = admin_home_path(current_user.first_name)
+    else
+      group = current_user.groups.first
+      puts group
+      redirect_path = edit_user_registration_path
+      if group.present?
+        microsite = group.microsites.first
+        puts microsite
+        if microsite.present?
+          redirect_path = client_microsite_path(microsite.client.slug, microsite.slug)
+        end
+      end
     end
-
-
-# def default_url_options(options={})
-#   logger.debug "default_url_options is passed options: #{options.inspect}\n"
-#   { :locale => I18n.locale }
-# end
-
-
-
- def after_sign_in_path_for(resource)
- #  if current_user
- #    puts "logged in"
- #   # redirect_to :controller => :admin, :action =>:home
- #   # redirect_to controller: 'admin', action: 'home'
- # else 
- #  puts "not logged -in"
- # end
-# redirect_to controller: 'admin', action: 'home'
-  admin_home_path(current_user.first_name)
-
-   # user_path(current_user) #your path
- end
+    redirect_path
+    # user_path(current_user) #your path
+  end
 
 
 end

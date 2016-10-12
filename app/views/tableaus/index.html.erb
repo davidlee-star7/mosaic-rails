@@ -9,9 +9,11 @@
           <%= link_to t(:Back), :back %>
         </span>
         -->
-        <span class="right pull-right">
-          <%= link_to t(:NEW_TABLEAU_DASHBOARD), new_tableau_path %>
-        </span>
+        <% if current_user.can? :new, :tableau  %> 
+          <span class="right pull-right">
+            <%= link_to t(:NEW_TABLEAU_DASHBOARD), new_tableau_path %>
+          </span>
+        <% end %>
       </h3>
     </div>
 <%#= current_user.roles.inspect  %>
@@ -36,7 +38,12 @@
                   <th><%= t('activerecord.attributes.tableau.ticket') %></th>
                   <th><%= t('activerecord.attributes.tableau.load_order') %></th>
                   -->
-                  <th colspan="2"></th>
+                  <% if current_user.can? :edit, :tableau  %> 
+                    <th></th>
+                  <% end %>
+                  <% if current_user.can? :delete, :tableau  %> 
+                    <th></th>
+                  <% end %>
                 </tr>
               </thead>
 
@@ -64,16 +71,20 @@
                     <td><%= link_to t(:show), tableau %></td>
                     <% end %>
                     -->
-                    <td>
-                      <%= link_to edit_tableau_path(tableau) do %>
-                        <i class="fa fa-edit"></i>
-                      <% end %>
-                    </td>
-                    <td>
-                      <%= link_to tableau, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } do %>
-                        <i class="fa fa-remove"></i>
-                      <% end %>
-                    </td>
+                    <% if current_user.can? :edit, :tableau  %> 
+                      <td>
+                        <%= link_to edit_tableau_path(tableau) do %>
+                          <i class="fa fa-edit"></i>
+                        <% end %>
+                      </td>
+                    <% end %>
+                    <% if current_user.can? :delete, :tableau  %>
+                      <td>
+                        <%= link_to tableau, method: :delete, data: { confirm: t(:ARE_YOU_SURE) } do %>
+                          <i class="fa fa-remove"></i>
+                        <% end %>
+                      </td>
+                    <% end %>
                   </tr>
                 <% end %>
               </tbody>

@@ -288,7 +288,7 @@ Rails.application.routes.draw do
 
   get 'page_col/add_row/:page_id' => 'page#add_row'
   patch 'admin/update_cmspage/:cms_page_id' => 'admin#update_cmspage'
-  get ':client_slug/:microsite_slug' => 'page#preview_microsite'
+  get ':client_slug/:microsite_slug' => 'page#preview_microsite', as: :client_microsite
   get ':client_slug/:microsite_slug/:cms_page_slug' => 'page#preview_microsite'
   get ':slug' => 'page#cms'
   get ':slug/:type' => 'page#cms' 

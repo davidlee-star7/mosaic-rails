@@ -2,7 +2,7 @@ class PageController < ApplicationController
   before_action :authenticate_user!, :only => [:client_dashboard, :preview_microsite, :show]
   protect_from_forgery with: :exception
   #before_filter :connect_to_tableau, :only => [:client_dashboard,:preview_microsite]
-  before_action :check_permition
+  # before_action :check_permition
 
   layout "page", :only => [ :cms, :client_dashboard ]
   layout 'none', :only => [ :unpublished ]

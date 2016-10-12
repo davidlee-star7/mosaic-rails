@@ -5,10 +5,12 @@
       <div class="panel panel-default">
          <div class="panel-heading">
             <h3 class="panel-title trans-none">
-            <%= t(:MANAGE_MICROSITES) %> 
-              <span class="right pull-right">
-                <%= link_to t(:CREATE_NEW_MICROSITE), new_microsite_path %>
-              </span>
+              <%= t(:MANAGE_MICROSITES) %>
+              <% if current_user.admin %>
+                <span class="right pull-right">
+                  <%= link_to t(:CREATE_NEW_MICROSITE), new_microsite_path %>
+                </span>
+              <% end %>
             </h3>
          </div>
 

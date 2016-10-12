@@ -487,8 +487,59 @@ class Ability
                   
                   
 
+                #
+                # groups_variables Controller
+                #
+
+                if urp.action_class == 'groups_variables' && urp.action == 'index'
+                  can :index, :groups_variables
+                end
+                if urp.action_class == 'groups_variables' && urp.action == 'show'
+                  can :show, :groups_variables
+                end
+                if urp.action_class == 'groups_variables' && urp.action == 'new'
+                  can :new, :groups_variables
+                end
+                if urp.action_class == 'groups_variables' && urp.action == 'edit'
+                  can :edit, :groups_variables
+                end
+                if urp.action_class == 'groups_variables' && urp.action == 'create'
+                  can :create, :groups_variables
+                end
+                if urp.action_class == 'groups_variables' && urp.action == 'update'
+                  can :update, :groups_variables
+                end
+                if urp.action_class == 'groups_variables' && urp.action == 'destroy'
+                  can :destroy, :groups_variables
+                end
 
 
+
+                #
+                # users_variables Controller
+                #
+
+                if urp.action_class == 'users_variables' && urp.action == 'index'
+                  can :index, :users_variables
+                end
+                if urp.action_class == 'users_variables' && urp.action == 'show'
+                  can :show, :users_variables
+                end
+                if urp.action_class == 'users_variables' && urp.action == 'new'
+                  can :new, :users_variables
+                end
+                if urp.action_class == 'users_variables' && urp.action == 'edit'
+                  can :edit, :users_variables
+                end
+                if urp.action_class == 'users_variables' && urp.action == 'create'
+                  can :create, :users_variables
+                end
+                if urp.action_class == 'users_variables' && urp.action == 'update'
+                  can :update, :users_variables
+                end
+                if urp.action_class == 'users_variables' && urp.action == 'destroy'
+                  can :destroy, :users_variables
+                end
               # end 2nd loop 
               end
               # end 1st loop
