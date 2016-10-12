@@ -1,8 +1,5 @@
 class Group < ActiveRecord::Base
 
-  mount_uploader :csv_file, CsvUploader # Tells rails to use this uploader for this model.
-  #validates :csv_file, presence: true
-
   has_many :users_group
   has_many :users, :through => :users_group
 
