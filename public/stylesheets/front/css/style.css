@@ -1459,6 +1459,7 @@ body.fixed-left .side-menu.left {
 }
 .sidebar-inner {
   height: 100%;
+  position: relative;
 }
 #front-sidebar-menu,
 #front-sidebar-menu ul,
@@ -3478,4 +3479,18 @@ div.dataTables_info {
 .tableauPlaceholder {
 	margin-left: auto;
 	margin-right: auto;
+	}
+
+.side-menu-actions {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding-bottom: 15px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.side-menu-logout {
+	color: #333;
 }

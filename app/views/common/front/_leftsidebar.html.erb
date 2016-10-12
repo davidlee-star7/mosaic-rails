@@ -1,36 +1,41 @@
 <div class="left side-menu cumo-cms-pages">
-                <div class="sidebar-inner slimscrollleft">
-                    <div class="user-details">
-                        <div class="user-info">
-                            <div class="dropdown dropdown__1">
-                                <!-- <a href="#" class="dropdown-toggle" 
-                                    data-toggle="dropdown" data-class="dropdown__1" aria-expanded="false"><%#= @client.name.to_s  %> 
-                                    <span class="caret"></span>
-                                </a> -->
-                                <!-- <ul class="dropdown-menu">
-                                    <li>
-                                    <a href='<%#= "/#{@client.slug}/#{@microsite.slug}/profile" %>' >
-                                    <i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
-                                    <li><a href="javascript:void(0)"><i class="md md-settings"></i> Settings</a></li>
-                                    <li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
-                                    <li> 
-                                    <%#= link_to raw("<i class='md md-settings-power'>
-                                        </i>#{t(:logout)}"), 
-                                         destroy_user_session_path, 
-                                         method: :delete, 
-                                         :class => 'navbar-link'  %>
-                                    </li>
-                                </ul> -->
-                            </div>
-                         </div>
-                        </div>
-                    <!--- Divider -->
-                    <div id="front-sidebar-menu">
+  <div class="sidebar-inner slimscrollleft">
+    <div class="user-details">
+      <div class="user-info">
+        <div class="dropdown dropdown__1">
+            <!-- <a href="#" class="dropdown-toggle" 
+                data-toggle="dropdown" data-class="dropdown__1" aria-expanded="false"><%#= @client.name.to_s  %> 
+                <span class="caret"></span>
+            </a> -->
+            <!-- <ul class="dropdown-menu">
+                <li>
+                <a href='<%#= "/#{@client.slug}/#{@microsite.slug}/profile" %>' >
+                <i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
+                <li><a href="javascript:void(0)"><i class="md md-settings"></i> Settings</a></li>
+                <li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
+                <li> 
+                <%#= link_to raw("<i class='md md-settings-power'>
+                    </i>#{t(:logout)}"), 
+                     destroy_user_session_path, 
+                     method: :delete, 
+                     :class => 'navbar-link'  %>
+                </li>
+            </ul> -->
+        </div>
+       </div>
+      </div>
+      <!--- Divider -->
+      <div id="front-sidebar-menu">
+        <%= render 'common/front/leftsidemenu', client: @client, microsite: @microsite, parent_id: nil, cmspage: @cmspage %>
+        <div class="clearfix"></div>
+      </div>
+    <div class="clearfix"></div>
 
-            <%= render 'common/front/leftsidemenu', client: @client, microsite: @microsite, parent_id: nil, cmspage: @cmspage %>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
+    <div class="side-menu-actions">
+      <%= link_to destroy_user_session_path, method: :delete, :class => 'side-menu-logout' do %>
+        <i class="fa fa-power-off"></i>
+        <%= t(:logout) %>
+      <% end %>
+    </div>
+  </div>
+</div>
