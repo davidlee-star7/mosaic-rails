@@ -65,20 +65,33 @@ class ApplicationController < ActionController::Base
     if current_user.admin
       redirect_path = admin_home_path(current_user.first_name)
     else
-      group = current_user.groups.first
-      puts group
-      redirect_path = edit_user_registration_path
-      if group.present?
-        microsite = group.microsites.first
-        puts microsite
-        if microsite.present?
-          redirect_path = client_microsite_path(microsite.client.slug, microsite.slug)
-        end
-      end
+      redirect_path = client_redirect_path
     end
     redirect_path
     # user_path(current_user) #your path
   end
 
+  protected
+  
+  def client_redirect_path
+    group = current_user.groups.first
+    redirect_path = edit_user_registration_path
+    if group.present?
+      microsite = group.microsites.first
+      puts microsite
+      if microsite.present?
+        redirect_path = client_microsite_path(microsite.client.slug, microsite.slug)
+      end
+    end
+    redirect_path
+  end
+
+  def check_client_redirect
+    if current_user && !current_user.admin
+      redirect_to(client_redirect_path)
+      return true
+    end
+    false
+  end
 
 end

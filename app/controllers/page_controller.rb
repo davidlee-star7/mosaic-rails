@@ -84,8 +84,10 @@ class PageController < ApplicationController
   #
   #
   def cms
+    return if check_client_redirect
     @cmspage = CmsPage.where('slug = ?',params[:slug])
     @microsite = nil
+    return redirect_to('/') if @cmspage.empty?
     @groups = ExtraField.all.where(:cms_page_id => @cmspage.first.id).select(:field_group).distinct
 
     if @cmspage.present?
