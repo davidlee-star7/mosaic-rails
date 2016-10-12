@@ -149,14 +149,13 @@ module PageHelper
   end
 
   def connect_to_tableau
-    tableau_username = "phil@mosaicsustainability.com"
+    tableau_username = ""
     user = defined?(current_user) ? current_user : @attributes[:user]
     if user.present? && user.tableau_user.present?
       tableau_username = user.tableau_user.username
     end
     post_data = {
       "username" => tableau_username,
-      # "password" => "Bison47!",
       "client_ip" => "50.112.88.230"
     }
     server = "https://mosaic-tableau.com"
