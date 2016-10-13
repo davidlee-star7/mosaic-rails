@@ -75,14 +75,15 @@ class ApplicationController < ActionController::Base
   
   def client_redirect_path
     group = current_user.groups.first
-    redirect_path = edit_user_registration_path
+    redirect_path = new_user_session_path
     if group.present?
       microsite = group.microsites.first
-      puts microsite
       if microsite.present?
-        redirect_path = client_microsite_path(microsite.client.slug, microsite.slug)
+        return client_microsite_path(microsite.client.slug, microsite.slug)
       end
     end
+    flash[:notice] = 'You don\'t have required permission.'
+    sign_out current_user
     redirect_path
   end
 
