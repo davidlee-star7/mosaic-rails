@@ -15,18 +15,11 @@
     if current_user.tableau_user.present?
       tableau_username = current_user.tableau_user.username
     end
-    puts 'here12345'
-res = Net::HTTP.post_form(URI.parse("https://mosaic-tableau.com/trusted"),
+	res = Net::HTTP.post_form(URI.parse("https://mosaic-tableau.com/trusted"),
     {
       "username" => tableau_username,
-      # "password" => "Bison47!",
-      "client_ip" => "50.112.88.230" # "192.168.100.33"
+      "client_ip" => Rails.application.config.host_ip
     }
-            # {
-            # 	'username' =>'phil@mosaicsustainability.com',
-            # 	'client_ip' => Socket.ip_address_list
-            # 	})
-
  %>
  <%= res %>
 <div class="panel-body">

@@ -91,6 +91,15 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+staging:
+  <<: *default
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  database: mosaic_staging
+  username: <%= ENV["DB_USERNAME"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+
 production:
   <<: *default
   host: localhost

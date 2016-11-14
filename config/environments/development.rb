@@ -14,9 +14,7 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
-  config.action_mailer.default_url_options = { host: 'http://50.112.88.230' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
  
 
@@ -53,11 +51,14 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   #Paperclip.options[:command_path] = "/usr/local/bin/"
 
+  config.host_ip = 'localhost'
+
+  config.action_controller.default_url_options = {:host => 'http://' + config.host_ip + ':3000'}
+  
 # config.max_login_attempts = 10
 # config.allowed_otp_drift_seconds = 180
 # config.otp_length = 6
 # {:host => 'http://52.27.151.238' }
-
   # config.action_mailer.default_url_options = {:host => 'http://52.27.151.238', :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
   # config.action_mailer.raise_delivery_errors = true
   # config.action_mailer.delivery_method = :smtp
@@ -74,8 +75,9 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = { :address => 'localhost', :port => 1025 }
   config.paperclip_defaults = {
     :storage => :s3,
-    :bucket => 'mosaiccms'
+    :bucket => 'mosaiccms-dev'
   }
+
 end
 
 

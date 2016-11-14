@@ -32,8 +32,7 @@ class ReportsController < ApplicationController
     end
     post_data = {
       "username" => tableau_username,
-      # "password" => "Bison47!",
-      "client_ip" => "50.112.88.230" # "192.168.100.33"
+      "client_ip" => Rails.application.config.host_ip
     }
     server = "https://mosaic-tableau.com"
     resp = Net::HTTP.post_form(URI.parse("#{server}/trusted"), post_data)

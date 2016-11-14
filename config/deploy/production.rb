@@ -6,8 +6,10 @@
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
-
-
+server '35.163.252.37', roles: [:web, :app, :db], primary: true
+set :branch,        :production
+set :stage,         :production
+set :app_domain, 	'client.anthesisgroup.com'
 
 # role-based syntax
 # ==================

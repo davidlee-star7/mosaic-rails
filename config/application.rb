@@ -44,14 +44,6 @@ module Mosic2
     
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
-    # if Rails.env.development? 
-    # config.action_controller.default_url_options = {:host => "http://localhost:3000"}
-    # elsif Rails.env.production?
-    # config.action_controller.default_url_options = {:host => "http://50.112.88.230"}
-    # else
-    # config.action_controller.default_url_options = {:host => "http://localhost:3000"}
-    # end
-
 
 config.before_configuration do
   env_file = File.join(Rails.root, 'config', 'local_env.yml')

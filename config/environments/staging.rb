@@ -78,11 +78,11 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   Paperclip.options[:command_path] = "/usr/local/bin/"
 
-  config.host_ip = '35.163.252.37'
+  config.host_ip = '50.112.88.230'
 
   config.action_controller.default_url_options = {:host => 'http://' + config.host_ip}
 
-  config.action_mailer.default_url_options = {:host => 'http://' + config.host_ip, :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
+  config.action_mailer.default_url_options = {:host => config.host_ip, :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
@@ -105,6 +105,7 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     :storage => :s3,
-    :bucket => 'mosaiccms'
+    :bucket => 'mosaiccms-staging'
   }
+
 end
