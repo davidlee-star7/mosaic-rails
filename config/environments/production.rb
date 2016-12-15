@@ -79,8 +79,9 @@ Rails.application.configure do
   Paperclip.options[:command_path] = "/usr/local/bin/"
 
   config.host_ip = '35.163.252.37'
+  config.domain = 'client.anthesisgroup.com'
 
-  config.action_controller.default_url_options = {:host => 'http://' + config.host_ip}
+  config.action_controller.default_url_options = {:host => 'http://' + config.domain}
 
   config.action_mailer.default_url_options = {:host => 'http://' + config.host_ip, :protocol => 'http'} #I've also tried it without ":protocol => 'http'"
   config.action_mailer.raise_delivery_errors = true
