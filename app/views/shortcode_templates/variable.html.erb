@@ -1,12 +1,11 @@
 <%
 type = @attributes[:type]
 value = @attributes[:value]
-%>
-<% if type == 'tableau_url_appendage' %>
-  <%= value %>
-<% elsif type == 'text' %>
-  <%= value %>
-<% elsif type == 'code' %>
+%><% if type == 'tableau_url_appendage' %><%= 
+  value 
+%><% elsif type == 'text' %><%= 
+  value 
+%><% elsif type == 'code' %>
   <code><%= value %></code>
 <% elsif type == 'image' %>
   <img src="<%= value %>" alt="" />

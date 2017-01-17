@@ -269,5 +269,6 @@ end
 Shortcode.setup do |config|
   config.block_tags = [:project, :quote, :variable, :fileuploader]
   config.helpers = [PageHelper]
-   
+  config.attribute_quote_type = "'"
+  config.use_attribute_quotes = true
 end

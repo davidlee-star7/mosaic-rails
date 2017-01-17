@@ -6,7 +6,7 @@ module VariablesHelper
   end
   
   def get_shortcode(variable)
-    "[variable id=\"#{variable.identifier}\"][/variable]"
+    "[variable id='#{variable.identifier}'][/variable]"
   end
 
   def variable_type_collection

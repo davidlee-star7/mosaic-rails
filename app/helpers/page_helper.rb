@@ -141,7 +141,7 @@ module PageHelper
 
   def content_html(c)
     # raw content(c)
-    c = c.gsub("<pre>","").gsub("</pre>","")
+    c = c.gsub("<pre>","").gsub("</pre>","").gsub("&#39;", "'")
     Shortcode.register_presenter(VariablePresenter)
     Shortcode.register_presenter(ProjectPresenter)
     Shortcode.register_presenter(FileuploaderPresenter)
