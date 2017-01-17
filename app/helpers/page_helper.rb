@@ -36,7 +36,7 @@ class VariablePresenter
     end
 
     def variable
-      variable = group.present? && group.groups_variables.present? ? Variable.where(identifier: @attributes[:id].to_s).first : nil
+      variable = Variable.where(identifier: @attributes[:id].to_s).first
     end
 
     def group
