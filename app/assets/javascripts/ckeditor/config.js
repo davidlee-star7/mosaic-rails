@@ -65,6 +65,6 @@ function insertUploader(editor) {
     method: 'POST',
     data: '{"uploaded_file": {"id": null}}'
   }).done(function(res) {
-    editor.insertHtml('[fileuploader text="Upload file" id="' + res.id + '"][/fileuploader]');
+    editor.insertHtml("[fileuploader text='Upload file' id='" + res.id + "'][/fileuploader]");
   });
 }
