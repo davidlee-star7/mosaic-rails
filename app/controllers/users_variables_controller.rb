@@ -27,14 +27,14 @@ class UsersVariablesController < ApplicationController
   # POST /users_variables.json
   def create
     @user_variable = UsersVariable.new(users_variable_params)
-
+    puts @user_variable
     respond_to do |format|
       begin
         if @user_variable.save
           format.html { redirect_to admin_editUser_path(@user_variable.user), notice: 'Groups variable was successfully created.' }
           format.json { render :show, status: :created, location: @user_variable }
         else
-          format.html { render :new }
+          format.html { render :new, notice: @user_variable.errors }
           format.json { render json: @user_variable.errors, status: :unprocessable_entity }
         end
       rescue
