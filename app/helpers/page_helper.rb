@@ -179,9 +179,9 @@ module PageHelper
 
   def nest_pages(microsite, parent_id = nil)
     if parent_id.nil?
-      microsite.cms_pages.where("parent_id IS NULL")
+      microsite.cms_pages.where("parent_id IS NULL").order(position: :asc)
     else
-      microsite.cms_pages.where(parent_id: parent_id)
+      microsite.cms_pages.where(parent_id: parent_id).order(position: :asc)
     end
   end
 end

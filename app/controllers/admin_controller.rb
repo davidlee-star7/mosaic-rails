@@ -540,6 +540,7 @@ class AdminController < ApplicationController
         :page_class =>params[:cms_page][:page_class],
         :status =>params[:cms_page][:status],
         :parent_id =>params[:cms_page][:parent_id],
+        :position =>params[:cms_page][:position],
         :layout_name =>params[:cms_page][:layout_name],
         :microsite_id =>params[:cms_page][:microsite_id],
         :user_id =>current_user.id,
@@ -681,6 +682,7 @@ class AdminController < ApplicationController
     cmspage.page_class = params[:cms_page][:page_class]
     cmspage.status = params[:cms_page][:status],
     cmspage.parent_id = params[:cms_page][:parent_id],
+    cmspage.position = params[:cms_page][:position],
     cmspage.layout_name = params[:cms_page][:layout_name],
     cmspage.microsite_id = params[:cms_page][:microsite_id],
     cmspage.user_id = current_user.id,
