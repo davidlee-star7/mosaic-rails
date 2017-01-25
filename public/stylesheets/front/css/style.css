@@ -1510,8 +1510,8 @@ body.fixed-left .side-menu.left {
 #front-sidebar-menu > ul > li > a:hover {
   text-decoration: none;
 }
-#front-sidebar-menu > ul li a.active,
-#front-sidebar-menu > ul li a.active.subdrop {
+#front-sidebar-menu > ul li.active > a,
+#front-sidebar-menu > ul li.active >a .subdrop {
   background: #f3f3f3 !important;
 }
 .subdrop {
@@ -3470,6 +3470,22 @@ div.dataTables_info {
   top: 16px;
   width: 20px;
   z-index: 9999;
+}
+
+.has-sub > .icon-open {
+  display: none;
+}
+
+.has-sub > .icon-close {
+  display: block;
+}
+
+.has-sub.open > .icon-open {
+  display: block;
+}
+
+.has-sub.open > .icon-close {
+  display: none;
 }
 
 .delete-uploaded-file-link i {

@@ -16,6 +16,8 @@ class UsersVariablesController < ApplicationController
 
   # GET /users_variables/new
   def new
+    puts '-------------------'
+    puts ENV['AWS_ACCESS_KEY']
     @user_variable = UsersVariable.new(user_id: params[:ext_user_id])
   end
 
@@ -27,7 +29,7 @@ class UsersVariablesController < ApplicationController
   # POST /users_variables.json
   def create
     @user_variable = UsersVariable.new(users_variable_params)
-    puts @user_variable
+
     respond_to do |format|
       begin
         if @user_variable.save

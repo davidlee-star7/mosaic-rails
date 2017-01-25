@@ -210,6 +210,7 @@ jQuery(document).ready(function() {
         // 	 }else{
         // $(this).children('span').toggleClass('opened');
         // 	 }
+        $(this).toggleClass('open');
         $(this).next('ul').slideToggle();
     });
     jQuery('.confirm-delete').click(function() {

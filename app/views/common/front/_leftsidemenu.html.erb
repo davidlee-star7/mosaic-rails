@@ -1,17 +1,17 @@
-<% pages = nest_pages(microsite, parent_id) %>
-<% puts pages %>
-<% puts microsite %>
-<% puts parent_id %>
-<% if pages.present? %>
   <ul class="">
     <% pages.each do |p| %>
-    <li>
-      <a href='<%= "/#{client.slug}/#{microsite.slug}/#{p.slug}" %>'
-         class="<%= cmspage.id == p.id ? 'active' : 'inactive'  %>">
+    <li class="<%= cmspage.id == p.id ? 'active' : 'inactive'  %>">
+      <a href='<%= "/#{client.slug}/#{microsite.slug}/#{p.slug}" %>'>
       <%= p.title %>
       </a>
-      <%= render 'common/front/leftsidemenu', client: client, microsite: microsite, parent_id: p.id, cmspage: cmspage %>
+      <% children = nest_pages(microsite, p.id) %>
+      <% if children.present? %>
+        <span class="pull-right has-sub open">
+          <i class="icon-open md md-remove"></i>
+          <i class="icon-close md md-add"></i>
+        </span>
+        <%= render 'common/front/leftsidemenu', client: client, microsite: microsite, pages: children, cmspage: cmspage %>
+      <% end %>
     </li>
     <% end %>
   </ul>
-<% end %>

@@ -22,13 +22,16 @@
                 </li>
             </ul> -->
         </div>
-       </div>
       </div>
-      <!--- Divider -->
-      <div id="front-sidebar-menu">
-        <%= render 'common/front/leftsidemenu', client: @client, microsite: @microsite, parent_id: nil, cmspage: @cmspage %>
-        <div class="clearfix"></div>
-      </div>
+    </div>
+    <!--- Divider -->
+    <div id="front-sidebar-menu">
+      <% pages = nest_pages(@microsite, nil) %>
+      <% if pages.present? %>
+        <%= render 'common/front/leftsidemenu', client: @client, microsite: @microsite, pages: pages, cmspage: @cmspage %>
+      <% end %>
+      <div class="clearfix"></div>
+    </div>
     <div class="clearfix"></div>
 
     <div class="side-menu-actions">
