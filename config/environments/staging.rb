@@ -105,8 +105,11 @@ Rails.application.configure do
   }
 
   config.paperclip_defaults = {
-    :storage => :s3,
-    :bucket => 'mosaiccms-staging'
+    storage: :s3,
+    bucket: 'mosaiccms-staging',
+    access_key_id: ENV.fetch('AWS_ACCESS_KEY'),
+    secret_access_key: ENV.fetch('AWS_SECRET_KEY'),
+    s3_region: 'us-east-1'
   }
 
 end

@@ -33,7 +33,7 @@ class UsersVariablesController < ApplicationController
     respond_to do |format|
       begin
         if @user_variable.save
-          format.html { redirect_to admin_editUser_path(@user_variable.user), notice: 'Groups variable was successfully created.' }
+          format.html { redirect_to admin_editUser_path(@user_variable.user), notice: 'User variable was successfully created.' }
           format.json { render :show, status: :created, location: @user_variable }
         else
           format.html { render :new, notice: @user_variable.errors }
@@ -51,7 +51,7 @@ class UsersVariablesController < ApplicationController
   def update
     respond_to do |format|
       if @user_variable.update(users_variable_params)
-        format.html { redirect_to admin_editUser_path(@user_variable.user), notice: 'Groups variable was successfully updated.' }
+        format.html { redirect_to admin_editUser_path(@user_variable.user), notice: 'User variable was successfully updated.' }
         format.json { render :show, status: :ok, location: @user_variable }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class UsersVariablesController < ApplicationController
   def destroy
     @user_variable.destroy
     respond_to do |format|
-      format.html { redirect_to admin_editUser_path(@user_variable.user), notice: 'Groups variable was successfully destroyed.' }
+      format.html { redirect_to admin_editUser_path(@user_variable.user), notice: 'User variable was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

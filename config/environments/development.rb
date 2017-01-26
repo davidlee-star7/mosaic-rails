@@ -73,9 +73,13 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost' }
   config.action_mailer.smtp_settings = { :address => 'localhost', :port => 1025 }
+
   config.paperclip_defaults = {
-    :storage => :s3,
-    :bucket => 'mosaiccms-dev'
+    storage: :s3,
+    bucket: 'mosaiccms-dev',
+    access_key_id: ENV.fetch('AWS_ACCESS_KEY'),
+    secret_access_key: ENV.fetch('AWS_SECRET_KEY'),
+    s3_region: 'us-east-1'
   }
 
 end
