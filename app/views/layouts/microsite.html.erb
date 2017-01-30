@@ -68,19 +68,19 @@
         <% end %>
 
     </head>
-    <body class="fixed-left-void <%= params[:controller]+'_'+params[:action] %>  template-<%= params[:controller] %> <%= @body_class %>">12345
+    <body class="fixed-left <%= params[:controller]+'_'+params[:action] %>  template-<%= params[:controller] %> <%= @body_class %>">12345
         <!-- Begin page -->
-        <div id="wrapper" class="enlarged forced">
+        <div id="wrapper" class="forced">
             <!-- Top Bar Start -->
             <div class="topbar">
                 <!-- LOGO -->
                 <div class="topbar-left toggler">
-                  <div class="toggler mosic-logo closer col-xs-9">
+                  <div class="toggler mosic-logo col-xs-9">
                     <%= image_tag("site/logo.png", :alt => "mosaic logo") %>
                   </div>
                   <div class="col-xs-3">
                     <!-- mobile button -->
-                    <div class="text-center m-menu-block toggler">
+                    <div class="text-center m-menu-block toggler closer">
                           <button class="button-menu-mobile open-left">
                               <i class="fa fa-bars"></i>
                               <i class="fa fa-times"></i>
@@ -97,7 +97,7 @@
                         <!-- logo -->
                      <div class="topbar-left-1">   
                       <!-- mobile button -->
-                      <div class="text-center m-menu-block toggler">
+                      <div class="text-center m-menu-block toggler closer">
                           <button class="button-menu-mobile open-left">
                               <i class="fa fa-bars"></i>
                               <i class="fa fa-times"></i>
