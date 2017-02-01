@@ -113,9 +113,6 @@ class Ability
                 if urp.action_class == 'admin' && urp.action == 'editpage'
                   can :editpage, :admin
                 end
-                if urp.action_class == 'admin' && urp.action == 'unlinkcmspage'
-                  can :unlinkcmspage, :admin
-                end
                 if urp.action_class == 'admin' && urp.action == 'update_cmspage'
                   can :update_cmspage, :admin
                 end
@@ -127,9 +124,6 @@ class Ability
                 end
                 if urp.action_class == 'admin' && urp.action == 'importusers'
                   can :importusers, :admin
-                end
-                if urp.action_class == 'admin' && urp.action == 'addexistingpages'
-                  can :addexistingpages, :admin
                 end
 
                 
@@ -353,8 +347,10 @@ class Ability
                 end  
                   if urp.action_class == 'microsite' && urp.action == 'addexistingpages'
                   can :addexistingpages, :microsite
-                end  
-
+                end
+                if urp.action_class == 'microsite' && urp.action == 'unlinkcmspage'
+                  can :unlinkcmspage, :microsite
+                end
 
                 #
                 # group Controller

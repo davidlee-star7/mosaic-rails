@@ -73,23 +73,21 @@ Rails.application.routes.draw do
     member do
 
       get 'newcmspage/:template_id' => 'admin#newcmspage'
-      get 'addexistingpages' => 'admin#addexistingpages'
-      patch 'addexistingpages' => 'admin#addexistingpages'
       
       get 'addexistingsurveys' => 'admin#addexistingsurveys'
       patch 'addexistingsurveys' => 'admin#addexistingsurveys'
 
       post 'create_cmspage' => 'admin#create_cmspage'
       patch 'create_cmspage' => 'admin#create_cmspage'
-      get 'listcmspages' => 'admin#listcmspages'
-      post 'listcmspages' => 'admin#listcmspages'
       get 'editpage/:cms_page_id/:template_id' => 'admin#editpage'
       patch 'update_cmspage/:cms_page_id' => 'admin#update_cmspage'
 
+      get 'addexistingpages' => 'microsites#addexistingpages'
+      patch 'addexistingpages' => 'microsites#addexistingpages'
+      get 'unlinkcmspage/:page_id' => 'microsites#unlinkcmspage'
+
     end
   end
-
-  resources :microsites
 
   resources :surveys do
     get :autocomplete_survey_name, :on => :collection 
@@ -112,8 +110,6 @@ Rails.application.routes.draw do
   get 'admin/listroles' => 'admin#listroles'
 
   get 'admin/clients' => 'admin#listClients'
-
-  get 'admin/unlinkcmspage/:page_id' => 'admin#unlinkcmspage'
 
   get 'admin/editrole/:id/:role_id' => 'admin#editrole'
 

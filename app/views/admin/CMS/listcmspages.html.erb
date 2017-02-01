@@ -98,8 +98,10 @@
   <!-- end sub page block -->
                    </td>
                    <td>
-                    <% if page.microsite.present? %>
-                      <a href="/microsites/<%= page.microsite.id %>"><%= page.microsite.title %></a>
+                    <% if page.microsites.length > 0 %>
+                      <% page.microsites.each do |microsite| %>
+                        <p><a href="/microsites/<%= microsite.id %>"><%= microsite.title %></a></p>
+                      <% end %>
                     <% else %>
                       <%= t(:NOT_ASSIGNED_YET) %>
                     <% end %>

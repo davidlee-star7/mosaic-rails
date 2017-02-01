@@ -1,7 +1,7 @@
 class MicrositesController < ApplicationController
    before_action :authenticate_user!
    # before_action :check_permition
-   before_action :set_microsite, only: [:show, :edit, :update, :destroy]
+   before_action :set_microsite, only: [:show, :edit, :update, :destroy, :addexistingpages, :unlinkcmspage]
    before_action :set_client, only: [:show, :edit, :update, :create]
    layout "dashboard"
   # GET /microsites
@@ -191,6 +191,42 @@ class MicrositesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to microsites_url, notice: 'Microsite was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def addexistingpages
+   @pages = []
+   @errors = []
+   @success = []
+    if params[:task] == "assign-pages-to-microsite"
+      @pages = params[:pages]
+      if @pages.size > 0
+        @pages.first.split(",").each do |p|
+          page = CmsPage.find_by(:slug => p)
+          if page == nil
+            @errors << "CMS Page <i>#{p}</i> Not found in the system!"
+          else
+            @microsite.cms_pages << page unless @microsite.cms_pages.include?(page)
+            @success << "CMS Page <i>#{p}</i> successfully added to Microsite <span>#{@microsite.title}</span>"
+          end      
+        end
+      end
+      respond_to do |format|
+        format.html{ redirect_to "/microsites/#{@microsite.id}/" }
+      end
+    else
+      respond_to do |format|
+        format.html { render 'admin/CMS/addexistingpages' }
+      end
+    end
+    
+  end
+
+  def unlinkcmspage
+    page = CmsPage.find(params[:page_id])
+    @microsite.cms_pages.delete(page)
+    respond_to do |format|
+      format.html{ redirect_to "/microsites/#{@microsite.id}/" }
     end
   end
 

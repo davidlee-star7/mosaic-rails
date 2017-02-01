@@ -11,8 +11,8 @@ class Microsite < ActiveRecord::Base
     validates :title, presence: true 
     validates :slug, presence: true, uniqueness: true 
 
-    #belongs_to :user
-    has_many :cms_pages, :dependent => :destroy
+    has_many :cms_pages_microsites
+    has_many :cms_pages, :through => :cms_pages_microsites
     before_validation :create_slug
      
     has_many :users_microsite
@@ -25,8 +25,6 @@ class Microsite < ActiveRecord::Base
     has_many :groups, :through => :microsites_group
 
     scope :filter_users, -> {
-      # where("id NOT IN (?)", UsersMicrosite.where(:owner => true ).select(:microsite_id).uniq())
-      # where("id NOT IN (?)", UsersMicrosite.where(:owner => true ).select(:microsite_id).uniq())
     }
 
     #   

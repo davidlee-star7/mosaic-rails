@@ -374,3 +374,14 @@ zh-CN:
         name: Name
         vtype: Variable Type
         identifier: Identifier
+      cms_page:
+        page_title: Page Title
+        slug: Page Slug
+        meta_title: Meta Title
+        meta_keyword: Meta Keyword
+        page_css: Page CSS
+        page_js: Page JS
+        page_class: Page Class
+        parent_id: Parent ID
+        content: Content
+        position: Position

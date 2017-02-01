@@ -484,42 +484,10 @@ class AdminController < ApplicationController
   # GET admin/newcmspage
   def newcmspage
     @cmspage = CmsPage.new
-    @microsite = nil
-    if params[:id] != "" && params[:id] != nil
-       @microsite = Microsite.find(params[:id])
-    end
+    @microsite = Microsite.find(params[:id]) if params[:id].present?
    
     respond_to do |format|
      format.html { render 'admin/CMS/newcmspage' }
-    end
-  end
-
-  def addexistingpages
-   @microsite = Microsite.find(params[:id])
-   @pages = []
-   @errors = []
-   @success = []
-    if params[:task] == "assign-pages-to-microsite"
-      @pages = params[:pages]
-      if @pages.size > 0
-        @pages.first.split(",").each do |p|
-            page = CmsPage.find_by(:slug => p)
-            if page == nil
-              @errors << "CMS Page <i>#{p}</i> Not found in the system!"
-            else
-              if page.microsite_id.to_i > 0
-                @errors << "CMS Page <i>#{p}</i> al ready assigned to another microsite"
-              else
-                page.microsite_id = @microsite.id 
-                page.save
-                @success << "CMS Page <i>#{p}</i> successfully added to Microsite <span>#{@microsite.title}</span>"
-              end
-            end      
-        end
-      end   
-    end
-    respond_to do |format|
-     format.html { render 'admin/CMS/addexistingpages' }
     end
   end
 
@@ -540,9 +508,7 @@ class AdminController < ApplicationController
         :page_class =>params[:cms_page][:page_class],
         :status =>params[:cms_page][:status],
         :parent_id =>params[:cms_page][:parent_id],
-        :position =>params[:cms_page][:position],
         :layout_name =>params[:cms_page][:layout_name],
-        :microsite_id =>params[:cms_page][:microsite_id],
         :user_id =>current_user.id,
         :bodyfield1 =>params[:cms_page][:bodyfield1],
         :bodyfield2 =>params[:cms_page][:bodyfield2],
@@ -556,19 +522,31 @@ class AdminController < ApplicationController
 
     respond_to do |format|
       if @cmspage.save
-         extraelemrnt =  params[:extraelemrnt]
-         if extraelemrnt != nil && extraelemrnt != ""
-            extraelemrnt.each do |element|
-              if element != "" && element != t("CREATE_NEW_OBJECT_LABEL")
-                ExtraField.create(:cms_page_id => @cmspage.id, :field_name => element ).save
-              end
-            end 
-         end
-       msg = "Successfully created #{view_context.link_to('page', @cmspage)}."
+        extraelemrnt =  params[:extraelemrnt]
+        if extraelemrnt != nil && extraelemrnt != ""
+          extraelemrnt.each do |element|
+            if element != "" && element != t("CREATE_NEW_OBJECT_LABEL")
+              ExtraField.create(:cms_page_id => @cmspage.id, :field_name => element ).save
+            end
+          end
+        end
+
+        if params[:id].present?
+          microsite = Microsite.find(params[:id])
+          # @cmspage.microsites.create(microsite_id: microsite.id, position: params[:cms_page][:position]) unless @cmspage.microsites.include?(microsite)
+          @cmspage.microsites << microsite unless @cmspage.microsites.include?(microsite)
+          @cmspage.cms_pages_microsites.find_by_microsite_id(microsite.id).update_attributes!(position: params[:cms_page][:position])
+        end
+        msg = "Successfully created #{view_context.link_to('page', @cmspage)}."
         Rails.logger.warn msg
-         format.html { redirect_to controller: :admin, action: :editpage, cms_page_id:@cmspage.id , notice: msg.html_safe }
+
+        if microsite.present?
+          format.html{ redirect_to "/microsites/#{microsite.id}/editpage/#{@cmspage.id}/1" }
         else
-         format.html { render 'admin/CMS/newcmspage' }
+          format.html{ redirect_to :controller =>:admin, :action => :editpage, :cms_page_id => @cmspage.id }
+        end
+      else
+        format.html { render 'admin/CMS/newcmspage' }
       end
     end
   end
@@ -588,15 +566,11 @@ class AdminController < ApplicationController
   #
   def listcmspages
     @cmspages = []
-   if current_user.admin?
-   @cmspages = CmsPage.order(updated_at: :desc)
-   @errors = []
-   @message = []
-   else
-    if params[:id].present?
-    @cmspages = CmsPage.where(:microsite_id=> params[:id], :user_id => current_user.id ) 
+    if current_user.admin?
+      @cmspages = CmsPage.order(updated_at: :desc)
+      @errors = []
+      @message = []
     else
-      #only show cms pages allowed by crrent user
       if current_user.microsites != nil
         current_user.microsites.each do |m|
           if m.cms_pages != nil
@@ -604,15 +578,13 @@ class AdminController < ApplicationController
               @cmspages << p
             end
           end
-          
         end
       end     
     end
-   end
 
-   if params[:task] == "cmspages_to_group"
-     groups = params[:groups]
-     pages = params[:pages]
+    if params[:task] == "cmspages_to_group"
+      groups = params[:groups]
+      pages = params[:pages]
 
       if !groups
         @errors << "You must select Grous from the list, assign to Pages!"
@@ -632,11 +604,11 @@ class AdminController < ApplicationController
         @message << "Pages and Groups saved Successfully."
       end
 
-   end
+    end
 
-   respond_to do |format|
-     format.html{ render 'admin/CMS/listcmspages' }
-   end
+    respond_to do |format|
+      format.html{ render 'admin/CMS/listcmspages' }
+    end
 
   end
 
@@ -645,26 +617,14 @@ class AdminController < ApplicationController
   #
   def editpage
     @cmspage = CmsPage.find(params[:cms_page_id])
+    @microsite = Microsite.find(params[:id]) if params[:id].present?
     @groups = ExtraField.where(:cms_page_id => @cmspage.id ).select(:field_group).order("field_group DESC").distinct
     session[:edit_page_last_id] = @cmspage.id 
     session[:edit_page_back] = nil
-    @microsite = @cmspage.microsite
     respond_to do |format|
         format.html{ render 'admin/CMS/editpage' }
     end
   end
-
-
-  def unlinkcmspage
-    page = CmsPage.find(params[:page_id])
-    microsite_id = page.microsite_id
-    page.microsite_id = ""
-    page.save
-    respond_to do |format|
-      format.html{  redirect_to "/microsites/#{microsite_id}/" }
-    end
-  end
-
 
 
   def update_cmspage
@@ -682,9 +642,7 @@ class AdminController < ApplicationController
     cmspage.page_class = params[:cms_page][:page_class]
     cmspage.status = params[:cms_page][:status],
     cmspage.parent_id = params[:cms_page][:parent_id],
-    cmspage.position = params[:cms_page][:position],
     cmspage.layout_name = params[:cms_page][:layout_name],
-    cmspage.microsite_id = params[:cms_page][:microsite_id],
     cmspage.user_id = current_user.id,
     cmspage.bodyfield1 = params[:cms_page][:bodyfield1],
     cmspage.bodyfield2 = params[:cms_page][:bodyfield2],
@@ -713,23 +671,33 @@ class AdminController < ApplicationController
     end
 
     extraelemrnt =  params[:extraelemrnt]
-   if extraelemrnt != nil && extraelemrnt != ""
+    if extraelemrnt != nil && extraelemrnt != ""
       extraelemrnt.each do |element|
         if element != "" && element != t("CREATE_NEW_OBJECT_LABEL")
           ExtraField.create(:cms_page_id => cmspage.id, :field_name => element ).save
         end
       end 
-   end
+    end
+
+    if params[:id].present?
+      microsite = Microsite.find(params[:id])
+      # @cmspage.microsites.create(microsite_id: microsite.id, position: params[:cms_page][:position]) unless @cmspage.microsites.include?(microsite)
+      cmspage.microsites << microsite unless cmspage.microsites.include?(microsite)
+      cmspage.cms_pages_microsites.find_by_microsite_id(microsite.id).update_attributes!(position: params[:cms_page][:position])
+    end
 
     # cmspage.save 
     respond_to do |format|
       if cmspage.save 
         #PagesGroup.updatepages(params)
-          flash[:notice] = 'Page Updated Successfully!'
-          format.html{ redirect_to :controller =>:admin, :action => :editpage, :cms_page_id => cmspage.id}
-         else
-          flash[:alert] = cmspage.errors
-          format.html{ redirect_to :controller =>:admin, :action => :editpage, :cms_page_id => cmspage.id}
+        flash[:notice] = 'Page Updated Successfully!'
+      else
+        flash[:alert] = cmspage.errors
+      end
+      if microsite.present?
+        format.html{ redirect_to "/microsites/#{microsite.id}/editpage/#{cmspage.id}/1" }
+      else
+        format.html{ redirect_to :controller =>:admin, :action => :editpage, :cms_page_id => cmspage.id }
       end
     end
   end

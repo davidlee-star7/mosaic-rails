@@ -5,7 +5,7 @@ class CmsPagesController < ApplicationController
    layout "dashboard"
 
 	autocomplete :cms_page, :title, :full => true, 
-	:extra_data => [:slug,:microsite_id], :column_name => 'slug',
+	:extra_data => [:slug], :column_name => 'slug',
 	:scopes => [:unassigned_pages]
 
 	def managegroup

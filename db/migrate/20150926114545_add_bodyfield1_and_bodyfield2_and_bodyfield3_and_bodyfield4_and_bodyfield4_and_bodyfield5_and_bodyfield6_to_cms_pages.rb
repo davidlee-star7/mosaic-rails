@@ -1,6 +1,6 @@
 class AddBodyfield1AndBodyfield2AndBodyfield3AndBodyfield4AndBodyfield4AndBodyfield5AndBodyfield6ToCmsPages < ActiveRecord::Migration
   def self.up
-       add_column :cms_pages, :bodyfield1, :text
+    add_column :cms_pages, :bodyfield1, :text
     add_column :cms_pages, :bodyfield2, :text
     add_column :cms_pages, :bodyfield3, :text
     add_column :cms_pages, :bodyfield4, :text

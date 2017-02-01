@@ -86,18 +86,10 @@ class PageController < ApplicationController
   def cms
     return if check_client_redirect
     @cmspage = CmsPage.where('slug = ?',params[:slug])
-    @microsite = nil
     return redirect_to('/') if @cmspage.empty?
     @groups = ExtraField.all.where(:cms_page_id => @cmspage.first.id).select(:field_group).distinct
 
     if @cmspage.present?
-      if @cmspage[0].microsite_id != nil
-        if Microsite.exists?(@cmspage[0].microsite_id)
-          @microsite = Microsite.find(@cmspage[0].microsite_id)
-        end
-      end
-    
-      # if @microsite.publish
       @type = params[:type]
       respond_to do |format|
         if @cmspage.size > 0
@@ -140,18 +132,18 @@ class PageController < ApplicationController
       @user = current_user
     else
       if (params[:cms_page_slug].to_s !='')
-            @cmspage =  CmsPage.find_by(:slug => params[:cms_page_slug])
+        @cmspage =  CmsPage.find_by(:slug => params[:cms_page_slug])
       elsif @microsite.cms_page_id.to_i > 0
-            @cmspage =  CmsPage.find_by(:id => @microsite.cms_page_id)  
-            if @cmspage == nil
-              @msg << "Default Page deleted, Please set new one."
-            end 
+        @cmspage =  CmsPage.find_by(:id => @microsite.cms_page_id)  
+        if @cmspage == nil
+          @msg << "Default Page deleted, Please set new one."
+        end 
       else
-            @cmspage = @microsite.cms_pages.first
+        @cmspage = @microsite.cms_pages.first
       end
 
       if @cmspage == nil 
-         @msg << "No default page found"
+        @msg << "No default page found"
       end
     end
 

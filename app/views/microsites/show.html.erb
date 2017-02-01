@@ -103,34 +103,29 @@
 <div class="mid-section">
 <p id="notice"><%= notice %></p>
 <table class="table table-bold">
-  <% @microsite.cms_pages.each do |page| %>
+  <% @microsite.cms_pages.order('cms_pages_microsites.position ASC').each do |page| %>
   <tr>
     <td><%= page.title %></td>
 
     <td>
-        <% if page.id == @microsite.cms_page_id %>
-              <label title="Default page", alt="Default page", rel="tooltip",>
-                <%= radio_button_tag :default_page, page.id, :checked => true   %>
-                Home
-              </label>
-            <% else %>
-            <%= link_to (radio_button_tag(:default_page, page.id).to_s+raw(' Home')), "/microsites/#{@microsite.id}/#{page.id}/default_page", :rel=>"tooltip",
-            :title => "Set as default page", :alt => "Set as default page"
-                 %>  
-        <% end %>
+      <% if page.id == @microsite.cms_page_id %>
+            <label title="Default page", alt="Default page", rel="tooltip",>
+              <%= radio_button_tag :default_page, page.id, :checked => true   %>
+              Home
+            </label>
+          <% else %>
+          <%= link_to (radio_button_tag(:default_page, page.id).to_s+raw(' Home')), "/microsites/#{@microsite.id}/#{page.id}/default_page", :rel=>"tooltip", :title => "Set as default page", :alt => "Set as default page"
+               %>  
+      <% end %>
     </td>
     <td>
-        <%= link_to t("EDIT") , 
-              "/admin/editpage/#{page.id}", 
-              :target => "_BLANK" 
-          %>
+      <%= link_to t("EDIT"), "/microsites/#{@microsite.id}/editpage/#{page.id}/1", :target => "_BLANK" %>
     </td>
     <td>
-        <%= link_to t("VIEW") , "/#{page.slug}", :target => "_BLANK" %>
+      <%= link_to t("VIEW"), "/#{page.slug}", :target => "_BLANK" %>
     </td>
     <td>
-      <%= link_to t("UNLINK") , "/admin/unlinkcmspage/#{page.id}",
-        :data => { :confirm => "Are you sure?"} %>
+      <%= link_to t("UNLINK"), "/microsites/#{@microsite.id}/unlinkcmspage/#{page.id}", :data => { :confirm => "Are you sure?"} %>
     </td>
   </tr>
   <% end %>

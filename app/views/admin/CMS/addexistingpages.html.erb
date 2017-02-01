@@ -41,7 +41,7 @@
   <div class="title">
   		<label><%= t("ASSIGN_CMS_PAGE_MSG") %>:</label>
   </div>
-  <% CmsPage.where("(microsite_id IS NULL OR microsite_id = 0) AND status = TRUE ").each do |page| %>
+  <% CmsPage.where.not(id: Microsite.find(21).cms_pages.select(:cms_page_id)).each do |page| %>
   <p><%= page.slug  %></p>
   <% end %>
   </div>

@@ -6,7 +6,6 @@ class CmsPage < ActiveRecord::Base
     validates :slug, length: { maximum: 100 }
     validates :slug, uniqueness: true
 	validates :title, presence: true
-	#validates :microsite_id, presence: true
 	# 
 
 	before_save :filter_content
@@ -16,7 +15,8 @@ class CmsPage < ActiveRecord::Base
     belongs_to :parent, :class_name => 'CmsPage', :foreign_key => 'parent_id'
 
 
-    belongs_to :microsite
+    has_many :cms_pages_microsites
+    has_many :microsites, :through => :cms_pages_microsites
     belongs_to :user
 
     has_many :pages_groups
