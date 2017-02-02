@@ -10,8 +10,6 @@ class TableausController < ApplicationController
   # GET /tableaus
   # GET /tableaus.json
   def index
-    puts Tableau.inspect
-
     @tableaus = Tableau.all
   end
 
