@@ -39,7 +39,11 @@
 
         <div class="form-group">
           <%= f.label :parent_id %><br>
-          <%= f.select :parent_id, CmsPage.where(:microsite_id=> params[:id], :user_id => current_user.id ).collect{|u| [u.title, u.id]}, {:include_blank => 'Select parent page'}, class: 'form-control' %>
+          <% if @microsite.present? %>
+            <%= f.select :parent_id, @microsite.cms_pages.collect{|u| [u.title, u.id]}, {:include_blank => 'Select parent page'}, class: 'form-control' %>
+          <% else %>
+            <%= f.select :parent_id, CmsPage.all.collect{|u| [u.title, u.id]}, {:include_blank => 'Select parent page'}, class: 'form-control' %>
+          <% end %>
         </div>
 
         <% if @microsite.present? %>

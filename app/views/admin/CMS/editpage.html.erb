@@ -69,7 +69,11 @@
           -->
           <div class="form-group">
             <%= f.label :parent_id , class: "control-label" %>
-            <%= f.select :parent_id, CmsPage.all.reject {|u| u.id == @cmspage.id}.collect{|u| [u.title, u.id]}, {:include_blank => 'Select parent page'},{:class => "form-control"}  %>
+            <% if @microsite.present? %>
+              <%= f.select :parent_id, @microsite.cms_pages.reject {|u| u.id == @cmspage.id}.collect{|u| [u.title, u.id]}, {:include_blank => 'Select parent page'}, class: 'form-control' %>
+            <% else %>
+              <%= f.select :parent_id, CmsPage.all.reject {|u| u.id == @cmspage.id}.collect{|u| [u.title, u.id]}, {:include_blank => 'Select parent page'},{:class => "form-control"}  %>
+            <% end %>
           </div>
 
           <% if @microsite.present? %>
