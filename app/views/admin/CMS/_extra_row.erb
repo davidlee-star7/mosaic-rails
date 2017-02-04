@@ -1,0 +1,30 @@
+<div class="extra-row portlet" id="extra_row_<%= row.id %>" data-id="<%= row.id %>" data-field-ids="<%= row.extra_fields.select(:id).map { |item| item.id } %>">
+  <div class="portlet-header">
+    <div class="extra-field-remove extrafield-val-<%= row.id %>">
+      <i class="md md-open-with"></i>
+      <%= row.row_name %>
+    </div>
+  </div>
+  <div class="portlet-content">
+    <div class="text-right">
+      <a href="javascript:void(0)" class="remove-edited-extra-field" 
+        data-url="/extra_fields/remove_row/<%= row.id %>"
+        data-fid="extra_row_<%= row.id %>">
+        <%= t(:REMOVE_THIS_ROW) %> <i class="fa fa-times" style="font-size:20px"></i>
+      </a>
+    </div>
+    <% row.extra_fields.each do |efield|  %>
+      <div class="extra-field-col">
+        <label class="control-label">
+          <% field_flap = efield.field_setting.split(":") %>
+            <%= t(:FIELD_TYPE) %> <%= field_flap[1] %>
+        </label>
+        <div class="clear Clear"></div>
+        <div id="ckeditor_wrapper_<%= efield.id %>">
+          <%=  cktext_area "extra_field", efield.id, class: 'ckeditor',
+          :ckeditor => {:language => 'en' }, :value => efield.field_value  %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

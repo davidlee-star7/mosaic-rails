@@ -15,10 +15,9 @@
         </div>
       </div>
 		</div>
-    <% if @groups != nil %>
-    <% @groups.each do |g| %>
-      <div class="row grouped-<%= g.field_group %>">
-          <% extra_fields = @cmspage.extra_fields.where(:field_group => g.field_group ) %>
+    <% @extra_rows.each do |row| %>
+      <div class="row grouped-<%= row.id %>">
+          <% extra_fields = row.extra_fields.order(:id) %>
           <% if extra_fields !=nil %>
               <% extra_fields.each do |field| %>
                 <% field_flap = field.field_setting.split(":") %>
@@ -56,7 +55,6 @@
               <% end %>
           <% end %>
       </div>
-    <% end %>  
     <% end %>
 		
 <% if user_signed_in? %>

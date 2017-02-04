@@ -1,7 +1,4 @@
 class ExtraField < ActiveRecord::Base
-	validates :field_name, presence: true 
-
-  belongs_to :cms_page
- 
-   
+  validates :extra_row_id, presence: true
+  belongs_to :extra_row
 end

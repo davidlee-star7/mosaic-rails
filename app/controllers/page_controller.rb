@@ -87,13 +87,14 @@ class PageController < ApplicationController
     return if check_client_redirect
     @cmspage = CmsPage.where('slug = ?',params[:slug])
     return redirect_to('/') if @cmspage.empty?
-    @groups = ExtraField.all.where(:cms_page_id => @cmspage.first.id).select(:field_group).distinct
+    @extra_rows = []
 
     if @cmspage.present?
       @type = params[:type]
       respond_to do |format|
         if @cmspage.size > 0
         @cmspage = @cmspage.first
+        @extra_rows = @cmspage.sorted_extra_rows
         format.html{ render 'page/CMS/index.html.erb' } 
         else
         format.html{ render 'page/CMS/notfound.html.erb' }    
@@ -116,8 +117,7 @@ class PageController < ApplicationController
     @msg = []
     @cmspage = nil
     @user = nil
-    @extra_fields = nil
-    @groups = nil
+    @extra_rows = []
    
     @microsite = Microsite.find_by(:slug => params[:microsite_slug])
     if has_same_group(current_user,@microsite).any?
@@ -145,6 +145,8 @@ class PageController < ApplicationController
       if @cmspage == nil 
         @msg << "No default page found"
       end
+
+      @extra_rows = @cmspage.sorted_extra_rows if @cmspage.present?
     end
 
 
@@ -152,7 +154,6 @@ class PageController < ApplicationController
 
     if @cmspage != nil
        @body_class = @body_class + "-page-#{@cmspage.id}"
-       @groups = ExtraField.all.where(:cms_page_id => @cmspage.id).select(:field_group).order("field_group DESC").distinct
     end
 
 

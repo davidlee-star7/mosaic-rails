@@ -30,42 +30,58 @@ class ExtraFieldsController < ApplicationController
     
   end
 
-  # GET extra_fields/remove_by_grop  
-  def remove_by_grop
-      fields = ExtraField.all.where(:field_group => params[:group_id])
-      fields.map{|f| f.destroy() }
+  # GET extra_fields/remove_row  
+  def remove_row
+      row = ExtraRow.find(params[:group_id])
+      row.destroy!
       respond_to do |format|
         format.html{ render :html => "ok" }
       end
   end 
 
-  # POST extra_fields/add_fields_by_group
-  def add_fields_by_group
+  # POST extra_fields/add_row
+  def add_row
     lastid = ExtraField.last == nil ? 0 :  ExtraField.last.id
     fields = params[:extrafield]
     added_fields = []
-    if fields != "" && fields != nil
-      fields.each do |field|
-         if field != "" && field != nil
-           field_a = field.split(":")
-           if field_a[0] != nil && field_a[1] != nil
-             ef = ExtraField.create(
-              :cms_page_id => params[:page_id] , 
-              :field_name => params[:field_name], 
-              :field_setting => field,
-              :field_group => lastid)
-             ef.save
-             added_fields << ef
-           end
-         end
-      end
-    end
+    page = CmsPage.find(params[:page_id])
+    if page.present? && fields != "" && fields != nil
+      pos = page.extra_rows.count() + 1
+      @row = ExtraRow.create(row_name: params[:field_name], position: pos)
+      page.extra_rows << @row
 
+      fields.each do |field|
+        if field != "" && field != nil
+          field_a = field.split(":")
+          if field_a[0] != nil && field_a[1] != nil
+            ef = ExtraField.create(:field_setting => field)
+            @row.extra_fields << ef
+            added_fields << ef
+          end
+        end
+      end
+
+      respond_to do |format|
+        format.json{ render json: added_fields, status: :ok }
+        format.html{ render 'admin/CMS/add_extra_row' }
+      end
+    else
+      respond_to do |format|
+        format.json{ render json: {status: 'fail'}, status: :unprocessable_entity }
+        format.html{ render html: "fail", status: :unprocessable_entity }
+      end
+    end    
+  end
+
+  def order_row
+    row_order = params[:row_order]
+    row_order.each_with_index do |row_id, index|
+      ExtraRow.find(row_id).update(position: index + 1)
+    end
     respond_to do |format|
-      format.json{ render json: added_fields, status: :ok }
+      format.json{ render json: row_order, status: :ok }
       format.html{ render html: "ok", status: :ok }
     end
-    
   end
 
   # POST /extra_fields

@@ -6,9 +6,13 @@ Rails.application.routes.draw do
 
   resources :tableaus, path: '/tableau-dashboards'
 
-  resources :extra_fields
-  post 'extra_fields/add_fields_by_group' => 'extra_fields#add_fields_by_group'
-  get 'extra_fields/remove_by_grop/:group_id' => 'extra_fields#remove_by_grop'
+  resources :extra_fields do
+    collection do
+      post :add_row, to: 'extra_fields#add_row'
+      get 'remove_row/:group_id', to: 'extra_fields#remove_row'
+      post :order_row, to: 'extra_fields#order_row'
+    end
+  end
 
   resources :pages_groups
 

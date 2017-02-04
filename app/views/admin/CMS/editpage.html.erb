@@ -89,7 +89,7 @@
         </div>
 
         <div class="cms-page panel-body">
-          <div class="form-group ">
+          <div class="form-group">
             <%= f.label :content , class: "col-md-12 control-label" %>
             <%#= f.label :page_content %>
             <div class="col-md-12">
@@ -98,31 +98,9 @@
           </div>
 
           <div class="form-group">
-            <div class="already-added-fields">   
-              <% if @groups != nil %>
-                <% @groups.each do |g| %>
-                  <div class="col-sm-12 extra-field-remove extrafield-val-<%= g.field_group %>"> 
-                    <a href="javascript:void(0)" class="remove-edited-extra-fild" 
-                      data-rel="extra-field-col-<%= g.field_group %>"
-                      data-url="/extra_fields/remove_by_grop/<%= g.field_group %>"
-                      data-fid="<%= g.field_group %>"> 
-                      <%= t(:REMOVE_THIS_ROW) %> <i class="fa fa-times" style="font-size:20px"></i>
-                    </a>
-                  </div>
-                  <div class="extra-field extra-field-col-<%= g.field_group %> col-sm-12">
-                    <% ExtraField.where(:field_group => g.field_group, :cms_page_id => @cmspage.id ).each do |efield|  %>
-                      <div class="extra-field-col">
-                            <label class="control-label">
-                              <% field_flap = efield.field_setting.split(":") %>
-                                <%= t(:FIELD_TYPE) %> <%= field_flap[1] %>
-                            </label>
-                            <div class="clear Clear"></div>
-                        <%=  cktext_area "extra_field", efield.id, 
-                        :ckeditor => {:language => 'en' }, :value => efield.field_value  %>
-                      </div>
-                    <% end %>
-                  </div>
-                <% end %>
+            <div class="col-md-12 sortable-rows">
+              <% @extra_rows.each do |row| %>
+                <%= render partial: 'admin/CMS/extra_row', locals: {row: row} %>
               <% end %>
             </div>
             <!-- <a href="javascript:void(0)" class="add-coulumnto-row">
@@ -140,30 +118,6 @@
               <i class="fa fa-minus-circle fa-6"></i></a> -->
             <div class="extracoulmn-add"></div>
           </div>
-
-          <!--    <div class="form-group group-panel">
-                  <label><%=  t("Groups:") %></label>
-                  <ul class="updategrouppagel">
-                    <div style="display:none">
-                     <select name="pages[]" multiple="multiple">
-                       <option value="<%= @cmspage.id %>" selected="selected">
-                        <%= @cmspage.title %>
-                        </option>
-                     </select>
-                    </div>
-                   
-                    <% Group.all.each do |g| %>
-                      <li>
-                        <% if @cmspage.groups.exists?(g) %>
-                        <%=  check_box_tag("groups[#{g.id}]",1,1) %>
-                        <% else %>
-                        <%=  check_box_tag("groups[#{g.id}]",1) %>
-                        <% end %>
-                        <%= label_tag("groups[#{g.id}]", g.name) %>
-                      </li>
-                    <% end %>
-                  </ul>
-             </div> -->
           
           <div class="form-group">
             <%= f.label :page_css , class: "col-md-12 control-label" %>
@@ -199,7 +153,3 @@
 
   </div>
 </div>
- 
-
-
-

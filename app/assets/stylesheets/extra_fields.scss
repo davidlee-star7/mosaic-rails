@@ -1,3 +1,41 @@
 // Place all the styles related to the extra_fields controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.extra-row {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 20px 0;
+  box-shadow: 0 0 2px rgba(0,0,0,.1);
+  &:after {
+    content: '';
+    display: table;
+    clear:both;
+  }
+}
+
+.portlet {
+}
+
+.portlet-header {
+  padding: 10px;
+  position: relative;
+  font-size: 14px;
+  cursor: move;
+}
+.portlet-toggle {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  font-size: 24px;
+  transform: translate(0, -50%);
+}
+.portlet-content {
+  margin-top: 10px;
+}
+.portlet-placeholder {
+  border: 1px dotted black;
+  margin: 0 1em 1em 0;
+  height: 50px;
+}

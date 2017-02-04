@@ -427,15 +427,20 @@ function selectQuestionType(type) {
 
     })
 
-    jQuery("a.remove-edited-extra-fild").click(function(e){
+
+    initExtraRow();
+}
+
+function initExtraRow() {
+    jQuery("a.remove-edited-extra-field").off('click').on('click', function(e){
         e.preventDefault();
-       var field = jQuery(this).data("rel"); 
        var purl = jQuery(this).data("url");
        var fid = jQuery(this).data("fid");
        jQuery(this).hide();
        if (confirm("Are you sure, This process can`t be undone.")) {
-         jQuery("."+field).remove();
-         jQuery(".extra-field-col-"+fid).hide(500);
+         jQuery("#"+fid).hide(500, function() {
+            this.remove();
+         });
          jQuery.ajax({
              url: purl,
              type: "get",
@@ -447,9 +452,46 @@ function selectQuestionType(type) {
        };
         
     })
+    $( ".sortable-rows" ).sortable({
+        connectWith: ".sortable-rows",
+        handle: ".portlet-header",
+        cancel: ".portlet-toggle",
+        placeholder: "portlet-placeholder ui-corner-all",
+        update: function( event, ui ) {
+            var fieldIds = JSON.parse(ui.item.context.dataset.fieldIds);
+            for (var i = 0; i < fieldIds.length; i ++) {
+                var fieldId = fieldIds[i];
+                var instanceName = 'extra_field_' + fieldId;
+                var savedData = CKEDITOR.instances[instanceName].getData();
+                CKEDITOR.instances[instanceName].destroy(true);
+                $('#' + instanceName).val(savedData);
+                CKEDITOR.replace(instanceName, {"language":"en"});
+            }
+            var sortedIDs = $(this).sortable( "toArray", { attribute: 'data-id'} );
+            jQuery.ajax({
+                url: '/extra_fields/order_row',
+                type: 'post',
+                data: {
+                    row_order: sortedIDs
+                },
+                success: function(resp) {
+                    window.console.log(resp)
+                }
+            })
+        }
+    });
+    $( ".extra-row.portlet:not(.ui-widget)" )
+        .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+        .find( ".portlet-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        .prepend( "<span class='md md-expand-less portlet-toggle'></span>");
 
+    $( ".extra-row .portlet-toggle" ).off('click').on( "click", function() {
+        var icon = $( this );
+        icon.toggleClass( "md-expand-less md-expand-more" );
+        icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+    });
 }
-
 // function to remove fields 
 //from question fields
 function remove_fileds(obj) {
@@ -521,15 +563,12 @@ function submit_extra_field_form(){
             url: purl,
             type: "post",
             data: formdata,
+            dataType: "html",
             success: function(resp){
-                var nfl = "";
-                for(var i=0; i < resp.length; i++){
-                    nfl += "<textarea class='ck_editor_load' name='extra_field["+resp[i].id+"]' id='extra_field_"+resp[i].id+"' />";
-                }
-
-                jQuery(".extracoulmn-add").append(nfl);
-               jQuery.modal.close();
-               window.location="";
+                jQuery(".sortable-rows").append(resp);
+                initExtraRow();
+                jQuery.modal.close();
+               // window.location="";
             }
         })
     })

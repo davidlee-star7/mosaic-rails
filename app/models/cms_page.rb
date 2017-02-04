@@ -23,6 +23,7 @@ class CmsPage < ActiveRecord::Base
 	has_many :groups, :through => :pages_groups
 
 	has_many :extra_fields
+	has_many :extra_rows, :dependent => :destroy
 	 
 
 	scope :unassigned_pages, -> {
@@ -71,6 +72,8 @@ class CmsPage < ActiveRecord::Base
 	end
 
  
-
+ 	def sorted_extra_rows
+ 		self.extra_rows.order(:position)
+ 	end
 
 end

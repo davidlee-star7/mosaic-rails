@@ -618,7 +618,7 @@ class AdminController < ApplicationController
   def editpage
     @cmspage = CmsPage.find(params[:cms_page_id])
     @microsite = Microsite.find(params[:id]) if params[:id].present?
-    @groups = ExtraField.where(:cms_page_id => @cmspage.id ).select(:field_group).order("field_group DESC").distinct
+    @extra_rows = @cmspage.sorted_extra_rows
     session[:edit_page_last_id] = @cmspage.id 
     session[:edit_page_back] = nil
     respond_to do |format|
@@ -652,23 +652,15 @@ class AdminController < ApplicationController
     cmspage.bodyfield6 = params[:cms_page][:bodyfield6],
     cmspage.template_id = params[:cms_page][:template_id]
 
-    pextra_fields = params[:extra_field] 
-    if cmspage.extra_fields != nil && pextra_fields != nil && pextra_fields != ""
-      cmspage.extra_fields.each do |efield|
-        efvalue = nil
-        pextra_fields.each do |pfield|
-          if pfield.first.to_i == efield.id
-           efvalue = pfield[1] 
-          end
-        end
-        if efvalue != nil
-         efield.field_value = efvalue
-         efield.save
-        else
-         efield.destroy 
-        end
-      end
+    pextra_fields = params[:extra_field]
+    row_ids = []
+    pextra_fields.each do |ef_id, content|
+      field = ExtraField.find(ef_id)
+      field.update!(field_value: content)
+      row_ids |= [field.extra_row_id]
     end
+
+    cmspage.extra_rows.where('id NOT IN (?)', row_ids).destroy_all()
 
     extraelemrnt =  params[:extraelemrnt]
     if extraelemrnt != nil && extraelemrnt != ""
