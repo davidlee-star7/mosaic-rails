@@ -354,6 +354,7 @@ zh-CN:
   SAVE_AS_TEMPLATE: Save as Template
   PAGE_TITLE: Page title
   MICROSITE: Microsite
+  CODE: Code
 
   activerecord:
     attributes:

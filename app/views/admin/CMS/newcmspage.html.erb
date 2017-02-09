@@ -70,7 +70,6 @@
       </div>
 
       <div class="cms-page panel-body">
-
           
         <div class="form-group">
           <%= f.label :content %><br>
@@ -79,6 +78,17 @@
         </div>
 
         <div class="form-group">
+          <%= f.label :page_class %><br>
+          <%= f.text_field :page_class, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="panel-heading">
+        <h3 class="panel-title trans-none"><%= t(:CODE) %></h3>
+      </div>
+
+      <div class="cms-page panel-body">
+        <div class="form-group">
           <%= f.label :page_css %><br>
           <%= f.text_area :page_css, class: 'form-control' %>
         </div>
@@ -86,13 +96,9 @@
           <%= f.label :page_js %><br>
           <%= f.text_area :page_js, class: 'form-control' %>
         </div>
-        <div class="form-group">
-          <%= f.label :page_class %><br>
-          <%= f.text_field :page_class, class: 'form-control' %>
-        </div>
         
         <div class="form-group actions">
-          <%= f.submit('Create CMS Page', :class=> "btn btn-info waves-effect waves-light") %>
+          <%= f.submit('create', :class=> "btn btn-info waves-effect waves-light") %>
         </div>
         <% end %>
       </div>
