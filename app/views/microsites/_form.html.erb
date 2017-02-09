@@ -76,6 +76,15 @@
       <div class="col-sm-10">
          <%= f.file_field :background_image %>
       </div>
+      <div class="col-sm-10 col-sm-offset-2" style="margin-top: 15px;">
+         <% if @microsite.background_image.present? && @microsite.background_image.url != nil %>
+         <%= image_tag @microsite.background_image.url %>
+         <div style="margin-top: 15px;">
+            <%= f.check_box :remove_background_image %>
+            <%= f.label(:remove_background_image, "Remove background image") %>
+         </div>
+         <% end %>
+      </div>
    </div>
 
    <div class="form-group m-b-0">

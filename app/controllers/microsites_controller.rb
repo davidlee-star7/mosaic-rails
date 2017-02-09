@@ -243,7 +243,7 @@ class MicrositesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
   def microsite_params
       # params.require(:microsite).permit(:title, :default_language, :active_microsite, :description, :publish, :user_template, :layout_name, :client_logo, :background_color, :background_image, :font, :font_type, :user_id)
-   params.require(:microsite).permit(:title, :default_language, :active_microsite, :description, :publish, :user_template, :layout_name, :client_logo, :background_color, :background_image, :font, :font_type, :template_id, :client_id, :slug)
+   params.require(:microsite).permit(:title, :default_language, :active_microsite, :description, :publish, :user_template, :layout_name, :client_logo, :background_color, :background_image, :remove_background_image, :font, :font_type, :template_id, :client_id, :slug)
   end
 
   
