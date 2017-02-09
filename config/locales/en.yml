@@ -349,6 +349,8 @@ en:
   ADD_NEW_VARIABLE: Add New Variable
   ADD_MICROSITE: Add Microsite
   SAVE_AS_TEMPLATE: Save as Template
+  PAGE_TITLE: Page title
+  MICROSITE: Microsite
 
   activerecord:
     attributes:

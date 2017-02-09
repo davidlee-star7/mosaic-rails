@@ -331,6 +331,30 @@ zh-CN:
   FOLLOWING_RECORDS_IMPORT_SUCCESS: Following Records are imported successfully
   FOLLOWING_RECORDS_IMPORT_FAIL: Following Records can't be imported due to shown errors
 
+  UPLOADED_FILES: Uploaded Files
+  FILE_NAME: File Name
+  FILE_TYPE: File Type
+  DATE_ADDED: Date Added
+
+  ADD_NEW_MICROSITE: Add New Microsite
+  MICROSITE_DETAILS: Microsite Details
+  MICROSITE_PAGES: Microsite Pages
+  Preview: Preview
+  ADD_NEW_PAGE: Add New Page
+  ADD_EXISTING_PAGE: Add Existing Page
+  CREATE_NEW_PAGE: Create New Page
+  NOT_ASSIGNED_YET: Not Assigned Yet
+  FIELD_TYPE: Field Type
+  REMOVE_THIS_ROW: Remove This Row
+  ADD_ANOTHER_ROW: Add another row
+  Content: Content
+  ADD_USERS_TO_GROUP: Add Users to Group
+  ADD_NEW_VARIABLE: Add New Variable
+  ADD_MICROSITE: Add Microsite
+  SAVE_AS_TEMPLATE: Save as Template
+  PAGE_TITLE: Page title
+  MICROSITE: Microsite
+
   activerecord:
     attributes:
       group:

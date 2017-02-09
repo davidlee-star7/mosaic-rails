@@ -51,8 +51,13 @@
                 <table class="table" width="100%">
                   <thead>
                     <tr>
-                      <td>Page name</td>
-                      <td>Microsite</td>
+                      <td>
+                        <%= t(:PAGE_TITLE) %>
+                        <%= render :partial => "admin/CMS/sort_icon", :locals => {:field => 'title'} %>
+                      </td>
+                      <td>
+                        <%= t(:MICROSITE) %>
+                      </td>
                       <td colspan="3"></td>
                     </tr>
                   </thead>

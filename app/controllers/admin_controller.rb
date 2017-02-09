@@ -567,20 +567,22 @@ class AdminController < ApplicationController
   def listcmspages
     @cmspages = []
     if current_user.admin?
-      @cmspages = CmsPage.order(updated_at: :desc)
+      @cmspages = CmsPage.all # order(updated_at: :desc)
       @errors = []
       @message = []
     else
-      if current_user.microsites != nil
-        current_user.microsites.each do |m|
-          if m.cms_pages != nil
-            m.cms_pages.each do |p|
-              @cmspages << p
-            end
-          end
-        end
-      end     
+      subquery = current_user.microsites.select(:id).to_sql
+      @cmspages = CmsPage.joins(:cms_pages_microsites).where("cms_pages_microsites.microsite_id IN (#{subquery})")
     end
+
+    orderby = 'title' if params[:orderby] == 'title'
+    direction = params[:direction]
+    direction = 'ASC' if direction != 'DESC' && direction != 'desc'
+    
+    if orderby.present?
+      @cmspages = @cmspages.order("#{orderby} #{direction}")
+    end
+
 
     if params[:task] == "cmspages_to_group"
       groups = params[:groups]
