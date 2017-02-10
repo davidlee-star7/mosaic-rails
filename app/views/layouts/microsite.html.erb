@@ -231,7 +231,11 @@
 <div class="row">
 <div class="col-md-12">
 <div style="padding: 15px;">
-<center><div class="copy-right"><%= t("COPY_RIGHT_MSG") %></div></center>     
+<center><div class="copy-right">
+  <%= raw t(:FOR_QUESTIONS_CONTACT_EMAIL, email: '<a href="support@anthesisgroup.com">support@anthesisgroup.com</a>') %>
+  <br />
+  <%= t("COPY_RIGHT_MSG") %>
+</div></center>     
 </div>
 </div>
 </div>

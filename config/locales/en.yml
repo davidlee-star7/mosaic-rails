@@ -353,6 +353,7 @@ en:
   PAGE_TITLE: Page title
   MICROSITE: Microsite
   CODE: Code
+  FOR_QUESTIONS_CONTACT_EMAIL: For questions, contact %{email}
 
   activerecord:
     attributes:

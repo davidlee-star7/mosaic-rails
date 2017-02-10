@@ -32,7 +32,11 @@
 </div>
 
 <div class="clr"></div>
-<div class="copy-right"><%= t("COPY_RIGHT_MSG") %></div>
+<div class="copy-right">
+  <%= raw t(:FOR_QUESTIONS_CONTACT_EMAIL, email: '<a href="support@anthesisgroup.com">support@anthesisgroup.com</a>') %>
+  <br />
+  <%= t("COPY_RIGHT_MSG") %>
+</div>
 <div class="clr"></div>
 </body>
 </html>
