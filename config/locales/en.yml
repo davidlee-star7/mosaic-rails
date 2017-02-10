@@ -36,7 +36,7 @@ en:
   addsurvey: 'Add Survey'
   deluser: 'Delete User'
   editsurvey: 'Edit Survey'
-  edituser: 'Edit Users'
+  edituser: 'Edit User'
   listusers: 'List Users'
   adduser: 'Add User'
   check_permition: 'Check Permission'
@@ -98,7 +98,7 @@ en:
   EDIT: 'Edit'
   DESTROY: 'Destroy'
   ARE_YOU_SURE: 'Are you sure?'
-  ADD_NEW_GROUP: 'Add New Group'
+  ADD_NEW_GROUP: 'Add a New Group'
   ALL_SURVEY_OF_THIS_CLIENT: 'Al Survey of this Client'
   STATUS: 'Status'
   ASSIGN_TO_MICROSITE: 'Assign to Microsite'
@@ -210,6 +210,7 @@ en:
   ALERT_SELECT_GROUP_TO_SEND_SURVEY_LINK: You must have to select at least one group to send survey link
   Administrator: Administrator
   All: All
+  CREATE_NEW_CLIENT: Create A New Client
   EDIT_CLIENT: Edit Client
   LISTING_QFIELDS: Listing Qfields
   NEW_QFIELD: New Qfield

@@ -656,10 +656,12 @@ class AdminController < ApplicationController
 
     pextra_fields = params[:extra_field]
     row_ids = []
-    pextra_fields.each do |ef_id, content|
-      field = ExtraField.find(ef_id)
-      field.update!(field_value: content)
-      row_ids |= [field.extra_row_id]
+    if pextra_fields.present?
+      pextra_fields.each do |ef_id, content|
+        field = ExtraField.find(ef_id)
+        field.update!(field_value: content)
+        row_ids |= [field.extra_row_id]
+      end
     end
 
     cmspage.extra_rows.where('id NOT IN (?)', row_ids).destroy_all()

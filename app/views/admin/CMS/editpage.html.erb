@@ -1,3 +1,5 @@
+<% content_for :title, t(:editpage) %>
+
 <div class="row">
   <div class="col-sm-12">
     <%= form_for(@cmspage, :url => url_for(:controller => :admin, :action => :update_cmspage, :cms_page_id =>@cmspage.id)) do |f| %>

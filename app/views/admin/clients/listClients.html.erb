@@ -1,10 +1,10 @@
-
+<% content_for :title, t(:MANAGE_CLIENTS) %>
 
 <div class="row">
    <div class="col-sm-12">
       <div class="panel panel-default">
          <div class="panel-heading">
-            <h3 class="panel-title trans-none">Manage Clients
+            <h3 class="panel-title trans-none"><%= t(:MANAGE_CLIENTS) %>
                <span class="pull-right"> 
                <%= link_to 'Create new client', '/admin/clients/new', :class =>'addUser' %>
                </span>

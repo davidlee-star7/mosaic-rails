@@ -1,3 +1,5 @@
+<% content_for :title, @cmspage.title %>
+
   <% @cmspage.content = raw(@cmspage.content).gsub("&quot;",'"') ; %>
   <% @cmspage.content = content_html @cmspage.content %>
 <div class="page-wrapper">
