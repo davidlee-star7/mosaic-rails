@@ -10,7 +10,7 @@ class TableausController < ApplicationController
   # GET /tableaus
   # GET /tableaus.json
   def index
-    @tableaus = Tableau.all
+    @tableaus = Tableau.all.order(:project_name)
   end
 
   # GET /tableaus/1
@@ -85,7 +85,7 @@ class TableausController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tableau_params
-      params.require(:tableau).permit(:width, :height, :site_root, :tabs, :toolbar, :ticket, :load_order, :project_name, :project_title)
+      params.require(:tableau).permit(:width, :height, :site_root, :tabs, :toolbar, :ticket, :load_order, :project_name)
     end
 
 

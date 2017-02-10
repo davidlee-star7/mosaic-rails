@@ -28,9 +28,8 @@
               <thead>
                 <tr>
                   <th>id</th>
-                  <th><%= t(:SHORT_CODE) %></th>
-                  <th><%= t('activerecord.attributes.tableau.project_title') %></th>
                   <th><%= t('activerecord.attributes.tableau.project_name') %></th>
+                  <th><%= t(:SHORT_CODE) %></th>
                   <th><%= t('activerecord.attributes.tableau.width') %></th>
                   <th><%= t('activerecord.attributes.tableau.height') %></th>
                   <th><%= t('activerecord.attributes.tableau.site_root') %></th>
@@ -53,9 +52,8 @@
                 <% @tableaus.each do |tableau| %>
                   <tr>
                     <td class="fit-width"><%= tableau.id %></td>
-                    <td><pre>[project id="<%= tableau.id %>"][/project]</pre></td>
-                    <td class="fit-width"><%= tableau.project_title %></td>
                     <td class="fit-width"><%= tableau.project_name %></td>
+                    <td><pre>[project id='<%= tableau.id %>'][/project]</pre></td>
                     <td><%= tableau.width %></td>
                     <td><%= tableau.height %></td>
                     <td class="fit-width"><%= tableau.site_root %></td>

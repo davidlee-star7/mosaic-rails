@@ -9,7 +9,7 @@
 <% @showVizHome = @attributes[:showVizHome].to_s != "" ? @attributes[:showVizHome] : "n" %>
 <% @filter = @attributes[:filter] %>
 <h3>
-<%= @tableaus.project_title.blank? ? '' : @tableaus.project_title.gsub("_"," ") %>
+<%= @tableaus.project_name.blank? ? '' : @tableaus.project_name.gsub("_"," ") %>
 </h3>
 	<div class="tableauPlaceholder" style="<%= @width %>; <%= @height %>;">
 		<object class="tableauViz" height="<%= @height %>" style="display:none;" width="<%= @width %>">
