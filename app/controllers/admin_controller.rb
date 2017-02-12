@@ -194,7 +194,7 @@ class AdminController < ApplicationController
             @errors << [hashed_row, user.errors.full_messages]
           else
             user.save
-            if group_name.present?
+            if group_name.present? && group.users.where(id: user.id).empty?
               group.users << user
             end
             @success << hashed_row
