@@ -155,6 +155,7 @@
                       <th><%= t("VARIABLE_NAME") %></th>
                       <th><%= t("TYPE") %></th>
                       <th>ID</th>
+                      <th><%= t(:SHORT_CODE) %></th>
                       <th><%= t("VALUE") %></th>
                       <th colspan="2"></th>
                    </tr>
@@ -165,6 +166,7 @@
                     <td><%= group_variable.variable.name %></td>
                     <td><%= group_variable.variable.vtype %></td>
                     <td><%= group_variable.variable.identifier %></td>
+                    <td><%= get_shortcode(group_variable.variable) %></td>
                     <td><%= group_variable.value %></td>
                     <% if current_user.can? :edit, :groups_variables  %> 
                     <td><%= link_to t(:edit), edit_group_variable_path(group_variable.group, group_variable) %></td>

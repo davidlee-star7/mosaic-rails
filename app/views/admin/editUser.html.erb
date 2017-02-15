@@ -125,6 +125,7 @@
                   <th><%= t("VARIABLE_NAME") %></th>
                   <th><%= t("TYPE") %></th>
                   <th>ID</th>
+                  <th><%= t(:SHORT_CODE) %></th>
                   <th><%= t("VALUE") %></th>
                   <th colspan="2"></th>
                </tr>
@@ -135,6 +136,7 @@
                 <td><%= user_variable.variable.name %></td>
                 <td><%= user_variable.variable.vtype %></td>
                 <td><%= user_variable.variable.identifier %></td>
+                <td><%= get_shortcode(user_variable.variable) %></td>
                 <td><%= user_variable.value %></td>
                 <% # if current_user.can? :edit, :user_variables  %> 
                 <td><%= link_to t(:edit), edit_ext_user_variable_path(user_variable.user, user_variable) %></td>
