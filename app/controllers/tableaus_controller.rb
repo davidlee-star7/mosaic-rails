@@ -10,7 +10,17 @@ class TableausController < ApplicationController
   # GET /tableaus
   # GET /tableaus.json
   def index
-    @tableaus = Tableau.all.order(:project_name)
+    @tableaus = Tableau.all
+    orderby = 'project_name' if params[:orderby] == 'project_name'
+    orderby = 'id' if params[:orderby] == 'id'
+    direction = params[:direction]
+    direction = 'ASC' if direction != 'DESC' && direction != 'desc'
+    
+    if orderby.present?
+      @tableaus = @tableaus.order("#{orderby} #{direction}")
+    else
+      @tableaus = @tableaus.order(:project_name)
+    end
   end
 
   # GET /tableaus/1
