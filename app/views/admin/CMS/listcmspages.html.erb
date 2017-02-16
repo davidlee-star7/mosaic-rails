@@ -8,28 +8,6 @@
           <span class="pull-right"><%= link_to t(:CREATE_NEW_PAGE), admin_newcmspage_path  %></span>
         </h3>
       </div>
-      <%#= @cmspage .inspect %>
-      <form action="" method="post" >
-      <%= hidden_field_tag("task","cmspages_to_group") %>
-      <%= hidden_field_tag("authenticity_token",form_authenticity_token) %>
-<!-- 
-      <div class="assigntogroup">
-          <div class="group-survey-left">
-          <%= t("Select the Groups, assign to Pages")%>
-          </div>
-          <div class="group-survey-right">
-            <%= select_tag("groups",
-              options_for_select(Group.all.map{ |g| [g.name,g.id] }),{
-              :class=>"group-selcetor", 
-              :multiple => true
-              }) %>
-          </div>
-      </div>
-        <div class="savebtn button">
-           <%= button_tag(t(:Save), data: { 
-              disable_with: t(:PLEASE_WAIT),
-              confirm: t(:ARE_YOU_SURE) }) %>
-        </div> -->
 
         <div class="error-blok" style="color:red">
             <% if @errors != nil %>
@@ -46,6 +24,18 @@
           <% end %>
         </div>
         <div class="panel-body">
+          <form action="" method="get" class="form-horizontal">
+            <%= hidden_field_tag('direction', params[:direction]) %>
+            <%= hidden_field_tag('orderby', params[:orderby]) %>
+            <div class="row" style="margin: 20px -10px 0;">
+              <div class="col-xs-9 text-right control-label">
+                Filter by Microsite: 
+              </div>
+              <div class="col-xs-3">
+                <%= select_tag "microsite_id", options_for_select(microsite_titles_collection, params[:microsite_id]), include_blank: true, class: "form-control", onchange: 'this.form.submit()' %>
+              </div>
+            </div>
+          </form>
           <div class="row">
             <p id="notice"><%= notice %></p>
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -63,83 +53,78 @@
                       <td colspan="3"></td>
                     </tr>
                   </thead>
-        <% unless @cmspages.nil? %>
-            <% @cmspages.each do |page|  %>
-                  <tr>                              
-                    <td>
-                   <!--   <%= check_box_tag("pages[#{page.id}]",page.id)   %> -->
-                    <%= label_tag("pages[#{page.id}]",page.title) %>
-  <!-- sub page block -->
-          <% unless page.subpages.empty? %>
-                <br><a href="#" class="child-pages"> Child</a>
-          <% end %>
-                <%#= debug page.subpages %>
-          <% unless page.subpages.empty? %>
-            <ul class="subpagelist" style="display:none;"><li>
-              <table width="100%">
-              <% for p in page.subpages %>
-                <tr>   
-                  <td width="90%">
-                  <%= p.title %>
-                  </td>
-                  <!--
-                  <td>
-                    <a href="/<%= p.slug %>" class="" target="__blank">View</a>
-                   </td> 
-                  -->
-                  <td class="text-right">
-                    <% if current_user.can? :editpage, :admin  %> 
-                      <%= link_to(url_for(
-                          :controller => :admin, 
-                          :action => :editpage, 
-                          :cms_page_id =>p.id )) do %>
-                        <i class="fa fa-edit"></i>
-                      <% end %>
-                    <% end %>
-                   </td>       
-                </tr>
-              <% end %>
-              </table>
-            </li></ul>
-          <% end %>
-  <!-- end sub page block -->
-                   </td>
-                   <td>
-                    <% if page.microsites.length > 0 %>
-                      <% page.microsites.each do |microsite| %>
-                        <p><a href="/microsites/<%= microsite.id %>"><%= microsite.title %></a></p>
-                      <% end %>
-                    <% else %>
-                      <%= t(:NOT_ASSIGNED_YET) %>
-                    <% end %>
-                   </td>
+                  <% unless @cmspages.nil? %>
+                    <tbody>
+                      <% @cmspages.each do |page|  %>
+                        <tr>                              
+                          <td>
+                          <%= label_tag("pages[#{page.id}]",page.title) %>
+                          <!-- sub page block -->
+                          <% unless page.subpages.empty? %>
+                                <br><a href="#" class="child-pages"> Child</a>
+                          <% end %>
+                                <%#= debug page.subpages %>
+                          <% unless page.subpages.empty? %>
+                            <ul class="subpagelist" style="display:none;"><li>
+                              <table width="100%">
+                              <% for p in page.subpages %>
+                                <tr>   
+                                  <td width="90%">
+                                  <%= p.title %>
+                                  </td>
+                                  <td class="text-right">
+                                    <% if current_user.can? :editpage, :admin  %> 
+                                      <%= link_to(url_for(
+                                          :controller => :admin, 
+                                          :action => :editpage, 
+                                          :cms_page_id =>p.id )) do %>
+                                        <i class="fa fa-edit"></i>
+                                      <% end %>
+                                    <% end %>
+                                   </td>       
+                                </tr>
+                              <% end %>
+                              </table>
+                            </li></ul>
+                          <% end %>
+                          <!-- end sub page block -->
+                         </td>
+                         <td>
+                          <% if page.microsites.length > 0 %>
+                            <% page.microsites.each do |microsite| %>
+                              <p><a href="/microsites/<%= microsite.id %>"><%= microsite.title %></a></p>
+                            <% end %>
+                          <% else %>
+                            <%= t(:NOT_ASSIGNED_YET) %>
+                          <% end %>
+                         </td>
 
-                  <% if current_user.can? :editpage, :admin  %>&nbsp; 
-                    <td>   
-                      <%= link_to(url_for(:controller => :admin, :action => :editpage, :cms_page_id =>page.id , :template_id =>page.template_id )) do %>
-                        <i class="fa fa-edit"></i>
-                      <% end %>
-                    </td>
-                    <td>
-                      <%= link_to (url_for(:controller => 'admin', :action =>'clonepage', :page_id => page.id)) do %>
-                        <i class="fa fa-copy"></i>
-                      <% end %>
-                    </td>
-                    <td>
-                      <a data-confirm="Are you sure?" data-method="delete" href="/admin/deletepage/<%=page.id %>" rel="nofollow">
-                        <i class="fa fa-remove"></i>
-                      </a>
-                    </td>
-                  <% end %>
-                </tr>
+                        <% if current_user.can? :editpage, :admin  %>&nbsp; 
+                          <td>   
+                            <%= link_to(url_for(:controller => :admin, :action => :editpage, :cms_page_id =>page.id , :template_id =>page.template_id )) do %>
+                              <i class="fa fa-edit"></i>
+                            <% end %>
+                          </td>
+                          <td>
+                            <%= link_to (url_for(:controller => 'admin', :action =>'clonepage', :page_id => page.id)) do %>
+                              <i class="fa fa-copy"></i>
+                            <% end %>
+                          </td>
+                          <td>
+                            <a data-confirm="Are you sure?" data-method="delete" href="/admin/deletepage/<%=page.id %>" rel="nofollow">
+                              <i class="fa fa-remove"></i>
+                            </a>
+                          </td>
+                        <% end %>
+                      </tr>
+                    <% end %>
+                  </tbody>
                 <% end %>
-              <% end %>
               </table>
             </div>
           </div>
         </div>
       </div>
-      </form>
     </div>
   </div>
 </div>

@@ -566,6 +566,7 @@ class AdminController < ApplicationController
   #
   def listcmspages
     @cmspages = []
+    @microsites = Microsite.all
     if current_user.admin?
       @cmspages = CmsPage.all # order(updated_at: :desc)
       @errors = []
@@ -581,6 +582,9 @@ class AdminController < ApplicationController
     
     if orderby.present?
       @cmspages = @cmspages.order("#{orderby} #{direction}")
+    end
+    if params[:microsite_id].present?
+      @cmspages = @cmspages.joins(:cms_pages_microsites).where("cms_pages_microsites.microsite_id=#{params[:microsite_id]}")
     end
 
 
