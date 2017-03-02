@@ -8,9 +8,6 @@
 <% @toolbar = @attributes[:toolbar].to_s != "" ? @attributes[:toolbar] : @tableaus.toolbar %>
 <% @showVizHome = @attributes[:showVizHome].to_s != "" ? @attributes[:showVizHome] : "n" %>
 <% @filter = @attributes[:filter] %>
-<h3>
-<%= @tableaus.project_name.blank? ? '' : @tableaus.project_name.gsub("_"," ") %>
-</h3>
 	<div class="tableauPlaceholder" style="<%= @width %>; <%= @height %>;">
 		<object class="tableauViz" height="<%= @height %>" style="display:none;" width="<%= @width %>">
 			<param name='host_url' value='https://www.mosaic-tableau.com/' /> 
